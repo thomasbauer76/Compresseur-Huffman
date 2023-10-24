@@ -1,0 +1,5 @@
+# ignorer les .o
+*.o
+# ignorer le répertoire /bin et /tests qui ne contiennent que des exécutables
+/bin
+/tests
