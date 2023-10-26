@@ -21,25 +21,29 @@
     \tadOperation{enfiler}{\tadParams{FileDePriorite, Element, Priorite}}{FileDePriorite}
     \tadOperationAvecPreconditions{defiler}{FileDePriorite}{FileDePriorite}
     \tadOperationAvecPreconditions{obtenirElement}{FileDePriorite}{Element}
+    \tadOperationAvecPreconditions{obtenirPriorite}{FileDePriorite}{Priorite}
     %\tadOperation{longueur}{FileDePriorite}{\naturel}
     
   \end{tadOperations}
   \parbox{\linewidth}{\raggedright
       \begin{tadAxiomes}
-        
           \tadAxiome{estVide(fileDePriorite())}
           \tadAxiome{non(estVide(enfiler(fileDePriorite(), e, p)))}
           \tadAxiome{defiler(enfiler(fileDePriorite(), e, p)) = fileDePriorite()}
-          \tadAxiome{p1 > p2 \textit{ et } defiler(enfiler(enfiler(fileDePriorite(), e1, p1), e2, p2)) = enfiler(fileDePriorite(), e2, p2)}
-          \tadAxiome{p1 = p2 \textit{ et } defiler(enfiler(enfiler(fileDePriorite(), e1, p1), e2, p2)) = enfiler(fileDePriorite(), e1, p1)}
-          \tadAxiome{p1 > p2 \textit{ et } obtenirElement(enfiler(enfiler(fileDePriorite(), e1, p1), e2, p2)) = e1}
-          \tadAxiome{p1 = p2 \textit{ et } obtenirElement(enfiler(enfiler(fileDePriorite(), e1, p1), e2, p2)) = e2}
+          \tadAxiome{obtenirPriorite(enfiler(fileDePriorite(),e,p)) = p}
+          \tadAxiome{obtenirPriorite(enfiler(f,e,p)) = max(obtenirPriorite(f),p)}
+          \tadAxiome{obtenirPriorite(f) \leq p \textit{ et } defiler(enfiler(f, e, p)) = f}
+          \tadAxiome{obtenirPriorite(f) > p \textit{ et } defiler(enfiler(f, e, p)) = enfiler(defiler(f),e,p)}
+          \tadAxiome{obtenirElement(enfiler(fileDePriorite(),e,p) = e}
+          \tadAxiome{obtenirPriorite(f) \leq p \textit{ et } obtenirElement(enfiler(f, e, p)) = e}
+          \tadAxiome{obtenirPriorite(f) > p \textit{ et } defiler(enfiler(f, e, p)) = obtenirElement(f)}
       \end{tadAxiomes}
   }
   
   \begin{tadPreconditions}{obtenirElement(f)}
     \tadPrecondition{defiler(f)}{non(estVide(f))}
     \tadPrecondition{obtenirElement(f)}{non(estVide(f))}
+    \tadPrecondition{obtenirPriorite(f)}{non(estVide(f))}
   \end{tadPreconditions}
   
 \end{tad}
