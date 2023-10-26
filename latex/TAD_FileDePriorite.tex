@@ -1,0 +1,48 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc} % encodage du fichier
+\usepackage[french]{babel} % document en francais
+\usepackage[T1]{fontenc} % pour les caracteres accentues
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{pseudocode}
+\usepackage{mdframed}
+
+\begin{document}
+
+%\begin{mdframed}
+\begin{tad}
+  \tadNom{FileDePriorite}
+  \tadParametres{Element, Priorite}
+  \tadDependances{\booleen}
+  \begin{tadOperations}{obtenirElement}
+  
+    \tadOperation{fileDePriorite}{}{FileDePriorite}
+    \tadOperation{estVide}{FileDePriorite}{\booleen}
+    \tadOperation{enfiler}{\tadParams{FileDePriorite, Element, Priorite}}{FileDePriorite}
+    \tadOperationAvecPreconditions{defiler}{FileDePriorite}{FileDePriorite}
+    \tadOperationAvecPreconditions{obtenirElement}{FileDePriorite}{Element}
+    %\tadOperation{longueur}{FileDePriorite}{\naturel}
+    
+  \end{tadOperations}
+  \parbox{\linewidth}{\raggedright
+      \begin{tadAxiomes}
+        
+          \tadAxiome{estVide(fileDePriorite())}
+          \tadAxiome{non(estVide(enfiler(fileDePriorite(), e, p)))}
+          \tadAxiome{defiler(enfiler(fileDePriorite(), e, p)) = fileDePriorite()}
+          \tadAxiome{p1 > p2 \textit{ et } defiler(enfiler(enfiler(fileDePriorite(), e1, p1), e2, p2)) = enfiler(fileDePriorite(), e2, p2)}
+          \tadAxiome{p1 = p2 \textit{ et } defiler(enfiler(enfiler(fileDePriorite(), e1, p1), e2, p2)) = enfiler(fileDePriorite(), e1, p1)}
+          \tadAxiome{p1 > p2 \textit{ et } obtenirElement(enfiler(enfiler(fileDePriorite(), e1, p1), e2, p2)) = e1}
+          \tadAxiome{p1 = p2 \textit{ et } obtenirElement(enfiler(enfiler(fileDePriorite(), e1, p1), e2, p2)) = e2}
+      \end{tadAxiomes}
+  }
+  
+  \begin{tadPreconditions}{obtenirElement(f)}
+    \tadPrecondition{defiler(f)}{non(estVide(f))}
+    \tadPrecondition{obtenirElement(f)}{non(estVide(f))}
+  \end{tadPreconditions}
+  
+\end{tad}
+%\end{mdframed}
+
+\end{document}
