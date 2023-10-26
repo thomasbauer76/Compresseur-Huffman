@@ -1,0 +1,47 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc} % encodage du fichier
+\usepackage[french]{babel} % document en francais
+\usepackage[T1]{fontenc} % pour les caracteres accentues
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{pseudocode}
+\usepackage{mdframed}
+
+\begin{document}
+
+%\begin{mdframed}
+\begin{tad}
+  \tadNom{ArbreDeHuffman}
+  \tadParametres{Element}
+  \tadDependances{\booleen, \naturel}
+  \begin{tadOperations}{nombreDeFeuilles}
+  
+    \tadOperation{arbreDeHuffman}{}{ArbreDeHuffman}
+    \tadOperation{ajouterRacine}{\tadParams{Element, ArbreDeHuffman, ArbreDeHuffman}}{ArbreDeHuffman}
+    \tadOperation{estVide}{ArbreDeHuffman}{\booleen}
+    \tadOperation{nombreDeFeuilles}{ArbreDeHuffman}{\naturel}
+    \tadOperationAvecPreconditions{iemeFeuille}{\tadParams{ArbreDeHuffman, Naturel}}{Element}
+    
+  \end{tadOperations}
+  \parbox{\linewidth}{\raggedright
+      \begin{tadAxiomes}
+          \tadAxiome{estVide(arbreDeHuffman())}
+          \tadAxiome{non(estVide(ajouterRacine(e, a_g, a_d)))}
+          \tadAxiome{nombreDeFeuilles(arbreDeHuffman()) = 0}
+          \tadAxiome{nombreDeFeuilles(ajouterRacine(e,arbreDeHuffman(),arbreDeHuffman())) = 1\\
+            \commentaire{on considère qu'une racine sans fils est une feuille car, pour un arbre de Huffman, une racine ne peut pas avoir qu'un seul fils}}\\
+          \tadAxiome{nombreDeFeuilles(ajouterRacine(e,a_g,a_d)) = nombreDeFeuilles(a_g) + nombreDeFeuilles(a_d)}
+          \tadAxiome{iemeFeuille(ajouterRacine(e,arbreDeHuffman(),arbreDeHuffman()),1) = e}
+          \tadAxiome{i <= nombreDeFeuilles(a_g) \textit{ et } iemeFeuille(ajouterRacine(e,a_g,a_d),i) = iemeFeuille(a_g,i)}
+          \tadAxiome{i > nombreDeFeuilles(a_g) \textit{ et } iemeFeuille(ajouterRacine(e,a_g,a_d),i) = iemeFeuille(a_d,i - nombreDeFeuilles(a_g))}
+      \end{tadAxiomes}
+  }
+  
+  \begin{tadPreconditions}{obtenirElement(f)}
+    \tadPrecondition{iemeFeuille(a,i)}{non(estVide(a))}
+  \end{tadPreconditions}
+  
+\end{tad}
+%\end{mdframed}
+
+\end{document}
