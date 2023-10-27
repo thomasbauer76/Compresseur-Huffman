@@ -12,33 +12,34 @@
 %\begin{mdframed}
 \begin{tad}
   \tadNom{ArbreDeHuffman}
-  \tadParametres{Element}
-  \tadDependances{\booleen, \naturel}
-  \begin{tadOperations}{nombreDeFeuilles}
+  \tadParametres{Element, Frequence}
+  \tadDependances{\booleen}
+  \begin{tadOperations}{obtenirFilsGauche}
   
-    \tadOperation{arbreDeHuffman}{}{ArbreDeHuffman}
-    \tadOperation{ajouterRacine}{\tadParams{Element, ArbreDeHuffman, ArbreDeHuffman}}{ArbreDeHuffman}
-    \tadOperation{estVide}{ArbreDeHuffman}{\booleen}
-    \tadOperation{nombreDeFeuilles}{ArbreDeHuffman}{\naturel}
-    \tadOperationAvecPreconditions{iemeFeuille}{\tadParams{ArbreDeHuffman, Naturel}}{Element}
+    \tadOperation{arbreDeHuffman}{\tadParams{Element, Frequence}}{ArbreDeHuffman}
+    \tadOperation{ajouterRacine}{\tadParams{Frequence, ArbreDeHuffman, ArbreDeHuffman}}{ArbreDeHuffman}
+    \tadOperation{aUnElement}{ArbreDeHuffman}{\booleen}
+    \tadOperation{obtenirElement}{ArbreDeHuffman}{Element}
+    \tadOperation{obtenirFrequence}{ArbreDeHuffman}{Frequence}
+    \tadOperation{obtenirFilsGauche}{ArbreDeHuffman}{ArbreDeHuffman}
+    \tadOperation{obtenirFilsDroit}{ArbreDeHuffman}{ArbreDeHuffman}
     
   \end{tadOperations}
   \parbox{\linewidth}{\raggedright
       \begin{tadAxiomes}
-          \tadAxiome{estVide(arbreDeHuffman())}
-          \tadAxiome{non(estVide(ajouterRacine(e, a_g, a_d)))}
-          \tadAxiome{nombreDeFeuilles(arbreDeHuffman()) = 0}
-          \tadAxiome{nombreDeFeuilles(ajouterRacine(e,arbreDeHuffman(),arbreDeHuffman())) = 1\\
-            \commentaire{on considère qu'une racine sans fils est une feuille car, pour un arbre de Huffman, une racine ne peut pas avoir qu'un seul fils}}\\
-          \tadAxiome{nombreDeFeuilles(ajouterRacine(e,a_g,a_d)) = nombreDeFeuilles(a_g) + nombreDeFeuilles(a_d)}
-          \tadAxiome{iemeFeuille(ajouterRacine(e,arbreDeHuffman(),arbreDeHuffman()),1) = e}
-          \tadAxiome{i <= nombreDeFeuilles(a_g) \textit{ et } iemeFeuille(ajouterRacine(e,a_g,a_d),i) = iemeFeuille(a_g,i)}
-          \tadAxiome{i > nombreDeFeuilles(a_g) \textit{ et } iemeFeuille(ajouterRacine(e,a_g,a_d),i) = iemeFeuille(a_d,i - nombreDeFeuilles(a_g))}
+            \tadAxiome{aUnElement(arbreDeHuffman(e,f))}
+            \tadAxiome{non(aUnElement(ajouterRacine(f,a_g,a_d)))}
+            \tadAxiome{obtenirElement(arbreDeHuffman(e,f)) = e}
+            \tadAxiome{obtenirFrequence(arbreDeHuffman(e,f)) = f}
+            \tadAxiome{obtenirFilsGauche(ajouterRacine(f,a_g,a_d) = a_g}
+            \tadAxiome{obtenirFilsDroit(ajouterRacine(f,a_g,a_d) = a_d}
       \end{tadAxiomes}
   }
   
   \begin{tadPreconditions}{obtenirElement(f)}
-    \tadPrecondition{iemeFeuille(a,i)}{non(estVide(a))}
+    \tadPrecondition{obtenirElement(a)}{aUnElement(a)}
+    \tadPrecondition{obtenirFilsGauche(a)}{non(aUnElement(a))}
+    \tadPrecondition{obtenirFilsDroit(a)}{non(aUnElement(a))}
   \end{tadPreconditions}
   
 \end{tad}
