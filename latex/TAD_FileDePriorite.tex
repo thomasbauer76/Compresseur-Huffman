@@ -12,31 +12,26 @@
 %\begin{mdframed}
 \begin{tad}
   \tadNom{FileDePriorite}
-  \tadParametres{Element, Priorite}
+  \tadParametres{Element ($\forall e_1 \in Element, e_2 \in Element, e_1 \neq e_2 \Rightarrow e_1 < e_2 \textit{ ou } e_1 > e_2$)}
   \tadDependances{\booleen}
   \begin{tadOperations}{obtenirElement}
   
     \tadOperation{fileDePriorite}{}{FileDePriorite}
     \tadOperation{estVide}{FileDePriorite}{\booleen}
-    \tadOperation{enfiler}{\tadParams{FileDePriorite, Element, Priorite}}{FileDePriorite}
+    \tadOperation{enfiler}{\tadParams{FileDePriorite, Element}}{FileDePriorite}
     \tadOperationAvecPreconditions{defiler}{FileDePriorite}{FileDePriorite}
     \tadOperationAvecPreconditions{obtenirElement}{FileDePriorite}{Element}
-    \tadOperationAvecPreconditions{obtenirPriorite}{FileDePriorite}{Priorite}
     %\tadOperation{longueur}{FileDePriorite}{\naturel}
     
   \end{tadOperations}
   \parbox{\linewidth}{\raggedright
       \begin{tadAxiomes}
           \tadAxiome{estVide(fileDePriorite())}
-          \tadAxiome{non(estVide(enfiler(fileDePriorite(), e, p)))}
-          \tadAxiome{defiler(enfiler(fileDePriorite(), e, p)) = fileDePriorite()}
-          \tadAxiome{obtenirPriorite(enfiler(fileDePriorite(),e,p)) = p}
-          \tadAxiome{obtenirPriorite(enfiler(f,e,p)) = max(obtenirPriorite(f),p)}
-          \tadAxiome{obtenirPriorite(f) \leq p \textit{ et } defiler(enfiler(f, e, p)) = f}
-          \tadAxiome{obtenirPriorite(f) > p \textit{ et } defiler(enfiler(f, e, p)) = enfiler(defiler(f),e,p)}
-          \tadAxiome{obtenirElement(enfiler(fileDePriorite(),e,p) = e}
-          \tadAxiome{obtenirPriorite(f) \leq p \textit{ et } obtenirElement(enfiler(f, e, p)) = e}
-          \tadAxiome{obtenirPriorite(f) > p \textit{ et } defiler(enfiler(f, e, p)) = obtenirElement(f)}
+          \tadAxiome{non(estVide(enfiler(f, e)))}
+          \tadAxiome{obtenirElement(enfiler(fileDePriorite(),e) = e}
+          \tadAxiome{defiler(enfiler(fileDePriorite(), e)) = fileDePriorite()}
+          \tadAxiome{obtenirElement(f) \leq e \Rightarrow defiler(enfiler(f, e)) = f}
+          \tadAxiome{obtenirElement(f) > e \Rightarrow defiler(enfiler(f, e)) = enfiler(defiler(f),e)}
       \end{tadAxiomes}
   }
   
