@@ -18,7 +18,7 @@
   
     \tadOperation{arbreDeHuffman}{\tadParams{Element, Frequence}}{ArbreDeHuffman}
     \tadOperation{ajouterRacine}{\tadParams{Frequence, ArbreDeHuffman, ArbreDeHuffman}}{ArbreDeHuffman}
-    \tadOperation{aUnElement}{ArbreDeHuffman}{\booleen}
+    \tadOperation{estUneFeuille}{ArbreDeHuffman}{\booleen}
     \tadOperation{obtenirElement}{ArbreDeHuffman}{Element}
     \tadOperation{obtenirFrequence}{ArbreDeHuffman}{Frequence}
     \tadOperation{obtenirFilsGauche}{ArbreDeHuffman}{ArbreDeHuffman}
@@ -27,8 +27,8 @@
   \end{tadOperations}
   \parbox{\linewidth}{\raggedright
       \begin{tadAxiomes}
-            \tadAxiome{aUnElement(arbreDeHuffman(e,f))}
-            \tadAxiome{non(aUnElement(ajouterRacine(f,a_g,a_d)))}
+            \tadAxiome{estUneFeuille(arbreDeHuffman(e,f))}
+            \tadAxiome{non(estUneFeuille(ajouterRacine(f,a_g,a_d)))}
             \tadAxiome{obtenirElement(arbreDeHuffman(e,f)) = e}
             \tadAxiome{obtenirFrequence(arbreDeHuffman(e,f)) = f}
             \tadAxiome{obtenirFrequence(ajouterRacine(f,a_g,a_d)) = f}
@@ -38,9 +38,9 @@
   }
   
   \begin{tadPreconditions}{obtenirElement(f)}
-    \tadPrecondition{obtenirElement(a)}{aUnElement(a)}
-    \tadPrecondition{obtenirFilsGauche(a)}{non(aUnElement(a))}
-    \tadPrecondition{obtenirFilsDroit(a)}{non(aUnElement(a))}
+    \tadPrecondition{obtenirElement(a)}{estUneFeuille(a)}
+    \tadPrecondition{obtenirFilsGauche(a)}{non(estUneFeuille(a))}
+    \tadPrecondition{obtenirFilsDroit(a)}{non(estUneFeuille(a))}
   \end{tadPreconditions}
   
 \end{tad}
