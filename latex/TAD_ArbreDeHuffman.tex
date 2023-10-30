@@ -12,25 +12,24 @@
 %\begin{mdframed}
 \begin{tad}
   \tadNom{ArbreDeHuffman}
-  \tadParametres{Element, Frequence}
-  \tadDependances{\booleen}
+  \tadDependances{\textbf{Statistiques}, \textbf{Octet}, \naturel, \booleen}
   \begin{tadOperations}{obtenirFilsGauche}
   
-    \tadOperation{arbreDeHuffman}{\tadParams{Element, Frequence}}{ArbreDeHuffman}
+    \tadOperation{arbreDeHuffman}{\textbf{Statistiques}}{ArbreDeHuffman}
     \tadOperation{ajouterRacine}{\tadParams{ArbreDeHuffman, ArbreDeHuffman}}{ArbreDeHuffman}
     \tadOperation{estUneFeuille}{ArbreDeHuffman}{\booleen}
-    \tadOperationAvecPreconditions{obtenirElement}{ArbreDeHuffman}{Element}
-    \tadOperation{obtenirFrequence}{ArbreDeHuffman}{Frequence}
+    \tadOperationAvecPreconditions{obtenirOctet}{ArbreDeHuffman}{\textbf{Octet}}
+    \tadOperation{obtenirFrequence}{ArbreDeHuffman}{\naturel}
     \tadOperationAvecPreconditions{obtenirFilsGauche}{ArbreDeHuffman}{ArbreDeHuffman}
     \tadOperationAvecPreconditions{obtenirFilsDroit}{ArbreDeHuffman}{ArbreDeHuffman}
     
   \end{tadOperations}
   \parbox{\linewidth}{\raggedright
       \begin{tadAxiomes}
-            \tadAxiome{estUneFeuille(arbreDeHuffman(e,f))}
+            \tadAxiome{estUneFeuille(arbreDeHuffman(s))}
             \tadAxiome{non(estUneFeuille(ajouterRacine(a_g,a_d)))}
-            \tadAxiome{obtenirElement(arbreDeHuffman(e,f)) = e}
-            \tadAxiome{obtenirFrequence(arbreDeHuffman(e,f)) = f}
+            \tadAxiome{obtenirOctet(arbreDeHuffman(s)) = Statistiques.obtenirOctet(s)}
+            \tadAxiome{obtenirFrequence(arbreDeHuffman(s)) = Statistiques.obtenirFrequence(s)}
             \tadAxiome{obtenirFrequence(ajouterRacine(a_g,a_d)) = obtenirFrequence(a_g) + obtenirFrequence(a_d)}
             \tadAxiome{obtenirFilsGauche(ajouterRacine(a_g,a_d)) = a_g}
             \tadAxiome{obtenirFilsDroit(ajouterRacine(a_g,a_d)) = a_d}
@@ -38,7 +37,7 @@
   }
   
   \begin{tadPreconditions}{obtenirFilsGauche(a)}
-    \tadPrecondition{obtenirElement(a)}{estUneFeuille(a)}
+    \tadPrecondition{obtenirOctet(a)}{estUneFeuille(a)}
     \tadPrecondition{obtenirFilsGauche(a)}{non(estUneFeuille(a))}
     \tadPrecondition{obtenirFilsDroit(a)}{non(estUneFeuille(a))}
   \end{tadPreconditions}
