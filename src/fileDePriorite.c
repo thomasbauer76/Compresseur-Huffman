@@ -5,16 +5,23 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-FileDePriorite fileDePriorite() {
+FileDePriorite fileDePriorite() 
+{
     return NULL;
 }
 
-bool estVide(FileDePriorite fileDePriorite) {
+bool estVide(FileDePriorite fileDePriorite) 
+{
     return fileDePriorite == NULL;
 }
 
-void enfiler(FileDePriorite *fileDePriorite, ArbreDeHuffman arbreDeHuffman) {
-    if (estVide(*fileDePriorite) || obtenirFrequence((*fileDePriorite)->arbreDeHuffman) >= obtenirFrequence(arbreDeHuffman)) { // Changer condition pour gérer aussi l'ordre alphabétique
+void enfiler(FileDePriorite *fileDePriorite, ArbreDeHuffman arbreDeHuffman) 
+{
+    if (estVide(*fileDePriorite) || 
+        obtenirFrequence(arbreDeHuffman) < obtenirFrequence((*fileDePriorite)->arbreDeHuffman) ||
+        (obtenirFrequence(arbreDeHuffman) == obtenirFrequence((*fileDePriorite)->arbreDeHuffman) &&
+         obtenirOctet(arbreDeHuffman) < obtenirOctet((*fileDePriorite)->arbreDeHuffman))) 
+    {
         FileDePriorite temp = *fileDePriorite;
         *fileDePriorite = (FileDePriorite)malloc(sizeof(FileDePriorite));
         (*fileDePriorite)->arbreDeHuffman = arbreDeHuffman;
@@ -24,7 +31,8 @@ void enfiler(FileDePriorite *fileDePriorite, ArbreDeHuffman arbreDeHuffman) {
         enfiler(&(*fileDePriorite)->fileSuivante,arbreDeHuffman);
 }
 
-ArbreDeHuffman obtenirArbreEtDefiler(FileDePriorite *fileDePriorite) {
+ArbreDeHuffman obtenirArbreEtDefiler(FileDePriorite *fileDePriorite) 
+{
     FileDePriorite temp = *fileDePriorite;
     ArbreDeHuffman arbre = temp->arbreDeHuffman;
     *fileDePriorite = temp->fileSuivante;
