@@ -1,18 +1,8 @@
+#include "arbreDeHuffman.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
-
-#define OCTET_VIDE 0 //Valeur qui représente un arbre sans octet
-
-typedef struct Racine *ArbreDeHuffman; 
-
-struct Racine {
-    unsigned int octet;
-    unsigned int frequence;
-    ArbreDeHuffman arbreGauche;
-    ArbreDeHuffman arbreDroit;
-};
-
 
 ArbreDeHuffman arbreDeHuffman(int octet, int frequence) { //Changer l'entrée de cette fonction pour correspondre aux Statistiques
     ArbreDeHuffman feuille = (ArbreDeHuffman)malloc(sizeof(ArbreDeHuffman));
@@ -40,8 +30,8 @@ ArbreDeHuffman fusionner(ArbreDeHuffman arbreGauche, ArbreDeHuffman arbreDroit) 
     return racine;
 }
 
-bool estUneFeuille(ArbreDeHuffman a) {
-    return a->octet != OCTET_VIDE;
+bool estUneFeuille(ArbreDeHuffman arbreDeHuffman) {
+    return arbreDeHuffman->octet != OCTET_VIDE;
 }
 
 ArbreDeHuffman obtenirFilsGauche(ArbreDeHuffman arbreDeHuffman) {
