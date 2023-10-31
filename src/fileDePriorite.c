@@ -21,7 +21,7 @@ void fixerFileSuivante(FileDePriorite *fileDePriorite, ArbreDeHuffman arbreDeHuf
 }
 
 void enfiler(FileDePriorite *fileDePriorite, ArbreDeHuffman arbreDeHuffman) {
-    if (estVide(*fileDePriorite) || obtenirFrequence((*fileDePriorite)->arbreDeHuffman) >= obtenirFrequence(arbreDeHuffman))
+    if (estVide(*fileDePriorite) || obtenirFrequence((*fileDePriorite)->arbreDeHuffman) >= obtenirFrequence(arbreDeHuffman)) // Changer condition pour gérer aussi l'ordre alphabétique
         fixerFileSuivante(fileDePriorite,arbreDeHuffman);
     else
         enfiler(&(*fileDePriorite)->fileSuivante,arbreDeHuffman);
