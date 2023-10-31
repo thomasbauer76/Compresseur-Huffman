@@ -13,16 +13,13 @@ bool estVide(FileDePriorite fileDePriorite) {
     return fileDePriorite == NULL;
 }
 
-void fixerFileSuivante(FileDePriorite *fileDePriorite, ArbreDeHuffman arbreDeHuffman) {
-    FileDePriorite temp = *fileDePriorite;
-    *fileDePriorite = (FileDePriorite)malloc(sizeof(FileDePriorite));
-    (*fileDePriorite)->arbreDeHuffman = arbreDeHuffman;
-    (*fileDePriorite)->fileSuivante = temp;
-}
-
 void enfiler(FileDePriorite *fileDePriorite, ArbreDeHuffman arbreDeHuffman) {
-    if (estVide(*fileDePriorite) || obtenirFrequence((*fileDePriorite)->arbreDeHuffman) >= obtenirFrequence(arbreDeHuffman)) // Changer condition pour gérer aussi l'ordre alphabétique
-        fixerFileSuivante(fileDePriorite,arbreDeHuffman);
+    if (estVide(*fileDePriorite) || obtenirFrequence((*fileDePriorite)->arbreDeHuffman) >= obtenirFrequence(arbreDeHuffman)) { // Changer condition pour gérer aussi l'ordre alphabétique
+        FileDePriorite temp = *fileDePriorite;
+        *fileDePriorite = (FileDePriorite)malloc(sizeof(FileDePriorite));
+        (*fileDePriorite)->arbreDeHuffman = arbreDeHuffman;
+        (*fileDePriorite)->fileSuivante = temp;
+    }
     else
         enfiler(&(*fileDePriorite)->fileSuivante,arbreDeHuffman);
 }
