@@ -12,10 +12,10 @@
 %\begin{mdframed}
 \begin{tad}
   \tadNom{ArbreDeHuffman}
-  \tadDependances{\textbf{Statistiques}, \textbf{Octet}, \naturel, \booleen}
+  \tadDependances{\textbf{Statistiques}, \textbf{0..255}, \textbf{Octet}, \naturel, \booleen}
   \begin{tadOperations}{obtenirFilsGauche}
   
-    \tadOperation{arbreDeHuffman}{\textbf{Statistiques}}{ArbreDeHuffman}
+    \tadOperation{arbreDeHuffman}{\tadParams{\textbf{Statistiques},\textbf{0..255}}}{ArbreDeHuffman}
     \tadOperation{ajouterRacine}{\tadParams{ArbreDeHuffman, ArbreDeHuffman}}{ArbreDeHuffman}
     \tadOperation{estUneFeuille}{ArbreDeHuffman}{\booleen}
     \tadOperationAvecPreconditions{obtenirOctet}{ArbreDeHuffman}{\textbf{Octet}}
@@ -26,10 +26,10 @@
   \end{tadOperations}
   \parbox{\linewidth}{\raggedright
       \begin{tadAxiomes}
-            \tadAxiome{estUneFeuille(arbreDeHuffman(s))}
+            \tadAxiome{estUneFeuille(arbreDeHuffman(s,i))}
             \tadAxiome{non(estUneFeuille(ajouterRacine(a_g,a_d)))}
-            \tadAxiome{obtenirOctet(arbreDeHuffman(s)) = Statistiques.obtenirOctet(s)}
-            \tadAxiome{obtenirFrequence(arbreDeHuffman(s)) = Statistiques.obtenirFrequence(s)}
+            \tadAxiome{obtenirOctet(arbreDeHuffman(s,i)) = Statistiques.obtenirOctet(s,i)}
+            \tadAxiome{obtenirFrequence(arbreDeHuffman(s,i)) = Statistiques.obtenirFrequence(s,i)}
             \tadAxiome{obtenirFrequence(ajouterRacine(a_g,a_d)) = obtenirFrequence(a_g) + obtenirFrequence(a_d)}
             \tadAxiome{obtenirFilsGauche(ajouterRacine(a_g,a_d)) = a_g}
             \tadAxiome{obtenirFilsDroit(ajouterRacine(a_g,a_d)) = a_d}
