@@ -9,6 +9,8 @@
 
 \begin{document}
 
+\section{TAD ArbreDeHuffman}
+
 %\begin{mdframed}
 \begin{tad}
   \tadNom{ArbreDeHuffman}
@@ -45,4 +47,113 @@
 \end{tad}
 %\end{mdframed}
 
+\section{Signatures des fonctions et procédures}
+
+\begin{algorithme}
+    \signatureFonction{arbreDeHuffman}{stat : \textbf{Statistiques}, octet : \textbf{0..255}}{\textbf{ArbreDeHuffman}}{}
+    \signatureFonction{fusionner}{$a_g$, $a_d$ : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{}
+    \signatureFonction{estUneFeuille}{arbre : \textbf{ArbreDeHuffman}}{\booleen}{}
+    \signatureFonction{obtenirOctet}{arbre : \textbf{ArbreDeHuffman}}{\textbf{Octet}}{estUneFeuille(arbre)}    
+    \signatureFonction{obtenirFrequence}{arbre : \textbf{ArbreDeHuffman}}{\naturel}{}
+    \signatureFonction{obtenirFilsGauche}{arbre : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{non(estUneFeuille(arbre))}
+    \signatureFonction{obtenirFilsDroit}{arbre : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{non(estUneFeuille(arbre))}
+\end{algorithme}
+
+\section{Conception détaillée}
+
+\subsection{Type ArbreDeHuffman}
+
+\begin{algorithme}
+    \type{ArbreDeHuffman}{\motclefDereferencer Racine}
+    \bigbreak
+    \begin{enregistrement}{Racine}
+        \champEnregistrement{octet}{\textbf{0..255}}
+        \champEnregistrement{frequence}{\naturel}
+        \champEnregistrement{arbreGauche}{ArbreDeHuffman}
+        \champEnregistrement{arbreDroit}{ArbreDeHuffman}
+    \end{enregistrement}
+\end{algorithme}
+
+\newpage
+\subsection{Algorithmes des fonctions et procédures}
+
+\begin{algorithme}
+    \fonction{arbreDeHuffman}{stat : \textbf{Statistiques}, octet : \textbf{0..255}}{\textbf{ArbreDeHuffman}}{}
+    {arbre : ArbreDeHuffman}
+    {
+        \instruction{\allouer{arbre}}
+        \affecter{arbre\motclefDereferencer .octet}{stat[octet].octet}
+        \affecter{arbre\motclefDereferencer .frequence}{stat[octet].frequence}
+        \affecter{arbre\motclefDereferencer .arbreGauche}{\textbf{NIL}}
+        \affecter{arbre\motclefDereferencer .arbreDroit}{\textbf{NIL}}
+        \retourner{arbre}
+    }
+\end{algorithme}
+
+\bigbreak
+\begin{algorithme}
+    \fonction{fusionner}{$a_g$, $a_d$ : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{}
+    {racine : \textbf{ArbreDeHuffman}}
+    {
+        \instruction{\allouer{racine}}
+        \affecter{racine\motclefDereferencer .arbreGauche}{$a_g$}
+        \affecter{racine\motclefDereferencer .arbreDroit}{$a_d$}
+        \affecter{racine\motclefDereferencer .octet}{0}
+        \affecter{racine\motclefDereferencer .frequence}{\textbf{obtenirFrequence}($a_g$) + \textbf{obtenirFrequence}($a_d$)}
+        \retourner{racine}
+    }
+\end{algorithme}
+
+\bigbreak
+\begin{algorithme}
+    \fonction{estUneFeuille}{arbre : \textbf{ArbreDeHuffman}}{\booleen}{}
+    {}
+    {
+        \retourner{arbre\motclefDereferencer .octet $\ne$ 0}
+    }
+\end{algorithme}
+
+\bigbreak
+\begin{algorithme}
+    \fonction{obtenirOctet}{arbre : \textbf{ArbreDeHuffman}}{\textbf{Octet}}{estUneFeuille(arbre)}
+    {}
+    {
+        \retourner{arbre\motclefDereferencer .octet}
+    }
+\end{algorithme}
+
+\bigbreak
+\begin{algorithme}
+    \fonction{obtenirFrequence}{arbre : \textbf{ArbreDeHuffman}}{\naturel}{}
+    {}
+    {
+        \retourner{arbre\motclefDereferencer .frequence}
+    }
+\end{algorithme}
+
+\bigbreak
+\begin{algorithme}
+    \fonction{obtenirFilsGauche}{arbre : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{non(estUneFeuille(arbre))}
+    {}
+    {
+        \retourner{arbre\motclefDereferencer .arbreGauche}
+    }
+\end{algorithme}
+
+\bigbreak
+\begin{algorithme}
+    \fonction{obtenirFilsDroit}{arbre : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{non(estUneFeuille(arbre))}
+    {}
+    {
+        \retourner{arbre\motclefDereferencer .arbreDroit}
+    }
+\end{algorithme}
+
+
+
+
+
+
+
 \end{document}
+
