@@ -39,16 +39,95 @@
 %\end{mdframed}
 
 
+
+
+
 \section{Signatures des fonctions et procédures}
 
 \begin{algorithme}
     \signatureFonction{fileDePriorite}{}{\textbf{FileDePriorite}}{}
-    \signatureFonction{estVide}{\textbf{FileDePriorite}}{\booleen}{}
+    \signatureFonction{estVide}{file : \textbf{FileDePriorite}}{\booleen}{}
     \signatureProcedure{enfiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}}, \paramEntree{e : \textbf{Element}}}{}
     \signatureProcedure{obtenirElementEtDefiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}}, \paramSortie{e : \textbf{Element}}}{non(estVide(file))}
     \signatureFonction{obtenirElementEtDefiler}{file : \motclefDereferencer \textbf{FileDePriorite}}{\textbf{Element}}{non(estVide(file))}
 \end{algorithme}
 
+
+
+\subsection{Type FileDePriorite}
+
+\begin{algorithme}
+    \type{FileDePriorite}{\motclefDereferencer Noeud}
+    \bigbreak
+    \begin{enregistrement}{Noeud}
+        \champEnregistrement{element}{Element}
+        \champEnregistrement{fileSuivante}{FileDePriorite}
+    \end{enregistrement}
+\end{algorithme}
+
+
+
+\subsection{Algorithmes des fonctions et procédures}
+
+\begin{algorithme}
+    \fonction{fileDePriorite}{}{\textbf{FileDePriorite}}{}
+    {}
+    {
+        \retourner{\textbf{NIL}}
+    }
+\end{algorithme}
+
+\bigbreak
+\begin{algorithme}
+    \fonction{estVide}{file : \textbf{FileDePriorite}}{\booleen}{}
+    {}
+    {
+        \retourner{file = \textbf{NIL}}
+    }
+\end{algorithme}
+
+\bigbreak
+\begin{algorithme}
+    \procedure{enfiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}}, \paramEntree{e : \textbf{Element}}}{}
+    {temp : \textbf{FileDePriorite}}
+    {
+         \sialorssinon{estVide(file) ou e $\leq$ file\motclefDereferencer .element}
+         {
+            \affecter{temp}{file}
+            \instruction{\allouer{file}}
+            \affecter{file\motclefDereferencer .element}{e}
+            \affecter{file\motclefDereferencer .fileSuivante}{temp}
+         }
+         {
+            \instruction{\textbf{enfiler}(file\motclefDereferencer .fileSuivante, e)}{}
+         }
+    }
+\end{algorithme}
+
+\bigbreak
+\begin{algorithme}
+    \procedure{obtenirElementEtDefiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}}, \paramSortie{e : \textbf{Element}}}{non(estVide(file))}
+    {temp : \textbf{FileDePriorite}}
+    {
+        \affecter{e}{file\motclefDereferencer .element}
+        \affecter{temp}{file}
+        \affecter{file}{temp\motclefDereferencer .listeSuivante}
+        \instruction{\desallouer{temp}}
+    }
+\end{algorithme}
+
+\bigbreak
+\begin{algorithme}
+    \fonction{obtenirElementEtDefiler}{file : \motclefDereferencer \textbf{FileDePriorite}}{\textbf{Element}}{non(estVide(file))}
+    {temp : \textbf{FileDePriorite}}
+    {
+        \affecter{temp}{file\motclefDereferencer}
+        \affecter{e}{temp\motclefDereferencer .element}
+        \affecter{file\motclefDereferencer}{temp\motclefDereferencer .listeSuivante}
+        \instruction{\desallouer{temp}}
+        \retourner{e}
+    }
+\end{algorithme}
 
 
 \end{document}
