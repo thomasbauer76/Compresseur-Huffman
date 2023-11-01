@@ -49,7 +49,6 @@
     \signatureFonction{estVide}{file : \textbf{FileDePriorite}}{\booleen}{}
     \signatureProcedure{enfiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}}, \paramEntree{e : \textbf{Element}}}{}
     \signatureProcedure{obtenirElementEtDefiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}}, \paramSortie{e : \textbf{Element}}}{non(estVide(file))}
-    \signatureFonction{obtenirElementEtDefiler}{file : \motclefDereferencer \textbf{FileDePriorite}}{\textbf{Element}}{non(estVide(file))}
 \end{algorithme}
 
 
@@ -116,18 +115,7 @@
     }
 \end{algorithme}
 
-\bigbreak
-\begin{algorithme}
-    \fonction{obtenirElementEtDefiler}{file : \motclefDereferencer \textbf{FileDePriorite}}{\textbf{Element}}{non(estVide(file))}
-    {temp : \textbf{FileDePriorite}}
-    {
-        \affecter{temp}{file\motclefDereferencer}
-        \affecter{e}{temp\motclefDereferencer .element}
-        \affecter{file\motclefDereferencer}{temp\motclefDereferencer .listeSuivante}
-        \instruction{\desallouer{temp}}
-        \retourner{e}
-    }
-\end{algorithme}
+
 
 
 \end{document}
