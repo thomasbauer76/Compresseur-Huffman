@@ -19,8 +19,7 @@
     \tadOperation{fileDePriorite}{}{FileDePriorite}
     \tadOperation{estVide}{FileDePriorite}{\booleen}
     \tadOperation{enfiler}{\tadParams{FileDePriorite, Element}}{FileDePriorite}
-    \tadOperationAvecPreconditions{defiler}{FileDePriorite}{FileDePriorite}
-    \tadOperationAvecPreconditions{obtenirElement}{FileDePriorite}{Element}
+    \tadOperationAvecPreconditions{obtenirElementEtDefiler}{FileDePriorite}{\tadParams{FileDePriorite, Element}}
     %\tadOperation{longueur}{FileDePriorite}{\naturel}
     
   \end{tadOperations}
@@ -28,19 +27,28 @@
       \begin{tadAxiomes}
           \tadAxiome{estVide(fileDePriorite())}
           \tadAxiome{non(estVide(enfiler(f, e)))}
-          \tadAxiome{obtenirElement(enfiler(fileDePriorite(),e) = e}
-          \tadAxiome{defiler(enfiler(fileDePriorite(), e)) = fileDePriorite()}
-          \tadAxiome{obtenirElement(f) \leq e \Rightarrow defiler(enfiler(f, e)) = f}
-          \tadAxiome{obtenirElement(f) > e \Rightarrow defiler(enfiler(f, e)) = enfiler(defiler(f),e)}
+          \tadAxiome{obtenirElementEtDefiler(enfiler(fileDePriorite(),e)) = fileDePriorite(), e}
       \end{tadAxiomes}
   }
   
   \begin{tadPreconditions}{obtenirElement(f)}
-    \tadPrecondition{defiler(f)}{non(estVide(f))}
-    \tadPrecondition{obtenirElement(f)}{non(estVide(f))}
+    \tadPrecondition{obtenirElementEtDefiler(f)}{non(estVide(f))}
   \end{tadPreconditions}
   
 \end{tad}
 %\end{mdframed}
+
+
+\section{Signatures des fonctions et procédures}
+
+\begin{algorithme}
+    \signatureFonction{fileDePriorite}{}{\textbf{FileDePriorite}}{}
+    \signatureFonction{estVide}{\textbf{FileDePriorite}}{\booleen}{}
+    \signatureProcedure{enfiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}}, \paramEntree{e : \textbf{Element}}}{}
+    \signatureProcedure{obtenirElementEtDefiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}}, \paramSortie{e : \textbf{Element}}}{non(estVide(file))}
+    \signatureFonction{obtenirElementEtDefiler}{file : \motclefDereferencer \textbf{FileDePriorite}}{\textbf{Element}}{non(estVide(file))}
+\end{algorithme}
+
+
 
 \end{document}
