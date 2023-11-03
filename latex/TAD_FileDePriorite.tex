@@ -27,6 +27,7 @@
       \begin{tadAxiomes}
           \tadAxiome{estVide(fileDePriorite())}
           \tadAxiome{non(estVide(enfiler(f, e)))}
+          \tadAxiome{obtenirElementEtDefiler(enfiler(fileDePriorite(),e)) = fileDePriorite(), e}
           \tadAxiome{e_2 \leq e_1 \Rightarrow obtenirElementEtDefiler(enfiler(enfiler(fileDePriorite(),e_1),e_2)) = enfiler(fileDePriorite(),e1),e2}
           \tadAxiome{e_2 > e_1 \Rightarrow obtenirElementEtDefiler(enfiler(enfiler(fileDePriorite(),e_1),e_2)) = enfiler(fileDePriorite(),e_2),e_1}
       \end{tadAxiomes}
