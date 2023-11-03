@@ -19,7 +19,7 @@
     \tadOperation{fileDePriorite}{}{FileDePriorite}
     \tadOperation{estVide}{FileDePriorite}{\booleen}
     \tadOperation{enfiler}{\tadParams{FileDePriorite, Element}}{FileDePriorite}
-    \tadOperationAvecPreconditions{obtenirElementEtDefiler}{FileDePriorite}{\tadParams{FileDePriorite, Element}}
+    \tadOperationAvecPreconditions{obtenirElementEtDefiler}{FileDePriorite}{\tadParams{Element, FileDePriorite}}
     %\tadOperation{longueur}{FileDePriorite}{\naturel}
     
   \end{tadOperations}
@@ -27,9 +27,9 @@
       \begin{tadAxiomes}
           \tadAxiome{estVide(fileDePriorite())}
           \tadAxiome{non(estVide(enfiler(f, e)))}
-          \tadAxiome{obtenirElementEtDefiler(enfiler(fileDePriorite(),e)) = fileDePriorite(), e}
-          \tadAxiome{e_2 \leq e_1 \Rightarrow obtenirElementEtDefiler(enfiler(enfiler(fileDePriorite(),e_1),e_2)) = enfiler(fileDePriorite(),e1),e2}
-          \tadAxiome{e_2 > e_1 \Rightarrow obtenirElementEtDefiler(enfiler(enfiler(fileDePriorite(),e_1),e_2)) = enfiler(fileDePriorite(),e_2),e_1}
+          \tadAxiome{obtenirElementEtDefiler(enfiler(fileDePriorite(),e)) = e,fileDePriorite()}
+          \tadAxiome{e \leq obtenirElementEtDefiler(f)[1] \Rightarrow obtenirElementEtDefiler(enfiler(f,e)) = e,f}
+          \tadAxiome{e > obtenirElementEtDefiler(f)[1] \Rightarrow obtenirElementEtDefiler(enfiler(f,e)) = obtenirElementEtDefiler(f)[1],enfiler(obtenirElementEtDefiler(f)[2],e)}
       \end{tadAxiomes}
   }
   
@@ -50,7 +50,7 @@
     \signatureFonction{fileDePriorite}{}{\textbf{FileDePriorite}}{}
     \signatureFonction{estVide}{file : \textbf{FileDePriorite}}{\booleen}{}
     \signatureProcedure{enfiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}}, \paramEntree{e : \textbf{Element}}}{}
-    \signatureProcedure{obtenirElementEtDefiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}}, \paramSortie{e : \textbf{Element}}}{non(estVide(file))}
+    \signatureProcedure{obtenirElementEtDefiler}{\paramSortie{e : \textbf{Element}}, \paramEntreeSortie{file : \textbf{FileDePriorite}}}{non(estVide(file))}
 \end{algorithme}
 
 
@@ -107,7 +107,7 @@
 
 \bigbreak
 \begin{algorithme}
-    \procedure{obtenirElementEtDefiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}}, \paramSortie{e : \textbf{Element}}}{non(estVide(file))}
+    \procedure{obtenirElementEtDefiler}{\paramSortie{e : \textbf{Element}}, \paramEntreeSortie{file : \textbf{FileDePriorite}}}{non(estVide(file))}
     {temp : \textbf{FileDePriorite}}
     {
         \affecter{e}{file\motclefDereferencer .element}
