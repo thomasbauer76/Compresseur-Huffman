@@ -14,10 +14,10 @@
 %\begin{mdframed}
 \begin{tad}
   \tadNom{ArbreDeHuffman}
-  \tadDependances{\textbf{Statistiques}, \textbf{0..255}, \textbf{Octet}, \naturel, \booleen}
+  \tadDependances{\textbf{Octet}, \naturel, \booleen}
   \begin{tadOperations}{obtenirFilsGauche}
   
-    \tadOperation{arbreDeHuffman}{\tadParams{\textbf{Statistiques},\textbf{0..255}}}{ArbreDeHuffman}
+    \tadOperation{arbreDeHuffman}{\tadParams{\textbf{Octet},\naturel}}{ArbreDeHuffman}
     \tadOperation{fusionner}{\tadParams{ArbreDeHuffman, ArbreDeHuffman}}{ArbreDeHuffman}
     \tadOperation{estUneFeuille}{ArbreDeHuffman}{\booleen}
     \tadOperationAvecPreconditions{obtenirOctet}{ArbreDeHuffman}{\textbf{Octet}}
@@ -28,10 +28,10 @@
   \end{tadOperations}
   \parbox{\linewidth}{\raggedright
       \begin{tadAxiomes}
-            \tadAxiome{estUneFeuille(arbreDeHuffman(s,i))}
+            \tadAxiome{estUneFeuille(arbreDeHuffman(o,f))}
             \tadAxiome{non(estUneFeuille(ajouterRacine(a_g,a_d)))}
-            \tadAxiome{obtenirOctet(arbreDeHuffman(s,i)) = Statistiques.obtenirOctet(s,i)}
-            \tadAxiome{obtenirFrequence(arbreDeHuffman(s,i)) = Statistiques.obtenirFrequence(s,i)}
+            \tadAxiome{obtenirOctet(arbreDeHuffman(o,f)) = o}
+            \tadAxiome{obtenirFrequence(arbreDeHuffman(o,f)) = f}
             \tadAxiome{obtenirFrequence(ajouterRacine(a_g,a_d)) = obtenirFrequence(a_g) + obtenirFrequence(a_d)}
             \tadAxiome{obtenirFilsGauche(ajouterRacine(a_g,a_d)) = a_g}
             \tadAxiome{obtenirFilsDroit(ajouterRacine(a_g,a_d)) = a_d}
@@ -50,7 +50,7 @@
 \section{Signatures des fonctions et procédures}
 
 \begin{algorithme}
-    \signatureFonction{arbreDeHuffman}{stat : \textbf{Statistiques}, octet : \textbf{0..255}}{\textbf{ArbreDeHuffman}}{}
+    \signatureFonction{arbreDeHuffman}{octet : \textbf{Octet}, freq : \naturel}{\textbf{ArbreDeHuffman}}{}
     \signatureFonction{fusionner}{$a_g$, $a_d$ : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{}
     \signatureFonction{estUneFeuille}{arbre : \textbf{ArbreDeHuffman}}{\booleen}{}
     \signatureFonction{obtenirOctet}{arbre : \textbf{ArbreDeHuffman}}{\textbf{Octet}}{estUneFeuille(arbre)}    
@@ -67,7 +67,7 @@
     \type{ArbreDeHuffman}{\motclefDereferencer Racine}
     \bigbreak
     \begin{enregistrement}{Racine}
-        \champEnregistrement{octet}{\textbf{0..255}}
+        \champEnregistrement{octet}{\textbf{Octet}}
         \champEnregistrement{frequence}{\naturel}
         \champEnregistrement{arbreGauche}{ArbreDeHuffman}
         \champEnregistrement{arbreDroit}{ArbreDeHuffman}
@@ -78,12 +78,12 @@
 \subsection{Algorithmes des fonctions et procédures}
 
 \begin{algorithme}
-    \fonction{arbreDeHuffman}{stat : \textbf{Statistiques}, octet : \textbf{0..255}}{\textbf{ArbreDeHuffman}}{}
+    \fonction{arbreDeHuffman}{octet : \textbf{Octet}, freq : \naturel}{\textbf{ArbreDeHuffman}}{}
     {arbre : ArbreDeHuffman}
     {
         \instruction{\allouer{arbre}}
-        \affecter{arbre\motclefDereferencer .octet}{stat[octet].octet}
-        \affecter{arbre\motclefDereferencer .frequence}{stat[octet].frequence}
+        \affecter{arbre\motclefDereferencer .octet}{octet}
+        \affecter{arbre\motclefDereferencer .frequence}{freq}
         \affecter{arbre\motclefDereferencer .arbreGauche}{\textbf{NIL}}
         \affecter{arbre\motclefDereferencer .arbreDroit}{\textbf{NIL}}
         \retourner{arbre}
