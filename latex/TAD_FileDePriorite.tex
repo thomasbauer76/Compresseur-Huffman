@@ -14,7 +14,7 @@
   \tadNom{FileDePriorite}
   \tadParametres{Element ($\forall e_1 \in Element, e_2 \in Element, e_1 \neq e_2 \Rightarrow e_1 < e_2 \textit{ ou } e_1 > e_2$)}
   \tadDependances{\booleen}
-  \begin{tadOperations}{obtenirElement}
+  \begin{tadOperations}{obtenirElementEtDefiler}
   
     \tadOperation{fileDePriorite}{}{FileDePriorite}
     \tadOperation{estVide}{FileDePriorite}{\booleen}
@@ -33,7 +33,7 @@
       \end{tadAxiomes}
   }
   
-  \begin{tadPreconditions}{obtenirElement(f)}
+  \begin{tadPreconditions}{obtenirElementEtDefiler(f)}
     \tadPrecondition{obtenirElementEtDefiler(f)}{non(estVide(f))}
   \end{tadPreconditions}
   
