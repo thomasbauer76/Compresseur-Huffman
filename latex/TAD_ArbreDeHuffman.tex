@@ -29,12 +29,12 @@
   \parbox{\linewidth}{\raggedright
       \begin{tadAxiomes}
             \tadAxiome{estUneFeuille(arbreDeHuffman(o,f))}
-            \tadAxiome{non(estUneFeuille(ajouterRacine(a_g,a_d)))}
+            \tadAxiome{non(estUneFeuille(fusionner(a_g,a_d)))}
             \tadAxiome{obtenirOctet(arbreDeHuffman(o,f)) = o}
             \tadAxiome{obtenirFrequence(arbreDeHuffman(o,f)) = f}
-            \tadAxiome{obtenirFrequence(ajouterRacine(a_g,a_d)) = obtenirFrequence(a_g) + obtenirFrequence(a_d)}
-            \tadAxiome{obtenirFilsGauche(ajouterRacine(a_g,a_d)) = a_g}
-            \tadAxiome{obtenirFilsDroit(ajouterRacine(a_g,a_d)) = a_d}
+            \tadAxiome{obtenirFrequence(fusionner(a_g,a_d)) = obtenirFrequence(a_g) + obtenirFrequence(a_d)}
+            \tadAxiome{obtenirFilsGauche(fusionner(a_g,a_d)) = a_g}
+            \tadAxiome{obtenirFilsDroit(fusionner(a_g,a_d)) = a_d}
       \end{tadAxiomes}
   }
   
