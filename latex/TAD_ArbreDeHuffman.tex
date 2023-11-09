@@ -24,6 +24,7 @@
     \tadOperation{obtenirFrequence}{ArbreDeHuffman}{\naturel}
     \tadOperationAvecPreconditions{obtenirFilsGauche}{ArbreDeHuffman}{ArbreDeHuffman}
     \tadOperationAvecPreconditions{obtenirFilsDroit}{ArbreDeHuffman}{ArbreDeHuffman}
+    \tadOperation{liberer}{ArbreDeHuffman}{}
     
   \end{tadOperations}
   \parbox{\linewidth}{\raggedright
@@ -149,7 +150,18 @@
     }
 \end{algorithme}
 
-
+\bigbreak
+\begin{algorithme}
+    \procedure{liberer}{arbre : \textbf{ArbreDeHuffman}}{}
+    {}
+    {
+        \sialors{non(estUneFeuille(arbre))}{
+            \instruction{\textbf{liberer}(arbre\motclefDereferencer .arbreGauche)}
+            \instruction{\textbf{liberer}(arbre\motclefDereferencer .arbreDroit)}
+        }
+        \instruction{\desallouer{arbre}}
+    }
+\end{algorithme}
 
 
 
