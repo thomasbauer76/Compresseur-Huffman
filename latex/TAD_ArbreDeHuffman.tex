@@ -58,6 +58,7 @@
     \signatureFonction{obtenirFrequence}{arbre : \textbf{ArbreDeHuffman}}{\naturel}{}
     \signatureFonction{obtenirFilsGauche}{arbre : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{non(estUneFeuille(arbre))}
     \signatureFonction{obtenirFilsDroit}{arbre : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{non(estUneFeuille(arbre))}
+    \signatureFonction{liberer}{\paramEntree{arbre : \textbf{ArbreDeHuffman}}}{}
 \end{algorithme}
 
 \section{Conception détaillée}
@@ -152,7 +153,7 @@
 
 \bigbreak
 \begin{algorithme}
-    \procedure{liberer}{arbre : \textbf{ArbreDeHuffman}}{}
+    \procedure{liberer}{\paramEntree{arbre : \textbf{ArbreDeHuffman}}}{}
     {}
     {
         \sialors{non(estUneFeuille(arbre))}{
