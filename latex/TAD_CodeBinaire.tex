@@ -1,0 +1,46 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc} % encodage du fichier
+\usepackage[french]{babel} % document en francais
+\usepackage[T1]{fontenc} % pour les caracteres accentues
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{pseudocode}
+\usepackage{mdframed}
+
+\begin{document}
+
+\section{TAD ArbreDeHuffman}
+
+%\begin{mdframed}
+\begin{tad}
+  \tadNom{CodeBinaire}
+  \tadDependances{\textbf{Octet}, \naturel, \textbf{Bit} }
+  \begin{tadOperations}{obtenirLongueur}
+  
+    \tadOperation{creeCodeBinaire}{bit}{CodeBinaire}
+    \tadOperation{ajouterBit}{\tadParams{CodeBinaire, Bit}}{CodeBinaire}
+    \tadOperation{retirerBit}{\tadParams{CodeBinaire, Bit}}{CodeBinaire}
+    \tadOperationAvecPreconditions{obtenirBit}{\tadParams{CodeBinaire,\naturel}}{Bit}
+    \tadOperation{obtenirLongueur}{CodeBinaire}{\naturel}
+    \tadOperation{concatener}{\tadParams{CodeBinaire,CodeBinaire}}{CodeBinaire}
+     
+  \end{tadOperations}
+  \parbox{\linewidth}{\raggedright
+      \begin{tadAxiomes}
+            \tadAxiome{ObtenirLongueur(concatener(CodeBinaire1,CodeBinaire2))=ObtenirLongueur(CodeBinaire1,CodeBinaire2)}
+            \\
+            \tadAxiome{ObtenirLongueur(ajouterBit(CodeBinaire,Bit))=ObtenirLongueur(CodeBinaire)+1}
+      \end{tadAxiomes}
+  }
+  
+  \begin{tadPreconditions}{ObtenirBit(CodeBinaire)}
+    \tadPrecondition{obtenirBit(CodeBinaire,Naturel)}{Non(EstVide(CodeBinaire))}
+  \end{tadPreconditions}
+  
+\end{tad}
+%\end{mdframed}
+
+
+
+
+\end{document}
