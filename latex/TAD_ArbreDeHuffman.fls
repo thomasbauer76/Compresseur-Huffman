@@ -1,9 +1,0 @@
-PWD /home/saunier/Documents/ITI3/ALGO/Projet_Huffman/iti_algo_2023_2024_gp2.3/latex
-INPUT /etc/texmf/web2c/texmf.cnf
-INPUT /usr/share/texmf/web2c/texmf.cnf
-INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
-INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/saunier/Documents/ITI3/ALGO/Projet_Huffman/iti_algo_2023_2024_gp2.3/latex/TAD_ArbreDeHuffman.tex
-OUTPUT TAD_ArbreDeHuffman.log
-INPUT /usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
