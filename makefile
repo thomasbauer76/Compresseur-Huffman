@@ -4,8 +4,8 @@ LATEXDIR=latex
 
 all :
 
-latex :
-	pdflatex $(LATEXDIR)/main.tex
+pdf :
+	cd ./$(LATEXDIR)/; pdflatex main.tex
 	rm -f $(LATEXDIR)/*.fls $(LATEXDIR)/*.fdb_latexmk $(LATEXDIR)/*.aux $(LATEXDIR)/*.log
 
 clean :
