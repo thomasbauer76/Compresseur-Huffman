@@ -1,0 +1,42 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc} % encodage du fichier
+\usepackage[french]{babel} % document en francais
+\usepackage[T1]{fontenc} % pour les caracteres accentues
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{pseudocode}
+\usepackage{mdframed}
+
+\begin{document}
+
+\section{TAD Table de Codage}
+
+%\begin{mdframed}
+\begin{tad}
+    \tadNom{Octet}
+    \tadDependances{\textbf{Bit}, \textbf{[1..8]}}
+    \begin{tadOperations}{octetVersNaturel}
+        \tadOperation{creerOctet}{\tadParams{\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit}}}{\textbf{Octet}}
+        \tadOperation{obtenirIemeBit}{\tadParams{\textbf{Octet},\textbf{[1..8]}}}{\textbf{Bit}}
+        \tadOperation{octetVersNaturel}{\textbf{Octet}}{\textbf{[1..256]}}
+        \tadOperation{naturelVersOctet}{\textbf{[1..256]}}{\textbf{Octet}}
+       
+       
+    \end{tadOperations}
+
+    \begin{tadPreconditions}{octetVersCodeBinaire(t, codeBinaire)}
+        \tadPrecondition{Aucune}
+    \end{tadPreconditions}
+
+    \begin{tadAxiomes}{}
+        A mieux faire 	après avoir revu TOUTES les opérations du TAD
+    \end{tadAxiomes}
+
+\end{tad}
+%\end{mdframed}
+
+
+
+
+\end{document}
+
