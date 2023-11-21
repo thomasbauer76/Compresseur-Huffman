@@ -1,0 +1,29 @@
+\section{TAD Table de Codage}
+
+%\begin{mdframed}
+\begin{tad}
+    \tadNom{TableDeCodage}
+    \tadDependances{\textbf{Octet}, \booleen, \textbf{CodeBinaire}}
+    \begin{tadOperations}{octetVersCodeBinaire}
+        \tadOperation{creerTableCodage}{\tadParams{\textbf{Octet},\textbf{CodeBinaire}}}{\textbf{TableDeCodage}}
+        \tadOperationAvecPreconditions{ajouterCodage}{\tadParams{\textbf{TableDeCodage},\textbf{Octet},\textbf{CodeBinaire}}}{\textbf{TableDeCodage}}
+        \tadOperationAvecPreconditions{octetVersCodeBinaire}{\tadParams{\textbf{TableDeCodage},\textbf{Octet}}}{\textbf{CodeBinaire}}
+        \tadOperationAvecPreconditions{codeBinaireVersOctet}{\tadParams{\textbf{TableDeCodage},\textbf{CodeBinaire}}}{\textbf{Octet}}
+        \tadOperation{codeBinairePresent}{\tadParams{\textbf{TableDeCodage},\textbf{CodeBinaire}}}{\textbf{\booleen}}
+        \tadOperation{octetPresent}{\tadParams{\textbf{TableDeCodage},\textbf{Octet}}}{\textbf{\booleen}}
+    \end{tadOperations}
+
+    \begin{tadPreconditions}{octetVersCodeBinaire(t, codeBinaire)}
+        \tadPrecondition{ajouterCodage(t,octet,codeBinaire)}{non(octetPresent(t, octet)) et non(codeBinairePresent(t, codeBinaire))}
+        \tadPrecondition{octetVersCodeBinaire(t, codeBinaire)}{codeBinairePresent(t, codeBinaire)}
+        \tadPrecondition{codeBinaireVersOctet(t, octet)}{octetPresent(t,octet)}
+    \end{tadPreconditions}
+
+    \begin{tadAxiomes}{}
+        octetVersCodeBinaire(ajouterCodage(t, octet, codeBinaire), octet)=codeBinaire\\
+        codeBinaireVersOctet(ajouterCodage(t, octet, codeBinaire), codeBinaire)=octet
+    \end{tadAxiomes}
+
+\end{tad}
+%\end{mdframed}
+
