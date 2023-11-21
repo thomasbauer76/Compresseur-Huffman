@@ -1,14 +1,3 @@
-\documentclass[10pt]{article}
-\usepackage[utf8]{inputenc} % encodage du fichier
-\usepackage[french]{babel} % document en francais
-\usepackage[T1]{fontenc} % pour les caracteres accentues
-\usepackage{geometry}
-\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
-\usepackage{pseudocode}
-\usepackage{mdframed}
-
-\begin{document}
-
 \section{TAD Table de Codage}
 
 %\begin{mdframed}
@@ -20,8 +9,8 @@
         \tadOperationAvecPreconditions{ajouterCodage}{\tadParams{\textbf{TableDeCodage},\textbf{Octet},\textbf{CodeBinaire}}}{\textbf{TableDeCodage}}
         \tadOperationAvecPreconditions{octetVersCodeBinaire}{\tadParams{\textbf{TableDeCodage},\textbf{Octet}}}{\textbf{CodeBinaire}}
         \tadOperationAvecPreconditions{codeBinaireVersOctet}{\tadParams{\textbf{TableDeCodage},\textbf{CodeBinaire}}}{\textbf{Octet}}
-        \tadOperation{codeBinairePresent}{\textbf{TableDeCodage},\textbf{CodeBinaire}}{\textbf{\booleen}}
-        \tadOperation{octetPresent}{\textbf{TableDeCodage},\textbf{Octet}}{\textbf{\booleen}}
+        \tadOperation{codeBinairePresent}{\tadParams{\textbf{TableDeCodage},\textbf{CodeBinaire}}}{\textbf{\booleen}}
+        \tadOperation{octetPresent}{\tadParams{\textbf{TableDeCodage},\textbf{Octet}}}{\textbf{\booleen}}
     \end{tadOperations}
 
     \begin{tadPreconditions}{octetVersCodeBinaire(t, codeBinaire)}
@@ -37,9 +26,4 @@
 
 \end{tad}
 %\end{mdframed}
-
-
-
-
-\end{document}
 
