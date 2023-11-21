@@ -56,3 +56,5 @@ dkms.conf
 *.gz
 *.log
 *.aux
+.~lock.Tableau_des_tâches.ods#
+latex/main_test.tex
