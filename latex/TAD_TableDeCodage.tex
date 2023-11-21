@@ -20,8 +20,8 @@
         \tadOperationAvecPreconditions{ajouterCodage}{\tadParams{\textbf{TableDeCodage},\textbf{Octet},\textbf{CodeBinaire}}}{\textbf{TableDeCodage}}
         \tadOperationAvecPreconditions{octetVersCodeBinaire}{\tadParams{\textbf{TableDeCodage},\textbf{Octet}}}{\textbf{CodeBinaire}}
         \tadOperationAvecPreconditions{codeBinaireVersOctet}{\tadParams{\textbf{TableDeCodage},\textbf{CodeBinaire}}}{\textbf{Octet}}
-        \tadOperation{codeBinairePresent}{\textbf{TableDeCodage},\textbf{CodeBinaire}}{\textbf{\booleen}}
-        \tadOperation{octetPresent}{\textbf{TableDeCodage},\textbf{Octet}}{\textbf{\booleen}}
+        \tadOperation{codeBinairePresent}{\tadParams{\textbf{TableDeCodage},\textbf{CodeBinaire}}}{\textbf{\booleen}}
+        \tadOperation{octetPresent}{\tadParams{\textbf{TableDeCodage},\textbf{Octet}}}{\textbf{\booleen}}
     \end{tadOperations}
 
     \begin{tadPreconditions}{octetVersCodeBinaire(t, codeBinaire)}
