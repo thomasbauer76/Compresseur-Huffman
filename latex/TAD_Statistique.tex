@@ -1,0 +1,25 @@
+\section{TAD Statistiques}
+%\begin{mdframed}
+\begin{tad}
+  \tadNom{Statistiques}
+  \tadDependances{CodeBinaire, Octet}
+  \begin{tadOperations}{obtenirElementEtDefiler}
+  
+    \tadOperation{statistique}{}{Statistiques}
+    \tadOperation{incrementerOccurence}{Octet, Statistiques}{Statistiques}
+    \tadOperation{obtenirOccurence}{Octet,Statistiques}{Naturel}
+  
+    %\tadOperation{longueur}{FileDePriorite}{\naturel}
+    
+  \end{tadOperations}
+  \parbox{\linewidth}{\raggedright
+      \begin{tadAxiomes}
+          \tadAxiome{obtenirOccurence(o,statistique())=o}
+          \tadAxiome{obtenirOccurence(o,incrementerOccurence(o,s))=obtenir(o,s)+1}
+         
+      \end{tadAxiomes}
+  }
+  
+  
+\end{tad}
+%\end{mdframed}
