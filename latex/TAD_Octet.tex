@@ -1,0 +1,25 @@
+\subsection{TAD Octet}
+
+%\begin{mdframed}
+\begin{tad}
+    \tadNom{Octet}
+    \tadDependances{\textbf{Bit}, \textbf{0..7}}
+    \begin{tadOperations}{octetVersNaturel}
+        \tadOperation{creerOctet}{\tadParams{\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit}}}{\textbf{Octet}}
+        \tadOperation{obtenirIemeBit}{\tadParams{\textbf{Octet},\textbf{0..7}}}{\textbf{Bit}}
+        \tadOperation{octetVersNaturel}{\textbf{Octet}}{\textbf{0..255}}
+        \tadOperation{naturelVersOctet}{\textbf{0..255}}{\textbf{Octet}}
+       
+       
+    \end{tadOperations}
+
+    \begin{tadPreconditions}{octetVersCodeBinaire(t, codeBinaire)}
+        \tadPrecondition{Aucune}
+    \end{tadPreconditions}
+
+    \begin{tadAxiomes}{}
+        A mieux faire 	après avoir revu TOUTES les opérations du TAD
+    \end{tadAxiomes}
+
+\end{tad}
+%\end{mdframed}

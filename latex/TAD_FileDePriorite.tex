@@ -1,13 +1,4 @@
-\documentclass[10pt]{article}
-\usepackage[utf8]{inputenc} % encodage du fichier
-\usepackage[french]{babel} % document en francais
-\usepackage[T1]{fontenc} % pour les caracteres accentues
-\usepackage{geometry}
-\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
-\usepackage{pseudocode}
-\usepackage{mdframed}
-
-\begin{document}
+\subsection{TAD FileDePriorite}
 
 %\begin{mdframed}
 \begin{tad}
@@ -18,7 +9,7 @@
   
     \tadOperation{fileDePriorite}{}{FileDePriorite}
     \tadOperation{estVide}{FileDePriorite}{\booleen}
-    \tadOperation{enfiler}{\tadParams{FileDePriorite, Element}}{FileDePriorite}
+    \tadOperation{enfilerAuBonEndroit}{\tadParams{FileDePriorite, Element}}{FileDePriorite}
     \tadOperationAvecPreconditions{obtenirElementEtDefiler}{FileDePriorite}{\tadParams{FileDePriorite, Element}}
     %\tadOperation{longueur}{FileDePriorite}{\naturel}
     
@@ -40,7 +31,3 @@
 \end{tad}
 %\end{mdframed}
 
-
-
-
-\end{document}
