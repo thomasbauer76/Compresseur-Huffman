@@ -7,19 +7,26 @@
     \begin{tadOperations}{octetVersNaturel}
         \tadOperation{creerOctet}{\tadParams{\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit}}}{\textbf{Octet}}
         \tadOperation{obtenirIemeBit}{\tadParams{\textbf{Octet},\textbf{0..7}}}{\textbf{Bit}}
+        \tadOperation{fixerIemeBit}{\tadParams{\textbf{Octet}, \textbf{0..7}, \textbf{Bit}}}{\textbf{Octet}}
         \tadOperation{octetVersNaturel}{\textbf{Octet}}{\textbf{0..255}}
-        \tadOperation{naturelVersOctet}{\textbf{0..255}}{\textbf{Octet}}
-       
-       
+        \tadOperation{naturelVersOctet}{\textbf{0..255}}{\textbf{Octet}}       
     \end{tadOperations}
 
     \begin{tadPreconditions}{octetVersCodeBinaire(t, codeBinaire)}
         \tadPrecondition{Aucune}
     \end{tadPreconditions}
 
-    \begin{tadAxiomes}{}
-        A mieux faire 	après avoir revu TOUTES les opérations du TAD
+    \begin{tadAxiomes}
+        \tadAxiome{obtenirIemeBit(creerOctet(b_0,b_1,b_2,b_3,b_4,b_5,b_6,b_7),0)= b_0}\\
+        \textit{Note : on obtient $b_1$ pour l'indice 1, ... et $b_7$ pour l'indice 7}
+        \tadAxiome{fixerIemeBit(creerOctet(b_0,b_1,b_2,b_3,b_4,b_5,b_6,b_7),0, \textbf{bit})=creerOctet(\textbf{bit},b_1,b_2,b_3,b_4,b_5,b_6,b_7)}\\
+        \textit{Note : A nouveau, cette opération fonctionne pour tous les indices entre 0 et 7}
     \end{tadAxiomes}
+    
+    \begin{tadSemantiques}{octetVersNaturel}
+    	\tadSemantique{octetVersNaturel}{permet la conversion d'un nombre en base 2 (Octet) vers un nombre en base 10 (Naturel)}
+    	\tadSemantique{naturelVersOctet}{permet la conversion d'un nombre en base 10 (Naturel) vers un nombre en base 2 (Octet)}
+    \end{tadSemantiques}
 
 \end{tad}
 %\end{mdframed}

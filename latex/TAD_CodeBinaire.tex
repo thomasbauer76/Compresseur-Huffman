@@ -1,4 +1,4 @@
-\section{TAD ArbreDeHuffman}
+\subsection{TAD CodeBinaire}
 
 %\begin{mdframed}
 \begin{tad}
@@ -6,25 +6,26 @@
   \tadDependances{\textbf{Octet}, \naturel, \textbf{Bit} }
   \begin{tadOperations}{obtenirLongueur}
   
-    \tadOperation{creeCodeBinaire}{bit}{CodeBinaire}
+    \tadOperation{creerCodeBinaire}{}{CodeBinaire}
     \tadOperation{ajouterBit}{\tadParams{CodeBinaire, Bit}}{CodeBinaire}
-    \tadOperation{retirerBit}{\tadParams{CodeBinaire, Bit}}{CodeBinaire}
-    \tadOperationAvecPreconditions{obtenirBit}{\tadParams{CodeBinaire,\naturel}}{Bit}
+    \tadOperationAvecPreconditions{retirerBit}{\tadParams{CodeBinaire, Bit}}{CodeBinaire}
+    \tadOperationAvecPreconditions{obtenirIemeBit}{\tadParams{CodeBinaire,\naturel}}{Bit}
     \tadOperation{obtenirLongueur}{CodeBinaire}{\naturel}
     \tadOperation{concatener}{\tadParams{CodeBinaire,CodeBinaire}}{CodeBinaire}
      
   \end{tadOperations}
-  \parbox{\linewidth}{\raggedright
-      \begin{tadAxiomes}
-            \tadAxiome{ObtenirLongueur(concatener(CodeBinaire1,CodeBinaire2))=ObtenirLongueur(CodeBinaire1,CodeBinaire2)}
-            \\
-            \tadAxiome{ObtenirLongueur(ajouterBit(CodeBinaire,Bit))=ObtenirLongueur(CodeBinaire)+1}
-      \end{tadAxiomes}
-  }
-  
+
+
   \begin{tadPreconditions}{ObtenirBit(CodeBinaire)}
     \tadPrecondition{obtenirBit(CodeBinaire,Naturel)}{Non(EstVide(CodeBinaire))}
   \end{tadPreconditions}
+    
+  
+  \begin{tadAxiomes}	
+  	    \tadAxiome{obtenirLongueur(concatener(CodeBinaire1,CodeBinaire2))=
+  		obtenirLongueur(CodeBinaire1,CodeBinaire2)}
+  		\tadAxiome{obtenirLongueur(ajouterBit(CodeBinaire,Bit))=obtenirLongueur(CodeBinaire)+1}
+      \end{tadAxiomes}
   
 \end{tad}
 %\end{mdframed}

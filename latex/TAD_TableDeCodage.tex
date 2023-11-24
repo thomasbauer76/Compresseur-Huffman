@@ -5,12 +5,12 @@
     \tadNom{TableDeCodage}
     \tadDependances{\textbf{Octet}, \booleen, \textbf{CodeBinaire}}
     \begin{tadOperations}{octetVersCodeBinaire}
-        \tadOperation{creerTableCodage}{\tadParams{\textbf{Octet},\textbf{CodeBinaire}}}{\textbf{TableDeCodage}}
+        \tadOperation{creerTableCodage}{}{\textbf{TableDeCodage}}
         \tadOperationAvecPreconditions{ajouterCodage}{\tadParams{\textbf{TableDeCodage},\textbf{Octet},\textbf{CodeBinaire}}}{\textbf{TableDeCodage}}
-        \tadOperationAvecPreconditions{octetVersCodeBinaire}{\tadParams{\textbf{TableDeCodage},\textbf{Octet}}}{\textbf{CodeBinaire}}
-        \tadOperationAvecPreconditions{codeBinaireVersOctet}{\tadParams{\textbf{TableDeCodage},\textbf{CodeBinaire}}}{\textbf{Octet}}
         \tadOperation{codeBinairePresent}{\tadParams{\textbf{TableDeCodage},\textbf{CodeBinaire}}}{\textbf{\booleen}}
         \tadOperation{octetPresent}{\tadParams{\textbf{TableDeCodage},\textbf{Octet}}}{\textbf{\booleen}}
+        \tadOperationAvecPreconditions{octetVersCodeBinaire}{\tadParams{\textbf{TableDeCodage},\textbf{Octet}}}{\textbf{CodeBinaire}}
+        \tadOperationAvecPreconditions{codeBinaireVersOctet}{\tadParams{\textbf{TableDeCodage},\textbf{CodeBinaire}}}{\textbf{Octet}}
     \end{tadOperations}
 
     \begin{tadPreconditions}{octetVersCodeBinaire(t, codeBinaire)}
@@ -19,10 +19,15 @@
         \tadPrecondition{codeBinaireVersOctet(t, octet)}{octetPresent(t,octet)}
     \end{tadPreconditions}
 
-    \begin{tadAxiomes}{}
-        octetVersCodeBinaire(ajouterCodage(t, octet, codeBinaire), octet)=codeBinaire\\
-        codeBinaireVersOctet(ajouterCodage(t, octet, codeBinaire), codeBinaire)=octet
+    \begin{tadAxiomes}
+    	\tadAxiome{codeBinairePresent(ajouterCodage(t, octet, codeBinaire), codeBinaire)}
+    	\tadAxiome{non(codeBinairePresent(creerTableCodage(), codeBinaire))}
+    	\tadAxiome{octetPresent(ajouterCodage(t, octet, codeBinaire), octet)}
+    	\tadAxiome{non(octetPresent(creerTableCodage(), octet))}
+        \tadAxiome{octetVersCodeBinaire(ajouterCodage(t, octet, codeBinaire), octet)=codeBinaire}
+        \tadAxiome{codeBinaireVersOctet(ajouterCodage(t, octet, codeBinaire), codeBinaire)=octet}
     \end{tadAxiomes}
+    
 
 \end{tad}
 %\end{mdframed}
