@@ -14,17 +14,18 @@
     \tadOperation{concatener}{\tadParams{CodeBinaire,CodeBinaire}}{CodeBinaire}
      
   \end{tadOperations}
-  \parbox{\linewidth}{\raggedright
-      \begin{tadAxiomes}
-            \tadAxiome{ObtenirLongueur(concatener(CodeBinaire1,CodeBinaire2))=ObtenirLongueur(CodeBinaire1,CodeBinaire2)}
-            \\
-            \tadAxiome{ObtenirLongueur(ajouterBit(CodeBinaire,Bit))=ObtenirLongueur(CodeBinaire)+1}
-      \end{tadAxiomes}
-  }
-  
+
+
   \begin{tadPreconditions}{ObtenirBit(CodeBinaire)}
     \tadPrecondition{obtenirBit(CodeBinaire,Naturel)}{Non(EstVide(CodeBinaire))}
   \end{tadPreconditions}
+    
+  
+  \begin{tadAxiomes}	
+  	    \tadAxiome{obtenirLongueur(concatener(CodeBinaire1,CodeBinaire2))=
+  		obtenirLongueur(CodeBinaire1,CodeBinaire2)}
+  		\tadAxiome{obtenirLongueur(ajouterBit(CodeBinaire,Bit))=obtenirLongueur(CodeBinaire)+1}
+      \end{tadAxiomes}
   
 \end{tad}
 %\end{mdframed}
