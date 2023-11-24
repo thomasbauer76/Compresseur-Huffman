@@ -5,8 +5,35 @@
 \newcommand{\tabledecodage}{\textbf{TableDeCodage}}
 
 \begin{algorithme}
+    \type{TableDeCodage}{Dictionnaire<Octet,CodeBinaire>}
+    \\
     \fonction{creerTableCodage}{o : \octet, cb : \codebinaire}{\tabledecodage}
     {}
+    {tdc : \tabledecodage}
+    {
+        \affecter{tdc}{dictionnaire()}
+        \instruction{ajouter(tdc,o,cb)}
+        \retourner{tdc}
+    }
+    \\
+    \procedure{ajouterCodage}{tdc : \tabledecodage, o : \octet, cb : \codebinaire}
+    {non(octetPresent(t, octet))}
     {}
-    {\retourner{tc}}
+    {
+        \instruction{ajouter(tdc,o,cb)}
+    }
+    \\
+    \fonction{octetVersCodeBinaire}{tdc : \tabledecodage, o : \octet}{\codebinaire}
+    {octetPresent(t, octet)}
+    {}
+    {
+        \retourner{obtenirValeur(tdc,o)}
+    }
+    \\
+    \fonction{octetPresent}{tdc : \tabledecodage, o : \octet}{\booleen}
+    {}
+    {}
+    {
+        \retourner{estPresent(tdc,o)}
+    }
 \end{algorithme}
