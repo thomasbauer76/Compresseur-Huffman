@@ -6,11 +6,10 @@
     \tadDependances{\textbf{Bit}, \textbf{0..7}}
     \begin{tadOperations}{octetVersNaturel}
         \tadOperation{creerOctet}{\tadParams{\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit}}}{\textbf{Octet}}
+        \tadOperation{fixerIemeBit}{\tadParams{\textbf{Octet}, \textbf{0..7}, \textbf{Bit}}}{\textbf{Octet}}
         \tadOperation{obtenirIemeBit}{\tadParams{\textbf{Octet},\textbf{0..7}}}{\textbf{Bit}}
         \tadOperation{octetVersNaturel}{\textbf{Octet}}{\textbf{0..255}}
-        \tadOperation{naturelVersOctet}{\textbf{0..255}}{\textbf{Octet}}
-       
-       
+        \tadOperation{naturelVersOctet}{\textbf{0..255}}{\textbf{Octet}}       
     \end{tadOperations}
 
     \begin{tadPreconditions}{octetVersCodeBinaire(t, codeBinaire)}

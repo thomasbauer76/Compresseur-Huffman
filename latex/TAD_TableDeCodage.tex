@@ -7,10 +7,10 @@
     \begin{tadOperations}{octetVersCodeBinaire}
         \tadOperation{creerTableCodage}{\tadParams{\textbf{Octet},\textbf{CodeBinaire}}}{\textbf{TableDeCodage}}
         \tadOperationAvecPreconditions{ajouterCodage}{\tadParams{\textbf{TableDeCodage},\textbf{Octet},\textbf{CodeBinaire}}}{\textbf{TableDeCodage}}
-        \tadOperationAvecPreconditions{octetVersCodeBinaire}{\tadParams{\textbf{TableDeCodage},\textbf{Octet}}}{\textbf{CodeBinaire}}
-        \tadOperationAvecPreconditions{codeBinaireVersOctet}{\tadParams{\textbf{TableDeCodage},\textbf{CodeBinaire}}}{\textbf{Octet}}
         \tadOperation{codeBinairePresent}{\tadParams{\textbf{TableDeCodage},\textbf{CodeBinaire}}}{\textbf{\booleen}}
         \tadOperation{octetPresent}{\tadParams{\textbf{TableDeCodage},\textbf{Octet}}}{\textbf{\booleen}}
+        \tadOperationAvecPreconditions{octetVersCodeBinaire}{\tadParams{\textbf{TableDeCodage},\textbf{Octet}}}{\textbf{CodeBinaire}}
+        \tadOperationAvecPreconditions{codeBinaireVersOctet}{\tadParams{\textbf{TableDeCodage},\textbf{CodeBinaire}}}{\textbf{Octet}}
     \end{tadOperations}
 
     \begin{tadPreconditions}{octetVersCodeBinaire(t, codeBinaire)}
