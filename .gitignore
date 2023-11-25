@@ -53,8 +53,10 @@ dkms.conf
 
 # Ignorer choses inutiles du dossier latex
 /latex/*.pdf
+/latex/*.fls
+/latex/*.fdb_latexmk
+/latex/*.aux
+/latex/*.log
 *.gz
-*.log
-*.aux
 .~lock.Tableau_des_tâches.ods#
 latex/main_test.tex
