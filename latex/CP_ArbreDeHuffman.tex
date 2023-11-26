@@ -1,0 +1,25 @@
+\subsection{Conception préliminaire : ArbreDeHuffman}
+
+\begin{algorithme}
+
+    \signatureFonction{arbreDeHuffman}
+    {o : \textbf{Octet}, n : \textbf{Naturel}}
+    {\textbf{ArbreDeHuffman}}{}
+    \signatureFonction{fusionner}{ag : ArbreDeHuffman, ad : ArbreDeHuffman} {\textbf{ArbreDeHuffman}}{}
+    
+    \signatureFonction{estUneFeuille}{a: ArbreDeHuffman}
+    {\textbf{Booleen}}{}
+    \signatureFonction{obtenirOctect}
+    {a: ArbreDeHuffman}
+    {\textbf{Octet}}{estUneFeuille(a)}
+    \signatureFonction{obtenirFrequence}
+    {a: ArbreDeHuffman}
+    {\textbf{Naturel}}{}
+     \signatureFonction{obtenirFilsGauche}
+    {a: ArbreDeHuffman}
+    {\textbf{ArbreDeHuffman}}{non(estUneFeuille(a))}
+      \signatureFonction{obtenirFilsDroit}
+    {a: ArbreDeHuffman}
+    {\textbf{ArbreDeHuffman}}{non(estUneFeuille(a))}
+    
+\end{algorithme}
