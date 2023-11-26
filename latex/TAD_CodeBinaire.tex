@@ -7,6 +7,7 @@
   \begin{tadOperations}{obtenirLongueur}
   
     \tadOperation{creerCodeBinaire}{}{CodeBinaire}
+    \tadOperation{estVide}{CodeBinaire}{Booleen}
     \tadOperation{ajouterBit}{\tadParams{CodeBinaire, Bit}}{CodeBinaire}
     \tadOperationAvecPreconditions{retirerBit}{\tadParams{CodeBinaire, Bit}}{CodeBinaire}
     \tadOperationAvecPreconditions{obtenirIemeBit}{\tadParams{CodeBinaire,\naturel}}{Bit}
@@ -18,6 +19,8 @@
 
   \begin{tadPreconditions}{ObtenirBit(CodeBinaire)}
     \tadPrecondition{obtenirBit(CodeBinaire,Naturel)}{Non(EstVide(CodeBinaire))}
+    \tadPrecondition{retirerBit(CodeBinaire)}{Non(EstVide(CodeBinaire))}
+    
   \end{tadPreconditions}
     
   
