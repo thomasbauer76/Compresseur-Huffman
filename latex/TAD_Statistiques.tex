@@ -6,16 +6,16 @@
   \begin{tadOperations}{obtenirElementEtDefiler}
   
     \tadOperation{statistique}{}{Statistiques}
-    \tadOperation{incrementerOccurence}{Octet, Statistiques}{Statistiques}
-    \tadOperation{obtenirOccurence}{Octet,Statistiques}{Naturel}
+    \tadOperation{incrementerOccurence}{Statistiques, Octet}{Statistiques}
+    \tadOperation{obtenirOccurence}{Statistiques, Octet}{Naturel}
   
     %\tadOperation{longueur}{FileDePriorite}{\naturel}
     
   \end{tadOperations}
   \parbox{\linewidth}{\raggedright
       \begin{tadAxiomes}
-          \tadAxiome{obtenirOccurence(octet,statistique())=0}
-          \tadAxiome{obtenirOccurence(octet,incrementerOccurence(octet,stat))=obtenirOccurence(octet,stat)+1}
+          \tadAxiome{obtenirOccurence(statistique(), octet)=0}
+          \tadAxiome{obtenirOccurence(incrementerOccurence(stat,octet), octet) = obtenirOccurence(stat,octet)+1}
          
       \end{tadAxiomes}
   }
