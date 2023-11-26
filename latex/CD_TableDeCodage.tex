@@ -1,1 +1,39 @@
-\section{Conception Détaillée : TableDeCodage}
+\subsection{Conception Détaillée : TableDeCodage}
+
+\newcommand{\octet}{\textbf{Octet}}
+\newcommand{\codebinaire}{\textbf{CodeBinaire}}
+\newcommand{\tabledecodage}{\textbf{TableDeCodage}}
+
+\begin{algorithme}
+    \type{TableDeCodage}{\tableauUneDimension{0..255}{de }{\codebinaire}}
+    \\
+    \fonction{creerTableCodage}{}{\tabledecodage}
+    {}
+    {tdc : TableDeCodage}
+    {   \pour{octet}{ 0}{255}{}{
+            \affecter{tdc[octet]}{creerCodeBinaire()}
+        }
+        \retourner{tdc}
+    }
+    \\
+    \procedure{ajouterCodage}{tdc : \tabledecodage, o : \octet, cb : \codebinaire}
+    {non(octetPresent(t, octet))}
+    {}
+    {
+        \affecter{tdc[octetVersNaturel(o)]}{cb}
+    }
+    \\
+    \fonction{octetVersCodeBinaire}{tdc : \tabledecodage, o : \octet}{\codebinaire}
+    {octetPresent(t, octet)}
+    {}
+    {
+        \retourner{tdc[octetVersNaturel(o)]}
+    }
+    \\
+    \fonction{octetPresent}{tdc : \tabledecodage, o : \octet}{\booleen}
+    {}
+    {}
+    {
+        \retourner{non(estVide(tdc[octetVersNaturel(o)]))}
+    }
+\end{algorithme}

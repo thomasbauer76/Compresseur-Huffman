@@ -1,0 +1,12 @@
+\subsection{Conception préliminaire : TableDeCodage}
+
+\begin{algorithme}
+    \signatureFonction{creerTableCodage}{caractere : Octet , code:CodeBinaire}{TableDeCodage}{}
+    \signatureFonction{estVide}{TDC : TableDeCodage}{Booléen}{}
+    \signatureFonction{OctetVersCodeBinaire}{TDC : TableDeCodage,caractère :octet}{CodeBinaire}{octetPresent(t,codeBinaire)}
+    \signatureFonction{CodeBinaireVersOctet}{TDC : TableDeCodage,code :CodeBinaire}{Octet}{octetPresent(t,octet)}
+     \signatureFonction{CodeBinairePresent}{TDC : TableDeCodage,code :CodeBinaire}{Booleen}{}
+     \signatureFonction{OctetPresent}{TDC : TableDeCodage,caractère :octet}{Booleen}{}
+    \signatureProcedure{ajouterCodage}{E/S TDC : TableDeCodage, E caractere : octet, E code:Codebinaire}{}
+    
+\end{algorithme}

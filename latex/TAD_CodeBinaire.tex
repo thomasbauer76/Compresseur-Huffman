@@ -1,0 +1,34 @@
+\subsection{TAD CodeBinaire}
+
+%\begin{mdframed}
+\begin{tad}
+  \tadNom{CodeBinaire}
+  \tadDependances{\textbf{Octet}, \naturel, \textbf{Bit} }
+  \begin{tadOperations}{obtenirLongueur}
+  
+    \tadOperation{creerCodeBinaire}{}{CodeBinaire}
+    \tadOperation{estVide}{CodeBinaire}{Booleen}
+    \tadOperation{ajouterBit}{\tadParams{CodeBinaire, Bit}}{CodeBinaire}
+    \tadOperationAvecPreconditions{retirerBit}{\tadParams{CodeBinaire, Bit}}{CodeBinaire}
+    \tadOperationAvecPreconditions{obtenirIemeBit}{\tadParams{CodeBinaire,\naturel}}{Bit}
+    \tadOperation{obtenirLongueur}{CodeBinaire}{\naturel}
+    \tadOperation{concatener}{\tadParams{CodeBinaire,CodeBinaire}}{CodeBinaire}
+     
+  \end{tadOperations}
+
+
+  \begin{tadPreconditions}{ObtenirBit(CodeBinaire)}
+    \tadPrecondition{obtenirBit(CodeBinaire,Naturel)}{Non(EstVide(CodeBinaire))}
+    \tadPrecondition{retirerBit(CodeBinaire)}{Non(EstVide(CodeBinaire))}
+    
+  \end{tadPreconditions}
+    
+  
+  \begin{tadAxiomes}	
+  	    \tadAxiome{obtenirLongueur(concatener(CodeBinaire1,CodeBinaire2))=
+  		obtenirLongueur(CodeBinaire1,CodeBinaire2)}
+  		\tadAxiome{obtenirLongueur(ajouterBit(CodeBinaire,Bit))=obtenirLongueur(CodeBinaire)+1}
+      \end{tadAxiomes}
+  
+\end{tad}
+%\end{mdframed}

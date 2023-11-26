@@ -7,10 +7,30 @@
 \usepackage{pseudocode}
 \usepackage{mdframed}
 
+%%definition de commande
+%%\newcommand{\octet}{\textbf{Octet}}
+%%\newcommand{\codebinaire}{\textbf{CodeBinaire}}
+%%\newcommand{\tabledecodage}{\textbf{TableDeCodage}}
+%%\newcommand{\bit{\textbf{Bit}}
+%%\newcommand{\arbredehuffman}{\textbf{ArbreDeHuffman}}
+%%\newcommand{\booleen}{\textbf{Booleen}}
+%%\newcommand{\naturel}{\textbf{Naturel}}
+%%\newcommand{\filedepriorite}{\textbf{FileDePriorite}}
+%%\newcommand{\element}{\textbf{Element}}
+%%fin
 \begin{document}
-    \section{Analyse préliminaire : les TAD}
+    \section{Analyse : les TAD}
         \input{TAD_ArbreDeHuffman.tex}
         \input{TAD_FileDePriorite.tex}
         \input{TAD_Octet.tex}
         \input{TAD_TableDeCodage.tex}
+        \input{TAD_Statistiques.tex}
+        \input{TAD_CodeBinaire.tex}
+    \section{Conception Préliminaire}
+        \input{CP_FileDePriorite.tex}
+        \input{CP_Octet.tex}
+        \input{CP_Statistiques.tex}
+        \input{CP_TableDeCodage.tex}
+    \section{Conception Détaillée}
+        \input{CD_TableDeCodage.tex}
 \end{document}

@@ -1,0 +1,30 @@
+\subsection{Conception Détaillée : Statistiques}
+
+\newcommand{\octet}{\textbf{Octet}}
+\newcommand{\codebinaire}{\textbf{CodeBinaire}}
+\newcommand{\statistiques}{\textbf{Statistiques}}
+
+\begin{algorithme}
+    \type{Statistiques}{Tableau [0..255] de Naturels}
+    \\
+    \fonction{statistiques}{}{\statistiques}
+    {}
+    {s : \statistiques}
+    {
+        \retourner{s}
+    }
+    \\
+    \procedure{incrementerOccurence}{s : \paramEntreeSortie{\statistiques}, o : \paramEntree{\octet}}
+    {}
+    {}
+    {
+    	\instruction{s[octetVersNaturel(o)] += 1}
+    }
+    \\
+    \fonction{obtenirOccurence}{s : \statistiques, o : \octet}{\textbf{Naturel}}
+    {}
+    {}
+    {
+    	\retourner{s[octetVersNaturel(o)]}
+    }
+\end{algorithme}

@@ -1,7 +1,8 @@
 
-\begin{document}
 
-\section{TAD FileDePriorité}
+
+
+\subsection{TAD FileDePriorite}
 
 
 %\begin{mdframed}
@@ -35,28 +36,3 @@
 \end{tad}
 %\end{mdframed}
 
-\section{Fonctions et Procédures}
-
-
-\begin{algorithme}
-    \signatureFonction{fileDePriorite}{}{\textbf{FileDePriorite}}{}
-    \signatureFonction{estVide}{file : \textbf{FileDePriorite}}{\booleen}{}
-    \signatureProcedure{enfiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}}, \paramEntree{e : \textbf{Element}}}{}
-    \signatureProcedure{obtenirElementEtDefiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}, \paramSortie{e : \textbf{Element} }}}{non(estVide(file))}
-\end{algorithme}
-
-
-\section{Type FileDePriorité}
-
-\begin{algorithme}
-    \type{FileDePriorite}{\motclefDereferencer Noeud}
-    \bigbreak
-    \begin{enregistrement}{FileDePriorité}
-        \champEnregistrement{element}{Element}
-        \champEnregistrement{fileSuivante}{FileDePriorite}
-    \end{enregistrement}
-\end{algorithme}
-
-
-
-\end{document}
