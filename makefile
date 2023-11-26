@@ -1,3 +1,4 @@
+EXE=huffman
 BINDIR=bin
 SRCDIR=src
 LATEXDIR=latex
@@ -9,6 +10,6 @@ pdf :
 	rm -f $(LATEXDIR)/*.fls $(LATEXDIR)/*.fdb_latexmk $(LATEXDIR)/*.aux $(LATEXDIR)/*.log
 
 clean :
-	rm -f $(BINDIR)/*
+	rm -f $(BINDIR)/$(EXE)
 	rm -f $(SRCDIR)/*.o
 	rm -f $(LATEXDIR)/*.pdf $(LATEXDIR)/*.fls $(LATEXDIR)/*.fdb_latexmk $(LATEXDIR)/*.aux $(LATEXDIR)/*.log
