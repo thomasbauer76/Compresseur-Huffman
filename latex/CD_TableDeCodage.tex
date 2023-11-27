@@ -1,32 +1,33 @@
 \subsection{Conception Détaillée : TableDeCodage}
 
 \begin{algorithme}
-    \type{TableDeCodage}{\tableauUneDimension{0..255}{de }{codebinaire}}
+    \type{TableDeCodage}{\tableauUneDimension{0..255}{de }{\codebinaire}}
     \\
-    \fonction{creerTableCodage}{}{Tabledecodage}
+    \fonction{creerTableCodage}{}{\tabledecodage}
     {}
-    {tdc : TableDeCodage}
-    {   \pour{octet}{ 0}{255}{}{
+    {tdc : \tabledecodage}
+    {   
+        \pour{octet}{ 0}{255}{}{
             \affecter{tdc[octet]}{creerCodeBinaire()}
         }
         \retourner{tdc}
     }
     \\
-    \procedure{ajouterCodage}{tdc : Tabledecodage, o : Octet, cb : Codebinaire}
+    \procedure{ajouterCodage}{tdc : \tabledecodage, o : \octet, cb : \codebinaire}
     {non(octetPresent(t, octet))}
     {}
     {
         \affecter{tdc[octetVersNaturel(o)]}{cb}
     }
     \\
-    \fonction{octetVersCodeBinaire}{tdc : Tabledecodage, o : Octet}{Codebinaire}
+    \fonction{octetVersCodeBinaire}{tdc : \tabledecodage, o : \octet}{\codebinaire}
     {octetPresent(t, octet)}
     {}
     {
         \retourner{tdc[octetVersNaturel(o)]}
     }
     \\
-    \fonction{octetPresent}{tdc : Tabledecodage, o : Octet}{Booleen}
+    \fonction{octetPresent}{tdc : \tabledecodage, o : \octet}{\booleen}
     {}
     {}
     {
