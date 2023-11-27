@@ -8,15 +8,14 @@
 \usepackage{mdframed}
 
 %%definition de commande
-%%\newcommand{\octet}{\textbf{Octet}}
-%%\newcommand{\codebinaire}{\textbf{CodeBinaire}}
-%%\newcommand{\tabledecodage}{\textbf{TableDeCodage}}
-%%\newcommand{\bit{\textbf{Bit}}
-%%\newcommand{\arbredehuffman}{\textbf{ArbreDeHuffman}}
-%%\newcommand{\booleen}{\textbf{Booleen}}
-%%\newcommand{\naturel}{\textbf{Naturel}}
-%%\newcommand{\filedepriorite}{\textbf{FileDePriorite}}
-%%\newcommand{\element}{\textbf{Element}}
+\newcommand{\octet}{\textbf{Octet}}
+\newcommand{\codebinaire}{\textbf{CodeBinaire}}
+\newcommand{\tabledecodage}{\textbf{TableDeCodage}}
+\newcommand{\statistiques}{\textbf{Statistiques}}
+\newcommand{\bit}{\textbf{Bit}}
+\newcommand{\arbredehuffman}{\textbf{ArbreDeHuffman}}
+\newcommand{\filedepriorite}{\textbf{FileDePriorite}}
+\newcommand{\element}{\textbf{Element}}
 %%fin
 \begin{document}
     \section{Analyse : les TAD}
@@ -27,12 +26,17 @@
         \input{TAD_Statistiques.tex}
         \input{TAD_CodeBinaire.tex}
     \section{Conception Préliminaire}
-    	\input{CP_ArbreDeHuffman.tex}
+        \input{CP_ArbreDeHuffman.tex}
         \input{CP_FileDePriorite.tex}
         \input{CP_Octet.tex}
-        \input{CP_Statistiques.tex}
         \input{CP_TableDeCodage.tex}
+        \input{CP_Statistiques.tex}
+        \input{CP_CodeBinaire.tex}
     \section{Conception Détaillée}
-    	\input{CD_Octet.tex}
+        \input{CD_ArbreDeHuffman.tex}
+        \input{CD_FileDePriorite.tex}
+        \input{CD_Octet.tex}
         \input{CD_TableDeCodage.tex}
+        \input{CD_Statistiques.tex}
+        \input{CD_CodeBinaire.tex}
 \end{document}
