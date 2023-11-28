@@ -4,9 +4,9 @@
 
 #include "octet.h"
 
-typedef unsigned int *Statistiques;
+typedef unsigned int Statistiques[256];
 
-Statistiques statistiques();
+void statistiques(Statistiques stats);
 void incrementerOccurence(Statistiques *stats, Octet octet);
 unsigned int obtenirOccurence(Statistiques stats, Octet octet);
 

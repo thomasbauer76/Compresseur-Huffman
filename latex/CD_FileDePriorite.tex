@@ -3,7 +3,7 @@
     \procedure{enfiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}}, \paramEntree{e : \textbf{Element}}}{}
     {temp : \textbf{FileDePriorite}}
     {
-         \sialorssinon{estVide(file) ou e $\leq$ file\motclefDereferencer .element}
+         \sialorssinon{estVide(file) ou e $<$ file\motclefDereferencer .element}
          {
             \affecter{temp}{file}
             \instruction{\allouer{file}}
