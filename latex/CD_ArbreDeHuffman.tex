@@ -1,56 +1,63 @@
 \subsection{Conception Détaillée : ArbreDeHuffman}
 
 \begin{algorithme}
+	\type{ArbreDeHuffman}{$\widehat{}$ Noeud}
+	\begin{enregistrement}{Noeud}
+		\champEnregistrement{octet}{Octet}
+		\champEnregistrement{frequence}{Naturel}
+		\champEnregistrement{filsGauche}{ArbreDeHuffman}
+		\champEnregistrement{filsDroit}{ArbreDeHuffman}
+	\end{enregistrement}
+	\\
     \fonction{arbreDeHuffman}{octet : \textbf{Octet}, freq : \naturel}{\textbf{ArbreDeHuffman}}{}
     {arbre : ArbreDeHuffman}
     {
         \instruction{\allouer{arbre}}
         \affecter{arbre\motclefDereferencer .octet}{octet}
         \affecter{arbre\motclefDereferencer .frequence}{freq}
-        \affecter{arbre\motclefDereferencer .arbreGauche}{\textbf{NIL}}
-        \affecter{arbre\motclefDereferencer .arbreDroit}{\textbf{NIL}}
+        \affecter{arbre\motclefDereferencer .filsGauche}{\textbf{NIL}}
+        \affecter{arbre\motclefDereferencer .filsDroit}{\textbf{NIL}}
         \retourner{arbre}
     }
-
+	\\
     \fonction{fusionner}{$a_g$, $a_d$ : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{}
     {racine : \textbf{ArbreDeHuffman}}
     {
         \instruction{\allouer{racine}}
-        \affecter{racine\motclefDereferencer .arbreGauche}{$a_g$}
-        \affecter{racine\motclefDereferencer .arbreDroit}{$a_d$}
+        \affecter{racine\motclefDereferencer .filsGauche}{$a_g$}
+        \affecter{racine\motclefDereferencer .filsDroit}{$a_d$}
         \affecter{racine\motclefDereferencer .octet}{0}
         \affecter{racine\motclefDereferencer .frequence}{\textbf{obtenirFrequence}($a_g$) + \textbf{obtenirFrequence}($a_d$)}
         \retourner{racine}
     }
-
+	\\
     \fonction{estUneFeuille}{arbre : \textbf{ArbreDeHuffman}}{\booleen}{}
     {}
     {
         \retourner{arbre\motclefDereferencer .octet $\ne$ 0}
     }
-
+	\\
     \fonction{obtenirOctet}{arbre : \textbf{ArbreDeHuffman}}{\textbf{Octet}}{estUneFeuille(arbre)}
     {}
     {
         \retourner{arbre\motclefDereferencer .octet}
     }
-
+	\\
     \fonction{obtenirFrequence}{arbre : \textbf{ArbreDeHuffman}}{\naturel}{}
     {}
     {
         \retourner{arbre\motclefDereferencer .frequence}
     }
-
+	\\
     \fonction{obtenirFilsGauche}{arbre : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{non(estUneFeuille(arbre))}
     {}
     {
-        \retourner{arbre\motclefDereferencer .arbreGauche}
+        \retourner{arbre\motclefDereferencer .filsGauche}
     }
-
+	\\
     \fonction{obtenirFilsDroit}{arbre : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{non(estUneFeuille(arbre))}
     {}
     {
-        \retourner{arbre\motclefDereferencer .arbreDroit}
+        \retourner{arbre\motclefDereferencer .filsDroit}
     }
-
 \end{algorithme}
