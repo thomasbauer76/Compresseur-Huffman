@@ -12,8 +12,8 @@
     \end{tadOperations}
 
     \begin{tadPreconditions}{octetVersCodeBinaire(t, codeBinaire)}
-        \tadPrecondition{ajouterCodage(t,octet,codeBinaire)}{non(octetPresent(t, octet)) et non(codeBinairePresent(t, codeBinaire))}
-        \tadPrecondition{octetVersCodeBinaire(t, codeBinaire)}{codeBinairePresent(t, codeBinaire)}
+        \tadPrecondition{ajouterCodage(t,octet,codeBinaire)}{non(octetPresent(t, octet))}
+        \tadPrecondition{octetVersCodeBinaire(t, octet)}{octetPresent(t, octet)}
     \end{tadPreconditions}
 
     \begin{tadAxiomes}
