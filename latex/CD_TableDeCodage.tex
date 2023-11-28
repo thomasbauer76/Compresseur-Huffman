@@ -2,8 +2,8 @@
 
 \begin{algorithme}
     \begin{enregistrement}{TableDeCodage}
-        \champEnregistrement{tableDOctets}{\tableauUneDimension{0..255}{d'}{\octet}}
-        \champEnregistrement{tableDePresences}{\tableauUneDimension{0..255}{de }{\booleen}}
+        \champEnregistrement{tableDOctet}{\tableauUneDimension{0..255}{d'}{\octet}}
+        \champEnregistrement{tableDePresence}{\tableauUneDimension{0..255}{de }{\booleen}}
     \end{enregistrement}
     \\
     \fonction{creerTableCodage}{}{\tabledecodage}
@@ -11,7 +11,7 @@
     {tdc : \tabledecodage}
     {   
         \pour{octet}{ 0}{255}{}{
-            \affecter{tdc.tableDePresences[octet]}{\textbf{Faux}}
+            \affecter{tdc.tableDePresence[octet]}{\textbf{Faux}}
         }
         \retourner{tdc}
     }
@@ -21,22 +21,22 @@
     {}
     {
         \affecter{octet}{octetVersNaturel(o)}
-        \affecter{tdc.tableDOctets[octet]}{cb}
-        \affecter{tdc.tableDePresences[octet]}{\textbf{Vrai}}
+        \affecter{tdc.tableDOctet[octet]}{cb}
+        \affecter{tdc.tableDePresence[octet]}{\textbf{Vrai}}
     }
     \\
     \fonction{octetVersCodeBinaire}{tdc : \tabledecodage, o : \octet}{\codebinaire}
     {octetPresent(t, octet)}
     {}
     {
-        \retourner{tdc.tableDOctets[octetVersNaturel(o)]}
+        \retourner{tdc.tableDOctet[octetVersNaturel(o)]}
     }
     \\
     \fonction{octetPresent}{tdc : \tabledecodage, o : \octet}{\booleen}
     {}
     {}
     {
-        \retourner{tdc.tableDePresences[octetVersNaturel(o)]}
+        \retourner{tdc.tableDePresence[octetVersNaturel(o)]}
     }
 \end{algorithme}
 

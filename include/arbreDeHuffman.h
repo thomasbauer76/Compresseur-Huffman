@@ -5,22 +5,23 @@
 #include <stdbool.h>
 #include "octet.h"
 
-typedef struct Noeud *ArbreDeHuffman;
+typedef struct NoeudArbreDeHuffman *ArbreDeHuffman;
 
-typedef struct Noeud {
+typedef struct NoeudArbreDeHuffman {
     Octet octet;
-    unsigned int frequence;
+    unsigned long frequence;
     bool estUneFeuille;
     ArbreDeHuffman arbreGauche;
     ArbreDeHuffman arbreDroit;
-} Noeud;
+} NoeudArbreDeHuffman;
 
-ArbreDeHuffman arbreDeHuffman(Octet o, unsigned int n);
+ArbreDeHuffman arbreDeHuffman(Octet o, unsigned long n);
 ArbreDeHuffman fusionner(ArbreDeHuffman ag, ArbreDeHuffman ad);
 bool estUneFeuille(ArbreDeHuffman a);
-Octet obtenirOctet(ArbreDeHuffman a);
-unsigned int obtenirFrequence(ArbreDeHuffman a);
+void obtenirOctet(ArbreDeHuffman a, Octet o); //Octet est un tableau, c'est donc une Entrée/Sortie
+unsigned long obtenirFrequence(ArbreDeHuffman a);
 ArbreDeHuffman obtenirFilsGauche(ArbreDeHuffman a);
 ArbreDeHuffman obtenirFilsDroit(ArbreDeHuffman a);
+
 
 #endif
