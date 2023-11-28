@@ -1,59 +1,44 @@
-\subsection{Conception Détaillée : Octet}
+\subsection{Conception Détaillée : CodeBianire}
 
 \begin{algorithme}
-    \type{CodeBinaire}{\Enrengistrement{0..7}{de}{\textbf{Bit}}}
+    \begin{enregistrement}{CodeBinaire}
+        \champEnregistrement{tableBit}{\tableauUneDimension{0..7}{de}{\textbf{Bit}}}
+        \champEnregistrement{nbElements}{naturel}
+    \end{enregistrement}
     \\
-    \fonction{creerOctet}
-    {b0, b1, b2, b3, b4, b5, b6, b7 : \textbf{Bit}}
-    {\textbf{Octet}}
+    \fonction{creeCodeBinaire}
+    {b: \textbf{Bit}}
+    {\textbf{CodeBinaire}}
     {}
-    {o : \textbf{Octet}}
-    {  		\affecter{o[0]}{b0}
-            \affecter{o[1]}{b1}
-            \affecter{o[2]}{b2}
-            \affecter{o[3]}{b3}
-            \affecter{o[4]}{b4}
-            \affecter{o[5]}{b5}
-            \affecter{o[6]}{b6}
-            \affecter{o[7]}{b7}
-        
-        \retourner{o}
+    {cb : \textbf{CodeBinaire}}
+    {  		
+    	\affecter{cb.tablebit[0]}{b}
+    	\affecter{cb.nbElements}{1}
+        \retourner{cb}
     }
     \\
     \fonction{obtenirIemeBit}
-    {o : \textbf{Octet}, b : \textbf{0..7}}
+    {cb : \textbf{CodeBinaire}, i: \textbf{Naturel}}
     {\textbf{Bit}}
-    {}
+    {i<=obtenirLongueur(cb)}
     {}
     {
-        \retourner{o[b]}
+        \retourner{cb.tableBit[i]}
     }
  	\\
-    \fonction{octetVersNaturel}
-    {o : \textbf{Octet}}
+    \fonction{obtenirLongueur}{cb : CodeBinaire}
     {\textbf{Naturel}}
     {}
-    {i : \textbf{Naturel}, res :\textbf{Naturel} }
-	{   
+    {}
     {
-       \affecter{res}{0}
-       \pour{i}{7}{0}{-1}{
-       \affecter{res}{$res+o[i]*2^{7-i}$}
-       }
-       \retourner{res}
+       \retourner{cb.nbElements}
     }
-    }  
     \\
-    \fonction{naturelVersOctet}
-    {n : \textbf{0..255}}
-    {\textbf{Octet}}
-    {}{i : \textbf{Naturel}}
-    { \affecter {i}{7}
-	  \tantque{($n>=0$)et ($i>=0$)}
-		{\affecter {o[i]}{n mod 2}
-    	 \affecter {n}{n div 2}
-    	 \affecter {i}{$i-1$}
-      }
-        \retourner{o}
+     \procedure{ajouterBit}{E/S cb : CodeBinaire, E b : bit}
+    {}
+    {}
+    {
+       \affecter {cb.tableBit[obtenirLongueur(cd)+1}{b}
+	    \affecter {cb.nbElements}{obtenirLongueur(cd)+1}
     }
 \end{algorithme}
