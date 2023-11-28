@@ -5,6 +5,7 @@
 	\begin{enregistrement}{Noeud}
 		\champEnregistrement{octet}{Octet}
 		\champEnregistrement{frequence}{Naturel}
+		\champEnregistrement{estUneFeuille}{Booleen}
 		\champEnregistrement{filsGauche}{ArbreDeHuffman}
 		\champEnregistrement{filsDroit}{ArbreDeHuffman}
 	\end{enregistrement}
@@ -26,7 +27,7 @@
         \instruction{\allouer{racine}}
         \affecter{racine\motclefDereferencer .filsGauche}{$a_g$}
         \affecter{racine\motclefDereferencer .filsDroit}{$a_d$}
-        \affecter{racine\motclefDereferencer .octet}{0}
+        \affecter{racine\motclefDereferencer .estUneFeuille}{Faux}
         \affecter{racine\motclefDereferencer .frequence}{\textbf{obtenirFrequence}($a_g$) + \textbf{obtenirFrequence}($a_d$)}
         \retourner{racine}
     }
@@ -34,7 +35,7 @@
     \fonction{estUneFeuille}{arbre : \textbf{ArbreDeHuffman}}{\booleen}{}
     {}
     {
-        \retourner{arbre\motclefDereferencer .octet $\ne$ 0}
+        \retourner{arbre\motclefDereferencer .estUneFeuille}
     }
 	\\
     \fonction{obtenirOctet}{arbre : \textbf{ArbreDeHuffman}}{\textbf{Octet}}{estUneFeuille(arbre)}
