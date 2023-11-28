@@ -6,13 +6,10 @@
   \tadDependances{\textbf{Octet}, \naturel, \textbf{Bit} }
   \begin{tadOperations}{obtenirLongueur}
   
-    \tadOperation{creerCodeBinaire}{}{CodeBinaire}
-    \tadOperation{estVide}{CodeBinaire}{Booleen}
+    \tadOperation{creerCodeBinaire}{Bit}{CodeBinaire}
     \tadOperation{ajouterBit}{\tadParams{CodeBinaire, Bit}}{CodeBinaire}
-    \tadOperationAvecPreconditions{retirerBit}{\tadParams{CodeBinaire, Bit}}{CodeBinaire}
     \tadOperationAvecPreconditions{obtenirIemeBit}{\tadParams{CodeBinaire,\naturel}}{Bit}
     \tadOperation{obtenirLongueur}{CodeBinaire}{\naturel}
-    \tadOperation{concatener}{\tadParams{CodeBinaire,CodeBinaire}}{CodeBinaire}
      
   \end{tadOperations}
 
