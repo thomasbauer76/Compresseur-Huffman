@@ -1,12 +1,15 @@
 \subsection{Conception Détaillée : Statistiques}
 
 \begin{algorithme}
-    \type{Statistiques}{Tableau [0..255] de Naturels}
+    \type{Statistiques}{\tableauUneDimension{0..255}{de }{\naturel}}
     \\
     \fonction{statistiques}{}{\statistiques}
     {}
     {s : \statistiques}
     {
+        \pour{octet}{ 0}{255}{}{
+            \affecter{s[octet]}{0}
+        }
         \retourner{s}
     }
     \\
@@ -14,7 +17,7 @@
     {}
     {}
     {
-    	\instruction{s[octetVersNaturel(o)] += 1}
+    	\affecter{s[octetVersNaturel(o)]}{s[octetVersNaturel(o)] + 1}
     }
     \\
     \fonction{obtenirOccurence}{s : \statistiques, o : \octet}{\textbf{Naturel}}
