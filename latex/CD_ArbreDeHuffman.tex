@@ -10,15 +10,15 @@
 		\champEnregistrement{filsDroit}{ArbreDeHuffman}
 	\end{enregistrement}
 	\\
-    \fonction{arbreDeHuffman}{octet : \textbf{Octet}, freq : \naturel}{\textbf{ArbreDeHuffman}}{}
-    {arbre : ArbreDeHuffman}
+    \fonction{arbreDeHuffman}{o : \textbf{Octet}, f : \naturel}{\textbf{ArbreDeHuffman}}{}
+    {a : ArbreDeHuffman}
     {
-        \instruction{\allouer{arbre}}
-        \affecter{arbre\motclefDereferencer .octet}{octet}
-        \affecter{arbre\motclefDereferencer .frequence}{freq}
-        \affecter{arbre\motclefDereferencer .filsGauche}{\textbf{NIL}}
-        \affecter{arbre\motclefDereferencer .filsDroit}{\textbf{NIL}}
-        \retourner{arbre}
+        \instruction{\allouer{a}}
+        \affecter{a\motclefDereferencer .octet}{o}
+        \affecter{a\motclefDereferencer .frequence}{f}
+        \affecter{a\motclefDereferencer .filsGauche}{\textbf{NIL}}
+        \affecter{a\motclefDereferencer .filsDroit}{\textbf{NIL}}
+        \retourner{a}
     }
 	\\
     \fonction{fusionner}{$a_g$, $a_d$ : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{}
@@ -32,33 +32,33 @@
         \retourner{racine}
     }
 	\\
-    \fonction{estUneFeuille}{arbre : \textbf{ArbreDeHuffman}}{\booleen}{}
+    \fonction{estUneFeuille}{a : \textbf{ArbreDeHuffman}}{\booleen}{}
     {}
     {
-        \retourner{arbre\motclefDereferencer .estUneFeuille}
+        \retourner{a\motclefDereferencer .estUneFeuille}
     }
 	\\
-    \fonction{obtenirOctet}{arbre : \textbf{ArbreDeHuffman}}{\textbf{Octet}}{estUneFeuille(arbre)}
+    \fonction{obtenirOctet}{a : \textbf{ArbreDeHuffman}}{\textbf{Octet}}{estUneFeuille(a)}
     {}
     {
-        \retourner{arbre\motclefDereferencer .octet}
+        \retourner{a\motclefDereferencer .octet}
     }
 	\\
-    \fonction{obtenirFrequence}{arbre : \textbf{ArbreDeHuffman}}{\naturel}{}
+    \fonction{obtenirFrequence}{a : \textbf{ArbreDeHuffman}}{\naturel}{}
     {}
     {
-        \retourner{arbre\motclefDereferencer .frequence}
+        \retourner{a\motclefDereferencer .frequence}
     }
 	\\
-    \fonction{obtenirFilsGauche}{arbre : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{non(estUneFeuille(arbre))}
+    \fonction{obtenirFilsGauche}{a : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{non(estUneFeuille(a))}
     {}
     {
-        \retourner{arbre\motclefDereferencer .filsGauche}
+        \retourner{a\motclefDereferencer .filsGauche}
     }
 	\\
-    \fonction{obtenirFilsDroit}{arbre : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{non(estUneFeuille(arbre))}
+    \fonction{obtenirFilsDroit}{a : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{non(estUneFeuille(a))}
     {}
     {
-        \retourner{arbre\motclefDereferencer .filsDroit}
+        \retourner{a\motclefDereferencer .filsDroit}
     }
 \end{algorithme}
