@@ -15,9 +15,7 @@
 
 
   \begin{tadPreconditions}{ObtenirBit(CodeBinaire)}
-    \tadPrecondition{obtenirBit(CodeBinaire,Naturel)}{Non(EstVide(CodeBinaire))}
-    \tadPrecondition{retirerBit(CodeBinaire)}{Non(EstVide(CodeBinaire))}
-    
+    \tadPrecondition{obtenirIemeBit(cb : CodeBinaire, i : Naturel)}{i <= obtenirLongueur(cb)}
   \end{tadPreconditions}
     
   
@@ -25,7 +23,10 @@
   	    \tadAxiome{obtenirLongueur(concatener(CodeBinaire1,CodeBinaire2))=
   		obtenirLongueur(CodeBinaire1,CodeBinaire2)}
   		\tadAxiome{obtenirLongueur(ajouterBit(CodeBinaire,Bit))=obtenirLongueur(CodeBinaire)+1}
-      \end{tadAxiomes}
+   \end{tadAxiomes}
   
+  	\begin{tadSemantiques}{ajouterBit}
+  		\tadSemantique{ajouterBit}{Ajoute le bit en question à la fin du CodeBinaire}
+  	\end{tadSemantiques}
 \end{tad}
 %\end{mdframed}
