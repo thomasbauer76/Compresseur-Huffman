@@ -1,0 +1,47 @@
+\subsection{File de Priorité}
+\begin{algorithme}
+    \procedure{enfiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}}, \paramEntree{e : \textbf{Element}}}{}
+    {temp : \textbf{FileDePriorite}}
+    {
+         \sialorssinon{estVide(file) ou e $\leq$ file\motclefDereferencer .element}
+         {
+            \affecter{temp}{file}
+            \instruction{\allouer{file}}
+            \affecter{file\motclefDereferencer .element}{e}
+            \affecter{file\motclefDereferencer .fileSuivante}{temp}
+         }
+         {
+            \instruction{\textbf{enfiler}(file\motclefDereferencer .fileSuivante, e)}{}
+         }
+    }
+\end{algorithme}
+
+\bigbreak
+\begin{algorithme}
+    \procedure{obtenirElementEtDefiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}, \paramSortie{e : \textbf{Element}}}}{non(estVide(file))}
+    {temp : \textbf{FileDePriorite}}
+    {
+        \affecter{e}{file\motclefDereferencer .element}
+        \affecter{temp}{file}
+        \affecter{file}{temp\motclefDereferencer .listeSuivante}
+        \instruction{\desallouer{temp}}
+    }
+\end{algorithme}
+
+\bigbreak
+\begin{algorithme}
+    \fonction{fileDePriorite}{}{\textbf{FileDePriorite}}{}
+    {}
+    {
+        \retourner{\textbf{NIL}}
+    }
+\end{algorithme}
+
+\bigbreak
+\begin{algorithme}
+    \fonction{estVide}{file : \textbf{FileDePriorite}}{\booleen}{}
+    {}
+    {
+        \retourner{file = \textbf{NIL}}
+    }
+\end{algorithme}
