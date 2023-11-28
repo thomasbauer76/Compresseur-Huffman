@@ -1,0 +1,44 @@
+\subsection{Conception Détaillée : CodeBianire}
+
+\begin{algorithme}
+    \begin{enregistrement}{CodeBinaire}
+        \champEnregistrement{tableBit}{\tableauUneDimension{0..7}{de }{\textbf{Bit}}}
+        \champEnregistrement{nbElements}{\textbf{Naturel}}
+    \end{enregistrement}
+    \\
+    \fonction{creeCodeBinaire}
+    {b: \textbf{Bit}}
+    {\textbf{CodeBinaire}}
+    {}
+    {cb : \textbf{CodeBinaire}}
+    {  		
+    	\affecter{cb.tablebit[0]}{b}
+    	\affecter{cb.nbElements}{1}
+        \retourner{cb}
+    }
+    \\
+    \fonction{obtenirIemeBit}
+    {cb : \textbf{CodeBinaire}, i: \textbf{Naturel}}
+    {\textbf{Bit}}
+    {i<=obtenirLongueur(cb)}
+    {}
+    {
+        \retourner{cb.tableBit[i]}
+    }
+ 	\\
+    \fonction{obtenirLongueur}{cb : CodeBinaire}
+    {\textbf{Naturel}}
+    {}
+    {}
+    {
+       \retourner{cb.nbElements}
+    }
+    \\
+     \procedure{ajouterBit}{E/S cb : CodeBinaire, E b : bit}
+    {}
+    {}
+    {
+       \affecter {cb.tableBit[obtenirLongueur(cd)+1]}{b}
+	    \affecter {cb.nbElements}{obtenirLongueur(cd)+1}
+    }
+\end{algorithme}

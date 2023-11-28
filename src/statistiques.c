@@ -2,16 +2,16 @@
 
 #include "statistiques.h"
 
-void statistiques(Statistiques stats) {
-    unsigned int octet;
-    for (octet=0; octet<=255; octet++)
-        stats[octet] = 0;
+void statistiques(Statistiques s) {
+    unsigned short o;
+    for (o=0; o<=255; o++)
+        s[o] = 0;
 }
 
-void incrementerOccurence(Statistiques *stats, Octet octet) {
-    (*stats)[octetVersNaturel(octet)]++;
+void incrementerOccurence(Statistiques *s, Octet o) {
+    (*s)[octetVersNaturel(o)]++;
 }
 
-unsigned int obtenirOccurence(Statistiques stats, Octet octet) {
-    return stats[octetVersNaturel(octet)];
+unsigned long obtenirOccurence(Statistiques s, Octet o) {
+    return s[octetVersNaturel(o)];
 }
