@@ -1,14 +1,17 @@
 \subsection{Conception Détaillée : TableDeCodage}
 
 \begin{algorithme}
-    \type{TableDeCodage}{\tableauUneDimension{0..255}{de }{\codebinaire}}
+    \begin{enregistrement}{TableDeCodage}
+        \champEnregistrement{tableDOctets}{\tableauUneDimension{0..255}{d'}{\octet}}
+        \champEnregistrement{tableDePresences}{\tableauUneDimension{0..255}{de }{\booleen}}
+    \end{enregistrement}
     \\
     \fonction{creerTableCodage}{}{\tabledecodage}
     {}
     {tdc : \tabledecodage}
     {   
         \pour{octet}{ 0}{255}{}{
-            \affecter{tdc[octet]}{creerCodeBinaire()}
+            \affecter{tdc.tableDePresences[octet]}{\textbf{Faux}}
         }
         \retourner{tdc}
     }
@@ -17,21 +20,23 @@
     {non(octetPresent(t, octet))}
     {}
     {
-        \affecter{tdc[octetVersNaturel(o)]}{cb}
+        \affecter{octet}{octetVersNaturel(o)}
+        \affecter{tdc.tableDOctets[octet]}{cb}
+        \affecter{tdc.tableDePresences[octet]}{\textbf{Vrai}}
     }
     \\
     \fonction{octetVersCodeBinaire}{tdc : \tabledecodage, o : \octet}{\codebinaire}
     {octetPresent(t, octet)}
     {}
     {
-        \retourner{tdc[octetVersNaturel(o)]}
+        \retourner{tdc.tableDOctets[octetVersNaturel(o)]}
     }
     \\
     \fonction{octetPresent}{tdc : \tabledecodage, o : \octet}{\booleen}
     {}
     {}
     {
-        \retourner{non(estVide(tdc[octetVersNaturel(o)]))}
+        \retourner{tdc.tableDePresences[octetVersNaturel(o)]}
     }
 \end{algorithme}
 
