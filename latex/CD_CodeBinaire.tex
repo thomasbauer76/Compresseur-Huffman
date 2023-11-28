@@ -2,8 +2,8 @@
 
 \begin{algorithme}
     \begin{enregistrement}{CodeBinaire}
-        \champEnregistrement{tableBit}{\tableauUneDimension{0..7}{de}{\textbf{Bit}}}
-        \champEnregistrement{nbElements}{naturel}
+        \champEnregistrement{tableBit}{\tableauUneDimension{0..7}{de }{\textbf{Bit}}}
+        \champEnregistrement{nbElements}{\textbf{Naturel}}
     \end{enregistrement}
     \\
     \fonction{creeCodeBinaire}
@@ -38,7 +38,7 @@
     {}
     {}
     {
-       \affecter {cb.tableBit[obtenirLongueur(cd)+1}{b}
+       \affecter {cb.tableBit[obtenirLongueur(cd)+1]}{b}
 	    \affecter {cb.nbElements}{obtenirLongueur(cd)+1}
     }
 \end{algorithme}
