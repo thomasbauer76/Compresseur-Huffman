@@ -15,5 +15,12 @@ typedef struct Noeud {
     ArbreDeHuffman arbreDroit;
 } Noeud;
 
+ArbreDeHuffman arbreDeHuffman(Octet o, unsigned int n);
+ArbreDeHuffman fusionner(ArbreDeHuffman ag, ArbreDeHuffman ad);
+bool estUneFeuille(ArbreDeHuffman a);
+Octet obtenirOctet(ArbreDeHuffman a);
+unsigned int obtenirFrequence(ArbreDeHuffman a);
+ArbreDeHuffman obtenirFilsGauche(ArbreDeHuffman a);
+ArbreDeHuffman obtenirFilsDroit(ArbreDeHuffman a);
 
 #endif
