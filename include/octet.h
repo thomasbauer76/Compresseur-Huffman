@@ -6,11 +6,11 @@
 
 typedef bool Bit;
 
-typedef Bit Octet[8];
+typedef unsigned char Octet;
 
 void O_creerOctet(Bit b0, Bit b1, Bit b2, Bit b3, Bit b4, Bit b5, Bit b6, Bit b7, Octet o);
 Bit O_obtenirIemeBit(Octet o, unsigned short b);
-unsigned short O_octetVersNaturel(Octet o);
+unsigned char O_octetVersNaturel(Octet o);
 
 
 #endif
