@@ -6,9 +6,9 @@
 
 typedef unsigned long Statistiques[256];
 
-void statistiques(Statistiques s);
-void incrementerOccurence(Statistiques *s, Octet o);
-unsigned long obtenirOccurence(Statistiques s, Octet o);
+void S_statistiques(Statistiques s);
+void S_incrementerOccurence(Statistiques *s, Octet o);
+unsigned long S_obtenirOccurence(Statistiques s, Octet o);
 
 
 #endif

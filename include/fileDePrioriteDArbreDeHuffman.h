@@ -12,10 +12,10 @@ typedef struct NoeudFileDePriorite {
     FileDePriorite fileSuivante;
 } NoeudFileDePriorite;
 
-FileDePriorite fileDePriorite();
-bool estVide(FileDePriorite fdp);
-void enfiler(FileDePriorite *fdp, ArbreDeHuffman a);
-ArbreDeHuffman obtenirElementEtDefiler(FileDePriorite *fdp);
+FileDePriorite FDPAH_fileDePriorite();
+bool FDPAH_estVide(FileDePriorite fdp);
+void FDPAH_enfiler(FileDePriorite *fdp, ArbreDeHuffman a);
+ArbreDeHuffman FDPAH_obtenirElementEtDefiler(FileDePriorite *fdp);
 
 
 #endif

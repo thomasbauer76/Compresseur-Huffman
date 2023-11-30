@@ -11,10 +11,10 @@ typedef struct TableDeCodage {
     bool tableDePresence[256];
 } TableDeCodage;
 
-TableDeCodage creerTableCodage();
-void ajouterCodage(TableDeCodage* tdc, Octet o, CodeBinaire cb);
-CodeBinaire octetVersCodeBinaire(TableDeCodage tdc, Octet o);
-bool octetPresent(TableDeCodage tdc, Octet o);
+TableDeCodage TDC_creerTableCodage();
+void TDC_ajouterCodage(TableDeCodage* tdc, Octet o, CodeBinaire cb);
+CodeBinaire TDC_octetVersCodeBinaire(TableDeCodage tdc, Octet o);
+bool TDC_octetPresent(TableDeCodage tdc, Octet o);
 
 
 #endif
