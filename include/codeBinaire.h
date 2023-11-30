@@ -9,10 +9,10 @@ typedef struct CodeBinaire {
     unsigned short nbElements;
 } CodeBinaire;
 
-CodeBinaire creerCodeBinaire(Bit b);
-Bit obtenirIemeBit(CodeBinaire cb, unsigned short i);
-unsigned short obtenirLongueur(CodeBinaire cb);
-void ajouterBit(CodeBinaire *cb, Bit b);
+CodeBinaire CB_creerCodeBinaire(Bit b);
+Bit CB_obtenirIemeBit(CodeBinaire cb, unsigned short i);
+unsigned short CB_obtenirLongueur(CodeBinaire cb);
+void CB_ajouterBit(CodeBinaire *cb, Bit b);
 
 
 #endif
