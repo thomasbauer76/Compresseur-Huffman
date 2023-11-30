@@ -1,22 +1,15 @@
 \subsection{Conception Détaillée : Octet}
 
 \begin{algorithme}
-    \type{Octet}{\tableauUneDimension{0..7}{de}{\textbf{Bit}}}
+    \type{Octet}{Naturel}
     \\
     \fonction{creerOctet}
     {b0, b1, b2, b3, b4, b5, b6, b7 : \textbf{Bit}}
     {\textbf{Octet}}
     {}
     {o : \textbf{Octet}}
-    {  		\affecter{o[0]}{b0}
-            \affecter{o[1]}{b1}
-            \affecter{o[2]}{b2}
-            \affecter{o[3]}{b3}
-            \affecter{o[4]}{b4}
-            \affecter{o[5]}{b5}
-            \affecter{o[6]}{b6}
-            \affecter{o[7]}{b7}
-        
+    {  		
+        \affecter{o}{b7 + b6*2 + b5*2\^{}2 + b4*2\^{}3 + b3*2\^{}4 + b2*2\^{}5 + b1*2\^{}6 + b0*2\^{}7}
         \retourner{o}
     }
     \\
@@ -26,34 +19,17 @@
     {}
     {}
     {
-        \retourner{o[b]}
+        \retourner{(o \textbf{div} 2\^{}(7-b)) \textbf{mod} 2}
     }
  	\\
     \fonction{octetVersNaturel}
     {o : \textbf{Octet}}
     {\textbf{Naturel}}
     {}
-    {i : \textbf{Naturel}, res :\textbf{Naturel} }
+    {}
 	{   
     {
-       \affecter{res}{0}
-       \pour{i}{7}{0}{-1}{
-       \affecter{res}{$res+o[i]*2^{7-i}$}
-       }
-       \retourner{res}
+       \retourner{o}
     }
     }  
-    \\
-    \fonction{naturelVersOctet}
-    {n : \textbf{0..255}}
-    {\textbf{Octet}}
-    {}{i : \textbf{Naturel}, o : \textbf{Octet}}
-    { \affecter {i}{7}
-	  \tantque{($n>=0$)et ($i>=0$)}
-		{\affecter {o[i]}{n mod 2}
-    	 \affecter {n}{n div 2}
-    	 \affecter {i}{$i-1$}
-      }
-        \retourner{o}
-    }
 \end{algorithme}
