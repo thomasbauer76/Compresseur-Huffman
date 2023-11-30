@@ -1,5 +1,5 @@
 \begin{algorithme}
-    \type{Octet}{\naturel}
+    \type{Octet}{\textbf{0..255}}
     \\
     \fonction{creerOctet}
     {b0, b1, b2, b3, b4, b5, b6, b7 : \textbf{Bit}}
@@ -22,12 +22,23 @@
  	\\
     \fonction{octetVersNaturel}
     {o : \textbf{Octet}}
-    {\textbf{Naturel}}
+    {\textbf{0..255}}
     {}
     {}
 	{   
     {
        \retourner{o}
     }
-    }  
+    }
+    \\
+    \fonction{naturelVersOctet}
+    {n : \textbf{0..255}}
+    {\textbf{Octet}}
+    {}
+    {}
+	{   
+    {
+       \retourner{n}
+    }
+    }
 \end{algorithme}

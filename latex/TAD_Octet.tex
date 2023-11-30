@@ -4,7 +4,8 @@
     \begin{tadOperations}{octetVersNaturel}
         \tadOperation{creerOctet}{\tadParams{\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit},\textbf{Bit}}}{\textbf{Octet}}
         \tadOperation{obtenirIemeBit}{\tadParams{\textbf{Octet},\textbf{0..7}}}{\textbf{Bit}}
-        \tadOperation{octetVersNaturel}{\textbf{Octet}}{\textbf{0..255}}    
+        \tadOperation{octetVersNaturel}{\textbf{Octet}}{\textbf{0..255}}
+        \tadOperation{naturelVersOctet}{\textbf{0..255}}{\textbf{Octet}}     
     \end{tadOperations}
 
     \begin{tadAxiomes}
@@ -14,6 +15,7 @@
     
     \begin{tadSemantiques}{octetVersNaturel}
     	\tadSemantique{octetVersNaturel}{permet la conversion d'un nombre en base 2 (Octet) vers un nombre en base 10 (Naturel)}
+        \tadSemantique{naturelVersOctet}{permet la conversion d'un nombre en base 10 (Naturel) vers un nombre en base 2 (Octet)}
     \end{tadSemantiques}
 
 \end{tad}
