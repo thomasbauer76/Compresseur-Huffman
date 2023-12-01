@@ -1,4 +1,4 @@
-\documentclass[10pt]{article}
+\documentclass[10pt]{report}
 \usepackage[utf8]{inputenc} % encodage du fichier
 \usepackage[french]{babel} % document en francais
 \usepackage[T1]{fontenc} % pour les caracteres accentues
@@ -18,43 +18,52 @@
 \newcommand{\element}{\textbf{Element}}
 %%fin
 \begin{document}
-    \section{Analyse : les TAD}
-        \subsection{TAD ArbreDeHuffman}
-        \input{TAD_ArbreDeHuffman.tex}
-        \subsection{TAD FileDePriorite}
-        \input{TAD_FileDePriorite.tex}
-        \subsection{TAD Octet}
-        \input{TAD_Octet.tex}
-        \subsection{TAD TableDeCodage}
-        \input{TAD_TableDeCodage.tex}
-        \subsection{TAD Statistiques}
-        \input{TAD_Statistiques.tex}
-        \subsection{TAD CodeBinaire}
-        \input{TAD_CodeBinaire.tex}
-    \section{Conception Préliminaire}
-        \subsection{Signatures et fonctions de ArbreDeHuffman}
-        \input{CP_ArbreDeHuffman.tex}
-        \subsection{Signatures et fonctions de FileDePriorite}
-        \input{CP_FileDePriorite.tex}
-        \subsection{Signatures et fonctions de Octet}
-        \input{CP_Octet.tex}
-        \subsection{Signatures et fonctions de TableDeCodage}
-        \input{CP_TableDeCodage.tex}
-        \subsection{Signatures et fonctions de Statistiques}
-        \input{CP_Statistiques.tex}
-        \subsection{Signatures et fonctions de CodeBinaire}
-        \input{CP_CodeBinaire.tex}
-    \section{Conception Détaillée}
-        \subsection{Algorithmes de ArbreDeHuffman}
-        \input{CD_ArbreDeHuffman.tex}
-        \subsection{Algorithmes de FileDePriorite}
-        \input{CD_FileDePriorite.tex}
-        \subsection{Algorithmes de Octet}
-        \input{CD_Octet.tex}
-        \subsection{Algorithmes de TableDeCodage}
-        \input{CD_TableDeCodage.tex}
-        \subsection{Algorithmes de Statistiques}
-        \input{CD_Statistiques.tex}
-        \subsection{Algorithmes de CodeBinaire}
-        \input{CD_CodeBinaire.tex}
+    \chapter{Types Abstraits de Données}
+        \section{Analyse : les TAD}
+            \subsection{TAD ArbreDeHuffman}
+            \input{TAD/TAD_ArbreDeHuffman.tex}
+            \subsection{TAD FileDePriorite}
+            \input{TAD/TAD_FileDePriorite.tex}
+            \subsection{TAD Octet}
+            \input{TAD/TAD_Octet.tex}
+            \subsection{TAD TableDeCodage}
+            \input{TAD/TAD_TableDeCodage.tex}
+            \subsection{TAD Statistiques}
+            \input{TAD/TAD_Statistiques.tex}
+            \subsection{TAD CodeBinaire}
+            \input{TAD/TAD_CodeBinaire.tex}
+        \section{Conception Préliminaire}
+            \subsection{Signatures et fonctions de ArbreDeHuffman}
+            \input{TAD/CP_ArbreDeHuffman.tex}
+            \subsection{Signatures et fonctions de FileDePriorite}
+            \input{TAD/CP_FileDePriorite.tex}
+            \subsection{Signatures et fonctions de Octet}
+            \input{TAD/CP_Octet.tex}
+            \subsection{Signatures et fonctions de TableDeCodage}
+            \input{TAD/CP_TableDeCodage.tex}
+            \subsection{Signatures et fonctions de Statistiques}
+            \input{TAD/CP_Statistiques.tex}
+            \subsection{Signatures et fonctions de CodeBinaire}
+            \input{TAD/CP_CodeBinaire.tex}
+        \section{Conception Détaillée}
+            \subsection{Algorithmes de ArbreDeHuffman}
+            \input{TAD/CD_ArbreDeHuffman.tex}
+            \subsection{Algorithmes de FileDePriorite}
+            \input{TAD/CD_FileDePriorite.tex}
+            \subsection{Algorithmes de Octet}
+            \input{TAD/CD_Octet.tex}
+            \subsection{Algorithmes de TableDeCodage}
+            \input{TAD/CD_TableDeCodage.tex}
+            \subsection{Algorithmes de Statistiques}
+            \input{TAD/CD_Statistiques.tex}
+            \subsection{Algorithmes de CodeBinaire}
+            \input{TAD/CD_CodeBinaire.tex}
+    \chapter{Compression}
+        \section{Analyse descendante}
+        \section{Conception Préliminaire}
+        \section{Conception Détaillée}
+    \chapter{Décompression}
+        \section{Analyse descendante}
+        \section{Conception Préliminaire}
+        \section{Conception Détaillée}
 \end{document}
