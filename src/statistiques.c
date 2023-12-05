@@ -1,8 +1,7 @@
 #include "statistiques.h"
 
 void statistiques(Statistiques s) {
-    unsigned short o;
-    for (o=0; o<=255; o++)
+    for (unsigned short o = 0; o <= 255; o++)
         s[o] = 0;
 }
 
