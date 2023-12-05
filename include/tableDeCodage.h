@@ -12,7 +12,7 @@ typedef struct TableDeCodage {
 } TableDeCodage;
 
 TableDeCodage TDC_creerTableCodage();
-void TDC_ajouterCodage(TableDeCodage* tdc, Octet o, CodeBinaire cb);
+void TDC_ajouterCodage(TableDeCodage* p_tdc, Octet o, CodeBinaire cb);
 CodeBinaire TDC_octetVersCodeBinaire(TableDeCodage tdc, Octet o);
 bool TDC_octetPresent(TableDeCodage tdc, Octet o);
 
