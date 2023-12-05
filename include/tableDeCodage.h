@@ -7,7 +7,7 @@
 #include "codeBinaire.h"
 
 typedef struct TableDeCodage {
-    Octet tableDOctet[MAX_OCTET];
+    CodeBinaire tableDeCodeBinaire[MAX_OCTET];
     bool tableDePresence[MAX_OCTET];
 } TableDeCodage;
 
