@@ -1,0 +1,44 @@
+\begin{algorithme}
+    \type{Octet}{\textbf{0..255}}
+    \\
+    \fonction{creerOctet}
+    {b0, b1, b2, b3, b4, b5, b6, b7 : \textbf{Bit}}
+    {\textbf{Octet}}
+    {}
+    {o : \textbf{Octet}}
+    {  		
+        \affecter{o}{b7 + b6*2 + b5*2\^{}2 + b4*2\^{}3 + b3*2\^{}4 + b2*2\^{}5 + b1*2\^{}6 + b0*2\^{}7}
+        \retourner{o}
+    }
+    \\
+    \fonction{obtenirIemeBit}
+    {o : \textbf{Octet}, b : \textbf{0..7}}
+    {\textbf{Bit}}
+    {}
+    {}
+    {
+        \retourner{(o \textbf{div} 2\^{}(7-b)) \textbf{mod} 2}
+    }
+ 	\\
+    \fonction{octetVersNaturel}
+    {o : \textbf{Octet}}
+    {\textbf{0..255}}
+    {}
+    {}
+	{   
+    {
+       \retourner{o}
+    }
+    }
+    \\
+    \fonction{naturelVersOctet}
+    {n : \textbf{0..255}}
+    {\textbf{Octet}}
+    {}
+    {}
+	{   
+    {
+       \retourner{n}
+    }
+    }
+\end{algorithme}

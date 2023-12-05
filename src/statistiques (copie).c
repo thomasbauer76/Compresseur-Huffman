@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #include "statistiques.h"
 
 void statistiques(Statistiques s) {
@@ -7,9 +9,9 @@ void statistiques(Statistiques s) {
 }
 
 void incrementerOccurence(Statistiques *s, Octet o) {
-    (*s)[O_octetVersNaturel(o)]++;
+    (*s)[octetVersNaturel(o)]++;
 }
 
 unsigned long obtenirOccurence(Statistiques s, Octet o) {
-    return s[O_octetVersNaturel(o)];
+    return s[octetVersNaturel(o)];
 }

@@ -1,0 +1,30 @@
+\begin{algorithme}
+    \procedure{obtenirTableDeCodageRecursif}{\paramEntree{a : \arbredehuffman}, \paramEntreeSortie{tdc : \tabledecodage, cb : \codebinaire}}
+    {}
+    {cbCopie : \codebinaire}
+    {
+        \sialorssinon{estUneFeuille(a)}
+        {
+            \instruction{ajouterCodage(tdc, cb)}
+        }
+        {
+            \affecter{cbCopie}{cb}
+            \instruction{ajouterBit(cbCopie, bitA0)}
+            \instruction{obtenirTableDeCodageRecursif(obtenirFilsGauche(a), tdc, cbCopie)}
+            \instruction{ajouterBit(cb, bitA1)}
+            \instruction{obtenirTableDeCodageRecursif(obtenirFilsDroit(a), tdc, cb)}
+        }
+    }
+    
+    \fonction{obtenirTableDeCodage}{a : \arbredehuffman}{\tabledecodage}
+    {}
+    {tdc : \tabledecodage}
+    {
+        \affecter{tdc}{creerTableDeCodage()}
+        \affecter{cbGauche}{creerCodeBinaire(bitA0)}
+        \affecter{cbGauche}{creerCodeBinaire(bitA1)}
+        \instruction{obtenirTableDeCodageRecursif(obtenirFilsGauche(a),tdc,cbGauche)}
+        \instruction{obtenirTableDeCodageRecursif(obtenirFilsDroit(a),tdc,cbDroit)}
+        \retourner{tdc}
+    }
+\end{algorithme}

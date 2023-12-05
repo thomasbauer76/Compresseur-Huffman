@@ -1,0 +1,10 @@
+\begin{algorithme}
+    \fonction{obtenirStatistiques}{f : \fichierbinaire}{\statistiques}{}{}
+    {
+        \affecter{s}{statistiques()}
+        \tantque{non(finFichier)}
+        {
+            \instruction{incrementerOccurence(s,lireOctet(f))}    
+        }
+    }
+\end{algorithme}
