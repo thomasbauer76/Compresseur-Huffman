@@ -4,8 +4,10 @@
 
 #include "octet.h"
 
+#define MAX_CB
+
 typedef struct CodeBinaire {
-    Bit tableBit[8];
+    Bit tableBit[MAX_CB];
     unsigned short nbElements;
 } CodeBinaire;
 
