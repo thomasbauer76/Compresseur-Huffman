@@ -4,7 +4,7 @@
 
 #include "octet.h"
 
-typedef unsigned long Statistiques[256];
+typedef unsigned long Statistiques[MAX_OCTET];
 
 void S_statistiques(Statistiques s);
 void S_incrementerOccurence(Statistiques *s, Octet o);

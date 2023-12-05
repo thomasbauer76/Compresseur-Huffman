@@ -4,6 +4,8 @@
 
 #include <stdbool.h>
 
+#define MAX_OCTET 256
+
 typedef bool Bit;
 
 typedef unsigned char Octet;
