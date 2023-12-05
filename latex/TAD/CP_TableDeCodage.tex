@@ -1,6 +1,7 @@
 \begin{algorithme}
-    \signatureFonction{creerTableCodage}{caractere : Octet , code:CodeBinaire}{TableDeCodage}{}
-    \signatureFonction{OctetVersCodeBinaire}{TDC : TableDeCodage,caractère :octet}{CodeBinaire}{octetPresent(t,codeBinaire)}
-    \signatureFonction{OctetPresent}{TDC : TableDeCodage,caractère :octet}{Booleen}{}
-    \signatureProcedure{ajouterCodage}{E/S TDC : TableDeCodage, E caractere : octet, E code:Codebinaire}{}
+    \signatureFonction{creerTableCodage}{}{TableDeCodage}{}
+    \signatureProcedure{ajouterCodage}{E/S tdc : TableDeCodage, E o : octet, E cb:Codebinaire}{}
+     \signatureFonction{OctetPresent}{tdc : TableDeCodage,o :octet}{Booleen}{}
+    \signatureFonction{OctetVersCodeBinaire}{tdc : TableDeCodage,o :octet}{CodeBinaire}{octetPresent(t,octet)}
+   
 \end{algorithme}
