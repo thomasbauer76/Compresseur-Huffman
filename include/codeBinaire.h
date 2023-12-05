@@ -12,7 +12,7 @@ typedef struct CodeBinaire {
 CodeBinaire CB_creerCodeBinaire(Bit b);
 Bit CB_obtenirIemeBit(CodeBinaire cb, unsigned short i);
 unsigned short CB_obtenirLongueur(CodeBinaire cb);
-void CB_ajouterBit(CodeBinaire *cb, Bit b);
+void CB_ajouterBit(CodeBinaire *p_cb, Bit b);
 
 
 #endif
