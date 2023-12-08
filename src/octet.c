@@ -15,7 +15,7 @@ unsigned char O_octetVersNaturel(Octet o) {
     return o;
 }
 	
-Octet naturelVersOctet (unsigned char n){
+Octet O_naturelVersOctet (unsigned char n){
 	return n;
 }
 

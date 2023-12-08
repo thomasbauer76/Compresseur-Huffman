@@ -23,27 +23,28 @@ void test_statistiques_incrementees(void) {
     Statistiques s;
     S_statistiques(s);
     Octet o = O_naturelVersOctet(241);
+    unsigned long ancienneOccurence = S_obtenirOccurence(s,o);
     S_incrementerOccurence(&s,o);
-    CU_ASSERT_EQUAL(S_obtenirOccurence(s,o),1);
+    unsigned long nouvelleOccurence = S_obtenirOccurence(s,o);
+    CU_ASSERT_EQUAL(nouvelleOccurence,ancienneOccurence+1);
 }
 
 int main(int argc, char** argv){
-  CU_pSuite pSuite = NULL;
 
   /* initialisation du registre de tests */
   if (CUE_SUCCESS != CU_initialize_registry())
     return CU_get_error();
 
-  /* ajout d'une suite de test */
-  pSuite = CU_add_suite("Test statistiques", init_suite_success, clean_suite_success);
-  if (NULL == pSuite) {
+  /* ajout d'une suite de test pour statistiques.c */
+  CU_pSuite pSuiteStatistiques = CU_add_suite("Test statistiques", init_suite_success, clean_suite_success);
+  if (NULL == pSuiteStatistiques) {
     CU_cleanup_registry();
     return CU_get_error();
   }
 
-  /* Ajout des tests à la suite de tests boite noire */
-  if ((NULL == CU_add_test(pSuite, "Occurences vides", test_statistiques_vides)) 
-    || (NULL == CU_add_test(pSuite, "Incrementation occurences", test_statistiques_incrementees))
+  /* Ajout des tests à la suite statistiques */
+  if ((NULL == CU_add_test(pSuiteStatistiques, "Occurences vides", test_statistiques_vides)) 
+    || (NULL == CU_add_test(pSuiteStatistiques, "Incrementation occurences", test_statistiques_incrementees))
       ) 
     {
       CU_cleanup_registry();
