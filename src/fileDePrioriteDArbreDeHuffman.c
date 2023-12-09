@@ -15,7 +15,7 @@ void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a) {
 	if ((FDPAH_estVide(*p_fdp)) || (ADH_obtenirFrequence(a) < ADH_obtenirFrequence((*p_fdp)->arbre))) {
 		FileDePriorite* p_temp = p_fdp;
 		//allocation de la taille de file
-		FileDePriorite p_noeud = (FileDePriorite)malloc(sizeof(NoeudArbreDeHuffman));
+		FileDePriorite p_noeud = (FileDePriorite)malloc(sizeof(NoeudFileDePriorite));
 		p_noeud->arbre = a;
 		p_noeud->fileSuivante = *p_temp;
 		p_fdp = &p_noeud;
