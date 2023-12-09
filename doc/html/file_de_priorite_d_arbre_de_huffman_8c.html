@@ -79,12 +79,16 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ac367b713d9895a71b051d12e1a7fe8e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="file_de_priorite_d_arbre_de_huffman_8h.html#a5406bb7a672b2bff9973d23701180bac">FileDePriorite</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file_de_priorite_d_arbre_de_huffman_8c.html#ac367b713d9895a71b051d12e1a7fe8e8">FDPAH_fileDePriorite</a> ()</td></tr>
+<tr class="memdesc:ac367b713d9895a71b051d12e1a7fe8e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction créant une FileDePriorite pour des Arbres d'Huffman.  <a href="file_de_priorite_d_arbre_de_huffman_8c.html#ac367b713d9895a71b051d12e1a7fe8e8">More...</a><br /></td></tr>
 <tr class="separator:ac367b713d9895a71b051d12e1a7fe8e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f482d9a627a48cf40ee43f260cd4c0b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file_de_priorite_d_arbre_de_huffman_8c.html#a3f482d9a627a48cf40ee43f260cd4c0b">FDPAH_estVide</a> (<a class="el" href="file_de_priorite_d_arbre_de_huffman_8h.html#a5406bb7a672b2bff9973d23701180bac">FileDePriorite</a> fdp)</td></tr>
+<tr class="memdesc:a3f482d9a627a48cf40ee43f260cd4c0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction renvoyant VRAI si une FileDePriorite est vide, càd qu'elle ne contient aucun Arbre d'Huffman. Retourne FAUX sinon.  <a href="file_de_priorite_d_arbre_de_huffman_8c.html#a3f482d9a627a48cf40ee43f260cd4c0b">More...</a><br /></td></tr>
 <tr class="separator:a3f482d9a627a48cf40ee43f260cd4c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad60331d04524de3f77dbb6535ee24e97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file_de_priorite_d_arbre_de_huffman_8c.html#ad60331d04524de3f77dbb6535ee24e97">FDPAH_enfiler</a> (<a class="el" href="file_de_priorite_d_arbre_de_huffman_8h.html#a5406bb7a672b2bff9973d23701180bac">FileDePriorite</a> *p_fdp, <a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> a)</td></tr>
+<tr class="memdesc:ad60331d04524de3f77dbb6535ee24e97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant d'insérer à l'endroit correct (par rapport à l'élément contenu dans la racine de l'arbre) un Arbre d'Huffman dans une FileDePriorite.  <a href="file_de_priorite_d_arbre_de_huffman_8c.html#ad60331d04524de3f77dbb6535ee24e97">More...</a><br /></td></tr>
 <tr class="separator:ad60331d04524de3f77dbb6535ee24e97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1466a8bcd62deb7bdc764392d8c25520"><td class="memItemLeft" align="right" valign="top"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file_de_priorite_d_arbre_de_huffman_8c.html#a1466a8bcd62deb7bdc764392d8c25520">FDPAH_obtenirElementEtDefiler</a> (<a class="el" href="file_de_priorite_d_arbre_de_huffman_8h.html#a5406bb7a672b2bff9973d23701180bac">FileDePriorite</a> *p_fdp)</td></tr>
+<tr class="memdesc:a1466a8bcd62deb7bdc764392d8c25520"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant d'extraire l'Arbre d'Huffman au bout de la FileDePriorite.  <a href="file_de_priorite_d_arbre_de_huffman_8c.html#a1466a8bcd62deb7bdc764392d8c25520">More...</a><br /></td></tr>
 <tr class="separator:a1466a8bcd62deb7bdc764392d8c25520"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -114,6 +118,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Fonction permettant d'insérer à l'endroit correct (par rapport à l'élément contenu dans la racine de l'arbre) un Arbre d'Huffman dans une FileDePriorite. </p>
+
 </div>
 </div>
 <a id="a3f482d9a627a48cf40ee43f260cd4c0b"></a>
@@ -131,6 +137,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Fonction renvoyant VRAI si une FileDePriorite est vide, càd qu'elle ne contient aucun Arbre d'Huffman. Retourne FAUX sinon. </p>
 
 </div>
 </div>
@@ -150,6 +158,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Fonction créant une FileDePriorite pour des Arbres d'Huffman. </p>
+
 </div>
 </div>
 <a id="a1466a8bcd62deb7bdc764392d8c25520"></a>
@@ -167,6 +177,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Fonction permettant d'extraire l'Arbre d'Huffman au bout de la FileDePriorite. </p>
 
 </div>
 </div>

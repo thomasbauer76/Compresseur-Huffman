@@ -18,13 +18,13 @@ typedef struct \mbox{\hyperlink{struct_noeud_file_de_priorite}{Noeud\+File\+De\+
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_ae552ab3b5dca991ae8fe454fa8693541}{FDPAH\+\_\+file\+De\+Priorite}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em Fonction créant une File\+De\+Priorite pour des Arbres d\textquotesingle{}Huffman. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a3f482d9a627a48cf40ee43f260cd4c0b}{FDPAH\+\_\+est\+Vide}} (\mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} fdp)
-\item 
+\begin{DoxyCompactList}\small\item\em Fonction renvoyant VRAI si une File\+De\+Priorite est vide, càd qu\textquotesingle{}elle ne contient aucun Arbre d\textquotesingle{}Huffman. Retourne FAUX sinon. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_ad60331d04524de3f77dbb6535ee24e97}{FDPAH\+\_\+enfiler}} (\mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} $\ast$p\+\_\+fdp, \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} a)
-\item 
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}insérer à l\textquotesingle{}endroit correct (par rapport à l\textquotesingle{}élément contenu dans la racine de l\textquotesingle{}arbre) un Arbre d\textquotesingle{}Huffman dans une File\+De\+Priorite. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a1466a8bcd62deb7bdc764392d8c25520}{FDPAH\+\_\+obtenir\+Element\+Et\+Defiler}} (\mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} $\ast$p\+\_\+fdp)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}extraire l\textquotesingle{}Arbre d\textquotesingle{}Huffman au bout de la File\+De\+Priorite. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Typedef Documentation}
@@ -49,11 +49,19 @@ void \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_ad60331d04524de3f77
 \doxysubsubsection{\texorpdfstring{FDPAH\_enfiler()}{FDPAH\_enfiler()}}
 {\footnotesize\ttfamily void FDPAH\+\_\+enfiler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} $\ast$}]{p\+\_\+fdp,  }\item[{\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}}}]{a }\end{DoxyParamCaption})}
 
+
+
+Fonction permettant d\textquotesingle{}insérer à l\textquotesingle{}endroit correct (par rapport à l\textquotesingle{}élément contenu dans la racine de l\textquotesingle{}arbre) un Arbre d\textquotesingle{}Huffman dans une File\+De\+Priorite. 
+
 \mbox{\Hypertarget{file_de_priorite_d_arbre_de_huffman_8h_a3f482d9a627a48cf40ee43f260cd4c0b}\label{file_de_priorite_d_arbre_de_huffman_8h_a3f482d9a627a48cf40ee43f260cd4c0b}} 
 \index{fileDePrioriteDArbreDeHuffman.h@{fileDePrioriteDArbreDeHuffman.h}!FDPAH\_estVide@{FDPAH\_estVide}}
 \index{FDPAH\_estVide@{FDPAH\_estVide}!fileDePrioriteDArbreDeHuffman.h@{fileDePrioriteDArbreDeHuffman.h}}
 \doxysubsubsection{\texorpdfstring{FDPAH\_estVide()}{FDPAH\_estVide()}}
 {\footnotesize\ttfamily bool FDPAH\+\_\+est\+Vide (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}}}]{fdp }\end{DoxyParamCaption})}
+
+
+
+Fonction renvoyant VRAI si une File\+De\+Priorite est vide, càd qu\textquotesingle{}elle ne contient aucun Arbre d\textquotesingle{}Huffman. Retourne FAUX sinon. 
 
 \mbox{\Hypertarget{file_de_priorite_d_arbre_de_huffman_8h_ae552ab3b5dca991ae8fe454fa8693541}\label{file_de_priorite_d_arbre_de_huffman_8h_ae552ab3b5dca991ae8fe454fa8693541}} 
 \index{fileDePrioriteDArbreDeHuffman.h@{fileDePrioriteDArbreDeHuffman.h}!FDPAH\_fileDePriorite@{FDPAH\_fileDePriorite}}
@@ -61,9 +69,17 @@ void \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_ad60331d04524de3f77
 \doxysubsubsection{\texorpdfstring{FDPAH\_fileDePriorite()}{FDPAH\_fileDePriorite()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} FDPAH\+\_\+file\+De\+Priorite (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
+
+
+Fonction créant une File\+De\+Priorite pour des Arbres d\textquotesingle{}Huffman. 
+
 \mbox{\Hypertarget{file_de_priorite_d_arbre_de_huffman_8h_a1466a8bcd62deb7bdc764392d8c25520}\label{file_de_priorite_d_arbre_de_huffman_8h_a1466a8bcd62deb7bdc764392d8c25520}} 
 \index{fileDePrioriteDArbreDeHuffman.h@{fileDePrioriteDArbreDeHuffman.h}!FDPAH\_obtenirElementEtDefiler@{FDPAH\_obtenirElementEtDefiler}}
 \index{FDPAH\_obtenirElementEtDefiler@{FDPAH\_obtenirElementEtDefiler}!fileDePrioriteDArbreDeHuffman.h@{fileDePrioriteDArbreDeHuffman.h}}
 \doxysubsubsection{\texorpdfstring{FDPAH\_obtenirElementEtDefiler()}{FDPAH\_obtenirElementEtDefiler()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} FDPAH\+\_\+obtenir\+Element\+Et\+Defiler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} $\ast$}]{p\+\_\+fdp }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant d\textquotesingle{}extraire l\textquotesingle{}Arbre d\textquotesingle{}Huffman au bout de la File\+De\+Priorite. 
 

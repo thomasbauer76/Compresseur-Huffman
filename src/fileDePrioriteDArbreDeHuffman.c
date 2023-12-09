@@ -3,14 +3,23 @@
 #include "fileDePrioriteDArbreDeHuffman.h"
 #include "arbreDeHuffman.h"
 
+/*!
+*\brief Fonction créant une FileDePriorite pour des Arbres d'Huffman
+*/
 FileDePriorite FDPAH_fileDePriorite() {
 	return NULL;
 }
 
+/*!
+*\brief Fonction renvoyant VRAI si une FileDePriorite est vide, càd qu'elle ne contient aucun Arbre d'Huffman. Retourne FAUX sinon.
+*/
 bool FDPAH_estVide(FileDePriorite fdp) {
 	return (fdp == NULL);
 }
 
+/*!
+*\brief Fonction permettant d'insérer à l'endroit correct (par rapport à l'élément contenu dans la racine de l'arbre) un Arbre d'Huffman dans une FileDePriorite. 
+*/
 void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a) {
 	if ((FDPAH_estVide(*p_fdp)) || (ADH_obtenirFrequence(a) < ADH_obtenirFrequence((*p_fdp)->arbre))) {
 		FileDePriorite* p_temp = p_fdp;
@@ -25,6 +34,9 @@ void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a) {
 	}
 }
 
+/*!
+*\brief Fonction permettant d'extraire l'Arbre d'Huffman au bout de la FileDePriorite
+*/
 ArbreDeHuffman FDPAH_obtenirElementEtDefiler(FileDePriorite *p_fdp) {
 	ArbreDeHuffman a = (*p_fdp)->arbre;
 	FileDePriorite* p_temp = p_fdp;
