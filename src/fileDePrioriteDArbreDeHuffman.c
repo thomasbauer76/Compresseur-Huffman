@@ -26,10 +26,9 @@ void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a) {
 }
 
 ArbreDeHuffman FDPAH_obtenirElementEtDefiler(FileDePriorite *p_fdp) {
-	ArbreDeHuffman a = *p_fdp.arbre;
+	ArbreDeHuffman a = (*p_fdp)->arbre;
 	FileDePriorite* p_temp = p_fdp;
-	p_file = &(*temp.fileSuivante);
-1	//désallocation de temp
+	p_fdp = &((*p_temp)->fileSuivante);
 	free(p_temp);
 	return a;
 }
