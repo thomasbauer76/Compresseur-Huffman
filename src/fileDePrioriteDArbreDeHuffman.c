@@ -1,29 +1,53 @@
+#include <stddef.h>
+#include <stdlib.h>
 #include "fileDePrioriteDArbreDeHuffman.h"
+#include "arbreDeHuffman.h"
 
+/*!
+\brief Fonction créant une FileDePriorite pour des ArbreDeHuffman
+\return FileDePriorite pointant sur NULL
+*/
 FileDePriorite FDPAH_fileDePriorite() {
 	return NULL;
 }
 
+/*!
+\brief Fonction renvoyant VRAI si une FileDePriorite est vide, càd qu'elle ne contient aucun ArbreDeHuffman. Retourne FAUX sinon.
+\param FileDePriorite que l'on veut tester
+\return Booleen indiquant si la FileDePriorite en paramètre est vide ou non
+*/
 bool FDPAH_estVide(FileDePriorite fdp) {
 	return (fdp == NULL);
 }
 
+/*!
+\brief Fonction permettant d'insérer à l'endroit correct (par rapport à l'élément contenu dans la racine de l'arbre) un ArbreDeHuffman dans une FileDePriorite. 
+\param FileDePriorite à laquelle on aimerait ajouter un ArbreDeHuffman, cette dernière sera modifiée
+\param ArbreDeHuffman que l'on souhaiter enfiler dans la FileDePriorite
+*/
 void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a) {
-	if ((FDPAH_estVide(*p_fdp)) || (a < *p_fdp.arbre)) {
+	if ((FDPAH_estVide(*p_fdp)) || (ADH_obtenirFrequence(a) < ADH_obtenirFrequence((*p_fdp)->arbre))) {
 		FileDePriorite* p_temp = p_fdp;
 		//allocation de la taille de file
-		*p_file.arbre = a;
-		*p_file.fileSuivante = p_temp;
+		FileDePriorite p_noeud = (FileDePriorite)malloc(sizeof(NoeudFileDePriorite));
+		p_noeud->arbre = a;
+		p_noeud->fileSuivante = *p_temp;
+		p_fdp = &p_noeud;
 	}
 	else {
-		FDPAH_enfiler(*p_file.fileSuivante, a);
+		FDPAH_enfiler(&((*p_fdp)->fileSuivante), a);
 	}
 }
 
+/*!
+\brief Fonction permettant d'extraire l'ArbreDeHuffman au bout de la FileDePriorite
+\param FileDePriorite de laquelle on souhaiterait défiler un ArbreDeHuffman, cette dernière sera modifiée
+\return L'ArbreDeHuffman obtenu grâce au défilement de la FileDePriorite donnée en paramètre
+*/
 ArbreDeHuffman FDPAH_obtenirElementEtDefiler(FileDePriorite *p_fdp) {
-	ArbreDeHuffman a = *p_fdp.arbre;
+	ArbreDeHuffman a = (*p_fdp)->arbre;
 	FileDePriorite* p_temp = p_fdp;
-	p_file = &(*temp.fileSuivante);
-	//désallocation de temp
+	p_fdp = &((*p_temp)->fileSuivante);
+	free(p_temp);
 	return a;
 }
