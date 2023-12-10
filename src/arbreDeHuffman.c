@@ -20,7 +20,7 @@ void ADH_obtenirOctet(ArbreDeHuffman a, Octet o) {
 }
 
 unsigned long ADH_obtenirFrequence(ArbreDeHuffman a) {
-    return 0;
+    return a->frequence;
 }
 
 ArbreDeHuffman ADH_obtenirFilsGauche(ArbreDeHuffman a) {
