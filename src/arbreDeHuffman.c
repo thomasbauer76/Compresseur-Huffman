@@ -24,9 +24,9 @@ unsigned long ADH_obtenirFrequence(ArbreDeHuffman a) {
 }
 
 ArbreDeHuffman ADH_obtenirFilsGauche(ArbreDeHuffman a) {
-    return NULL;
+    return a->arbreGauche;
 }
 
 ArbreDeHuffman ADH_obtenirFilsDroit(ArbreDeHuffman a) {
-    return NULL;
+    return a->arbreDroit;
 }
