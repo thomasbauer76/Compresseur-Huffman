@@ -6,8 +6,18 @@ ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned long n) {
     return NULL;
 }
 
+unsigned long ADH_obtenirFrequence(ArbreDeHuffman a) {
+    return a->frequence;
+}
+
+//Question à poser au prof : faut-il faire disparaître (désallouer) arbre gauche et droit pour éviter une surchage de la mémoire ?
 ArbreDeHuffman ADH_fusionner(ArbreDeHuffman ag, ArbreDeHuffman ad) {
-    return NULL;
+    ArbreDeHuffman racine = (ArbreDeHuffman)malloc(sizeof(NoeudArbreDeHuffman));
+    racine->arbreGauche = ag;
+    racine->arbreDroit = ad;
+    racine->estUneFeuille = false;
+    racine->frequence = ADH_obtenirFrequence(ag) + ADH_obtenirFrequence(ad);
+    return racine;
 }
 
 bool ADH_estUneFeuille(ArbreDeHuffman a) {
@@ -17,10 +27,6 @@ bool ADH_estUneFeuille(ArbreDeHuffman a) {
 //Octet est un tableau, c'est donc une Entrée/Sortie
 void ADH_obtenirOctet(ArbreDeHuffman a, Octet o) {
 
-}
-
-unsigned long ADH_obtenirFrequence(ArbreDeHuffman a) {
-    return a->frequence;
 }
 
 ArbreDeHuffman ADH_obtenirFilsGauche(ArbreDeHuffman a) {
