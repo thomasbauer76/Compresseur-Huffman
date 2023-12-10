@@ -7,6 +7,8 @@
 #define MAX_OCTET 256
 
 typedef bool Bit;
+#define bitA0 0
+#define bitA1 1
 
 typedef unsigned char Octet;
 

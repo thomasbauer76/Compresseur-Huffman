@@ -10,8 +10,8 @@ LDFLAGS=-lcunit
 
 all :
 
-tests: $(SRCDIR)/tests.o $(SRCDIR)/statistiques.o $(SRCDIR)/octet.o
-	gcc -o $(TESTSDIR)/$(EXE_TESTS) $(SRCDIR)/tests.o $(SRCDIR)/statistiques.o $(SRCDIR)/octet.o $(LDFLAGS)
+tests: $(SRCDIR)/testsHuffman.o $(SRCDIR)/statistiques.o $(SRCDIR)/codeBinaire.o $(SRCDIR)/octet.o
+	gcc -o $(TESTSDIR)/$(EXE_TESTS) $(SRCDIR)/testsHuffman.o $(SRCDIR)/statistiques.o $(SRCDIR)/codeBinaire.o $(SRCDIR)/octet.o $(LDFLAGS)
 
 $(SRCDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) -o $@ -c $< $(CFLAGS)
