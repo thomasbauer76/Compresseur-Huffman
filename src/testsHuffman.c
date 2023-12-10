@@ -44,9 +44,9 @@ void test_creation_codebinaire(void) {
 }
 
 void test_ajout_bit(void) {
-  Bit b = bitA1;
   CodeBinaire cb = CB_creerCodeBinaire(bitA0);
   unsigned short ancienneLongueur = CB_obtenirLongueur(cb);
+  Bit b = bitA1;
   CB_ajouterBit(&cb,b);
   unsigned short nouvelleLongueur = CB_obtenirLongueur(cb);
   CU_ASSERT_EQUAL(nouvelleLongueur,ancienneLongueur+1);
@@ -69,7 +69,7 @@ int main(int argc, char** argv){
 
   /* Ajout des tests à la suite statistiques */
   if ((NULL == CU_add_test(pSuiteStatistiques, "Occurences vides", test_statistiques_vides)) 
-    || (NULL == CU_add_test(pSuiteStatistiques, "Incrementation occurences", test_statistiques_incrementees))
+    || (NULL == CU_add_test(pSuiteStatistiques, "Incrementation d'une occurence", test_statistiques_incrementees))
       ) 
     {
       CU_cleanup_registry();
