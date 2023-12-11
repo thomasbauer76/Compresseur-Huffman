@@ -1,10 +1,14 @@
 \begin{algorithme}
-    \fonction{obtenirStatistiques}{f : \fichierbinaire}{\statistiques}{}{}
+    \fonction{obtenirStatistiques}{f : \fichierbinaire}{\statistiques}{}
+    {s : \statistiques}
     {
         \affecter{s}{statistiques()}
-        \tantque{non(finFichier)}
+        \instruction{ouvrir(f, lecture)}
+        \tantque{non(finFichier(f))}
         {
-            \instruction{incrementerOccurence(s,lireOctet(f))}    
+            \instruction{incrementerOccurence(s, lireOctet(f))}    
         }
+        \instruction{fermer(f)}
+        \retourner{s}
     }
 \end{algorithme}
