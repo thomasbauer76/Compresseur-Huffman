@@ -19,7 +19,6 @@ void encoder(FILE *f, char *filename, TableDeCodage tdc) {
         concatenerCodeBinaireEnOctet(cb,fbCompresse);
     }
 
-    fclose(f);
     fclose(fbCompresse);
 }
 
