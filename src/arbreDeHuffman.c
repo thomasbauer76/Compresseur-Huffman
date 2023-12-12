@@ -27,7 +27,7 @@ ArbreDeHuffman ADH_obtenirFilsGauche(ArbreDeHuffman a) {
     return a->arbreGauche;
 }
 
-Octet obtenirOctet(ArbreDeHuffman a){
+Octet ADH_obtenirOctet(ArbreDeHuffman a){
     return a->octet; //on ne vérifie pas la pré-condition mais sinon on peut le faire avec un ASSERT
 }
 
@@ -35,7 +35,7 @@ ArbreDeHuffman ADH_obtenirFilsDroit(ArbreDeHuffman a) {
     return a->arbreDroit;
 }
 
-ArbreDeHuffman arbreDeHuffman(Octet o, unsigned int f){
+ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned int f){
 	ArbreDeHuffman a = (ArbreDeHuffman)malloc(sizeof(ArbreDeHuffman));
 	a->octet=o;
 	a->frequence=f;
