@@ -1,0 +1,7 @@
+\begin{algorithme}
+    \fonction{compresser}{f : \fichierbinaire}{\fichierbinaire}{}
+    {s : \statistiques}
+    {
+        \retourner{encoder(f, obtenirTableDeCodage(construireArbreDeHuffman(obtenirStatistiques(f))))}
+    }
+\end{algorithme}
