@@ -2,8 +2,14 @@
 #include <stdlib.h>
 #include "arbreDeHuffman.h"
 
-ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned long n) {
-    return NULL;
+ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned long n){
+	ArbreDeHuffman a = (ArbreDeHuffman)malloc(sizeof(ArbreDeHuffman));
+	a->octet=o;
+	a->frequence=n;
+	a->arbreGauche=NULL;
+	a->arbreDroit=NULL;
+	
+	return a;
 }
 
 unsigned long ADH_obtenirFrequence(ArbreDeHuffman a) {
@@ -23,31 +29,16 @@ bool ADH_estUneFeuille(ArbreDeHuffman a) {
     return a->estUneFeuille;
 }
 
-
-
 ArbreDeHuffman ADH_obtenirFilsGauche(ArbreDeHuffman a) {
     return a->arbreGauche;
 }
 
-Octet obtenirOctet(ArbreDeHuffman a){
-	if (a->estUneFeuille){
-		return a->octet;}
-	else{
-		return EXIT_FAILURE;}
-		}
+Octet ADH_obtenirOctet(ArbreDeHuffman a){
+    return a->octet; //on ne vérifie pas la pré-condition mais sinon on peut le faire avec un ASSERT
+}
 
 ArbreDeHuffman ADH_obtenirFilsDroit(ArbreDeHuffman a) {
     return a->arbreDroit;
 }
 
-ArbreDeHuffman arbreDeHuffman(Octet o, unsigned int f){
-	ArbreDeHuffman a = (ArbreDeHuffman)malloc(sizeof(ArbreDeHuffman));
-	a->octet=o;
-	a->frequence=f;
-	a->arbreGauche=NULL;
-	a->arbreDroit=NULL;
-	
-	return a;
-
-}
 
