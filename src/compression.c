@@ -9,14 +9,20 @@ void concatenerCodeBinaireEnOctet(CodeBinaire cb, FILE *fb) {
 }
 
 void encoder(FILE *f, char *filename, TableDeCodage tdc) {
+    FILE *fbCompresse = fopen(strcat(filename,".huff"), "wb");
     rewind(f);
-    FILE *fbCompresse = fopen(strcat(filename,".huff"), "w");
-    unsigned char c;
-    while ((c = fgetc(f)) != EOF) {
-        
+
+    CodeBinaire cb;
+    int o;
+    while ((o = fgetc(f)) != EOF) {
+        cb = TDC_octetVersCodeBinaire(tdc,O_naturelVersOctet(o));
+        concatenerCodeBinaireEnOctet(cb,fbCompresse);
     }
+
+    fclose(f);
+    fclose(fbCompresse);
 }
 
-void compresser(FILE *f) {
+void compresser(FILE *f, char *filename) {
 
 }

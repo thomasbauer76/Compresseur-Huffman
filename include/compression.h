@@ -2,7 +2,7 @@
 #define __COMPRESSION__
 
 
-void compresser(FILE *f);
+void compresser(FILE *f, char *filename);
 
 
 #endif
