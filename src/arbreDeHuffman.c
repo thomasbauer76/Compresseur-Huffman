@@ -2,8 +2,14 @@
 #include <stdlib.h>
 #include "arbreDeHuffman.h"
 
-ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned long n) {
-    return NULL;
+ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned long n){
+	ArbreDeHuffman a = (ArbreDeHuffman)malloc(sizeof(ArbreDeHuffman));
+	a->octet=o;
+	a->frequence=n;
+	a->arbreGauche=NULL;
+	a->arbreDroit=NULL;
+	
+	return a;
 }
 
 unsigned long ADH_obtenirFrequence(ArbreDeHuffman a) {
@@ -35,14 +41,4 @@ ArbreDeHuffman ADH_obtenirFilsDroit(ArbreDeHuffman a) {
     return a->arbreDroit;
 }
 
-ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned int f){
-	ArbreDeHuffman a = (ArbreDeHuffman)malloc(sizeof(ArbreDeHuffman));
-	a->octet=o;
-	a->frequence=f;
-	a->arbreGauche=NULL;
-	a->arbreDroit=NULL;
-	
-	return a;
-
-}
 
