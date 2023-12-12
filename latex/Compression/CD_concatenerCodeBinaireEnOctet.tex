@@ -1,0 +1,30 @@
+\begin{algorithme}
+      \procedure{concatenerCodeBinaireEnOctet}{\paramEntree{cb : \codebinaire}, \paramEntreeSortie{fb : \fichierbinaire, cb : \codebinaire}}
+    {}
+    {octetcourant : \octet , postionBit : Entier}
+    {	
+    
+    	\affecter{octectcourant}{0}
+    	\affecter{postionBit}{7}
+    	
+    	\pourChaque{Bit}{\codebinaire}{
+    	{
+    	\sialors{Bit $==$ 1}{
+    		\affecter{octetcourant}{octetcourant $OR$ (1 $<<$ positionBit) }%% decalage de la position du bit dans l'octet de 1
+    		%%\affecter{positionBit}{positionBit $-$ 1}
+    		}
+    		}
+    	\affecter{positionBit}{positionBit $-$ 1}       
+    	\sialors{positionoctet $<$ 0}{
+			\instruction{ecrireoctet(octetcourant,fbcompresse)}
+			\affecter{octetcourant}{0}									
+			\affecter{postionBit}{7}
+    		}
+    	
+    	}
+  
+    	\sialors{positionBit $<$ 7 et positionBit $>$ 0}{
+    		\instruction{ecrireoctet(octetcourant, fbcompresse)}
+     	 }	
+      }
+\end{algorithme}

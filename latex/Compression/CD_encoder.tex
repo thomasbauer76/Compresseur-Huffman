@@ -1,0 +1,24 @@
+\begin{algorithme}
+     \fonction{encoder}{fbInitial : \fichierbinaire, tdc : \tabledecodage}{\fichierbinaire}
+    {}
+    {fbCompresse : \fichierbinaire, cb : \codebinaire, o : \octet}
+    {
+        \affecter{fbInitial}{fichierBinaire("nom du fichier")}
+        \instruction{ouvrir(fbInitiale,lecture)}
+        \affecter{fbCompresse}{fichierBinaire("nom du fichier")}
+        \instruction{ouvrir(fbCompresse, ecriture)}
+        \instruction{ecrireoctet(naturelVersOctet(obtenirTailleFichier(fbInitiale)),fbcompresse)}%% le premier octet represente la taille du fichier initale à utiliser ou non 
+        \tantque{$non$ finfichier(fnInitiale)}{
+        	\instruction{lireoctet(fbInitiale,o)}
+        	\affecter{cb}{octetVersCodeBinaire(tdc,o)}
+        	\instruction{concatenerCodeBinaireEnOctet(cb,fbCompresse)}
+	    }
+        \instruction{fermer(fbInitial)}
+        \instruction{fermer(fbCompresse)}
+        	
+       
+        \retourner{fbCompresse}
+    }
+\end{algorithme}
+    	    			  			
+    	    			  						   
