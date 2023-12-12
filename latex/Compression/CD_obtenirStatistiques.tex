@@ -1,5 +1,5 @@
 \begin{algorithme}
-    \fonction{obtenirStatistiques}{f : \fichierbinaire}{\statistiques}{}
+    \procedure{obtenirStatistiques}{\paramEntreeSortie{f : \fichierbinaire}, \paramSortie{s : \statistiques}}{}
     {s : \statistiques}
     {
         \affecter{s}{statistiques()}
@@ -9,6 +9,5 @@
             \instruction{incrementerOccurence(s, lireOctet(f))}    
         }
         \instruction{fermer(f)}
-        \retourner{s}
     }
 \end{algorithme}
