@@ -20,17 +20,21 @@ ArbreDeHuffman ADH_fusionner(ArbreDeHuffman ag, ArbreDeHuffman ad) {
 }
 
 bool ADH_estUneFeuille(ArbreDeHuffman a) {
-    return 0;
+    return a->estUneFeuille;
 }
 
-//Octet est un tableau, c'est donc une Entrée/Sortie
-void ADH_obtenirOctet(ArbreDeHuffman a, Octet o) {
 
-}
 
 ArbreDeHuffman ADH_obtenirFilsGauche(ArbreDeHuffman a) {
     return a->arbreGauche;
 }
+
+Octet obtenirOctet(ArbreDeHuffman a){
+	if (a->estUneFeuille){
+		return a->octet;}
+	else{
+		return EXIT_FAILURE;}
+		}
 
 ArbreDeHuffman ADH_obtenirFilsDroit(ArbreDeHuffman a) {
     return a->arbreDroit;
@@ -47,14 +51,3 @@ ArbreDeHuffman arbreDeHuffman(Octet o, unsigned int f){
 
 }
 
-
-bool estUneFeuille (ArbreDeHuffman a){
-	return a->estUneFeuille;
-}
-
-Octet obtenirOctet(ArbreDeHuffman a){
-	if (a->estUneFeuille){
-		return a->octet;}
-	else{
-		return EXIT_FAILURE;}
-		}
