@@ -1,7 +1,9 @@
 \begin{algorithme}
-    \fonction{compresser}{f : \fichierbinaire}{\fichierbinaire}{}
+    \procedure{compresser}{\paramEntreeSortie{f : \fichierbinaire}, \paramSortie{fCompresse : \fichierbinaire}}{}
     {s : \statistiques}
     {
-        \retourner{encoder(f, obtenirTableDeCodage(construireArbreDeHuffman(obtenirStatistiques(f))))}
+        \affecter{s}{statistiques()}
+        \instruction{obtenirStatistiques(f, s)}
+        \instruction{encoder(f, obtenirTableDeCodage(construireArbreDeHuffman(s)), fCompresse)}
     }
 \end{algorithme}
