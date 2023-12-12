@@ -36,3 +36,26 @@ ArbreDeHuffman ADH_obtenirFilsGauche(ArbreDeHuffman a) {
 ArbreDeHuffman ADH_obtenirFilsDroit(ArbreDeHuffman a) {
     return a->arbreDroit;
 }
+
+ArbreDeHuffman arbreDeHuffman(Octet o, unsigned int f){
+	ArbreDeHuffman a = (ArbreDeHuffman)malloc(sizeof(ArbreDeHuffman));
+	a->octet=o;
+	a->frequence=f;
+	a->arbreGauche=NULL;
+	a->arbreDroit=NULL;
+	
+	return a;
+
+}
+
+
+bool estUneFeuille (ArbreDeHuffman a){
+	return a->estUneFeuille;
+}
+
+Octet obtenirOctet(ArbreDeHuffman a){
+	if (a->estUneFeuille){
+		return a->octet;}
+	else{
+		return EXIT_FAILURE;}
+		}
