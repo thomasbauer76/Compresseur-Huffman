@@ -1,29 +1,24 @@
 \begin{algorithme}
-    \procedure{concatenerCodeBinaireEnOctet}{\paramEntree{cb : \codebinaire}, \paramEntreeSortie{fb : \fichierbinaire, cb : \codebinaire}}
+     \fonction{encoder}{fbInitial : \fichierbinaire, tdc : \tabledecodage}{\fichierbinaire}
     {}
-    {octet_courant : \octet , postionBit : Entier}
-    {	
-    
-    	\affecter{octect_courant}{0}
-    	\affecter{postionBit}{7}
-    	
-    	\pour{Bit}{\codebinaire}{
-    	\sialors{Bit==1}{
-    		\affecter{octet_courant}{$octet_courant OR (1<<positionBit)$}
-    		}
-    	\affecter{positionBit}{$positionBit-1$}       
-    	\sialors{$positionoctet<0$}{
-			\instruction{ecrireoctet(octet_courant,fb_compresse)}
-			\affecter{octet_courant}{0}									
-			\affecter{postionBit}{7}
-    		}
-    	}
-  
-    	\sialors{$positionBit<7 et positionbit>0$}{
-    		\instruction{ecrireoctet(octet_courant, fb_compresse)}
-     	 }	
-      }
-      
+    {fbCompresse : \fichierbinaire, cb : \codebinaire, o : \octet}
+    {
+        \affecter{fbInitial}{fichierBinaire("nom du fichier")}
+        \instruction{ouvrir(fbInitiale,lecture)}
+        \affecter{fbCompresse}{fichierBinaire("nom du fichier")}
+        \instruction{ouvrir(fbCompresse, ecriture)}
+        \instruction{ecrireoctet(naturelVersOctet(obtenirTailleFichier(fbInitiale)),fbcompresse)}%% le premier octet represente la taille du fichier initale à utiliser ou non 
+        \tantque{$non$ finfichier(fnInitiale)}{
+        	\instruction{lireoctet(fbInitiale,o)}
+        	\affecter{cb}{octetVersCodeBinaire(tdc,o)}
+        	\instruction{concatenerCodeBinaireEnOctet(cb,fbCompresse)}
+	    }
+        \instruction{fermer(fbInitial)}
+        \instruction{fermer(fbCompresse)}
+        	
+       
+        \retourner{fbCompresse}
+    }
 \end{algorithme}
     	    			  			
     	    			  						   

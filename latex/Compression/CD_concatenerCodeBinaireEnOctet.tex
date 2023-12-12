@@ -1,30 +1,30 @@
 \begin{algorithme}
-    \procedure{obtenirTableDeCodageRecursif}{\paramEntree{a : \arbredehuffman}, \paramEntreeSortie{tdc : \tabledecodage, cb : \codebinaire}}
+      \procedure{concatenerCodeBinaireEnOctet}{\paramEntree{cb : \codebinaire}, \paramEntreeSortie{fb : \fichierbinaire, cb : \codebinaire}}
     {}
-    {cbCopie : \codebinaire}
-    {
-        \sialorssinon{estUneFeuille(a)}
-        {
-            \instruction{ajouterCodage(tdc, cb)}
-        }
-        {
-            \affecter{cbCopie}{cb}
-            \instruction{ajouterBit(cbCopie, bitA0)}
-            \instruction{obtenirTableDeCodageRecursif(obtenirFilsGauche(a), tdc, cbCopie)}
-            \instruction{ajouterBit(cb, bitA1)}
-            \instruction{obtenirTableDeCodageRecursif(obtenirFilsDroit(a), tdc, cb)}
-        }
-    }
+    {octetcourant : \octet , postionBit : Entier}
+    {	
     
-    \fonction{obtenirTableDeCodage}{a : \arbredehuffman}{\tabledecodage}
-    {}
-    {tdc : \tabledecodage}
-    {
-        \affecter{tdc}{creerTableDeCodage()}
-        \affecter{cbGauche}{creerCodeBinaire(bitA0)}
-        \affecter{cbGauche}{creerCodeBinaire(bitA1)}
-        \instruction{obtenirTableDeCodageRecursif(obtenirFilsGauche(a), tdc, cbGauche)}
-        \instruction{obtenirTableDeCodageRecursif(obtenirFilsDroit(a), tdc, cbDroit)}
-        \retourner{tdc}
-    }
+    	\affecter{octectcourant}{0}
+    	\affecter{postionBit}{7}
+    	
+    	\pourChaque{Bit}{\codebinaire}{
+    	{
+    	\sialors{Bit $==$ 1}{
+    		\affecter{octetcourant}{octetcourant $OR$ (1 $<<$ positionBit) }%% decalage de la position du bit dans l'octet de 1
+    		%%\affecter{positionBit}{positionBit $-$ 1}
+    		}
+    		}
+    	\affecter{positionBit}{positionBit $-$ 1}       
+    	\sialors{positionoctet $<$ 0}{
+			\instruction{ecrireoctet(octetcourant,fbcompresse)}
+			\affecter{octetcourant}{0}									
+			\affecter{postionBit}{7}
+    		}
+    	
+    	}
+  
+    	\sialors{positionBit $<$ 7 et positionBit $>$ 0}{
+    		\instruction{ecrireoctet(octetcourant, fbcompresse)}
+     	 }	
+      }
 \end{algorithme}
