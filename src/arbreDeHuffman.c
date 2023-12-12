@@ -23,8 +23,6 @@ bool ADH_estUneFeuille(ArbreDeHuffman a) {
     return a->estUneFeuille;
 }
 
-
-
 ArbreDeHuffman ADH_obtenirFilsGauche(ArbreDeHuffman a) {
     return a->arbreGauche;
 }
