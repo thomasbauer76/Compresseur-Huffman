@@ -28,11 +28,8 @@ ArbreDeHuffman ADH_obtenirFilsGauche(ArbreDeHuffman a) {
 }
 
 Octet obtenirOctet(ArbreDeHuffman a){
-	if (a->estUneFeuille){
-		return a->octet;}
-	else{
-		return EXIT_FAILURE;}
-		}
+    return a->octet; //on ne vérifie pas la pré-condition mais sinon on peut le faire avec un ASSERT
+}
 
 ArbreDeHuffman ADH_obtenirFilsDroit(ArbreDeHuffman a) {
     return a->arbreDroit;
