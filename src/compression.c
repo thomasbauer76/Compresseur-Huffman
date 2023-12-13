@@ -13,7 +13,7 @@ void encoder(FILE *f, char *filename, TableDeCodage tdc) {
     rewind(f);
 
     CodeBinaire cb;
-    int o;
+    unsigned short o;
     while ((o = fgetc(f)) != EOF) {
         cb = TDC_octetVersCodeBinaire(tdc,O_naturelVersOctet(o));
         concatenerCodeBinaireEnOctet(cb,fbCompresse);
