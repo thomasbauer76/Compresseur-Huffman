@@ -1,0 +1,16 @@
+\begin{algorithme}
+    \fonction{construireFileDePriorite}{s : \statistiques}{\filedepriorite}{}
+    {fdp : \filedepriorite, octet : \octet, occurence : \naturel}
+    {
+        \affecter{fdp}{fileDePriorite()}
+        \pour{o}{ 0}{255}{}
+        {
+            \affecter{octet}{naturelVersOctet(o)}
+            \affecter{occurence}{obtenirOccurence(s, octet)}
+            \sialors{occurence > 0}{
+                \instruction{enfiler(fdp, arbreDeHuffman(octet, occurence))}
+            }
+        }
+        \retourner{fdp}
+    }
+\end{algorithme}

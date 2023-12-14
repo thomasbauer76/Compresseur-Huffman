@@ -6,6 +6,7 @@
 \geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
 \usepackage{pseudocode}
 \usepackage{mdframed}
+\usepackage{xcolor}
 
 %%definition de commande
 \newcommand{\octet}{\textbf{Octet}}
@@ -63,14 +64,20 @@
         \section{Analyse descendante}
         \section{Conception Préliminaire}
             \input{Compression/CP_obtenirStatistiques.tex}
+            \input{Compression/CP_construireFileDePriorite.tex}
             \input{Compression/CP_obtenirTableDeCodage.tex}
             \input{Compression/CP_obtenirTailleDuFichier.tex}
             \input{Compression/CP_concatenerCodeBinaireEnOctet.tex}
             \input{Compression/CP_encoder.tex}
+<<<<<<< HEAD
             \input{Compression/CP_encoderTest2.tex}
            \input{Compression/CP_compresser.tex}
+=======
+            \input{Compression/CP_compresser.tex}
+>>>>>>> 0aa1c092c2cbff5d0e8dd0fd2e3ab1cbbd2a2b4c
         \section{Conception Détaillée}
             \input{Compression/CD_obtenirStatistiques.tex}
+            \input{Compression/CD_construireFileDePriorite.tex}
             \input{Compression/CD_obtenirTableDeCodage.tex}
             \input{Compression/CD_obtenirTailleDuFichier.tex}
             \input{Compression/CD_concatenerCodeBinaireEnOctet.tex}
@@ -80,5 +87,10 @@
         \chapter{Décompression}
         \section{Analyse descendante}
         \section{Conception Préliminaire}
+        	\input{Decompression/CP_lireStatistiques.tex}
+        	\input{Decompression/CP_decoder.tex}
+        	\input{Decompression/CP_libererArbreDeHuffman.tex}
+        	\input{Decompression/CP_seDeplacerDansLArbre.tex}
         \section{Conception Détaillée}
+        	\input{Decompression/CD_lireStatistiques.tex}
 \end{document}

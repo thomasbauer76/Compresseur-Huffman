@@ -2,9 +2,10 @@
 
 #include "octet.h"
 
-void O_creerOctet(Bit b0, Bit b1, Bit b2, Bit b3, Bit b4, Bit b5, Bit b6, Bit b7, Octet o){
-	o=b7+(b6*2)+(b5*2^2)+(b4*2^3)+(b3*2^4)+(b2*2^5)+(b1*2^6)+(b0*2^7);
-}	
+Octet O_creerOctet(Bit b0, Bit b1, Bit b2, Bit b3, Bit b4, Bit b5, Bit b6, Bit b7){
+	return b7+(b6*2)+(b5*2^2)+(b4*2^3)+(b3*2^4)+(b2*2^5)+(b1*2^6)+(b0*2^7);
+}
+
 Bit O_obtenirIemeBit(Octet o, unsigned short i) {
     return (o >> (7-i)) & 1;
     //L'opérateur >> est un décalage de (7-i) vers la droite de l'octet o, ce qui correspond à une divison par 2^(7-i)
@@ -18,4 +19,3 @@ unsigned char O_octetVersNaturel(Octet o) {
 Octet O_naturelVersOctet (unsigned char n){
 	return n;
 }
-
