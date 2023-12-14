@@ -12,7 +12,10 @@ bool FDPAH_estVide(FileDePriorite fdp) {
 }
 
 void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a) {
-	if ((FDPAH_estVide(*p_fdp)) || (ADH_obtenirFrequence(a) < ADH_obtenirFrequence((*p_fdp)->arbre)) || ((ADH_obtenirFrequence(a) == ADH_obtenirFrequence((*p_fdp)->arbre)) && (ADH_obtenirOctet(a) < ADH_obtenirOctet((*p_fdp)->arbre)))) {
+	if ((FDPAH_estVide(*p_fdp)) || (ADH_obtenirFrequence(a) < ADH_obtenirFrequence((*p_fdp)->arbre)) 
+			|| ((ADH_obtenirFrequence(a) == ADH_obtenirFrequence((*p_fdp)->arbre)) 
+				&& (ADH_obtenirOctet(a) < ADH_obtenirOctet((*p_fdp)->arbre)))
+			) {
 		FileDePriorite* p_temp = p_fdp;
 		//allocation de la taille de file
 		FileDePriorite p_noeud = (FileDePriorite)malloc(sizeof(NoeudFileDePriorite));

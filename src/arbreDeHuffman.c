@@ -3,12 +3,11 @@
 #include "arbreDeHuffman.h"
 
 ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned long n){
-	ArbreDeHuffman a = (ArbreDeHuffman)malloc(sizeof(ArbreDeHuffman));
+	ArbreDeHuffman a = (ArbreDeHuffman)malloc(sizeof(NoeudArbreDeHuffman));
 	a->octet=o;
 	a->frequence=n;
 	a->arbreGauche=NULL;
 	a->arbreDroit=NULL;
-	
 	return a;
 }
 
