@@ -2,12 +2,17 @@
     \procedure{obtenirStatistiques}{\paramEntreeSortie{f : \fichierbinaire}, \paramSortie{s : \statistiques}}{}
     {s : \statistiques}
     {
-        \affecter{s}{statistiques()}
+        \sialors{estOuvert(f)}
+        {
+            \instruction{fermer(f)}
+        }
         \instruction{ouvrir(f, lecture)}
+        \\
+        \commentaire{Les instructions ci-dessus correspondent à une réinitialisation du curseur en tête de fichier.}
+        \affecter{s}{statistiques()}
         \tantque{non(finFichier(f))}
         {
             \instruction{incrementerOccurence(s, lireOctet(f))}    
         }
-        \instruction{fermer(f)}
     }
 \end{algorithme}
