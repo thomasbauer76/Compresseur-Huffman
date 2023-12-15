@@ -3,7 +3,8 @@
 #include "octet.h"
 
 Octet O_creerOctet(Bit b0, Bit b1, Bit b2, Bit b3, Bit b4, Bit b5, Bit b6, Bit b7){
-	return b7+(b6*2)+(b5*2^2)+(b4*2^3)+(b3*2^4)+(b2*2^5)+(b1*2^6)+(b0*2^7);
+		
+	return b7+(b6<<1)+(b5<<2)+(b4<<3)+(b3<<4)+(b2<<5)+(b1<<6)+(b0<<7);
 }
 
 Bit O_obtenirIemeBit(Octet o, unsigned short i) {
