@@ -3,28 +3,45 @@
     {}
     {cbtemp, cb: \codebinaire, o : \octet, i,j, taillecb, taillecbtemp : Entier}
     {
-        \affecter{fbInitial}{fichierBinaire("nom du fichier")}
+        
+        
+        \sialors{estOuvert(fbInitial)}
+        {
+            \instruction{fermer(fbInitial)}
+        }
         \instruction{ouvrir(fbInitial,lecture)}
-        \affecter{fbCompresse}{fichierBinaire("nom du fichier")}
+        \sialors{estOuvert(fbCompresse)}
+        {
+            \instruction{fermer(fbCompresse)}
+        }
         \instruction{ouvrir(fbCompresse, ecriture)}
+        
         \instruction{ecrirIdentifiant(fbCompresse)}
         \instruction{ecrireTailleFichier(fbCompresse,obtenirTailleDuFichier(fbInitial))}
   %% le premier octet represente la taille du fichier initale à utiliser ou non 
-        \instruction{ecrireStatistique(fbCompresse)}
+        \instruction{ecrireStatistique(fbCompresse,s)}
          {
-        \affecter{cbtemp}{creerCodeBinaire(0)}
-        \pour{i}{1}{7}{}{\instruction{ajouterBit(restecbtemp,0)}}
+        \affecter{cbtemp}{creerCodeBinaire(bitA0)}
+        \pour{i}{1}{7}{}{\instruction{ajouterBit(restecbtemp,bitA0)}}
         }
         \tantque{$non$ finfichier(fnInitiale)}{
        		
         		\instruction{lireoctet(fbInitiale,o)}
         		\affecter{cb}{octetVersCodeBinaire(tdc,o)}
-        	  \instruction{concatenerCodeBinaireDansFichier(cbtemp,cb,fbcompresse)}
+        	 	\instruction{concatenerCodeBinaireDansFichier(cbtemp,cb,fbcompresse)}
         		}
-        			
-        		
-        \instruction{fermer(fbInitial)}
-        \instruction{fermer(fbCompresse)}
+        
+        \sialors{obtenirLongueur(cbTemp) $<$ 8}
+		{
+			\pour{i}{tailleCbTemp}{tailleTotale - 1}{}
+        			{
+        					\instruction{ajouterBit(cbtemp,bitA0)}
+        			}
+        	\instruction{ecrireOctet(fbCompresse, codeBinaireEnOctet(cbtemp))}
+			}
+			
+       	 	\instruction{fermer(fbInitial)}
+        	\instruction{fermer(fbCompresse)}
         	
     }
 \end{algorithme}

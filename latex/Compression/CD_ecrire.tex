@@ -2,12 +2,17 @@
     \procedure{ecrireIdentifiant}{\paramEntreeSortie{fb : \fichierbinaire}}{}
     {}
     {
-    	 \instruction{ecrireoctet(fb,creeoctet(0,0,0,0,0,0,1,1)}
-         \instruction{ecrireoctet(fb,creeoctet(1,1,1,0,1,0,0,0)}
+    	 \instruction{ecrireoctet(fb,creeoctet(bitA0,bitA0,bitA0,bitA0,bitA0,bitA0,bitA1,bitA1))}
+         \instruction{ecrireoctet(fb,creeoctet(bitA1,bitA1,bitA1,bitA0,bitA1,bitA0,bitA0,bitA0))}
     }
-    \procedure{ecrireStatistique}{\paramEntreeSortie{fb : \fichierbinaire},\paramEntree{s : \statistiques}}{}{}
+    \procedure{ecrireStatistique}{\paramEntreeSortie{fb : \fichierbinaire}}{}{i, occ : Naturel, o : \octet, s : \statistiques}
     {
-    	\instruction{ecrireoctet(fb)}
+    	
+    	\pour{o}{0}{255}{}{
+			\instruction{obtenirStatistiques(fb,s)}
+			\instruction{ecrireoctet(fb,o)}
+			\instruction{ecrireoctet(fb,naturelVersOctet(obtenirOccurence(s,o)))}
+    	}
     }
     
     
