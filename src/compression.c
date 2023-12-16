@@ -11,21 +11,21 @@ Octet codeBinaireEnOctet(CodeBinaire cb) {
 }
 
 void ecrireIdentifiant(FILE *f) {
-
-}
-
-unsigned long long obtenirTailleFichier(FILE *f) {
-    return 0;
+    unsigned short identifiant = IDENTIFIANT;
+    fwrite(&identifiant, sizeof(unsigned short), 1, f);
 }
 
 void ecrireTailleFichier(FILE *f, unsigned long long taille) {
-    
+    fwrite(&taille, sizeof(unsigned long long), 1, f);
 }
 
 void ecrireStatistiques(FILE *f, Statistiques s) {
-    
+    unsigned short o;
+    for (o = 0; o < MAX_OCTET; o++) {
+        unsigned long occurence = S_obtenirOccurence(s, O_naturelVersOctet(o));
+        fwrite(&occurence, sizeof(unsigned long), 1, f);
+    }
 }
-
 
 void concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBinaire cb) {
     unsigned short i, j;
@@ -40,7 +40,8 @@ void concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBinair
     if (tailleTotale > 8) {
         for (i = 0; i < MAX_CB - tailleCbTemp; i++)
             CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, i));
-        fprintf(f, "%c", O_octetVersNaturel(codeBinaireEnOctet(*p_cbTemp)));
+        unsigned char octet = O_octetVersNaturel(codeBinaireEnOctet(*p_cbTemp));
+        fwrite(&octet, sizeof(unsigned char), 1, f);
 
         *p_cbTemp = CB_creerCodeBinaire(CB_obtenirIemeBit(cb, i+1));
         for (j = i + 2; j < tailleCb; j++)
@@ -50,12 +51,14 @@ void concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBinair
         for (i = tailleCbTemp; i < tailleTotale; i++)
             CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, i));
 
-        if (CB_obtenirLongueur(*p_cbTemp) == 8)
-            fprintf(f, "%c", O_octetVersNaturel(codeBinaireEnOctet(*p_cbTemp)));
+        if (CB_obtenirLongueur(*p_cbTemp) == 8) {
+            unsigned char octet = O_octetVersNaturel(codeBinaireEnOctet(*p_cbTemp));
+            fwrite(&octet, sizeof(unsigned char), 1, f);
+        }
     }
 }
 
-void encoder(FILE *f, char *filename, TableDeCodage tdc, Statistiques s) {
+void encoder(FILE *f, char *filename, TableDeCodage tdc, Statistiques s, unsigned long long taille) {
     unsigned short i;
 
     rewind(f);
@@ -63,7 +66,7 @@ void encoder(FILE *f, char *filename, TableDeCodage tdc, Statistiques s) {
 
     // Ecriture des données importantes avant d'encoder
     ecrireIdentifiant(fbCompresse);
-    ecrireTailleFichier(fbCompresse, obtenirTailleFichier(fbCompresse));
+    ecrireTailleFichier(fbCompresse, taille);
     ecrireStatistiques(fbCompresse, s);
 
     // Création d'un code binaire temporaire initalisé à 8 bits pour rentrer dans la première condition de la fonction concatenerCodeBinaireEnOctet
@@ -83,7 +86,8 @@ void encoder(FILE *f, char *filename, TableDeCodage tdc, Statistiques s) {
     if (CB_obtenirLongueur(cbTemp) < 8) {
         for (i = CB_obtenirLongueur(cbTemp); i < MAX_CB; i++)
             CB_ajouterBit(&cbTemp, bitA0);
-        fprintf(fbCompresse, "%c", O_octetVersNaturel(codeBinaireEnOctet(cbTemp)));
+        unsigned char octet = O_octetVersNaturel(codeBinaireEnOctet(cbTemp));
+        fwrite(&octet, sizeof(unsigned char), 1, fbCompresse);
     }
 
     fclose(fbCompresse);
