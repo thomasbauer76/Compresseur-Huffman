@@ -1,26 +1,24 @@
 \begin{algorithme}
-     \procedure{encoder}{\paramEntreeSortie{fbInitial : \fichierbinaire},\paramEntree{ tdc : \tabledecodage},\paramSortie{fbCompresse : \fichierbinaire}}
+ \procedure{encoder}{\paramEntreeSortie{fbInitial : \fichierbinaire},\paramEntree{ tdc : \tabledecodage},\paramSortie{fbCompresse : \fichierbinaire}}
     {}
-    {cbtemp, cb: \codebinaire, oInitial, oCompresse : \octet, i,j, taillecb, taillecbtemp : Entier}
+    {cbtemp, cb: \codebinaire, o : \octet, i,j, taillecb, taillecbtemp : Entier}
     {
         \affecter{fbInitial}{fichierBinaire("nom du fichier")}
         \instruction{ouvrir(fbInitial,lecture)}
         \affecter{fbCompresse}{fichierBinaire("nom du fichier")}
         \instruction{ouvrir(fbCompresse, ecriture)}
-        \instruction{ecrireoctet(naturelVersOctet(obtenirTailleFichier(fbInitiale)),fbcompresse)}
+        \instruction{ecrirIdentifiant(fbCompresse)}
+        \instruction{ecrireTailleFichier(fbCompresse,obtenirTailleDuFichier(fbInitial))}
   %% le premier octet represente la taille du fichier initale à utiliser ou non 
-        \instruction{ecrireoctet(creeoctet(0,0,0,0,0,0,1,1)}
-        \instruction{ecrireoctet(creeoctet(1,1,1,0,1,0,0,0)}
-        
-        \instruction{ecrireStatistique()}
+        \instruction{ecrireStatistique(fbCompresse)}
          {
         \affecter{cbtemp}{creerCodeBinaire(0)}
         \pour{i}{1}{7}{}{\instruction{ajouterBit(restecbtemp,0)}}
         }
         \tantque{$non$ finfichier(fnInitiale)}{
        		
-        		\instruction{lireoctet(fbInitiale,oInitial)}
-        		\affecter{cb}{octetVersCodeBinaire(tdc,oInitial)}
+        		\instruction{lireoctet(fbInitiale,o)}
+        		\affecter{cb}{octetVersCodeBinaire(tdc,o)}
         	  \instruction{concatenerCodeBinaireDansFichier(cbtemp,cb,fbcompresse)}
         		}
         			
@@ -30,5 +28,4 @@
         	
     }
 \end{algorithme}
-    	    			  			
-    	    			  						   
+    	    	
