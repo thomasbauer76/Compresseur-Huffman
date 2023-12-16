@@ -27,8 +27,32 @@ void ecrireStatistiques(FILE *f, Statistiques s) {
 }
 
 
-void concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *cbTemp, CodeBinaire cb) {
+void concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBinaire cb) {
+    unsigned short i, j;
 
+    if (CB_obtenirLongueur(*p_cbTemp) == 8)
+        *p_cbTemp = cb;
+    
+    unsigned short tailleCbTemp = CB_obtenirLongueur(*p_cbTemp);
+    unsigned short tailleCb = CB_obtenirLongueur(cb);
+    unsigned short tailleTotale = tailleCbTemp + tailleCb;
+
+    if (tailleTotale > 8) {
+        for (i = 0; i < MAX_CB - tailleCbTemp; i++)
+            CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, i));
+        fprintf(f, "%c", O_octetVersNaturel(codeBinaireEnOctet(*p_cbTemp)));
+
+        *p_cbTemp = CB_creerCodeBinaire(CB_obtenirIemeBit(cb, i+1));
+        for (j = i + 2; j < tailleCb; j++)
+            CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, j));
+    }
+    else {
+        for (i = tailleCbTemp; i < tailleTotale; i++)
+            CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, i));
+
+        if (CB_obtenirLongueur(*p_cbTemp) == 8)
+            fprintf(f, "%c", O_octetVersNaturel(codeBinaireEnOctet(*p_cbTemp)));
+    }
 }
 
 void encoder(FILE *f, char *filename, TableDeCodage tdc, Statistiques s) {
