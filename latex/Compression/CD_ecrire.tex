@@ -1,0 +1,17 @@
+\begin{algorithme}
+    \procedure{ecrireIdentifiant}{\paramEntreeSortie{fb : \fichierbinaire}}{}
+    {}
+    {
+    	 \instruction{ecrireoctet(fb,creeoctet(0,0,0,0,0,0,1,1)}
+         \instruction{ecrireoctet(fb,creeoctet(1,1,1,0,1,0,0,0)}
+    }
+    \procedure{ecrireStatistique}{\paramEntreeSortie{fb : \fichierbinaire},\paramEntree{s : \statistiques}}{}{}
+    {
+    	\instruction{ecrireoctet(fb)}
+    }
+    
+    
+     \procedure{ecrireTailleFichier}{\paramEntreeSortie{fb : \fichierbinaire},\paramEntree{taillefb : Naturel}}{}{}{
+     \instruction{ecrireoctet(naturelVersOctet(taillefb),fb)}
+     }
+\end{algorithme}
