@@ -20,7 +20,7 @@ int clean_suite_success(void) {
 void test_statistiques_vides(void) {
     Statistiques s;
     S_statistiques(&s);
-    
+
     for(unsigned short o = 0; o < MAX_OCTET; o++) {
         CU_ASSERT_EQUAL(S_obtenirOccurence(s,o),0);
     }
@@ -101,6 +101,32 @@ void test_obtenir_statistiques(void) {
   CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet(63)), n_63);
 }
 
+void test_obtenir_taille_fichier(void) {
+  FILE *tempFile = tmpfile();
+  unsigned long i;
+
+  unsigned char o_125 = 125;
+  unsigned long n_125 = 13;
+  for (i = 1; i <= n_125; i++)
+    fwrite(&o_125, sizeof(unsigned char), 1, tempFile);
+
+  unsigned char o_243 = 243;
+  unsigned long n_243 = 3452;
+  for (i = 1; i <= n_243; i++)
+    fwrite(&o_243, sizeof(unsigned char), 1, tempFile);
+  
+  unsigned char o_63 = 63;
+  unsigned long n_63 = 1;
+  for (i = 1; i <= n_63; i++)
+    fwrite(&o_63, sizeof(unsigned char), 1, tempFile);
+  
+  Statistiques s;
+  unsigned long taille;
+  obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
+
+  CU_ASSERT_EQUAL(taille, n_125 + n_243 + n_63);
+}
+
 
 int main(int argc, char** argv){
 
@@ -150,6 +176,7 @@ int main(int argc, char** argv){
 
   /* Ajout des tests à la suite compression */
   if ((NULL == CU_add_test(pSuiteCompression, "Obtenir statistiques d'un fichier", test_obtenir_statistiques))
+    || (NULL == CU_add_test(pSuiteCodeBinaire, "Obtenir taille d'un fichier", test_obtenir_taille_fichier))
       ) 
     {
       CU_cleanup_registry();
