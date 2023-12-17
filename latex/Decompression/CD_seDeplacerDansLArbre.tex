@@ -1,0 +1,14 @@
+\begin{algorithme}
+    \procedure{seDeplacerDansLArbre}{\paramEntree{bit : bit}, \paramSortie{arbreCourant : ArbreDeHuffman}}{}
+    {}
+    {
+        \sialors{bit = 0}
+        {
+            \affecter{arbreCourant}{obtenirFilsGauche(arbreCourant)}
+        }
+        \sialors{bit = 1}
+        {
+            \affecter{arbreCourant}{obtenirFilsDroit(arbreCourant)}
+        }
+    }
+\end{algorithme}
