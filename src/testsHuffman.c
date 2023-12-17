@@ -63,6 +63,13 @@ void test_ajout_bit(void) {
 }
 
 
+/* Tests compresser.c */
+
+void test_obtenir_statistiques(void) {
+
+}
+
+
 int main(int argc, char** argv){
 
   /* initialisation du registre de tests */
