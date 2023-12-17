@@ -75,24 +75,9 @@ void test_ajout_bit(void) {
 
 FILE *fichierTemporaireRempli() {
   FILE *tempFile = tmpfile();
-  unsigned char c;
 
   // Reprise des données du sujet pour effectuer les tests unitaires
-  c = 'B'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
-  c = 'E'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
-  c = 'A'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
-  c = 'A'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
-  c = 'F'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
-  c = 'B'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
-  c = 'G'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
-  c = 'G'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
-  c = 'C'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
-  c = 'A'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
-  c = 'D'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
-  c = 'C'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
-  c = 'D'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
-  c = 'A'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
-  c = 'C'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
+  fprintf(tempFile,"BACFGABDDACEACG");
 
   return tempFile;
 }
