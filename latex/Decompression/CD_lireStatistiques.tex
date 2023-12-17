@@ -1,11 +1,9 @@
 \begin{algorithme}
-    \fonction{lireStatistiques}{fb : \fichierbinaire}{\statistiques}{}
+    \fonction{lireStatistiques}{fb : \fichierbinaire}{\statistiques}{estOuvert(fb) et (mode(fb) $=$ lecture)}
     {n, i : \naturel , s : \statistiques}
     {
-		\sialors{non((estOuvert(fb)) et (mode(fb) $=$ lecture))}{    	
-    		\instruction{ouvrir(fb, lecture)}
-    	}
-    	\textcolor{gray}{//La fonction lireStatistiques est utilisée quand le curseur est au bon endroit et l'on peut donc directement lire les statistiques qui sont des \naturel}
+    	\affecter{s}{statistiques()}
+    	\commentaire{La fonction lireStatistiques est utilisée quand le curseur est au bon endroit et l'on peut donc directement lire les statistiques qui sont des naturels}
     	\pour{i}{0}{255}{}
     	{
     		\instruction{lireNaturel(fb, n)}
