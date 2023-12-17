@@ -1,0 +1,23 @@
+\begin{algorithme}
+	\fonction{construireArbreDeHuffman}{s : \statistiques}{\arbredehuffman}{}
+	{fdp : \filedepriorite, dernierElement : \booleen, a1, a2, aFusion : \arbredehuffman}
+    {
+    	\affecter{fdp}{construireFileDePriorite(s)}
+    	\affecter{dernierElement}{estVide(fdp)}
+    	\tantque{non(dernierElement)}
+    	{
+    		\instruction{obtenirElementEtDefiler(fdp, a1)}
+    		\sialorssinon{estVide(fdp)}
+    		{
+    			\affecter{dernierElement}{VRAI}
+    		}
+    		{
+    			\instruction{obtenirElementEtDefiler(fdp, a2)}
+    			\affecter{aFusion}{fusionner(a1, a2)}
+    			\instruction{enfiler(fdp, aFusion)}
+    		}
+    	}
+    	\instruction{obtenirElementEtDefiler(fdp, a1)}
+    	\retourner{a1}
+    }
+\end{algorithme}

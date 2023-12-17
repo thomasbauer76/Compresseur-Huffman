@@ -3,20 +3,21 @@
   \tadDependances{CodeBinaire, Octet}
   \begin{tadOperations}{obtenirElementEtDefiler}
   
-    \tadOperation{statistique}{}{Statistiques}
-    \tadOperation{incrementerOccurence}{\tadParams{Statistiques, Octet}}{Statistiques}
-    \tadOperation{obtenirOccurence}{\tadParams{Statistiques, Octet}}{Naturel}
+    \tadOperation{statistiques}{}{Statistiques}
+    \tadOperation{incrementerOccurrence}{\tadParams{Statistiques, Octet}}{Statistiques}
+    \tadOperation{obtenirOccurrence}{\tadParams{Statistiques, Octet}}{Naturel}
+    \tadOperation{fixerOccurrence}{\tadParams{\statistiques, \octet, \naturel}}{\statistiques}
   
     %\tadOperation{longueur}{FileDePriorite}{\naturel}
     
   \end{tadOperations}
-  \parbox{\linewidth}{\raggedright
-      \begin{tadAxiomes}
-          \tadAxiome{obtenirOccurence(statistique(), octet)=0}
-          \tadAxiome{obtenirOccurence(incrementerOccurence(stat,octet), octet) = obtenirOccurence(stat,octet)+1}
-         
-      \end{tadAxiomes}
-  }
+
+  \begin{tadAxiomes}
+        \tadAxiome{obtenirOccurrence(statistique(), o)=0}
+        \tadAxiome{obtenirOccurrence(incrementerOccurrence(s,o), o) = obtenirOccurrence(s,o)+1}
+ 		\tadAxiome{obtenirOccurrence(fixerOccurrence(s, o, n), o) = n}
+  \end{tadAxiomes}
+  
   
   
 \end{tad}

@@ -1,22 +1,20 @@
 \begin{algorithme}
-    \fonction{lireStatistiques}{fb : \fichierbinaire}{\statistiques}{}
-    {octetInutile, o : \octet , s : \statistiques, i : \naturel}
+    \fonction{lireStatistiquesV2}{fb : \fichierbinaire}{\statistiques}{estOuvert(fb) et (mode(fb) $=$ lecture)}
+    {s : \statistiques, octet : \octet, occurrence : \naturel}
     {
-		\sialors{non((estOuvert(fb)) et (mode(fb) $=$ lecture))}{    	
-    		\instruction{ouvrir(fb, lecture)}
-    	}
+    	\affecter{s}{statistiques()}
     	\\
-    	\textcolor{gray}{//La prochaine boucle a pour objectif de déplacer le curseur à l'endroit au se situe les statistiques, c'est-à-dire après l'identifiant(d'une taille de 2 octets) et après la longueur (de la taille d'un \textit{unsigned long int}. Cependant, il existe sûrement une fonction en C qui permet de seulement déplacer le curseur sans sortir l'octet sur lequel on vient de passer (contrairement aux opérations du TAD fourni dans le sujet)}
-    	\pour{i}{1}{(2*taille(\textit{octet}) + taille(\textit{unsigned long int})) / taille(\textit{octet})}{}
+    	\commentaire{La fonction lireStatistiques est utilisée quand le curseur est au bon endroit et l'on peut donc directement lire les statistiques qui sont des naturels}
+    	
+    	\repeter
     	{
-    		\instruction{lireOctet(fb, octetInutile)}
-    	}
-		\\
-    	\textcolor{gray}{//Maintenant le curseur est au bon endroit et l'on peut lire les statistiques}
-    	\pour{i}{0}{255}{}
-    	{
-    		\instruction{lireOctet(fb, o)}
-        	\affecter{s[i]}{octetVersNaturel(o)}
-    	}
+    		\instruction{lireNaturel(fb, occurrence)}
+    		\sialors{(occurrence $!=$ 0)}
+    		{
+    			\instruction{lireOctet(fb, octet)}
+        		\instruction{fixerOccurrence(s, octet, occurrence)}
+        	}
+    	}{occurrence $=$ 0}
+    \retourner{s}
     }
 \end{algorithme}
