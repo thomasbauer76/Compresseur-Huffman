@@ -1,0 +1,20 @@
+\begin{algorithme}
+    \fonction{lireStatistiquesV2}{fb : \fichierbinaire}{\statistiques}{estOuvert(fb) et (mode(fb) $=$ lecture)}
+    {s : \statistiques, octet : \octet, occurrence : \naturel}
+    {
+    	\affecter{s}{statistiques()}
+    	\\
+    	\commentaire{La fonction lireStatistiques est utilisée quand le curseur est au bon endroit et l'on peut donc directement lire les statistiques qui sont des naturels}
+    	
+    	\repeter
+    	{
+    		\instruction{lireNaturel(fb, occurrence)}
+    		\sialors{(occurrence $!=$ 0)}
+    		{
+    			\instruction{lireOctet(fb, octet)}
+        		\affecter{s[octetVersNaturel(octet)]}{occurrence}
+        	}
+    	}{occurrence $=$ 0}
+    \retourner{s}
+    }
+\end{algorithme}
