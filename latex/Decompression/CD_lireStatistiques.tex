@@ -1,15 +1,11 @@
 \begin{algorithme}
     \fonction{lireStatistiques}{fb : \fichierbinaire}{\statistiques}{}
-    {naturelInutile, n, i : \naturel , s : \statistiques}
+    {n, i : \naturel , s : \statistiques}
     {
 		\sialors{non((estOuvert(fb)) et (mode(fb) $=$ lecture))}{    	
     		\instruction{ouvrir(fb, lecture)}
     	}
-    	\\
-    	\textcolor{gray}{//Lecture de l'identifiant (un \textit{unsigned long long int}) qui ici nous est inutile mais l'instruction permet de déplacer le curseur}
-    	\instruction{lireNaturel(fb, naturelInutile)}
-		\\
-    	\textcolor{gray}{//Maintenant le curseur est au bon endroit et l'on peut lire les statistiques qui sont des \naturel}
+    	\textcolor{gray}{//La fonction lireStatistiques est utilisée quand le curseur est au bon endroit et l'on peut donc directement lire les statistiques qui sont des \naturel}
     	\pour{i}{0}{255}{}
     	{
     		\instruction{lireNaturel(fb, n)}
