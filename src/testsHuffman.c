@@ -73,58 +73,72 @@ void test_ajout_bit(void) {
 
 /* Tests compression.c */
 
-void test_obtenir_statistiques(void) {
+FILE *fichierTemporaireRempli() {
   FILE *tempFile = tmpfile();
-  unsigned long i;
+  unsigned char c;
 
-  unsigned char o_125 = 125;
-  unsigned long n_125 = 13;
-  for (i = 1; i <= n_125; i++)
-    fwrite(&o_125, sizeof(unsigned char), 1, tempFile);
+  // Reprise des données du sujet pour effectuer les tests unitaires
+  c = 'B'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
+  c = 'E'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
+  c = 'A'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
+  c = 'A'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
+  c = 'F'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
+  c = 'B'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
+  c = 'G'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
+  c = 'G'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
+  c = 'C'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
+  c = 'A'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
+  c = 'D'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
+  c = 'C'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
+  c = 'D'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
+  c = 'A'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
+  c = 'C'; fwrite(&c, sizeof(unsigned char), 1, tempFile);
 
-  unsigned char o_243 = 243;
-  unsigned long n_243 = 3452;
-  for (i = 1; i <= n_243; i++)
-    fwrite(&o_243, sizeof(unsigned char), 1, tempFile);
-  
-  unsigned char o_63 = 63;
-  unsigned long n_63 = 1;
-  for (i = 1; i <= n_63; i++)
-    fwrite(&o_63, sizeof(unsigned char), 1, tempFile);
+  return tempFile;
+}
+
+void test_obtenir_statistiques(void) {
+  FILE *tempFile = fichierTemporaireRempli();
   
   Statistiques s;
   unsigned long taille;
   obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
-  CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet(125)), n_125);
-  CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet(243)), n_243);
-  CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet(63)), n_63);
+  CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet('A')), 4);
+  CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet('B')), 2);
+  CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet('C')), 3);
+  CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet('D')), 2);
+  CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet('E')), 1);
+  CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet('F')), 1);
+  CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet('G')), 2);
 }
 
 void test_obtenir_taille_fichier(void) {
-  FILE *tempFile = tmpfile();
-  unsigned long i;
-
-  unsigned char o_125 = 125;
-  unsigned long n_125 = 13;
-  for (i = 1; i <= n_125; i++)
-    fwrite(&o_125, sizeof(unsigned char), 1, tempFile);
-
-  unsigned char o_243 = 243;
-  unsigned long n_243 = 3452;
-  for (i = 1; i <= n_243; i++)
-    fwrite(&o_243, sizeof(unsigned char), 1, tempFile);
-  
-  unsigned char o_63 = 63;
-  unsigned long n_63 = 1;
-  for (i = 1; i <= n_63; i++)
-    fwrite(&o_63, sizeof(unsigned char), 1, tempFile);
+  FILE *tempFile = fichierTemporaireRempli();
   
   Statistiques s;
   unsigned long taille;
   obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
-  CU_ASSERT_EQUAL(taille, n_125 + n_243 + n_63);
+  CU_ASSERT_EQUAL(taille, 4 + 2 + 3 + 2 + 1 + 1 + 2);
+}
+
+void test_arbre_de_huffman(void) {
+  FILE *tempFile = fichierTemporaireRempli();
+  
+  Statistiques s;
+  unsigned long taille;
+  obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
+
+  ArbreDeHuffman a = construireArbreDeHuffman(s);
+
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(a))),'C');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(a))),'A');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(a)))),'B');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(a)))),'D');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a)))),'G');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a))))),'E');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a))))),'F');
 }
 
 
@@ -175,8 +189,9 @@ int main(int argc, char** argv){
   }
 
   /* Ajout des tests à la suite compression */
-  if ((NULL == CU_add_test(pSuiteCompression, "Obtenir statistiques d'un fichier", test_obtenir_statistiques))
-    || (NULL == CU_add_test(pSuiteCodeBinaire, "Obtenir taille d'un fichier", test_obtenir_taille_fichier))
+  if ((NULL == CU_add_test(pSuiteCompression, "Obtention des statistiques d'un fichier", test_obtenir_statistiques))
+    || (NULL == CU_add_test(pSuiteCompression, "Obtention de la taille d'un fichier", test_obtenir_taille_fichier))
+    || (NULL == CU_add_test(pSuiteCompression, "Construction de l'arbre de Huffman à partir des statistiques", test_arbre_de_huffman))
       ) 
     {
       CU_cleanup_registry();

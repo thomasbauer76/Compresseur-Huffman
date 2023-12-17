@@ -30,7 +30,7 @@ void obtenirTableDeCodageRecursif(TableDeCodage *tdc, ArbreDeHuffman a, CodeBina
         memcpy(&cbCopie, &cb, sizeof(CodeBinaire));
         
         CB_ajouterBit(&cbCopie, bitA0);
-        obtenirTableDeCodageRecursif(tdc, ADH_obtenirFilsGauche(a) , cbCopie);
+        obtenirTableDeCodageRecursif(tdc, ADH_obtenirFilsGauche(a), cbCopie);
         CB_ajouterBit(&cb, bitA1);
         obtenirTableDeCodageRecursif(tdc, ADH_obtenirFilsDroit(a), cb);
     }
@@ -41,7 +41,7 @@ TableDeCodage obtenirTableDeCodage(ArbreDeHuffman a) {
     TableDeCodage tdc = TDC_creerTableCodage();
     CodeBinaire cbGauche = CB_creerCodeBinaire(bitA0);
     CodeBinaire cbDroit = CB_creerCodeBinaire(bitA1);
-    obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsGauche(a) , cbGauche);
+    obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsGauche(a), cbGauche);
     obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsDroit(a), cbDroit);
     return tdc;
 }
