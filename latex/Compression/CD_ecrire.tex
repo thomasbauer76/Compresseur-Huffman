@@ -6,16 +6,15 @@
     	 \instruction{ecrireNaturel(fb,id)}
         
     }
-    \procedure{ecrireStatistiques}{\paramEntreeSortie{fb : \fichierbinaire}, \paramEntree{s : \statistiques}}{}{o: \naturel}
+    \procedure{ecrireStatistiqueEtTailleFichier}{\paramEntreeSortie{fb : \fichierbinaire}, \paramEntree{s : \statistiques},\paramEntree{taillefb : Naturel}}{}{o: Naturel}
     {
+    		\instruction{ecrireoctet(fb,taillefb)}
     		\pour{o}{0}{255}{}{
-			    \instruction{ecrireNaturel(fb, obtenirOccurence(s,o))}
+				\instruction{ecrireoctet(fb,naturelVersOctet(o))}
+			\instruction{ecrireoctet(fb,naturelVersOctet(obtenirOccurence(s,o)))}
+			
     		}
     }
     
     
-    \procedure{ecrireTailleFichier}{\paramEntreeSortie{fb : \fichierbinaire},\paramEntree{taillefb : \naturel}}{}{}
-    {
-        \instruction{ecrireNaturel(fb, taillefb)}
-    }
 \end{algorithme}
