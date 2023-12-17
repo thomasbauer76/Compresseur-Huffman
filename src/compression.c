@@ -7,20 +7,15 @@
 #include "compression.h"
 #include "arbreDeHuffman.h"
 
-void obtenirStatistiquesEtTailleFichier(FILE *f, Statistiques *s,  unsigned long *taille) { 
+void obtenirStatistiquesEtTailleFichier(FILE *f, Statistiques *s,  unsigned long *taille) {
+    rewind(f);
+
     S_statistiques(s);
     *taille = 0;
 
-    if (f != NULL) {
-        fclose(f);
-    }
-
-    // Ouvrir le fichier en mode lecture
-    f = fopen("chemin_du_fichier", "rb");
-
-    int o;
+    short o;
     while ((o = fgetc(f)) != EOF) {
-        S_incrementerOccurence(s,fgetc(f));
+        S_incrementerOccurence(s, O_naturelVersOctet(o));
         (*taille)++;
     }
 }
