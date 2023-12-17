@@ -9,6 +9,10 @@ void S_incrementerOccurence(Statistiques *p_s, Octet o) {
     (*p_s)[O_octetVersNaturel(o)]++;
 }
 
+void S_fixerOccurence(Statistiques *p_s, Octet o, unsigned long n) {
+    (*p_s)[O_octetVersNaturel(o)] = n;
+}
+
 unsigned long S_obtenirOccurence(Statistiques s, Octet o) {
     return s[O_octetVersNaturel(o)];
 }

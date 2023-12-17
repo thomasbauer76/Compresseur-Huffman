@@ -33,6 +33,15 @@ void test_statistiques_incrementees(void) {
     CU_ASSERT_EQUAL(nouvelleOccurence,ancienneOccurence+1);
 }
 
+void test_statistiques_fixer_occurence(void) {
+    Statistiques s;
+    S_statistiques(&s);
+    Octet o = O_naturelVersOctet(241);
+    unsigned long n = 1234;
+    S_fixerOccurence(&s,o,n);
+    CU_ASSERT_EQUAL(S_obtenirOccurence(s,o),n);
+}
+
 
 /* Tests codeBinaire.c */
 
@@ -68,8 +77,9 @@ int main(int argc, char** argv){
   }
 
   /* Ajout des tests à la suite statistiques */
-  if ((NULL == CU_add_test(pSuiteStatistiques, "Occurences vides", test_statistiques_vides)) 
-    || (NULL == CU_add_test(pSuiteStatistiques, "Incrementation d'une occurence", test_statistiques_incrementees))
+  if ((NULL == CU_add_test(pSuiteStatistiques, "Création des statistiques aux occurences vides", test_statistiques_vides)) 
+    || (NULL == CU_add_test(pSuiteStatistiques, "Incrementation de l'occurence d'un octet", test_statistiques_incrementees))
+    || (NULL == CU_add_test(pSuiteStatistiques, "Fixer le nombre d'occurences d'un octet", test_statistiques_fixer_occurence))
       ) 
     {
       CU_cleanup_registry();
