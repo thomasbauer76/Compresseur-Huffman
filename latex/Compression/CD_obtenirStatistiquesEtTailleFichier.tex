@@ -1,5 +1,5 @@
 \begin{algorithme}
-    \procedure{obtenirStatistiquesEtTailleFichier}{\paramEntreeSortie{f : \fichierbinaire}, \paramSortie{s : \statistiques},\paramSortie{taille : Naturel}}{}
+    \procedure{obtenirStatistiquesEtTailleFichier}{\paramEntreeSortie{f : \fichierbinaire}, \paramSortie{s : \statistiques, taille : \naturel}}{}
     {s : \statistiques}
     {
         \sialors{estOuvert(f)}
@@ -9,12 +9,12 @@
         \instruction{ouvrir(f, lecture)} 
         \\
         \commentaire{Les instructions ci-dessus correspondent à une réinitialisation du curseur en tête de fichier.}
-        \affecter{taille}{0}
         \affecter{s}{statistiques()}
+        \affecter{taille}{0}
         \tantque{non(finFichier(f))}
         {
             \instruction{incrementerOccurence(s, lireOctet(f))} 
-            \affecter{taille}{taille $+$ 1}   
+            \affecter{taille}{taille + 1}   
         }
     }
 \end{algorithme}
