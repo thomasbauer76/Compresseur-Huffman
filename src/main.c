@@ -6,7 +6,7 @@
 void printUtilisation() {
     printf("Utilisation :\n");
     printf("\t- pour compresser : huffman c nomFichier\n");
-    printf("\t- pour d ́ecompresser : huffman d nomFichier.huff\n");
+    printf("\t- pour décompresser : huffman d nomFichier.huff\n");
 }
 
 int main(int argc, char *argv[]) {
