@@ -1,7 +1,7 @@
 \begin{algorithme}
- \procedure{encoder}{\paramEntreeSortie{fbInitial : \fichierbinaire},\paramEntree{ tdc : \tabledecodage},\paramSortie{fbCompresse : \fichierbinaire}}
+ \procedure{encoder}{\paramEntree{s : \statistiques},\paramEntree{taillefb: Naturel}, \paramEntreeSortie{fbInitial : \fichierbinaire},\paramEntree{ tdc : \tabledecodage},\paramSortie{fbCompresse : \fichierbinaire}}
     {}
-    {cbtemp, cb: \codebinaire, o : \octet, i,j, taillecb, taillecbtemp, taillefb: Naturel, s : \statistiques}
+    {cbtemp, cb: \codebinaire, o : \octet, i,j, taillecb, taillecbtemp}
     {
         
        
@@ -10,7 +10,7 @@
             \instruction{fermer(fbInitial)}
         }
         \instruction{ouvrir(fbInitial,lecture)}
-        \instruction{obtenirStatistiqueEtTailleFichier(fbInitial,s,taillefb)}
+        
         \sialors{estOuvert(fbCompresse)}
         {
             \instruction{fermer(fbCompresse)}
