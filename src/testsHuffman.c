@@ -17,7 +17,7 @@ int clean_suite_success(void) {
 
 void test_statistiques_vides(void) {
     Statistiques s;
-    S_statistiques(s);
+    S_statistiques(&s);
     for(unsigned short o = 0; o < MAX_OCTET; o++) {
         CU_ASSERT_EQUAL(S_obtenirOccurence(s,o),0);
     }
@@ -25,7 +25,7 @@ void test_statistiques_vides(void) {
 
 void test_statistiques_incrementees(void) {
     Statistiques s;
-    S_statistiques(s);
+    S_statistiques(&s);
     Octet o = O_naturelVersOctet(241);
     unsigned long ancienneOccurence = S_obtenirOccurence(s,o);
     S_incrementerOccurence(&s,o);

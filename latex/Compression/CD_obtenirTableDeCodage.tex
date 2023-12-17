@@ -1,30 +1,40 @@
 \begin{algorithme}
-    \procedure{obtenirTableDeCodageRecursif}{\paramEntree{a : \arbredehuffman}, \paramEntreeSortie{tdc : \tabledecodage, cb : \codebinaire}}
+    \procedure{obtenirTableDeCodageRecursif}{\paramEntreeSortie{tdc : \tabledecodage}, \paramEntree{a : \arbredehuffman, cb : \codebinaire}}
     {}
     {cbCopie : \codebinaire}
     {
         \sialorssinon{estUneFeuille(a)}
         {
-            \instruction{ajouterCodage(tdc, cb)}
+            \instruction{ajouterCodage(tdc, obtenirOctet(a), cb)}
         }
         {
             \affecter{cbCopie}{cb}
             \instruction{ajouterBit(cbCopie, bitA0)}
-            \instruction{obtenirTableDeCodageRecursif(obtenirFilsGauche(a), tdc, cbCopie)}
+            \instruction{obtenirTableDeCodageRecursif(tdc, obtenirFilsGauche(a), cbCopie)}
             \instruction{ajouterBit(cb, bitA1)}
-            \instruction{obtenirTableDeCodageRecursif(obtenirFilsDroit(a), tdc, cb)}
+            \instruction{obtenirTableDeCodageRecursif(tdc, obtenirFilsDroit(a), cb)}
         }
     }
     
     \fonction{obtenirTableDeCodage}{a : \arbredehuffman}{\tabledecodage}
     {}
-    {tdc : \tabledecodage}
+    {tdc : \tabledecodage, cbGauche, cbDroit : \codebinaire}
     {
         \affecter{tdc}{creerTableDeCodage()}
-        \affecter{cbGauche}{creerCodeBinaire(bitA0)}
-        \affecter{cbGauche}{creerCodeBinaire(bitA1)}
-        \instruction{obtenirTableDeCodageRecursif(obtenirFilsGauche(a), tdc, cbGauche)}
-        \instruction{obtenirTableDeCodageRecursif(obtenirFilsDroit(a), tdc, cbDroit)}
-        \retourner{tdc}
+        \\
+        \commentaire{Si a est une feuille, alors le fichier ne contient qu'un octet (qui peut-être présent plusieurs fois).}
+        \\
+        \commentaire{L'arbre n'a donc pas de fils. On encode alors le seul octet avec le code binaire bitA0.}
+        \sialorssinon{estUneFeuille(a)}
+        {
+            \instruction{ajouterCodage(tdc, obtenirOctet(a), creerCodeBinaire(bitA0))}
+        }
+        {
+            \affecter{cbGauche}{creerCodeBinaire(bitA0)}
+            \affecter{cbDroit}{creerCodeBinaire(bitA1)}
+            \instruction{obtenirTableDeCodageRecursif(tdc, obtenirFilsGauche(a), cbGauche)}
+            \instruction{obtenirTableDeCodageRecursif(tdc, obtenirFilsDroit(a), cbDroit)}
+            \retourner{tdc}
+        }
     }
 \end{algorithme}

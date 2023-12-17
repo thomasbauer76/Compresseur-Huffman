@@ -1,0 +1,30 @@
+\begin{algorithme}
+    \procedure{ecrireIdentifiant}{\paramEntreeSortie{fb : \fichierbinaire}}{}
+    {id : Naturel}
+    {
+    	 \affecter{id}{1000}
+    	 \instruction{ecrireNaturel(fb,id)}
+        
+    }
+    \procedure{ecrireStatistiques}{\paramEntreeSortie{fb : \fichierbinaire}, \paramEntree{s : \statistiques}}{}{o: \naturel}
+    {
+    		\pour{o}{ 0}{255}{}{
+                \affecter{octet}{naturelVersOctet(o)}
+                \affecter{occurence}{obtenirOccurence(s, octet)}
+                \sialors{occurence > 0}
+                {
+                    \instruction{ecrireNaturel(fb, occurence)}
+                    \instruction{ecrireOctet(fb, octet)}
+                }
+    		}
+            \\
+            \commentaire{On écrit finalement une occurence nulle comme indicateur de fin de lecture de statistiques.}
+            \instruction{ecrireNaturel(fb, 0)}
+    }
+    
+    
+    \procedure{ecrireTailleFichier}{\paramEntreeSortie{fb : \fichierbinaire},\paramEntree{taillefb : \naturel}}{}{}
+    {
+        \instruction{ecrireNaturel(fb, taillefb)}
+    }
+\end{algorithme}

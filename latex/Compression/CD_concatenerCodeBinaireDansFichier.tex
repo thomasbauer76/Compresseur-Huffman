@@ -1,0 +1,40 @@
+\begin{algorithme}
+     \procedure{concatenerCodeBinaireDansFichier}{\paramEntreeSortie{cbtemp : \codebinaire},\paramEntree{cb : \codebinaire},\paramEntreeSortie{fbCompresse : \fichierbinaire}}
+    {}
+    { i,j, tailleCbTemp, taillecb : Entier, o : \octet}
+    {
+        		\sialors{obtenirLongeur(cbtemp) = 8}
+				{											
+					\affecter{cbtemp}{cb}
+				}
+				\affecter{tailleCbTemp}{obtenirLongeur(cbtemp)}
+        		\affecter{tailleCb}{obtenirLongeur(cb)}
+				\affecter{tailleTotale}{tailleCbTemp + tailleCb}
+        		\sialorssinon{tailleTotale $>$ 8}
+        		{		
+        			\pour{i}{0}{7 $-$ tailleCbTemp}{}
+        			{
+        				\instruction{ajouterBit(cbtemp,obtenirIemeBit(cb,i))}
+					}    											
+					\instruction{ecrireOctet(fbCompresse, codeBinaireEnOctet(cb))}
+					\\
+        			\affecter{cbtemp}{creeCodeBinaire(obtenirIemeBit(cb,i$+$1))}
+        			\pour{j}{ i $+$ 2}{tailleCb $-$ 1}{}
+        			{
+        					\instruction{ajouterBit(cbtemp,obtenirIemeBit(cb,j))}
+        			}
+        		}
+        		{		
+					\pour{i}{tailleCbTemp}{tailleTotale $-$ 1}{}
+        			{
+        					\instruction{ajouterBit(cbtemp,obtenirIemeBit(cb,i))}
+        			}
+					\sialors{obtenirLongueur(cbTemp) $=$ 8}
+					{
+						\instruction{ecrireOctet(fbCompresse, codeBinaireEnOctet(cbtemp))}
+					}
+        		}
+    }
+\end{algorithme}
+    	    			  			
+    	    			  						   
