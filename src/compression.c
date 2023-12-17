@@ -136,5 +136,7 @@ void encoder(FILE *f, char *filename, TableDeCodage tdc, Statistiques s, unsigne
 }
 
 void compresser(FILE *f, char *filename) {
-   
+   Statistiques s;
+   obtenirStatistiquesEtTailleFichier(f,s,taille);
+   encoder(s,taille,fb,obtenirTableDeCodage(construireArbreDeHuffman(s)),fbCompresse)
 }
