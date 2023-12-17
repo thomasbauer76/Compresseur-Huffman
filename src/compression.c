@@ -135,7 +135,7 @@ void encoder(FILE *f, char *filename, TableDeCodage tdc, Statistiques s, unsigne
 }
 
 ArbreDeHuffman construireArbreDeHuffman(Statistiques s){
-
+    return NULL;
 }
 
 void compresser(FILE *f, char *filename) {

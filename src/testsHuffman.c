@@ -4,6 +4,8 @@
 #include "statistiques.h"
 #include "codeBinaire.h"
 
+#include "compression.c"
+
 int init_suite_success(void) {
     return 0;
 }
@@ -18,6 +20,7 @@ int clean_suite_success(void) {
 void test_statistiques_vides(void) {
     Statistiques s;
     S_statistiques(&s);
+    
     for(unsigned short o = 0; o < MAX_OCTET; o++) {
         CU_ASSERT_EQUAL(S_obtenirOccurence(s,o),0);
     }
@@ -26,19 +29,24 @@ void test_statistiques_vides(void) {
 void test_statistiques_incrementees(void) {
     Statistiques s;
     S_statistiques(&s);
+
     Octet o = O_naturelVersOctet(241);
     unsigned long ancienneOccurence = S_obtenirOccurence(s,o);
+
     S_incrementerOccurence(&s,o);
     unsigned long nouvelleOccurence = S_obtenirOccurence(s,o);
+
     CU_ASSERT_EQUAL(nouvelleOccurence,ancienneOccurence+1);
 }
 
 void test_statistiques_fixer_occurence(void) {
     Statistiques s;
     S_statistiques(&s);
+
     Octet o = O_naturelVersOctet(241);
     unsigned long n = 1234;
     S_fixerOccurence(&s,o,n);
+
     CU_ASSERT_EQUAL(S_obtenirOccurence(s,o),n);
 }
 
@@ -63,10 +71,34 @@ void test_ajout_bit(void) {
 }
 
 
-/* Tests compresser.c */
+/* Tests compression.c */
 
 void test_obtenir_statistiques(void) {
+  FILE *tempFile = tmpfile();
+  unsigned long i;
 
+  unsigned char o_125 = 125;
+  unsigned long n_125 = 13;
+  for (i = 1; i <= n_125; i++)
+    fwrite(&o_125, sizeof(unsigned char), 1, tempFile);
+
+  unsigned char o_243 = 243;
+  unsigned long n_243 = 3452;
+  for (i = 1; i <= n_243; i++)
+    fwrite(&o_243, sizeof(unsigned char), 1, tempFile);
+  
+  unsigned char o_63 = 63;
+  unsigned long n_63 = 1;
+  for (i = 1; i <= n_63; i++)
+    fwrite(&o_63, sizeof(unsigned char), 1, tempFile);
+  
+  Statistiques s;
+  unsigned long taille;
+  obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
+
+  CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet(125)), n_125);
+  CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet(243)), n_243);
+  CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet(63)), n_63);
 }
 
 
@@ -103,6 +135,21 @@ int main(int argc, char** argv){
   /* Ajout des tests à la suite codeBinaire */
   if ((NULL == CU_add_test(pSuiteCodeBinaire, "Creation Code Binaire", test_creation_codebinaire))
     || (NULL == CU_add_test(pSuiteCodeBinaire, "Ajout d'un bit", test_ajout_bit))
+      ) 
+    {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
+  
+  /* ajout d'une suite de test pour compression.c */
+  CU_pSuite pSuiteCompression = CU_add_suite("Test compression", init_suite_success, clean_suite_success);
+  if (NULL == pSuiteCompression) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
+  /* Ajout des tests à la suite compression */
+  if ((NULL == CU_add_test(pSuiteCompression, "Obtenir statistiques d'un fichier", test_obtenir_statistiques))
       ) 
     {
       CU_cleanup_registry();

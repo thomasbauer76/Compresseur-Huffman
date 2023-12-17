@@ -5,13 +5,20 @@ SRCDIR=src
 LATEXDIR=latex
 INCLUDEDIR=include
 TESTSDIR=tests
+CC=gcc
 CFLAGS=-Wall -pedantic -std=c99 -I$(INCLUDEDIR)
 LDFLAGS=-lcunit
 
+SRCS=$(wildcard $(SRCDIR)/*.c)
+OBJS=$(SRCS:.c=.o)
+
+MAIN_OBJS=$(filter-out $(SRCDIR)/testsHuffman.o, $(OBJS))
+TESTS_OBJS=$(filter-out $(SRCDIR)/main.o $(SRCDIR)/compression.o, $(OBJS))
+
 all :
 
-tests: $(SRCDIR)/testsHuffman.o $(SRCDIR)/statistiques.o $(SRCDIR)/codeBinaire.o $(SRCDIR)/octet.o
-	gcc -o $(TESTSDIR)/$(EXE_TESTS) $(SRCDIR)/testsHuffman.o $(SRCDIR)/statistiques.o $(SRCDIR)/codeBinaire.o $(SRCDIR)/octet.o $(LDFLAGS)
+tests: $(TESTS_OBJS)
+	$(CC) -o $(TESTSDIR)/$(EXE_TESTS) $(TESTS_OBJS) $(LDFLAGS)
 
 $(SRCDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) -o $@ -c $< $(CFLAGS)
