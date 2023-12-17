@@ -7,21 +7,25 @@
 #include "compression.h"
 #include "arbreDeHuffman.h"
 
-void obtenirStatistiquesEtTailleFichier(FILE *f, char *filename, Statistiques *s,  unsigned long *taille) { 
-    S_statistiques(*s);
+void obtenirStatistiquesEtTailleFichier(FILE *f, Statistiques *s,  unsigned long *taille) { 
+    S_statistiques(s);
     *taille = 0;
 
-    rewind(f);
-    FILE *fb = fopen(strcat(filename,".huff"), "wb");
+    if (f != NULL) {
+        fclose(f);
+    }
+
+    // Ouvrir le fichier en mode lecture
+    f = fopen("chemin_du_fichier", "rb");
 
     int o;
-    while ((o = fgetc(fb)) != EOF) {
-        S_incrementerOccurence(s,fgetc(fb));
+    while ((o = fgetc(f)) != EOF) {
+        S_incrementerOccurence(s,fgetc(f));
         (*taille)++;
     }
 }
 
-void obtenirTableDeCodageRecursif(ArbreDeHuffman a, TableDeCodage *tdc, CodeBinaire cb) {
+void obtenirTableDeCodageRecursif(TableDeCodage *tdc, ArbreDeHuffman a, CodeBinaire cb) {
     CodeBinaire cbCopie;
     
     if (ADH_estUneFeuille(a)) {
@@ -31,9 +35,9 @@ void obtenirTableDeCodageRecursif(ArbreDeHuffman a, TableDeCodage *tdc, CodeBina
         memcpy(&cbCopie, &cb, sizeof(CodeBinaire));
         
         CB_ajouterBit(&cbCopie, bitA0);
-        obtenirTableDeCodageRecursif(ADH_obtenirFilsGauche(a), tdc, cbCopie);
+        obtenirTableDeCodageRecursif(tdc, ADH_obtenirFilsGauche(a) , cbCopie);
         CB_ajouterBit(&cb, bitA1);
-        obtenirTableDeCodageRecursif(ADH_obtenirFilsDroit(a), tdc, cb);
+        obtenirTableDeCodageRecursif(tdc, ADH_obtenirFilsDroit(a), cb);
     }
 
 }
@@ -42,8 +46,8 @@ TableDeCodage obtenirTableDeCodage(ArbreDeHuffman a) {
     TableDeCodage tdc = TDC_creerTableCodage();
     CodeBinaire cbGauche = CB_creerCodeBinaire(bitA0);
     CodeBinaire cbDroit = CB_creerCodeBinaire(bitA1);
-    obtenirTableDeCodageRecursif(ADH_obtenirFilsGauche(a), &tdc, cbGauche);
-    obtenirTableDeCodageRecursif(ADH_obtenirFilsDroit(a), &tdc, cbDroit);
+    obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsGauche(a) , cbGauche);
+    obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsDroit(a), cbDroit);
     return tdc;
 }
 
@@ -135,8 +139,10 @@ void encoder(FILE *f, char *filename, TableDeCodage tdc, Statistiques s, unsigne
     fclose(fbCompresse);
 }
 
+ArbreDeHuffman construireArbreDeHuffman(Statistiques s){
+
+}
+
 void compresser(FILE *f, char *filename) {
-   Statistiques s;
-   obtenirStatistiquesEtTailleFichier(f,s,taille);
-   encoder(s,taille,fb,obtenirTableDeCodage(construireArbreDeHuffman(s)),fbCompresse)
+ 
 }
