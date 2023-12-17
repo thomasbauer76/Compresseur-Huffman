@@ -1,18 +1,19 @@
 \begin{algorithme}
     \procedure{ecrireIdentifiant}{\paramEntreeSortie{fb : \fichierbinaire}}{}
-    {}
+    {id : Naturel}
     {
-    	 \instruction{ecrireoctet(fb,creeoctet(bitA0,bitA0,bitA0,bitA0,bitA0,bitA0,bitA1,bitA1))}
-         \instruction{ecrireoctet(fb,creeoctet(bitA1,bitA1,bitA1,bitA0,bitA1,bitA0,bitA0,bitA0))}
+    	 \affecter{id}{1000}
+    	 \instruction{ecrireNaturel(fb,id)}
+        
     }
-    \procedure{ecrireStatistique}{\paramEntreeSortie{fb : \fichierbinaire}}{}{i, occ : Naturel, o : \octet, s : \statistiques}
+    \procedure{ecrireStatistiqueEtTailleFichier}{\paramEntreeSortie{fb : \fichierbinaire}, \paramEntree{s : \statistiques},\paramEntree{taillefb : Naturel}}{}{o: Naturel}
     {
-    	
-    	\pour{o}{0}{255}{}{
-			\instruction{obtenirStatistiques(fb,s)}
-			\instruction{ecrireoctet(fb,o)}
+    		\instruction{ecrireoctet(fb,taillefb)}
+    		\pour{o}{0}{255}{}{
+				\instruction{ecrireoctet(fb,naturelVersOctet(o))}
 			\instruction{ecrireoctet(fb,naturelVersOctet(obtenirOccurence(s,o)))}
-    	}
+			
+    		}
     }
     
     

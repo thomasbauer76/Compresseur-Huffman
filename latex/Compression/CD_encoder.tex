@@ -1,15 +1,16 @@
 \begin{algorithme}
  \procedure{encoder}{\paramEntreeSortie{fbInitial : \fichierbinaire},\paramEntree{ tdc : \tabledecodage},\paramSortie{fbCompresse : \fichierbinaire}}
     {}
-    {cbtemp, cb: \codebinaire, o : \octet, i,j, taillecb, taillecbtemp : Entier}
+    {cbtemp, cb: \codebinaire, o : \octet, i,j, taillecb, taillecbtemp, taillefb: Naturel, s : \statistiques}
     {
         
-        
+       
         \sialors{estOuvert(fbInitial)}
         {
             \instruction{fermer(fbInitial)}
         }
         \instruction{ouvrir(fbInitial,lecture)}
+        \instruction{obtenirStatistiqueEtTailleFichier(fbInitial,s,taillefb)}
         \sialors{estOuvert(fbCompresse)}
         {
             \instruction{fermer(fbCompresse)}
@@ -17,9 +18,9 @@
         \instruction{ouvrir(fbCompresse, ecriture)}
         
         \instruction{ecrirIdentifiant(fbCompresse)}
-        \instruction{ecrireTailleFichier(fbCompresse,obtenirTailleDuFichier(fbInitial))}
+   
   %% le premier octet represente la taille du fichier initale à utiliser ou non 
-        \instruction{ecrireStatistique(fbCompresse,s)}
+        \instruction{ecrireStatistiqueEtTailleFichier(fbCompresse,s,taillefb)}
          {
         \affecter{cbtemp}{creerCodeBinaire(bitA0)}
         \pour{i}{1}{7}{}{\instruction{ajouterBit(restecbtemp,bitA0)}}
@@ -33,7 +34,7 @@
         
         \sialors{obtenirLongueur(cbTemp) $<$ 8}
 		{
-			\pour{i}{tailleCbTemp}{tailleTotale - 1}{}
+			\pour{i}{obtenirLongeur(cbTemp)}{7}{}
         			{
         					\instruction{ajouterBit(cbtemp,bitA0)}
         			}
