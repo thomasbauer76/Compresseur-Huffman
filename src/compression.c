@@ -5,9 +5,46 @@
 #include "statistiques.h"
 #include "codeBinaire.h"
 #include "compression.h"
+#include "arbreDeHuffman.h"
 
-Octet codeBinaireEnOctet(CodeBinaire cb) {
+void obtenirStatistiquesEtTailleFichier(FILE *f, char *filename, Statistiques *s,  unsigned long *taille) { 
+    S_statistiques(*s);
+    *taille = 0;
 
+    rewind(f);
+    FILE *fb = fopen(strcat(filename,".huff"), "wb");
+
+    int o;
+    while ((o = fgetc(fb)) != EOF) {
+        S_incrementerOccurence(s,fgetc(fb));
+        (*taille)++;
+    }
+}
+
+void obtenirTableDeCodageRecursif(ArbreDeHuffman a, TableDeCodage *tdc, CodeBinaire cb) {
+    CodeBinaire cbCopie;
+    
+    if (ADH_estUneFeuille(a)) {
+        TDC_ajouterCodage(tdc, ADH_obtenirOctet(a), cb);
+    }
+    else {
+        memcpy(&cbCopie, &cb, sizeof(CodeBinaire));
+        
+        CB_ajouterBit(&cbCopie, bitA0);
+        obtenirTableDeCodageRecursif(ADH_obtenirFilsGauche(a), tdc, cbCopie);
+        CB_ajouterBit(&cb, bitA1);
+        obtenirTableDeCodageRecursif(ADH_obtenirFilsDroit(a), tdc, cb);
+    }
+
+}
+
+TableDeCodage obtenirTableDeCodage(ArbreDeHuffman a) {
+    TableDeCodage tdc = TDC_creerTableCodage();
+    CodeBinaire cbGauche = CB_creerCodeBinaire(bitA0);
+    CodeBinaire cbDroit = CB_creerCodeBinaire(bitA1);
+    obtenirTableDeCodageRecursif(ADH_obtenirFilsGauche(a), &tdc, cbGauche);
+    obtenirTableDeCodageRecursif(ADH_obtenirFilsDroit(a), &tdc, cbDroit);
+    return tdc;
 }
 
 void ecrireIdentifiant(FILE *f) {
@@ -27,6 +64,11 @@ void ecrireStatistiques(FILE *f, Statistiques s) {
     }
 }
 
+Octet codeBinaireEnOctet(CodeBinaire cb) {
+    return O_creerOctet(CB_obtenirIemeBit(cb, 0), CB_obtenirIemeBit(cb, 1), CB_obtenirIemeBit(cb, 2), CB_obtenirIemeBit(cb, 3),
+    CB_obtenirIemeBit(cb, 4), CB_obtenirIemeBit(cb, 5), CB_obtenirIemeBit(cb, 6), CB_obtenirIemeBit(cb, 7));
+
+}
 void concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBinaire cb) {
     unsigned short i, j;
 
@@ -94,5 +136,5 @@ void encoder(FILE *f, char *filename, TableDeCodage tdc, Statistiques s, unsigne
 }
 
 void compresser(FILE *f, char *filename) {
-
+   
 }
