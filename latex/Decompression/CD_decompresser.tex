@@ -1,0 +1,14 @@
+\begin{algorithme}
+	\fonction{decompresser}{fCompresse : \fichierbinaire}{\fichierbinaire}{}{fDecompresse : \fichierbinaire, moitieID1, moitieID2 : \octet}
+    {
+    	\sialors{non((estOuvert(fCompresse)) et (mode(fCompresse) $=$ lecture))}{    	
+    		\instruction{ouvrir(fCompresse, lecture)}
+    	}
+    	lireOctet(fCompresse, moitieID1)
+    	lireOctet(fCompresse, moitieID2)
+    	\sialors{non(moitieID1 = creerOctet(bitA0, bitA0, bitA0, bitA0, bitA0, bitA0, bitA1, bitA1))}{
+    		\instruction{retourner fCompresser}
+    	}
+    	\instruction{rien}
+    }
+\end{algorithme}
