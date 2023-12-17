@@ -2,6 +2,8 @@
 #define __DECOMPRESSION__
 
 
+#include <stdio.h>
+
 void decompresser(FILE *f);
 
 
