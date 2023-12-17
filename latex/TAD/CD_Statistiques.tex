@@ -11,17 +11,23 @@
         \retourner{s}
     }
     \\
-    \procedure{incrementerOccurence}{\paramEntreeSortie{s : \statistiques}, \paramEntree{o : \octet}}
+    \procedure{incrementerOccurrence}{\paramEntreeSortie{s : \statistiques}, \paramEntree{o : \octet}}
     {}
     {}
     {
     	\affecter{s[octetVersNaturel(o)]}{s[octetVersNaturel(o)] + 1}
     }
     \\
-    \fonction{obtenirOccurence}{s : \statistiques, o : \octet}{\textbf{Naturel}}
+    \fonction{obtenirOccurrence}{s : \statistiques, o : \octet}{\textbf{Naturel}}
     {}
     {}
     {
     	\retourner{s[octetVersNaturel(o)]}
+    }
+    \procedure{fixerOccurrence}{\paramEntreeSortie{s : \statistiques}, \paramEntree{o : \octet}, \paramEntree{n : \textbf{Naturel Positif}}}
+    {}
+    {}
+    {
+    	\affecter{s[octetVersNaturel(o)]}{n}
     }
 \end{algorithme}
