@@ -143,6 +143,10 @@ ArbreDeHuffman construireArbreDeHuffman(Statistiques s){
     return NULL;
 }
 
-void compresser(FILE *f, char *filename) {
- 
+void compresser(FILE *f, char *fbCompresse) {
+    Statistiques s;
+    S_statistiques(&s);// à voir pour les pointeurs 
+    unsigned long taille;
+    obtenirStatistiquesEtTailleFichier(f, &s, &taille);
+    encoder(f,fbCompresse,obtenirTableDeCodage(construireArbreDeHuffman(s)),s,taille);
 }
