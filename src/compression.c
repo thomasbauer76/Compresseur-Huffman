@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "octet.h"
+#include "fileDePrioriteDArbreDeHuffman.h"
+#include "arbreDeHuffman.h"
 #include "tableDeCodage.h"
 #include "statistiques.h"
 #include "codeBinaire.h"
@@ -149,7 +151,7 @@ void encoder(FILE *f, char *filename, TableDeCodage tdc, Statistiques s, unsigne
 
 void compresser(FILE *f, char *fbCompresse) {
     Statistiques s;
-    S_statistiques(&s);// à voir pour les pointeurs 
+    S_statistiques(&s);
     unsigned long taille;
     obtenirStatistiquesEtTailleFichier(f, &s, &taille);
     encoder(f,fbCompresse,obtenirTableDeCodage(construireArbreDeHuffman(s)),s,taille);
