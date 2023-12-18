@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <CUnit/Basic.h>
 #include "statistiques.h"
+#include "fileDePrioriteDArbreDeHuffman.h"
 #include "codeBinaire.h"
 
 #include "compression.c"
+#include "decompression.c"
 
 int init_suite_success(void) {
     return 0;
@@ -108,6 +110,24 @@ void test_obtenir_taille_fichier(void) {
   CU_ASSERT_EQUAL(taille, 4 + 2 + 3 + 2 + 1 + 1 + 2);
 }
 
+void test_file_de_priorite(void) {
+  FILE *tempFile = fichierTemporaireRempli();
+  
+  Statistiques s;
+  unsigned long taille;
+  obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
+
+  FileDePriorite fdp = construireFileDePriorite(s);
+
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'E');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'F');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'B');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'D');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'G');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'C');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'A');
+}
+
 void test_arbre_de_huffman(void) {
   FILE *tempFile = fichierTemporaireRempli();
   
@@ -117,13 +137,55 @@ void test_arbre_de_huffman(void) {
 
   ArbreDeHuffman a = construireArbreDeHuffman(s);
 
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(a))),'C');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(a))),'A');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(a)))),'B');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(a)))),'D');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a)))),'G');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a))))),'E');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a))))),'F');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(a))), 'C');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(a))), 'A');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(a)))), 'B');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(a)))), 'D');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a)))), 'G');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a))))), 'E');
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a))))), 'F');
+}
+
+void test_table_de_codage(void) {
+  FILE *tempFile = fichierTemporaireRempli();
+  
+  Statistiques s;
+  unsigned long taille;
+  obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
+
+  ArbreDeHuffman a = construireArbreDeHuffman(s);
+
+  TableDeCodage tdc = obtenirTableDeCodage(a);
+
+  CodeBinaire cb;
+  
+  // On effectue un test sur 3 octets
+  cb = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet('A'));
+  CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, 0), bitA0);
+  CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, 1), bitA1);
+
+  cb = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet('C'));
+  CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, 0), bitA0);
+  CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, 1), bitA0);
+
+  cb = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet('E'));
+  CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, 0), bitA1);
+  CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, 1), bitA1);
+  CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, 2), bitA1);
+  CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, 3), bitA0);
+}
+
+void test_code_binaire_8_bits_vers_octet(void) {
+  unsigned short i;
+
+  Octet o = O_naturelVersOctet('K');
+
+  CodeBinaire cb = CB_creerCodeBinaire(O_obtenirIemeBit(o, 0));
+  for (i = 1; i < MAX_CB; i++)
+    CB_ajouterBit(&cb, O_obtenirIemeBit(o, i));
+  
+  for (i = 0; i < MAX_CB; i++)
+    CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, i), O_obtenirIemeBit(o, i))
 }
 
 
@@ -176,7 +238,10 @@ int main(int argc, char** argv){
   /* Ajout des tests à la suite compression */
   if ((NULL == CU_add_test(pSuiteCompression, "Obtention des statistiques d'un fichier", test_obtenir_statistiques))
     || (NULL == CU_add_test(pSuiteCompression, "Obtention de la taille d'un fichier", test_obtenir_taille_fichier))
+    || (NULL == CU_add_test(pSuiteCompression, "Construction de la file de priorité à partir des statistiques", test_file_de_priorite))
     || (NULL == CU_add_test(pSuiteCompression, "Construction de l'arbre de Huffman à partir des statistiques", test_arbre_de_huffman))
+    || (NULL == CU_add_test(pSuiteCompression, "Obtention de la table de codage à partir de l'arbre de huffman", test_table_de_codage))
+    || (NULL == CU_add_test(pSuiteCompression, "Conversion d'un code binaire de 8 bits vers un octet", test_code_binaire_8_bits_vers_octet))
       ) 
     {
       CU_cleanup_registry();

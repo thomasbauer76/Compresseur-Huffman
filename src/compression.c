@@ -20,6 +20,14 @@ void obtenirStatistiquesEtTailleFichier(FILE *f, Statistiques *s,  unsigned long
     }
 }
 
+FileDePriorite construireFileDePriorite(Statistiques s) {
+    return NULL;
+}
+
+ArbreDeHuffman construireArbreDeHuffman(Statistiques s){
+    return NULL;
+}
+
 void obtenirTableDeCodageRecursif(TableDeCodage *tdc, ArbreDeHuffman a, CodeBinaire cb) {
     CodeBinaire cbCopie;
     
@@ -137,10 +145,6 @@ void encoder(FILE *f, char *filename, TableDeCodage tdc, Statistiques s, unsigne
     }
 
     fclose(fbCompresse);
-}
-
-ArbreDeHuffman construireArbreDeHuffman(Statistiques s){
-    return NULL;
 }
 
 void compresser(FILE *f, char *fbCompresse) {
