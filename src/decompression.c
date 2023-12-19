@@ -27,8 +27,21 @@ void D_libererArbreDeHuffman(ArbreDeHuffman a) {
 }
 
 FILE* D_decoder(ArbreDeHuffman aHuff, FILE *fb1) {
-    FILE *fb2;
-    fb2 = fopen("", "w");
+    FILE *fb2 = fopen("fichierDecompresser", "w");
+    ArbreDeHuffman aTemp = aHuff;
+    while (!(feof(fb1))) {
+        Octet o;
+        fread(&o, sizeof(Octet), 1, fb1);
+        for (int i = 0; i <= 7; i++) {
+            Bit b = O_obtenirIemeBit(o, i);
+            D_seDeplacerDansLArbre(b, &aTemp);
+            if (ADH_estUneFeuille(aTemp)) {
+                Octet oDecode = ADH_obtenirOctet(aTemp);
+                fwrite(&oDecode, sizeof(Octet), 1, fb1);
+                aTemp = aHuff;
+            }
+        }
+    }
     return fb2;
 }
 
