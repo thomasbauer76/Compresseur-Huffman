@@ -21,5 +21,5 @@ void libererArbreDeHuffman(ArbreDeHuffman a) {
         libererArbreDeHuffman(ADH_obtenirFilsDroit(a));
         libererArbreDeHuffman(ADH_obtenirFilsGauche(a));
     }
-    free(a)
+    free(a);
 }
