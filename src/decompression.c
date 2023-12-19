@@ -45,6 +45,6 @@ FILE* D_decoder(ArbreDeHuffman aHuff, FILE *fb1) {
     return fb2;
 }
 
-void lireStatistiques(FILE *fb, Statistiques s) {
+void D_lireStatistiques(FILE *fb, Statistiques s) {
 
 }
