@@ -135,6 +135,21 @@ void test_code_binaire_8_bits_vers_octet(void) {
     CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, i), O_obtenirIemeBit(o, i))
 }
 
+/* Tests compression.c */
+
+void test_lireStatistiques(void) {
+  FILE *tempFile = fichierTemporaireRempli();
+
+  Statistiques s;
+  S_statistiques(s);
+  D_lireStatistiques(tempFile, s);
+
+  Statistiques resAttendu;
+  S_statistiques(resAttendu);
+  //S_fixerOccurence(s, )
+
+  //CU_ASSERT_EQUAL(s, );
+}
 
 int main(int argc, char** argv){
 
