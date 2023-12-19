@@ -16,9 +16,6 @@ int clean_suite_success(void) {
     return 0;
 }
 
-
-/* Tests compression.c */
-
 FILE *fichierTemporaireRempli() {
   FILE *tempFile = tmpfile();
 
@@ -27,6 +24,9 @@ FILE *fichierTemporaireRempli() {
 
   return tempFile;
 }
+
+
+/* Tests compression.c */
 
 void test_obtenir_statistiques(void) {
   FILE *tempFile = fichierTemporaireRempli();
