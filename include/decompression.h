@@ -5,7 +5,5 @@
 #include <stdio.h>
 #include "arbreDeHuffman.h"
 
-void decompresser(FILE *f);
-void seDeplacerDansLArbre(int bit, ArbreDeHuffman *a);
-void libererArbreDeHuffman(ArbreDeHuffman a);
+void D_decompresser(FILE *f);
 #endif

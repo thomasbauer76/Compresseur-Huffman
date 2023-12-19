@@ -5,11 +5,11 @@
 #include "statistiques.h"
 #include "arbreDeHuffman.h"
 
-void decompresser(FILE *f) {
+void D_decompresser(FILE *f) {
 
 }
 
-void seDeplacerDansLArbre(int bit, ArbreDeHuffman *a) {
+void D_seDeplacerDansLArbre(int bit, ArbreDeHuffman *a) {
     if (bit == 0) {
         *a = ADH_obtenirFilsGauche(*a);
     } else {
@@ -17,7 +17,7 @@ void seDeplacerDansLArbre(int bit, ArbreDeHuffman *a) {
     }
 }
 
-void libererArbreDeHuffman(ArbreDeHuffman a) {
+void D_libererArbreDeHuffman(ArbreDeHuffman a) {
     if (!(ADH_estUneFeuille(a))) {
         libererArbreDeHuffman(ADH_obtenirFilsDroit(a));
         libererArbreDeHuffman(ADH_obtenirFilsGauche(a));
