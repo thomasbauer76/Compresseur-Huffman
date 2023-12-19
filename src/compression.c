@@ -43,10 +43,16 @@ void C_obtenirTableDeCodageRecursif(TableDeCodage *tdc, ArbreDeHuffman a, CodeBi
 
 TableDeCodage C_obtenirTableDeCodage(ArbreDeHuffman a) {
     TableDeCodage tdc = TDC_creerTableCodage();
-    CodeBinaire cbGauche = CB_creerCodeBinaire(bitA0);
-    CodeBinaire cbDroit = CB_creerCodeBinaire(bitA1);
-    C_obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsGauche(a), cbGauche);
-    C_obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsDroit(a), cbDroit);
+
+    if(ADH_estUneFeuille(a)) { 
+        TDC_ajouterCodage(&tdc, ADH_obtenirOctet(a), CB_creerCodeBinaire(bitA0));
+    }
+    else {
+        CodeBinaire cbGauche = CB_creerCodeBinaire(bitA0);
+        CodeBinaire cbDroit = CB_creerCodeBinaire(bitA1);
+        C_obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsGauche(a), cbGauche);
+        C_obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsDroit(a), cbDroit);
+    }
     return tdc;
 }
 
@@ -109,17 +115,11 @@ void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBina
     }
 }
 
-void C_encoder(FILE *f, char *filename, TableDeCodage tdc, Statistiques s, unsigned long long taille) {
+void C_encoder(FILE *f, char *filename, TableDeCodage tdc) {
     unsigned short i;
 
     rewind(f);
     FILE *fbCompresse = fopen(strcat(filename,".huff"), "wb");
-
-    // Ecriture des données importantes avant d'encoder
-    C_ecrireIdentifiant(fbCompresse);
-    C_ecrireTailleFichier(fbCompresse, taille);
-    C_ecrireStatistiques(fbCompresse, s);
-
     // Création d'un code binaire temporaire initalisé à 8 bits pour rentrer dans la première condition de la fonction concatenerCodeBinaireEnOctet
     CodeBinaire cbTemp = CB_creerCodeBinaire(bitA0);
     for (i = 1; i < MAX_CB; i++)
@@ -144,10 +144,23 @@ void C_encoder(FILE *f, char *filename, TableDeCodage tdc, Statistiques s, unsig
     fclose(fbCompresse);
 }
 
-void C_compresser(FILE *f, char *fbCompresse) {
+void C_compresser(FILE *f, char *filename) {
     Statistiques s;
     S_statistiques(&s);
     unsigned long taille;
+
+    rewind(f);
+    FILE *fbCompresse = fopen(strcat(filename,".huff"), "wb");
+
     C_obtenirStatistiquesEtTailleFichier(f, &s, &taille);
-    C_encoder(f, fbCompresse, C_obtenirTableDeCodage(CADH_construireArbreDeHuffman(s)), s, taille);
+    // Ecriture des données importantes avant d'encoder
+    C_ecrireIdentifiant(fbCompresse);
+    C_ecrireTailleFichier(fbCompresse, taille);
+
+    if(taille > 0) {
+         C_ecrireStatistiques(fbCompresse, s);
+         C_encoder(f, filename, C_obtenirTableDeCodage(CADH_construireArbreDeHuffman(s)));
+    }
+   
+    fclose(fbCompresse);
 }
