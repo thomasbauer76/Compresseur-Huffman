@@ -12,7 +12,7 @@ LDFLAGS=-lcunit
 SRCS=$(wildcard $(SRCDIR)/*.c)
 OBJS=$(SRCS:.c=.o)
 
-MAIN_OBJS=$(filter-out $(SRCDIR)/testsHuffman.o, $(OBJS))
+MAIN_OBJS=$(filter-out $(SRCDIR)/testsTADs.o $(SRCDIR)/testsFonctionsMetier.o, $(OBJS))
 TESTS_OBJS=$(filter-out $(SRCDIR)/main.o $(SRCDIR)/compression.o $(SRCDIR)/decompression.o, $(OBJS))
 
 all : $(MAIN_OBJS)
