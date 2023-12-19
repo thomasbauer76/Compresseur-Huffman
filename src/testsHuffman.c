@@ -72,7 +72,27 @@ void test_ajout_bit(void) {
   CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb,nouvelleLongueur-1),b);
 }
 
+/* Tests ArbreDeHuffman.c */
 
+void test_creation_arbreDeHuffman(void) {
+  ArbreDeHuffman a = ADH_arbreDeHuffman();
+  
+  Octet o; 
+  unsigned long f;
+ 
+  CU_ASSERT_EQUAL(ADH_estUneFeuille(ADH_arbreDeHuffman(o,f)));
+  CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_arbreDeHuffman(o,f)) = f);
+}
+
+void test_fussioner_ADH(void) {
+  ArbreDeHuffman ad = ADH_arbreDeHuffman();
+  ArbreDeHuffman ag = ADH_arbreDeHuffman();
+  Octet o; 
+  unsigned long f;
+ 
+  CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_fusionner(ad,ag)) = ADH_obtenirFrequence(ag) + ADH_obtenirFrequence(ad));
+ 
+}
 /* Tests compression.c */
 
 FILE *fichierTemporaireRempli() {
