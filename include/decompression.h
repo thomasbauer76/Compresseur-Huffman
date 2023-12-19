@@ -3,7 +3,8 @@
 
 
 #include <stdio.h>
-#include "arbreDeHuffman.h"
 
 void D_decompresser(FILE *f);
+
+
 #endif
