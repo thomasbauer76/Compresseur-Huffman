@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
         if (strcmp(argv[1], "c") == 0) {
             FILE *f = fopen(argv[2], "rb");
             if (f != NULL) {
-                compresser(f, argv[2]);
+                C_compresser(f, argv[2]);
                 fclose(f);
             }
             else {
@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
             if (strstr(argv[2], ".huff") != NULL) {
                 FILE *f = fopen(argv[2], "rb");
                 if (f != NULL) {
-                    decompresser(f);
+                    D_decompresser(f);
                     fclose(f);
                 }
                 else {
