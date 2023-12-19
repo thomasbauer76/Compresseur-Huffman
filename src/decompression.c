@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h> 
 #include "decompression.h"
 #include "fileDePrioriteDArbreDeHuffman.h"
 #include "statistiques.h"
@@ -21,5 +22,5 @@ void libererArbreDeHuffman(ArbreDeHuffman a) {
         libererArbreDeHuffman(ADH_obtenirFilsDroit(a));
         libererArbreDeHuffman(ADH_obtenirFilsGauche(a));
     }
-    free(a)
+    free(a);
 }
