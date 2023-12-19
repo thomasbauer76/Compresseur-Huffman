@@ -109,7 +109,7 @@ void test_obtenir_statistiques(void) {
   
   Statistiques s;
   unsigned long taille;
-  obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
+  C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
   CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet('A')), 4);
   CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet('B')), 2);
@@ -125,7 +125,7 @@ void test_obtenir_taille_fichier(void) {
   
   Statistiques s;
   unsigned long taille;
-  obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
+  C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
   CU_ASSERT_EQUAL(taille, 4 + 2 + 3 + 2 + 1 + 1 + 2);
 }
@@ -135,9 +135,9 @@ void test_file_de_priorite(void) {
   
   Statistiques s;
   unsigned long taille;
-  obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
+  C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
-  FileDePriorite fdp = construireFileDePriorite(s);
+  FileDePriorite fdp = C_construireFileDePriorite(s);
 
   CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'E');
   CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'F');
@@ -153,7 +153,7 @@ void test_arbre_de_huffman(void) {
   
   Statistiques s;
   unsigned long taille;
-  obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
+  C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
   ArbreDeHuffman a = construireArbreDeHuffman(s);
 
@@ -171,11 +171,11 @@ void test_table_de_codage(void) {
   
   Statistiques s;
   unsigned long taille;
-  obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
+  C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
   ArbreDeHuffman a = construireArbreDeHuffman(s);
 
-  TableDeCodage tdc = obtenirTableDeCodage(a);
+  TableDeCodage tdc = C_obtenirTableDeCodage(a);
 
   CodeBinaire cb;
   

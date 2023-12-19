@@ -1,5 +1,6 @@
 #include <stddef.h>
 #include <stdlib.h>
+#include <assert.h>
 #include "arbreDeHuffman.h"
 
 ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned long n){
@@ -29,14 +30,17 @@ bool ADH_estUneFeuille(ArbreDeHuffman a) {
 }
 
 ArbreDeHuffman ADH_obtenirFilsGauche(ArbreDeHuffman a) {
+    assert(!ADH_estUneFeuille(a));
     return a->arbreGauche;
 }
 
 Octet ADH_obtenirOctet(ArbreDeHuffman a){
-    return a->octet; //on ne vérifie pas la pré-condition mais sinon on peut le faire avec un ASSERT
+    assert(ADH_estUneFeuille(a));
+    return a->octet;
 }
 
 ArbreDeHuffman ADH_obtenirFilsDroit(ArbreDeHuffman a) {
+    assert(!ADH_estUneFeuille(a));
     return a->arbreDroit;
 }
 

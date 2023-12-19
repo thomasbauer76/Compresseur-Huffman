@@ -15,7 +15,8 @@ OBJS=$(SRCS:.c=.o)
 MAIN_OBJS=$(filter-out $(SRCDIR)/testsHuffman.o, $(OBJS))
 TESTS_OBJS=$(filter-out $(SRCDIR)/main.o $(SRCDIR)/compression.o $(SRCDIR)/decompression.o, $(OBJS))
 
-all :
+all : $(MAIN_OBJS)
+	$(CC) -o $(BINDIR)/$(EXE) $(MAIN_OBJS) $(LDFLAGS)
 
 tests: $(TESTS_OBJS)
 	$(CC) -o $(TESTSDIR)/$(EXE_TESTS) $(TESTS_OBJS) $(LDFLAGS)
