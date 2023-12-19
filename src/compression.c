@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <string.h>
+#include "compression.h"
 #include "octet.h"
+#include "arbreDeHuffman.h"
 #include "fileDePrioriteDArbreDeHuffman.h"
 #include "arbreDeHuffman.h"
 #include "tableDeCodage.h"
 #include "statistiques.h"
 #include "codeBinaire.h"
-#include "compression.h"
-#include "arbreDeHuffman.h"
+#include "construireArbreDeHuffman.h"
 
 void C_obtenirStatistiquesEtTailleFichier(FILE *f, Statistiques *s,  unsigned long *taille) {
     rewind(f);
@@ -146,5 +147,5 @@ void C_compresser(FILE *f, char *fbCompresse) {
     S_statistiques(&s);
     unsigned long taille;
     C_obtenirStatistiquesEtTailleFichier(f, &s, &taille);
-    C_encoder(f,fbCompresse,C_obtenirTableDeCodage(C_construireArbreDeHuffman(s)),s,taille);
+    C_encoder(f, fbCompresse, C_obtenirTableDeCodage(CADH_construireArbreDeHuffman(s)), s, taille);
 }

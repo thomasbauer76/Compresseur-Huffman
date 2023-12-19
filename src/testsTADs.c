@@ -5,9 +5,6 @@
 #include "fileDePrioriteDArbreDeHuffman.h"
 #include "codeBinaire.h"
 
-#include "compression.c"
-#include "decompression.c"
-
 int init_suite_success(void) {
     return 0;
 }

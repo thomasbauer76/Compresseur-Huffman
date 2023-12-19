@@ -35,7 +35,7 @@ void test_file_de_priorite(void) {
   unsigned long taille;
   C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
-  FileDePriorite fdp = C_construireFileDePriorite(s);
+  FileDePriorite fdp = CADH_construireFileDePriorite(s);
 
   CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'E');
   CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'F');
@@ -53,7 +53,7 @@ void test_arbre_de_huffman(void) {
   unsigned long taille;
   C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
-  ArbreDeHuffman a = C_construireArbreDeHuffman(s);
+  ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
 
   CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(a))), 'C');
   CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(a))), 'A');
@@ -100,7 +100,7 @@ void test_table_de_codage(void) {
   unsigned long taille;
   C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
-  ArbreDeHuffman a = C_construireArbreDeHuffman(s);
+  ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
 
   TableDeCodage tdc = C_obtenirTableDeCodage(a);
 
