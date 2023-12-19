@@ -1,33 +1,22 @@
 \begin{algorithme}
-    \procedure{decoder}{\paramEntree{fichierBinaireEntrant : \fichierbinaire, arbreDeHuffman : \ArbreDeHuffman}, \paramSortie{fichierBinaireSortant : \fichierbinaire}}{}
-    {}
+    \procedure{decoder}{\paramEntree{aHuff : \arbredehuffman},\paramEntreeSortie{fb1:\fichierbinaire} \paramSortie{fb2 : \fichierbinaire}}{}{}
     {
-        \sialors{\textbf{non} \textproc{estUneFeuille}(arbreDeHuffman)}
-        {
-            \textproc{seDeplacerDansLArbre}(arbreDeHuffman, fichierBinaireEntrant, fichierBinaireSortant)
-        }
+       \instruction{ouvrir(fb2, écriture)}
+       \affecter{aTemp}{aHuff}
+       \tantque{non(finFichier(fb1)}{
+       		\affecter{OctetCourant}{lireOctet(fb1)}
+       		\pour{i}{0}{7}{}
+       		{
+       			\affecter{Bit}{IemeBit(OctetCourant,i)}
+       			\instruction{seDeplacerDansLArbre(bit,atemp)}
+       			\sialors{estUneFeuille(atemp)}{
+       				\affecter{octetDecodé}{obtenirOctet(aTemp)}
+       				\instruction{écrireOctet(octetDecodé, fb2)}
+       				\affecter{aTemp}{aHuff}
+       				}
+       			}
+       		}
+      	\instruction{fermer(fb2, écriture)}	
     }
     
-    \procedure{seDeplacerDansLArbre}{\paramEntree{arbreCourant : \ArbreDeHuffman, fichierBinaireEntrant : \fichierbinaire}, \paramSortie{fichierBinaireSortant : \fichierbinaire}}{}
-    {}
-    {
-        \sialors{\textbf{non} \textproc{estUneFeuille}(arbreCourant)}
-        {
-            bitCourant = \textproc{lireBit}(fichierBinaireEntrant)
-            
-            \sialors{bitCourant = 0}
-            {
-                \textproc{seDeplacerDansLArbre}(\textproc{obtenirFilsGauche}(arbreCourant), fichierBinaireEntrant, fichierBinaireSortant)
-            }
-            \sialors{bitCourant = 1}
-            {
-                \textproc{seDeplacerDansLArbre}(\textproc{obtenirFilsDroit}(arbreCourant), fichierBinaireEntrant, fichierBinaireSortant)
-            }
-        }
-        \sialors{\textproc{estUneFeuille}(arbreCourant)}
-        {
-            \textproc{ecrireOctet}(\textproc{obtenirOctet}(arbreCourant), fichierBinaireSortant)
-            \textproc{seDeplacerDansLArbre}(arbreDeHuffman, fichierBinaireEntrant, fichierBinaireSortant)
-        }
-    }
 \end{algorithme}
