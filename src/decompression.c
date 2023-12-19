@@ -4,13 +4,14 @@
 #include "fileDePrioriteDArbreDeHuffman.h"
 #include "statistiques.h"
 #include "arbreDeHuffman.h"
+#include "octet.h"
 
 void D_decompresser(FILE *f) {
 
 }
 
-void D_seDeplacerDansLArbre(int bit, ArbreDeHuffman *a) {
-    if (bit == 0) {
+void D_seDeplacerDansLArbre(Bit b, ArbreDeHuffman *a) {
+    if (b == 0) {
         *a = ADH_obtenirFilsGauche(*a);
     } else {
         *a = ADH_obtenirFilsDroit(*a);
