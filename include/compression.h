@@ -6,7 +6,7 @@
 
 #define IDENTIFIANT 1000
 
-void compresser(FILE *f, char *filename);
+void C_compresser(FILE *f, char *filename);
 
 
 #endif
