@@ -19,8 +19,8 @@ void D_seDeplacerDansLArbre(int bit, ArbreDeHuffman *a) {
 
 void D_libererArbreDeHuffman(ArbreDeHuffman a) {
     if (!(ADH_estUneFeuille(a))) {
-        libererArbreDeHuffman(ADH_obtenirFilsDroit(a));
-        libererArbreDeHuffman(ADH_obtenirFilsGauche(a));
+        D_libererArbreDeHuffman(ADH_obtenirFilsDroit(a));
+        D_libererArbreDeHuffman(ADH_obtenirFilsGauche(a));
     }
     free(a);
 }

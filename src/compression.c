@@ -22,29 +22,6 @@ void C_obtenirStatistiquesEtTailleFichier(FILE *f, Statistiques *s,  unsigned lo
     }
 }
 
-FileDePriorite C_construireFileDePriorite(Statistiques s) {
-    FileDePriorite fdp;
-    Octet octet;
-    unsigned long occurence;
-
-    fdp = FDPAH_fileDePriorite();
-
-    for(unsigned char o = 0; o < 256; o++) {
-        octet = O_naturelVersOctet(o);
-        occurence = S_obtenirOccurence(s, octet);
-
-        if(occurence > 0) {
-            FDPAH_enfiler(&fdp, ADH_arbreDeHuffman(octet, occurence));
-        }
-    }
-
-    return fdp;
-}
-
-ArbreDeHuffman construireArbreDeHuffman(Statistiques s){
-    return NULL;
-}
-
 void C_obtenirTableDeCodageRecursif(TableDeCodage *tdc, ArbreDeHuffman a, CodeBinaire cb) {
     CodeBinaire cbCopie;
     
@@ -169,5 +146,5 @@ void C_compresser(FILE *f, char *fbCompresse) {
     S_statistiques(&s);
     unsigned long taille;
     C_obtenirStatistiquesEtTailleFichier(f, &s, &taille);
-    C_encoder(f,fbCompresse,C_obtenirTableDeCodage(construireArbreDeHuffman(s)),s,taille);
+    C_encoder(f,fbCompresse,C_obtenirTableDeCodage(C_construireArbreDeHuffman(s)),s,taille);
 }

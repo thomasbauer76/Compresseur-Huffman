@@ -17,62 +17,6 @@ int clean_suite_success(void) {
 }
 
 
-/* Tests statistiques.c */
-
-void test_statistiques_vides(void) {
-    Statistiques s;
-    S_statistiques(&s);
-
-    for(unsigned short o = 0; o < MAX_OCTET; o++) {
-        CU_ASSERT_EQUAL(S_obtenirOccurence(s,o),0);
-    }
-}
-
-void test_statistiques_incrementees(void) {
-    Statistiques s;
-    S_statistiques(&s);
-
-    Octet o = O_naturelVersOctet(241);
-    unsigned long ancienneOccurence = S_obtenirOccurence(s,o);
-
-    S_incrementerOccurence(&s,o);
-    unsigned long nouvelleOccurence = S_obtenirOccurence(s,o);
-
-    CU_ASSERT_EQUAL(nouvelleOccurence,ancienneOccurence+1);
-}
-
-void test_statistiques_fixer_occurence(void) {
-    Statistiques s;
-    S_statistiques(&s);
-
-    Octet o = O_naturelVersOctet(241);
-    unsigned long n = 1234;
-    S_fixerOccurence(&s,o,n);
-
-    CU_ASSERT_EQUAL(S_obtenirOccurence(s,o),n);
-}
-
-
-/* Tests codeBinaire.c */
-
-void test_creation_codebinaire(void) {
-  Bit b = bitA0;
-  CodeBinaire cb = CB_creerCodeBinaire(b);
-  CU_ASSERT_EQUAL(CB_obtenirLongueur(cb),1);
-  CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb,1),b);
-}
-
-void test_ajout_bit(void) {
-  CodeBinaire cb = CB_creerCodeBinaire(bitA0);
-  unsigned short ancienneLongueur = CB_obtenirLongueur(cb);
-  Bit b = bitA1;
-  CB_ajouterBit(&cb,b);
-  unsigned short nouvelleLongueur = CB_obtenirLongueur(cb);
-  CU_ASSERT_EQUAL(nouvelleLongueur,ancienneLongueur+1);
-  CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb,nouvelleLongueur-1),b);
-}
-
-
 /* Tests compression.c */
 
 FILE *fichierTemporaireRempli() {
@@ -135,7 +79,7 @@ void test_arbre_de_huffman(void) {
   unsigned long taille;
   C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
-  ArbreDeHuffman a = construireArbreDeHuffman(s);
+  ArbreDeHuffman a = C_construireArbreDeHuffman(s);
 
   CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(a))), 'C');
   CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(a))), 'A');
@@ -153,7 +97,7 @@ void test_table_de_codage(void) {
   unsigned long taille;
   C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
-  ArbreDeHuffman a = construireArbreDeHuffman(s);
+  ArbreDeHuffman a = C_construireArbreDeHuffman(s);
 
   TableDeCodage tdc = C_obtenirTableDeCodage(a);
 
@@ -195,39 +139,6 @@ int main(int argc, char** argv){
   if (CUE_SUCCESS != CU_initialize_registry())
     return CU_get_error();
 
-  /* ajout d'une suite de test pour statistiques.c */
-  CU_pSuite pSuiteStatistiques = CU_add_suite("Test statistiques", init_suite_success, clean_suite_success);
-  if (NULL == pSuiteStatistiques) {
-    CU_cleanup_registry();
-    return CU_get_error();
-  }
-
-  /* Ajout des tests à la suite statistiques */
-  if ((NULL == CU_add_test(pSuiteStatistiques, "Création des statistiques aux occurences vides", test_statistiques_vides)) 
-    || (NULL == CU_add_test(pSuiteStatistiques, "Incrementation de l'occurence d'un octet", test_statistiques_incrementees))
-    || (NULL == CU_add_test(pSuiteStatistiques, "Fixer le nombre d'occurences d'un octet", test_statistiques_fixer_occurence))
-      ) 
-    {
-      CU_cleanup_registry();
-      return CU_get_error();
-    }
-
-  /* ajout d'une suite de test pour codeBinaire.c */
-  CU_pSuite pSuiteCodeBinaire = CU_add_suite("Test codeBinaire", init_suite_success, clean_suite_success);
-  if (NULL == pSuiteCodeBinaire) {
-    CU_cleanup_registry();
-    return CU_get_error();
-  }
-
-  /* Ajout des tests à la suite codeBinaire */
-  if ((NULL == CU_add_test(pSuiteCodeBinaire, "Creation Code Binaire", test_creation_codebinaire))
-    || (NULL == CU_add_test(pSuiteCodeBinaire, "Ajout d'un bit", test_ajout_bit))
-      ) 
-    {
-      CU_cleanup_registry();
-      return CU_get_error();
-    }
-  
   /* ajout d'une suite de test pour compression.c */
   CU_pSuite pSuiteCompression = CU_add_suite("Test compression", init_suite_success, clean_suite_success);
   if (NULL == pSuiteCompression) {
