@@ -25,3 +25,13 @@ void D_libererArbreDeHuffman(ArbreDeHuffman a) {
     }
     free(a);
 }
+
+FILE* D_decoder(ArbreDeHuffman aHuff, FILE *fb1) {
+    FILE *fb2;
+    fb2 = fopen("", "w");
+    return fb2;
+}
+
+void lireStatistiques(FILE *fb, Statistiques s) {
+
+}

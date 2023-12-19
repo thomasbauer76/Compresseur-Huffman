@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <string.h>
+#include <assert.h>
+#include "compression.h"
 #include "octet.h"
+#include "arbreDeHuffman.h"
 #include "fileDePrioriteDArbreDeHuffman.h"
 #include "arbreDeHuffman.h"
 #include "tableDeCodage.h"
 #include "statistiques.h"
 #include "codeBinaire.h"
-#include "compression.h"
-#include "arbreDeHuffman.h"
+#include "construireArbreDeHuffman.h"
 
 void C_obtenirStatistiquesEtTailleFichier(FILE *f, Statistiques *s,  unsigned long *taille) {
     rewind(f);
@@ -66,6 +68,7 @@ void C_ecrireStatistiques(FILE *f, Statistiques s) {
 }
 
 Octet C_codeBinaireEnOctet(CodeBinaire cb) {
+    assert(CB_obtenirLongueur(cb) == MAX_CB);
     return O_creerOctet(CB_obtenirIemeBit(cb, 0),
                         CB_obtenirIemeBit(cb, 1),
                         CB_obtenirIemeBit(cb, 2),
@@ -146,5 +149,5 @@ void C_compresser(FILE *f, char *fbCompresse) {
     S_statistiques(&s);
     unsigned long taille;
     C_obtenirStatistiquesEtTailleFichier(f, &s, &taille);
-    C_encoder(f,fbCompresse,C_obtenirTableDeCodage(C_construireArbreDeHuffman(s)),s,taille);
+    C_encoder(f, fbCompresse, C_obtenirTableDeCodage(CADH_construireArbreDeHuffman(s)), s, taille);
 }
