@@ -1,5 +1,6 @@
 #include <stddef.h>
 #include <stdlib.h>
+#include <assert.h>
 #include "fileDePrioriteDArbreDeHuffman.h"
 #include "arbreDeHuffman.h"
 
@@ -29,6 +30,7 @@ void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a) {
 }
 
 ArbreDeHuffman FDPAH_obtenirElementEtDefiler(FileDePriorite *p_fdp) {
+	assert(!FDPAH_estVide(*p_fdp));
 	ArbreDeHuffman a = (*p_fdp) -> arbre;
 	FileDePriorite* p_temp = p_fdp;
 	p_fdp = &((*p_temp) -> fileSuivante);
