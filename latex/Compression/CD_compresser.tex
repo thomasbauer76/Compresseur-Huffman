@@ -1,9 +1,28 @@
 \begin{algorithme}
     \procedure{compresser}{\paramEntreeSortie{f : \fichierbinaire}, \paramSortie{fCompresse : \fichierbinaire}}{}
-    {s : \statistiques, taille : Naturel}
+    {s : \statistiques, taillefb : Naturel}
     {
-        \affecter{s}{statistiques()}
-        \instruction{obtenirStatistiquesEtTailleFichier(f, s, taille)}
-        \instruction{encoder(s, taille, fb, obtenirTableDeCodage(construireArbreDeHuffman(s)), fCompresse)}
+        \sialors{estOuvert(fbInitial)}
+        {
+            \instruction{fermer(fbInitial)}
+        }
+        \instruction{ouvrir(fbInitial,lecture)}
+        
+        \sialors{estOuvert(fbCompresse)}
+        {
+            \instruction{fermer(fbCompresse)}
+        }
+        \instruction{ouvrir(fbCompresse, ecriture)}
+        \\
+        \instruction{obtenirStatistiquesEtTailleFichier(f, s, taillefb)}    
+        \\
+        \instruction{ecrireIdentifiant(fbCompresse)}
+        \instruction{ecrireTailleFichier(fbCompresse, taillefb)}
+        \sialors{taillefb > 0}
+        {
+            \instruction{ecrireStatistiques(fbCompresse, s)}
+            \instruction{encoder(fb, obtenirTableDeCodage(construireArbreDeHuffman(s)), fCompresse)}
+        }
+        \instruction{fermer(fbCompresse)}
     }
 \end{algorithme}
