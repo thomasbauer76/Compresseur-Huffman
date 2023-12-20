@@ -55,8 +55,8 @@ void test_statistiques_fixer_occurence(void) {
 void test_creation_codebinaire(void) {
   Bit b = bitA0;
   CodeBinaire cb = CB_creerCodeBinaire(b);
-  CU_ASSERT_EQUAL(CB_obtenirLongueur(cb),1);
-  CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb,1),b);
+  CU_ASSERT_EQUAL(CB_obtenirLongueur(cb), 0);
+  CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, 0), b);
 }
 
 void test_ajout_bit(void) {
@@ -65,8 +65,8 @@ void test_ajout_bit(void) {
   Bit b = bitA1;
   CB_ajouterBit(&cb,b);
   unsigned short nouvelleLongueur = CB_obtenirLongueur(cb);
-  CU_ASSERT_EQUAL(nouvelleLongueur,ancienneLongueur+1);
-  CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb,nouvelleLongueur-1),b);
+  CU_ASSERT_EQUAL(nouvelleLongueur, ancienneLongueur+1);
+  CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, nouvelleLongueur-1), b);
 }
 
 
