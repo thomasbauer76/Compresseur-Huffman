@@ -55,7 +55,7 @@ void test_statistiques_fixer_occurence(void) {
 void test_creation_codebinaire(void) {
   Bit b = bitA0;
   CodeBinaire cb = CB_creerCodeBinaire(b);
-  CU_ASSERT_EQUAL(CB_obtenirLongueur(cb), 0);
+  CU_ASSERT_EQUAL(CB_obtenirLongueur(cb), 1);
   CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, 0), b);
 }
 
