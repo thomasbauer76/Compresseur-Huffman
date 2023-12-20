@@ -157,23 +157,8 @@ int main(int argc, char** argv){
   if (CUE_SUCCESS != CU_initialize_registry())
     return CU_get_error();
 
-  /* ajout d'une suite de test pour construireArbreDeHuffman.c */
-  CU_pSuite pSuiteCADH = CU_add_suite("Test construction de l'Arbre De Huffman", init_suite_success, clean_suite_success);
-  if (NULL == pSuiteCADH) {
-    CU_cleanup_registry();
-    return CU_get_error();
-  }
 
-  /* Ajout des tests à la suite construireArbreDeHuffman */
-  if ((NULL == CU_add_test(pSuiteCADH, "Construction de la file de priorité à partir des statistiques", test_file_de_priorite))
-    || (NULL == CU_add_test(pSuiteCADH, "Construction de l'arbre de Huffman à partir des statistiques", test_arbre_de_huffman))
-      ) 
-    {
-      CU_cleanup_registry();
-      return CU_get_error();
-    }
-
-  /* ajout d'une suite de test pour compression.c */
+  /* ajout d'une suite de test pour compression.c et construireArbreDeHuffman.c */
   CU_pSuite pSuiteCompression = CU_add_suite("Test compression", init_suite_success, clean_suite_success);
   if (NULL == pSuiteCompression) {
     CU_cleanup_registry();
@@ -183,6 +168,8 @@ int main(int argc, char** argv){
   /* Ajout des tests à la suite compression */
   if ((NULL == CU_add_test(pSuiteCompression, "Obtention des statistiques d'un fichier", test_obtenir_statistiques))
     || (NULL == CU_add_test(pSuiteCompression, "Obtention de la taille d'un fichier", test_obtenir_taille_fichier))
+    || (NULL == CU_add_test(pSuiteCompression, "Construction de la file de priorité à partir des statistiques", test_file_de_priorite))
+    || (NULL == CU_add_test(pSuiteCompression, "Construction de l'arbre de Huffman à partir des statistiques", test_arbre_de_huffman))
     || (NULL == CU_add_test(pSuiteCompression, "Obtention de la table de codage à partir de l'arbre de huffman", test_table_de_codage))
     || (NULL == CU_add_test(pSuiteCompression, "Conversion d'un code binaire de 8 bits vers un octet", test_code_binaire_8_bits_vers_octet))
       ) 
