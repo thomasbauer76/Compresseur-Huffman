@@ -69,6 +69,113 @@ void test_ajout_bit(void) {
   CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb,nouvelleLongueur-1),b);
 }
 
+/* Tests arbreDeHuffman.c */
+
+void test_creation_arbreDeHuffman(void) {
+  Octet o; 
+  unsigned long f;
+ 
+  CU_ASSERT(ADH_estUneFeuille(ADH_arbreDeHuffman(o,f)));
+  CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_arbreDeHuffman(o,f)), f);
+}
+
+void test_fussioner_ADH(void) {
+  Octet o;
+  unsigned long n;
+  ArbreDeHuffman ad = ADH_arbreDeHuffman(o, n);
+  ArbreDeHuffman ag = ADH_arbreDeHuffman(o, n);
+  
+  CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_fusionner(ad,ag)),ADH_obtenirFrequence(ag) + ADH_obtenirFrequence(ad));
+  CU_ASSERT_EQUAL(ADH_obtenirFilsDroit(ADH_fusionner(ag,ad)),ag);
+  CU_ASSERT_EQUAL(ADH_obtenirFilsGauche(ADH_fusionner(ag,ad)),ad);
+  CU_ASSERT(ADH_estUneFeuille(ADH_fusionner(ag,ad)));
+}
+
+void test_estUneFeuille(void) {
+  Octet o; 
+  unsigned long f;
+  
+  CU_ASSERT(ADH_estUneFeuille(ADH_arbreDeHuffman(o, f)));
+}
+
+void test_obtenir_octet(void) {
+  Octet o; 
+  unsigned long f;
+  
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_arbreDeHuffman(o, f)), o);
+}
+
+void test_obtenir_frequence_ADH(void) {
+  Octet o; 
+  unsigned long f;
+
+  ArbreDeHuffman ad = ADH_arbreDeHuffman(o, f);
+  ArbreDeHuffman ag = ADH_arbreDeHuffman(o, f);
+
+  
+  CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_fusionner(ad, ag)), ADH_obtenirFrequence(ag) + ADH_obtenirFrequence(ad));
+  CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_arbreDeHuffman(o, f)), f);
+}
+
+void test_obtenir_fils_gauche(void) {
+  Octet o; 
+  unsigned long f;
+
+  ArbreDeHuffman ad = ADH_arbreDeHuffman(o, f);
+  ArbreDeHuffman ag = ADH_arbreDeHuffman(o, f);
+
+  CU_ASSERT_EQUAL(ADH_obtenirFilsGauche(ADH_fusionner(ag,ad)), ad);
+}
+
+void test_obtenir_fils_droit(void) {
+  Octet o; 
+  unsigned long f;
+
+  ArbreDeHuffman ad = ADH_arbreDeHuffman(o, f);
+  ArbreDeHuffman ag = ADH_arbreDeHuffman(o, f);
+
+  CU_ASSERT_EQUAL(ADH_obtenirFilsDroit(ADH_fusionner(ag,ad)), ag);
+}
+
+/* Tests FileDePriorite.c */
+
+void test_creation_filedePriorite(void) {
+  FileDePriorite fdp;
+  fdp = FDPAH_fileDePriorite();
+
+  CU_ASSERT(FDPAH_estVide(FDPAH_fileDePriorite()));
+}
+
+void test_estVide_filedePriorite(void) {
+  FileDePriorite fdp;
+  fdp = FDPAH_fileDePriorite();
+  
+
+  CU_ASSERT(FDPAH_estVide(FDPAH_fileDePriorite()));
+}
+
+void test_enfiler(void) {
+  Octet o; 
+  unsigned long f;
+  FileDePriorite fdp;
+  fdp = FDPAH_fileDePriorite();
+  ArbreDeHuffman a = ADH_arbreDeHuffman(o, f);
+  FDPAH_enfiler(&fdp, a);
+  CU_ASSERT(FDPAH_estVide(FDPAH_fileDePriorite()));
+  CU_ASSERT(FDPAH_estVide(&fdp));
+}
+
+void test_obtenirElement_et_Defiler(void) {
+  Octet o; 
+  unsigned long f;
+  FileDePriorite fdp;
+  fdp = FDPAH_fileDePriorite();
+  ArbreDeHuffman a = ADH_arbreDeHuffman(o, f);
+  FDPAH_enfiler(&fdp, a);
+  CU_ASSERT_EQUAL((FDPAH_obtenirElementEtDefiler(&fdp)), fdp);
+  CU_ASSERT_EQUAL((FDPAH_obtenirElementEtDefiler(&fdp)), a);
+}
+
 
 int main(int argc, char** argv){
 
