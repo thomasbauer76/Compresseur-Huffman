@@ -6,12 +6,7 @@
         {
             \instruction{fermer(fbInitial)}
         }
-        \instruction{ouvrir(fbInitial,lecture)}
-        
-        \sialors{estOuvert(fbCompresse)}
-        {
-            \instruction{fermer(fbCompresse)}
-        }
+        \instruction{ouvrir(fbInitial, lecture)}
         \instruction{ouvrir(fbCompresse, ecriture)}
         \\
         \instruction{obtenirStatistiquesEtTailleFichier(f, s, taillefb)}    
@@ -23,6 +18,7 @@
             \instruction{ecrireStatistiques(fbCompresse, s)}
             \instruction{encoder(fb, obtenirTableDeCodage(construireArbreDeHuffman(s)), fCompresse)}
         }
+        \\
         \instruction{fermer(fbCompresse)}
     }
 \end{algorithme}

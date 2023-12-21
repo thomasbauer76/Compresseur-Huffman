@@ -57,6 +57,8 @@ dkms.conf
 /latex/*.fdb_latexmk
 /latex/*.aux
 /latex/*.log
+/bin/*
+/tests/*
 *.gz
-.~lock.Tableau_des_tâches.ods#
+*.ods#
 latex/main_test.tex

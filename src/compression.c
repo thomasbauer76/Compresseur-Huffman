@@ -115,11 +115,9 @@ void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBina
     }
 }
 
-void C_encoder(FILE *f, char *filename, TableDeCodage tdc) {
+void C_encoder(FILE *f, FILE *fbCompresse, TableDeCodage tdc) {
     unsigned short i;
 
-    rewind(f);
-    FILE *fbCompresse = fopen(strcat(filename,".huff"), "wb");
     // Création d'un code binaire temporaire initalisé à 8 bits pour rentrer dans la première condition de la fonction concatenerCodeBinaireEnOctet
     CodeBinaire cbTemp = CB_creerCodeBinaire(bitA0);
     for (i = 1; i < MAX_CB; i++)
@@ -140,26 +138,23 @@ void C_encoder(FILE *f, char *filename, TableDeCodage tdc) {
         unsigned char octet = O_octetVersNaturel(C_codeBinaireEnOctet(cbTemp));
         fwrite(&octet, sizeof(unsigned char), 1, fbCompresse);
     }
-
-    fclose(fbCompresse);
 }
 
 void C_compresser(FILE *f, char *filename) {
     Statistiques s;
-    S_statistiques(&s);
     unsigned long taille;
 
     rewind(f);
     FILE *fbCompresse = fopen(strcat(filename,".huff"), "wb");
 
     C_obtenirStatistiquesEtTailleFichier(f, &s, &taille);
+
     // Ecriture des données importantes avant d'encoder
     C_ecrireIdentifiant(fbCompresse);
     C_ecrireTailleFichier(fbCompresse, taille);
-
     if(taille > 0) {
-         C_ecrireStatistiques(fbCompresse, s);
-         C_encoder(f, filename, C_obtenirTableDeCodage(CADH_construireArbreDeHuffman(s)));
+        C_ecrireStatistiques(fbCompresse, s);
+        C_encoder(f, fbCompresse, C_obtenirTableDeCodage(CADH_construireArbreDeHuffman(s)));
     }
    
     fclose(fbCompresse);

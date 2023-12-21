@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "octet.h"
 #include "statistiques.h"
 #include "arbreDeHuffman.h"
 #include "fileDePrioriteDArbreDeHuffman.h"
@@ -10,7 +11,8 @@ FileDePriorite CADH_construireFileDePriorite(Statistiques s) {
 
     fdp = FDPAH_fileDePriorite();
 
-    for(unsigned char o = 0; o < 256; o++) {
+    unsigned short o;
+    for(o = 0; o < MAX_OCTET; o++) {
         octet = O_naturelVersOctet(o);
         occurence = S_obtenirOccurence(s, octet);
 
