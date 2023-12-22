@@ -72,18 +72,20 @@ void test_ajout_bit(void) {
 /* Tests arbreDeHuffman.c */
 
 void test_creation_arbreDeHuffman(void) {
-  Octet o; 
-  unsigned long f;
+  Octet o = 241 ; 
+  unsigned long f = 2;
  
   CU_ASSERT(ADH_estUneFeuille(ADH_arbreDeHuffman(o,f)));
   CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_arbreDeHuffman(o,f)), f);
 }
 
 void test_fussioner_ADH(void) {
-  Octet o;
-  unsigned long n;
-  ArbreDeHuffman ad = ADH_arbreDeHuffman(o, n);
-  ArbreDeHuffman ag = ADH_arbreDeHuffman(o, n);
+  Octet og = 241;
+  unsigned long ng = 2;
+  Octet od = 121;
+  unsigned long nd = 3;
+  ArbreDeHuffman ad = ADH_arbreDeHuffman(od, nd);
+  ArbreDeHuffman ag = ADH_arbreDeHuffman(og, ng);
   
   CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_fusionner(ad,ag)),ADH_obtenirFrequence(ag) + ADH_obtenirFrequence(ad));
   CU_ASSERT_EQUAL(ADH_obtenirFilsDroit(ADH_fusionner(ag,ad)),ag);
@@ -92,82 +94,82 @@ void test_fussioner_ADH(void) {
 }
 
 void test_estUneFeuille(void) {
-  Octet o; 
-  unsigned long f;
-  
-  CU_ASSERT(ADH_estUneFeuille(ADH_arbreDeHuffman(o, f)));
+  Octet o = 241; 
+  unsigned long f = 2;
+  bool feuille = 1;
+  CU_ASSERT_EQUAL(ADH_estUneFeuille(ADH_arbreDeHuffman(o, f)), feuille);
 }
 
-void test_obtenir_octet(void) {
-  Octet o; 
-  unsigned long f;
+void test_obtenir_octet_ADH(void) {
+  Octet o = 241; 
+  unsigned long f = 2;
   
   CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_arbreDeHuffman(o, f)), o);
 }
 
 void test_obtenir_frequence_ADH(void) {
-  Octet o; 
-  unsigned long f;
-
-  ArbreDeHuffman ad = ADH_arbreDeHuffman(o, f);
-  ArbreDeHuffman ag = ADH_arbreDeHuffman(o, f);
-
+  Octet og = 241;
+  unsigned long ng = 2;
+  Octet od = 242;
+  unsigned long nd = 3;
+  ArbreDeHuffman ad = ADH_arbreDeHuffman(od, nd);
+  ArbreDeHuffman ag = ADH_arbreDeHuffman(og, ng);
   
   CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_fusionner(ad, ag)), ADH_obtenirFrequence(ag) + ADH_obtenirFrequence(ad));
-  CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_arbreDeHuffman(o, f)), f);
+  CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_arbreDeHuffman(od, nd)), nd);
+  CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_arbreDeHuffman(og, ng)), ng);
 }
 
 void test_obtenir_fils_gauche(void) {
-  Octet o; 
-  unsigned long f;
+  Octet og = 241;
+  unsigned long ng = 2;
+  Octet od = 121;
+  unsigned long nd = 3;
+  ArbreDeHuffman ad = ADH_arbreDeHuffman(od, nd);
+  ArbreDeHuffman ag = ADH_arbreDeHuffman(og, ng);
 
-  ArbreDeHuffman ad = ADH_arbreDeHuffman(o, f);
-  ArbreDeHuffman ag = ADH_arbreDeHuffman(o, f);
-
-  CU_ASSERT_EQUAL(ADH_obtenirFilsGauche(ADH_fusionner(ag,ad)), ad);
+  CU_ASSERT_EQUAL(ADH_obtenirFilsGauche(ADH_fusionner(ag,ad)), ag);
 }
 
 void test_obtenir_fils_droit(void) {
-  Octet o; 
-  unsigned long f;
+  Octet og = 241;
+  unsigned long ng = 2;
+  Octet od = 121;
+  unsigned long nd = 3;
+  ArbreDeHuffman ad = ADH_arbreDeHuffman(od, nd);
+  ArbreDeHuffman ag = ADH_arbreDeHuffman(og, ng);
 
-  ArbreDeHuffman ad = ADH_arbreDeHuffman(o, f);
-  ArbreDeHuffman ag = ADH_arbreDeHuffman(o, f);
-
-  CU_ASSERT_EQUAL(ADH_obtenirFilsDroit(ADH_fusionner(ag,ad)), ag);
+  CU_ASSERT_EQUAL(ADH_obtenirFilsDroit(ADH_fusionner(ag,ad)), ad);
 }
 
 /* Tests FileDePriorite.c */
 
 void test_creation_filedePriorite(void) {
-  FileDePriorite fdp;
-  fdp = FDPAH_fileDePriorite();
-
-  CU_ASSERT(FDPAH_estVide(FDPAH_fileDePriorite()));
+  FileDePriorite fdp = FDPAH_fileDePriorite();
+  
+  CU_ASSERT(FDPAH_estVide(fdp));
 }
 
 void test_estVide_filedePriorite(void) {
-  FileDePriorite fdp;
-  fdp = FDPAH_fileDePriorite();
+  FileDePriorite fdp = FDPAH_fileDePriorite();
   
-
-  CU_ASSERT(FDPAH_estVide(FDPAH_fileDePriorite()));
+  CU_ASSERT(FDPAH_estVide(fdp));
 }
 
 void test_enfiler(void) {
-  Octet o; 
-  unsigned long f;
+  Octet o = 241; 
+  unsigned long f = 2;
   FileDePriorite fdp;
+  bool nonEstVide = 0;
   fdp = FDPAH_fileDePriorite();
   ArbreDeHuffman a = ADH_arbreDeHuffman(o, f);
   FDPAH_enfiler(&fdp, a);
-  CU_ASSERT(FDPAH_estVide(FDPAH_fileDePriorite()));
-  CU_ASSERT(FDPAH_estVide(&fdp));
+  CU_ASSERT_EQUAL(!(FDPAH_estVide(fdp)), nonEstVide);
 }
 
 void test_obtenirElement_et_Defiler(void) {
-  Octet o; 
-  unsigned long f;
+  Octet o = 241; 
+  unsigned long f = 2;
   FileDePriorite fdp;
   fdp = FDPAH_fileDePriorite();
   ArbreDeHuffman a = ADH_arbreDeHuffman(o, f);
@@ -215,6 +217,46 @@ int main(int argc, char** argv){
       CU_cleanup_registry();
       return CU_get_error();
     }
+
+  /* ajout d'une suite de test pour arbreDeHuffman.c */
+  CU_pSuite pSuiteArbreDeHuffman = CU_add_suite("Test arbreDeHuffman", init_suite_success, clean_suite_success);
+  if (NULL == pSuiteArbreDeHuffman) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
+  /* Ajout des tests à la suite arbreDeHuffman */
+  if ((NULL == CU_add_test(pSuiteArbreDeHuffman, "Creation d'un arbre de Huffman à partir d'un octet et une occurence", test_creation_arbreDeHuffman)) 
+    || (NULL == CU_add_test(pSuiteArbreDeHuffman, "Fusion de deux feuilles pour cree un arbre de Huffman", test_fussioner_ADH))
+    || (NULL == CU_add_test(pSuiteArbreDeHuffman, "Savoir si l'arbre de Huffman est une Feuille ", test_estUneFeuille))
+    || (NULL == CU_add_test(pSuiteArbreDeHuffman, "Obtenir l'octet present sur une feuille", test_obtenir_octet_ADH))
+    || (NULL == CU_add_test(pSuiteArbreDeHuffman, "Obtenir la frequence d'apparition present sur une feuille", test_obtenir_frequence_ADH))
+    || (NULL == CU_add_test(pSuiteArbreDeHuffman, "Obtenir le Fils gauche d'un arbre de Huffman", test_obtenir_fils_gauche))
+    || (NULL == CU_add_test(pSuiteArbreDeHuffman, "Obtenir le Fils droit d'un arbre de Huffman", test_obtenir_fils_droit))
+      ) 
+    {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
+
+  /* ajout d'une suite de test pour fileDePrioriteDArbreDeHuffman.c */
+  CU_pSuite pSuiteFileDePriorite = CU_add_suite("Test fileDePrioriteDArbreDeHuffman", init_suite_success, clean_suite_success);
+  if (NULL == pSuiteFileDePriorite) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
+  /* Ajout des tests à la suite FileDePriorite*/
+  if ((NULL == CU_add_test(pSuiteFileDePriorite, "Création d'une File De Priorité vide", test_creation_filedePriorite)) 
+    || (NULL == CU_add_test(pSuiteFileDePriorite, "Verifier q'une File De priorité est Vide ", test_estVide_filedePriorite))
+    || (NULL == CU_add_test(pSuiteFileDePriorite, "Enfiler des éléments dans une File De Priorité ", test_enfiler))
+    || (NULL == CU_add_test(pSuiteFileDePriorite, "Obtenir un élément et défiler la File De Priorité", test_obtenirElement_et_Defiler))
+  )
+    {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
+  
 
   /* Lancement des tests */
   CU_basic_set_mode(CU_BRM_VERBOSE);
