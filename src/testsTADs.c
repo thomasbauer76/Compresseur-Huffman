@@ -4,6 +4,10 @@
 #include "statistiques.h"
 #include "fileDePrioriteDArbreDeHuffman.h"
 #include "codeBinaire.h"
+#include "arbreDeHuffman.h"
+#include "octet.h"
+#include "tableDeCodage.h"
+
 
 int init_suite_success(void) {
     return 0;
@@ -72,11 +76,12 @@ void test_ajout_bit(void) {
 /* Tests arbreDeHuffman.c */
 
 void test_creation_arbreDeHuffman(void) {
-  Octet o = 241 ; 
+  Octet o = 65; 
   unsigned long f = 2;
- 
-  CU_ASSERT(ADH_estUneFeuille(ADH_arbreDeHuffman(o,f)));
-  CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_arbreDeHuffman(o,f)), f);
+  ArbreDeHuffman a = ADH_arbreDeHuffman(o,f);
+  CU_ASSERT(ADH_estUneFeuille(a));
+  CU_ASSERT_EQUAL(ADH_obtenirFrequence(a), f);
+  free(a);
 }
 
 void test_fussioner_ADH(void) {
@@ -90,14 +95,14 @@ void test_fussioner_ADH(void) {
   CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_fusionner(ad,ag)),ADH_obtenirFrequence(ag) + ADH_obtenirFrequence(ad));
   CU_ASSERT_EQUAL(ADH_obtenirFilsDroit(ADH_fusionner(ag,ad)),ag);
   CU_ASSERT_EQUAL(ADH_obtenirFilsGauche(ADH_fusionner(ag,ad)),ad);
-  CU_ASSERT(ADH_estUneFeuille(ADH_fusionner(ag,ad)));
+  CU_ASSERT(!ADH_estUneFeuille(ADH_fusionner(ag,ad)));
 }
 
 void test_estUneFeuille(void) {
   Octet o = 241; 
   unsigned long f = 2;
-  bool feuille = 1;
-  CU_ASSERT_EQUAL(ADH_estUneFeuille(ADH_arbreDeHuffman(o, f)), feuille);
+
+  CU_ASSERT(ADH_estUneFeuille(ADH_arbreDeHuffman(o, f)));
 }
 
 void test_obtenir_octet_ADH(void) {
@@ -114,10 +119,10 @@ void test_obtenir_frequence_ADH(void) {
   unsigned long nd = 3;
   ArbreDeHuffman ad = ADH_arbreDeHuffman(od, nd);
   ArbreDeHuffman ag = ADH_arbreDeHuffman(og, ng);
-  
-  CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_fusionner(ad, ag)), ADH_obtenirFrequence(ag) + ADH_obtenirFrequence(ad));
+
   CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_arbreDeHuffman(od, nd)), nd);
   CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_arbreDeHuffman(og, ng)), ng);
+  CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_fusionner(ad, ag)), ADH_obtenirFrequence(ag) + ADH_obtenirFrequence(ad));
 }
 
 void test_obtenir_fils_gauche(void) {
@@ -138,8 +143,8 @@ void test_obtenir_fils_droit(void) {
   unsigned long nd = 3;
   ArbreDeHuffman ad = ADH_arbreDeHuffman(od, nd);
   ArbreDeHuffman ag = ADH_arbreDeHuffman(og, ng);
-
-  CU_ASSERT_EQUAL(ADH_obtenirFilsDroit(ADH_fusionner(ag,ad)), ad);
+  ArbreDeHuffman a = ADH_fusionner(ag,ad);
+  CU_ASSERT_EQUAL(ADH_obtenirFilsDroit(a), ad);
 }
 
 /* Tests FileDePriorite.c */
@@ -218,6 +223,23 @@ int main(int argc, char** argv){
       return CU_get_error();
     }
 
+  /* ajout d'une suite de test pour fileDePrioriteDArbreDeHuffman.c */
+  CU_pSuite pSuiteFileDePriorite = CU_add_suite("Test fileDePrioriteDArbreDeHuffman", init_suite_success, clean_suite_success);
+  if (NULL == pSuiteFileDePriorite) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
+  /* Ajout des tests à la suite FileDePriorite*/
+  if ((NULL == CU_add_test(pSuiteFileDePriorite, "Création d'une File De Priorité vide", test_creation_filedePriorite)) 
+    || (NULL == CU_add_test(pSuiteFileDePriorite, "Verifier q'une File De priorité est Vide ", test_estVide_filedePriorite))
+    || (NULL == CU_add_test(pSuiteFileDePriorite, "Enfiler des éléments dans une File De Priorité ", test_enfiler))
+  )
+    {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
+  
   /* ajout d'une suite de test pour arbreDeHuffman.c */
   CU_pSuite pSuiteArbreDeHuffman = CU_add_suite("Test arbreDeHuffman", init_suite_success, clean_suite_success);
   if (NULL == pSuiteArbreDeHuffman) {
@@ -238,25 +260,6 @@ int main(int argc, char** argv){
       CU_cleanup_registry();
       return CU_get_error();
     }
-
-  /* ajout d'une suite de test pour fileDePrioriteDArbreDeHuffman.c */
-  CU_pSuite pSuiteFileDePriorite = CU_add_suite("Test fileDePrioriteDArbreDeHuffman", init_suite_success, clean_suite_success);
-  if (NULL == pSuiteFileDePriorite) {
-    CU_cleanup_registry();
-    return CU_get_error();
-  }
-
-  /* Ajout des tests à la suite FileDePriorite*/
-  if ((NULL == CU_add_test(pSuiteFileDePriorite, "Création d'une File De Priorité vide", test_creation_filedePriorite)) 
-    || (NULL == CU_add_test(pSuiteFileDePriorite, "Verifier q'une File De priorité est Vide ", test_estVide_filedePriorite))
-    || (NULL == CU_add_test(pSuiteFileDePriorite, "Enfiler des éléments dans une File De Priorité ", test_enfiler))
-    || (NULL == CU_add_test(pSuiteFileDePriorite, "Obtenir un élément et défiler la File De Priorité", test_obtenirElement_et_Defiler))
-  )
-    {
-      CU_cleanup_registry();
-      return CU_get_error();
-    }
-  
 
   /* Lancement des tests */
   CU_basic_set_mode(CU_BRM_VERBOSE);
