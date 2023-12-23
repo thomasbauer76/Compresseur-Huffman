@@ -44,4 +44,10 @@ ArbreDeHuffman ADH_obtenirFilsDroit(ArbreDeHuffman a) {
     return a->arbreDroit;
 }
 
-
+void ADH_liberer(ArbreDeHuffman a) {
+    if (!(ADH_estUneFeuille(a))) {
+        ADH_liberer(ADH_obtenirFilsDroit(a));
+        ADH_liberer(ADH_obtenirFilsGauche(a));
+    }
+    free(a);
+}

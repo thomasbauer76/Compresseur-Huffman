@@ -18,14 +18,6 @@ void D_seDeplacerDansLArbre(Bit b, ArbreDeHuffman *a) {
     }
 }
 
-void D_libererArbreDeHuffman(ArbreDeHuffman a) {
-    if (!(ADH_estUneFeuille(a))) {
-        D_libererArbreDeHuffman(ADH_obtenirFilsDroit(a));
-        D_libererArbreDeHuffman(ADH_obtenirFilsGauche(a));
-    }
-    free(a);
-}
-
 FILE* D_decoder(ArbreDeHuffman aHuff, FILE *fb1) {
     FILE *fb2 = fopen("fichierDecompresser", "w");
     ArbreDeHuffman aTemp = aHuff;

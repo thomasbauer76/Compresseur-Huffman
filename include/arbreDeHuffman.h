@@ -22,6 +22,7 @@ Octet ADH_obtenirOctet(ArbreDeHuffman a);
 unsigned long ADH_obtenirFrequence(ArbreDeHuffman a);
 ArbreDeHuffman ADH_obtenirFilsGauche(ArbreDeHuffman a);
 ArbreDeHuffman ADH_obtenirFilsDroit(ArbreDeHuffman a);
+void ADH_liberer(ArbreDeHuffman a);
 
 
 #endif
