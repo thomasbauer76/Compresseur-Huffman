@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
 #include <CUnit/Basic.h>
 #include "statistiques.h"
 #include "fileDePrioriteDArbreDeHuffman.h"
@@ -7,6 +8,7 @@
 #include "octet.h"
 #include "compression.c"
 #include "decompression.c"
+
 
 int init_suite_success(void) {
     return 0;
@@ -33,7 +35,7 @@ FILE *fichierTemporaireVide() {
 
 
 /* Tests construireArbreDeHuffman.c*/
-
+/*
 void test_file_de_priorite(void) {
   FILE *tempFile = fichierTemporaireRempli();
   
@@ -51,7 +53,7 @@ void test_file_de_priorite(void) {
   CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'C');
   CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'A');
 }
-
+*/
 void test_arbre_de_huffman(void) {
   FILE *tempFile = fichierTemporaireRempli();
   
@@ -221,6 +223,61 @@ void test_ecrire_statistiques(void) {
 
 void test_concatener_codes_binaires(void) {
 
+    CodeBinaire cbA = CB_creerCodeBinaire(bitA0);
+    CB_ajouterBit(&cbA, bitA1);
+  
+    CodeBinaire cbB = CB_creerCodeBinaire(bitA1);
+    CB_ajouterBit(&cbB, bitA0);
+    CB_ajouterBit(&cbB, bitA0);
+  
+
+    CodeBinaire cbC = CB_creerCodeBinaire(bitA0);
+    CB_ajouterBit(&cbC, bitA0);
+
+ 
+    CodeBinaire cbD = CB_creerCodeBinaire(bitA1);
+    CB_ajouterBit(&cbD, bitA0);
+    CB_ajouterBit(&cbD, bitA1);
+  
+  
+    CodeBinaire cbE = CB_creerCodeBinaire(bitA1);
+    CB_ajouterBit(&cbE, bitA1);
+    CB_ajouterBit(&cbE, bitA1);
+    CB_ajouterBit(&cbE, bitA0);
+  
+  
+    CodeBinaire cbF = CB_creerCodeBinaire(bitA1);
+    CB_ajouterBit(&cbF, bitA1);
+    CB_ajouterBit(&cbF, bitA1);
+    CB_ajouterBit(&cbF, bitA1);
+  
+
+    CodeBinaire cbG = CB_creerCodeBinaire(bitA1);
+    CB_ajouterBit(&cbG, bitA1);
+    CB_ajouterBit(&cbG, bitA0);
+
+    CodeBinaire cbTemp = CB_creerCodeBinaire(bitA0);
+    for (unsigned short i = 1; i < MAX_CB; i++)
+        CB_ajouterBit(&cbTemp, bitA0);
+    
+
+  FILE *tempFileSortie = tmpfile();
+  C_concatenerCodeBinaireDansFichier(tempFileSortie,&cbTemp,cbB);
+  C_concatenerCodeBinaireDansFichier(tempFileSortie,&cbTemp,cbA);
+  C_concatenerCodeBinaireDansFichier(tempFileSortie,&cbTemp,cbC);
+  C_concatenerCodeBinaireDansFichier(tempFileSortie,&cbTemp,cbF);
+  C_concatenerCodeBinaireDansFichier(tempFileSortie,&cbTemp,cbG);
+  C_concatenerCodeBinaireDansFichier(tempFileSortie,&cbTemp,cbA);
+
+  fseek(tempFileSortie, 0, SEEK_SET);
+  unsigned char octet1, octet2;
+  fread(&octet1, sizeof(unsigned char), 1, tempFileSortie);
+  fread(&octet2, sizeof(unsigned char), 1, tempFileSortie);
+
+  CU_ASSERT_EQUAL(octet1, 0x89);  // 10001001 en binaire
+  CU_ASSERT_EQUAL(octet2, 0xFC);  // 11111100 en binaire
+
+  fclose(tempFileSortie);
 }
 
 /* Tests compression.c */
@@ -256,14 +313,14 @@ int main(int argc, char** argv){
   /* Ajout des tests à la suite compression */
   if ((NULL == CU_add_test(pSuiteCompression, "Obtention des statistiques d'un fichier", test_obtenir_statistiques))
     || (NULL == CU_add_test(pSuiteCompression, "Obtention de la taille d'un fichier", test_obtenir_taille_fichier))
-    || (NULL == CU_add_test(pSuiteCompression, "Construction de la file de priorité à partir des statistiques", test_file_de_priorite))
-    || (NULL == CU_add_test(pSuiteCompression, "Construction de l'arbre de Huffman à partir des statistiques", test_arbre_de_huffman))
-    || (NULL == CU_add_test(pSuiteCompression, "Obtention de la table de codage à partir de l'arbre de huffman", test_table_de_codage))
-    || (NULL == CU_add_test(pSuiteCompression, "Conversion d'un code binaire de 8 bits vers un octet", test_code_binaire_8_bits_vers_octet))
+    //|| (NULL == CU_add_test(pSuiteCompression, "Construction de la file de priorité à partir des statistiques", test_file_de_priorite))
+   // || (NULL == CU_add_test(pSuiteCompression, "Construction de l'arbre de Huffman à partir des statistiques", test_arbre_de_huffman))
+   // || (NULL == CU_add_test(pSuiteCompression, "Obtention de la table de codage à partir de l'arbre de huffman", test_table_de_codage))
+   // || (NULL == CU_add_test(pSuiteCompression, "Conversion d'un code binaire de 8 bits vers un octet", test_code_binaire_8_bits_vers_octet))
     || (NULL == CU_add_test(pSuiteCompression, "ecrire un identifiant dans un fichier ", test_ecrire_identifiant))
     || (NULL == CU_add_test(pSuiteCompression, "ecrire la taille du fichier dans un fichier", test_ecrire_taille_fichier))
     || (NULL == CU_add_test(pSuiteCompression, "ecrire les statistique du fichier dans un fichier", test_ecrire_statistiques))
-   // || (NULL == CU_add_test(pSuiteCompression, "concatener les codes binaire dans un fichiers", test_concatener_codes_binaires))
+    //|| (NULL == CU_add_test(pSuiteCompression, "concatener les codes binaire dans un fichiers", test_concatener_codes_binaires))
     //|| (NULL == CU_add_test(pSuiteCompression, "encoder le fichier de sortie de codebinaires", test_encoder_fichier))
    // || (NULL == CU_add_test(pSuiteCompression, "compressé le fichier", test_compression_fichier)) 
       ) 

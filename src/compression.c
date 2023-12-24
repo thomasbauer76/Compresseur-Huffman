@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stddef.h>
 #include <assert.h>
 #include "compression.h"
 #include "octet.h"
@@ -84,6 +85,7 @@ Octet C_codeBinaireEnOctet(CodeBinaire cb) {
                         CB_obtenirIemeBit(cb, 6),
                         CB_obtenirIemeBit(cb, 7));
 }
+
 void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBinaire cb) {
     unsigned short i, j;
 
@@ -114,6 +116,7 @@ void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBina
         }
     }
 }
+
 
 void C_encoder(FILE *f, FILE *fbCompresse, TableDeCodage tdc) {
     unsigned short i;
