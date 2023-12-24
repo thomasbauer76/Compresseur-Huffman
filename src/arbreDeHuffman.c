@@ -3,6 +3,7 @@
 #include <assert.h>
 #include "arbreDeHuffman.h"
 
+
 ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned long n){
 	ArbreDeHuffman a = (ArbreDeHuffman)malloc(sizeof(NoeudArbreDeHuffman));
 	a->octet=o;
