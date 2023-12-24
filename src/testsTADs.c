@@ -211,6 +211,38 @@ void test_octetPresent(void) {
   while (i==255);
 }
 
+void test_ajouterCodage(void) {
+  TableDeCodage tdc = TDC_creerTableCodage();
+  CodeBinaire cb_42_test = CB_creerCodeBinaire(bitA1);
+  TDC_ajouterCodage(&tdc, 42, cb_42_test);
+  CodeBinaire cb_43_test = CB_creerCodeBinaire(bitA1);
+  CB_ajouterBit(&cb_43_test, bitA0);
+  TDC_ajouterCodage(&tdc, 43, cb_43_test);
+
+  unsigned char i = 0;
+  do {
+    if ((i==42) || (i==43)) {
+      if (i==42) {
+        CU_ASSERT_EQUAL(TDC_octetPresent(tdc, i), 1);
+        CodeBinaire cb_42_lu = TDC_octetVersCodeBinaire(tdc,i);
+        CU_ASSERT((CB_obtenirIemeBit(cb_42_lu, 0) == CB_obtenirIemeBit(cb_42_test, 0)));
+        CU_ASSERT((CB_obtenirLongueur(cb_42_lu) == CB_obtenirLongueur( cb_42_test)));
+        CU_ASSERT((CB_obtenirLongueur(cb_42_lu) == 1));
+     } else {
+        CU_ASSERT_EQUAL(TDC_octetPresent(tdc, i), 1);
+        CodeBinaire cb_43_lu = TDC_octetVersCodeBinaire(tdc,i);
+        CU_ASSERT((CB_obtenirIemeBit(cb_43_lu, 0) == CB_obtenirIemeBit(cb_43_test, 0)));
+        CU_ASSERT((CB_obtenirIemeBit(cb_43_lu, 1) == CB_obtenirIemeBit(cb_43_test, 1)));
+        CU_ASSERT((CB_obtenirLongueur(cb_43_lu) == CB_obtenirLongueur( cb_43_test)));
+        CU_ASSERT((CB_obtenirLongueur(cb_43_lu) == 2));
+     }
+    } else {
+      CU_ASSERT_EQUAL(TDC_octetPresent(tdc, i), 0);
+    }
+  }
+  while (i==255);
+}
+
 
 int main(int argc, char** argv){
 
@@ -279,6 +311,7 @@ int main(int argc, char** argv){
   /* ajout des tests à la suite tableDeCodage */
   if ((NULL == CU_add_test(pTableDeCodage, "Création d'une tableDeCodage 'vide'", test_creerTableCodage))
     || (NULL == CU_add_test(pTableDeCodage, "Vérification qu'un unique élement inséré est retourné présent mais pas les autres", test_octetPresent))
+    || (NULL == CU_add_test(pTableDeCodage, "Vérifications multiples après l'ajout de 2 CodeBinaire de tailles différentes dans la TableDeCodage", test_ajouterCodage))
   )
   {
     CU_cleanup_registry();
