@@ -234,6 +234,7 @@ int main(int argc, char** argv){
   if ((NULL == CU_add_test(pSuiteFileDePriorite, "Création d'une File De Priorité vide", test_creation_filedePriorite)) 
     || (NULL == CU_add_test(pSuiteFileDePriorite, "Verifier q'une File De priorité est Vide ", test_estVide_filedePriorite))
     || (NULL == CU_add_test(pSuiteFileDePriorite, "Enfiler des éléments dans une File De Priorité ", test_enfiler))
+    //|| (NULL == CU_add_test(pSuiteFileDePriorite, "Obtenir un élément et défiler la File De Priorité", test_obtenirElement_et_Defiler))
   )
     {
       CU_cleanup_registry();

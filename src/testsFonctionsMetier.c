@@ -4,7 +4,7 @@
 #include "statistiques.h"
 #include "fileDePrioriteDArbreDeHuffman.h"
 #include "codeBinaire.h"
-
+#include "octet.h"
 #include "compression.c"
 #include "decompression.c"
 
@@ -21,6 +21,12 @@ FILE *fichierTemporaireRempli() {
 
   // Reprise des données du sujet pour effectuer les tests unitaires
   fprintf(tempFile,"BACFGABDDACEACG");
+
+  return tempFile;
+}
+
+FILE *fichierTemporaireVide() {
+  FILE *tempFile = tmpfile();
 
   return tempFile;
 }
@@ -135,17 +141,99 @@ void test_code_binaire_8_bits_vers_octet(void) {
     CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, i), O_obtenirIemeBit(o, i))
 }
 
+void test_ecrire_identifiant(void) {
+  
+  
+
+  FILE *tempFile = tmpfile();
+  //char *filename;
+ // C_ecrireIdentifiant(tempFile);
+  
+  C_ecrireIdentifiant(tempFile);
+
+  rewind(tempFile);
+  //tempFile = fopen(strcat(filename,".huff"), "wb");
+  //tempFile = fopen("tempfile_stat.bin", "rb");
+  unsigned short identifiant_lue;
+  unsigned short identifiant_attendue = 1000;
+
+  CU_ASSERT_EQUAL(fread(&identifiant_lue, sizeof(unsigned short), 1, tempFile), 1);
+  CU_ASSERT_EQUAL(identifiant_lue, identifiant_attendue);
+  fclose(tempFile);
+}
+
+
+void test_ecrire_taille_fichier(void) {
+  FILE *tempFileEntree = fichierTemporaireRempli();
+  
+  Statistiques s;
+  unsigned long taille;
+
+  C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &taille);
+  fclose(tempFileEntree);
+
+  FILE *tempFileSortie = tmpfile();
+  
+  C_ecrireTailleFichier(tempFileSortie, taille);
+
+  rewind(tempFileSortie);
+  unsigned long long taille_lue;
+  
+  CU_ASSERT_EQUAL(fread(&taille_lue, sizeof(unsigned long long), 1, tempFileSortie), 1);
+  CU_ASSERT_EQUAL(taille_lue, taille);
+
+  fclose(tempFileSortie);
+}
+
+void test_ecrire_statistiques(void) {
+    FILE *tempFileEntree = fichierTemporaireRempli();
+
+    Statistiques s_entree;
+    unsigned long taille;
+    C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s_entree, &taille);
+
+    fclose(tempFileEntree);
+
+    FILE *tempFileSortie = tmpfile();
+
+    C_ecrireStatistiques(tempFileSortie, s_entree);
+
+    rewind(tempFileSortie);
+
+    unsigned long occurence_lue;
+    unsigned short o;
+    for (o = 0; o < MAX_OCTET; o++) {
+        unsigned long occurence_attendue = 0;
+        if (o == O_naturelVersOctet('A')) occurence_attendue = 4;
+        else if (o == O_naturelVersOctet('B')) occurence_attendue = 2;
+        else if (o == O_naturelVersOctet('C')) occurence_attendue = 3;
+        else if (o == O_naturelVersOctet('D')) occurence_attendue = 2;
+        else if (o == O_naturelVersOctet('E')) occurence_attendue = 1;
+        else if (o == O_naturelVersOctet('F')) occurence_attendue = 1;
+        else if (o == O_naturelVersOctet('G')) occurence_attendue = 2;
+
+        CU_ASSERT_EQUAL(fread(&occurence_lue, sizeof(unsigned long), 1, tempFileSortie), 1);
+        CU_ASSERT_EQUAL(occurence_lue, occurence_attendue);
+    }
+
+    fclose(tempFileSortie);
+}
+
+void test_concatener_codes_binaires(void) {
+  
+}
+
 /* Tests compression.c */
 
 void test_lireStatistiques(void) {
   FILE *tempFile = fichierTemporaireRempli();
 
   Statistiques s;
-  S_statistiques(s);
+  S_statistiques(&s);
   D_lireStatistiques(tempFile, s);
 
   Statistiques resAttendu;
-  S_statistiques(resAttendu);
+  S_statistiques(&resAttendu);
   //S_fixerOccurence(s, )
 
   //CU_ASSERT_EQUAL(s, );
@@ -168,10 +256,16 @@ int main(int argc, char** argv){
   /* Ajout des tests à la suite compression */
   if ((NULL == CU_add_test(pSuiteCompression, "Obtention des statistiques d'un fichier", test_obtenir_statistiques))
     || (NULL == CU_add_test(pSuiteCompression, "Obtention de la taille d'un fichier", test_obtenir_taille_fichier))
-    || (NULL == CU_add_test(pSuiteCompression, "Construction de la file de priorité à partir des statistiques", test_file_de_priorite))
-    || (NULL == CU_add_test(pSuiteCompression, "Construction de l'arbre de Huffman à partir des statistiques", test_arbre_de_huffman))
-    || (NULL == CU_add_test(pSuiteCompression, "Obtention de la table de codage à partir de l'arbre de huffman", test_table_de_codage))
-    || (NULL == CU_add_test(pSuiteCompression, "Conversion d'un code binaire de 8 bits vers un octet", test_code_binaire_8_bits_vers_octet))
+    //|| (NULL == CU_add_test(pSuiteCompression, "Construction de la file de priorité à partir des statistiques", test_file_de_priorite))
+    //|| (NULL == CU_add_test(pSuiteCompression, "Construction de l'arbre de Huffman à partir des statistiques", test_arbre_de_huffman))
+   // || (NULL == CU_add_test(pSuiteCompression, "Obtention de la table de codage à partir de l'arbre de huffman", test_table_de_codage))
+    //|| (NULL == CU_add_test(pSuiteCompression, "Conversion d'un code binaire de 8 bits vers un octet", test_code_binaire_8_bits_vers_octet))
+    || (NULL == CU_add_test(pSuiteCompression, "ecrire un identifiant dans un fichier ", test_ecrire_identifiant))
+    || (NULL == CU_add_test(pSuiteCompression, "ecrire la taille du fichier dans un fichier", test_ecrire_taille_fichier))
+    || (NULL == CU_add_test(pSuiteCompression, "ecrire les statistique du fichier dans un fichier", test_ecrire_statistiques))
+   // || (NULL == CU_add_test(pSuiteCompression, "concatener les codes binaire dans un fichiers", test_concatener_codes_binaires))
+    //|| (NULL == CU_add_test(pSuiteCompression, "encoder le fichier de sortie de codebinaires", test_encoder_fichier))
+   // || (NULL == CU_add_test(pSuiteCompression, "compressé le fichier", test_compression_fichier)) 
       ) 
     {
       CU_cleanup_registry();
