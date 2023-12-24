@@ -184,6 +184,19 @@ void test_obtenirElement_et_Defiler(void) {
 }
 
 
+/* Tests tableDeCodage.c */
+
+void test_creerTableCodage(void) {
+  /* Utilisation d'un do while ... pour éviter le rique d'un dépassement de mémoire (256 avec un unsigned char) */
+  TableDeCodage tdc = TDC_creerTableCodage();
+  unsigned char i = 0;
+  do {
+    CU_ASSERT_EQUAL(TDC_octetPresent(tdc, i), 0);
+  }
+  while (i==255);
+}
+
+
 int main(int argc, char** argv){
 
   /* initialisation du registre de tests */
@@ -241,6 +254,21 @@ int main(int argc, char** argv){
       return CU_get_error();
     }
   
+  /* ajout d'une suite de test pour tableDeCodage.c */
+  CU_pSuite pTableDeCodage = CU_add_suite("Test tableDeCodage", init_suite_success, clean_suite_success);
+  if (NULL == pTableDeCodage) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
+  /* ajout des tests à la suite tableDeCodage */
+  if ((NULL == CU_add_test(pTableDeCodage, "Création d'une tableDeCodage 'vide'", test_creerTableCodage))
+  )
+  {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
   /* ajout d'une suite de test pour arbreDeHuffman.c */
   CU_pSuite pSuiteArbreDeHuffman = CU_add_suite("Test arbreDeHuffman", init_suite_success, clean_suite_success);
   if (NULL == pSuiteArbreDeHuffman) {
@@ -261,6 +289,8 @@ int main(int argc, char** argv){
       CU_cleanup_registry();
       return CU_get_error();
     }
+
+
 
   /* Lancement des tests */
   CU_basic_set_mode(CU_BRM_VERBOSE);
