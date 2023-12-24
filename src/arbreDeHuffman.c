@@ -7,6 +7,7 @@ ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned long n){
 	ArbreDeHuffman a = (ArbreDeHuffman)malloc(sizeof(NoeudArbreDeHuffman));
 	a->octet=o;
 	a->frequence=n;
+    a->estUneFeuille = true;
 	a->arbreGauche=NULL;
 	a->arbreDroit=NULL;
 	return a;
