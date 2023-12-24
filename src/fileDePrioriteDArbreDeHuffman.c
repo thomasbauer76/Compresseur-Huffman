@@ -35,12 +35,10 @@ void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a) {
         || (ADH_obtenirFrequence(a) == ADH_obtenirFrequence((*p_fdp)->arbre)
             && ADH_obtenirOctet(a) < ADH_obtenirOctet((*p_fdp)->arbre))) 
 	{
-
-        FileDePriorite p_noeud = (FileDePriorite)malloc(sizeof(NoeudFileDePriorite));
-        p_noeud->arbre = a;
-        p_noeud->fileSuivante = *p_fdp;
-
-        *p_fdp = p_noeud;
+        FileDePriorite temp = (FileDePriorite)malloc(sizeof(NoeudFileDePriorite));
+        temp->arbre = a;
+        temp->fileSuivante = *p_fdp;
+        *p_fdp = temp;
     } else {
         FDPAH_enfiler(&((*p_fdp)->fileSuivante), a);
     }
