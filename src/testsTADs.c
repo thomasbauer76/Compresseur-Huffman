@@ -175,14 +175,52 @@ void test_enfiler(void) {
 }
 
 void test_obtenirElement_et_Defiler(void) {
-  Octet o = 241; 
-  unsigned long f = 2;
+
+  Octet o1 = 'A'; 
+  unsigned long f1 = 2;
+  Octet o2 = 'B'; 
+  unsigned long f2 = 3;
+  Octet o3 = 'C'; 
+  unsigned long f3 = 3;
   FileDePriorite fdp;
   fdp = FDPAH_fileDePriorite();
-  ArbreDeHuffman a = ADH_arbreDeHuffman(o, f);
-  FDPAH_enfiler(&fdp, a);
-  CU_ASSERT_EQUAL((FDPAH_obtenirElementEtDefiler(&fdp)), fdp);
-  CU_ASSERT_EQUAL((FDPAH_obtenirElementEtDefiler(&fdp)), a);
+  ArbreDeHuffman a1 = ADH_arbreDeHuffman(o1, f1);
+  ArbreDeHuffman a2 = ADH_arbreDeHuffman(o2, f2);
+  ArbreDeHuffman a3 = ADH_arbreDeHuffman(o3, f3);
+
+  FDPAH_enfiler(&fdp, a1);
+  FDPAH_enfiler(&fdp, a2);
+  FDPAH_enfiler(&fdp, a3);
+
+  ArbreDeHuffman arbre1;
+  FDPAH_obtenirElementEtDefiler(&fdp, &arbre1);
+
+  CU_ASSERT_EQUAL(arbre1, a1);
+  CU_ASSERT_EQUAL(ADH_obtenirFrequence(arbre1), f1);
+
+  ArbreDeHuffman arbre2;
+  FDPAH_obtenirElementEtDefiler(&fdp, &arbre2);
+
+  if (ADH_obtenirFrequence(a2) <= ADH_obtenirFrequence(arbre2)) {
+        CU_ASSERT_EQUAL(arbre2, a2);
+    } else {
+        CU_ASSERT_EQUAL(arbre2, fdp);
+    }
+  
+  
+  ArbreDeHuffman arbre3;
+  FDPAH_obtenirElementEtDefiler(&fdp, &arbre3);
+
+   if (ADH_obtenirFrequence(a3) > ADH_obtenirFrequence(arbre3)) {
+        CU_ASSERT_EQUAL(arbre2, fdp);
+        CU_ASSERT_EQUAL(arbre3, a3);
+    } else {
+        CU_ASSERT_EQUAL(arbre3, a3);
+    }
+
+  ADH_liberer(a1);
+  ADH_liberer(a2);
+  ADH_liberer(a3);
 }
 
 
@@ -316,7 +354,7 @@ int main(int argc, char** argv){
   /* Ajout des tests à la suite FileDePriorite*/
   if ((NULL == CU_add_test(pSuiteFileDePriorite, "Création d'une File De Priorité vide", test_creation_filedePriorite_vide)) 
     || (NULL == CU_add_test(pSuiteFileDePriorite, "Enfiler des éléments dans une File De Priorité ", test_enfiler))
-    //|| (NULL == CU_add_test(pSuiteFileDePriorite, "Obtenir un élément et défiler la File De Priorité", test_obtenirElement_et_Defiler))
+    || (NULL == CU_add_test(pSuiteFileDePriorite, "Obtenir un élément et défiler la File De Priorité", test_obtenirElement_et_Defiler))
   )
     {
       CU_cleanup_registry();

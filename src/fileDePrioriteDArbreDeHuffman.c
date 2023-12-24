@@ -43,7 +43,7 @@ void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a) {
         FDPAH_enfiler(&((*p_fdp)->fileSuivante), a);
     }
 }
-
+/*
 ArbreDeHuffman FDPAH_obtenirElementEtDefiler(FileDePriorite *p_fdp) {
 	assert(!FDPAH_estVide(*p_fdp));
 	ArbreDeHuffman a = (*p_fdp) -> arbre;
@@ -52,3 +52,13 @@ ArbreDeHuffman FDPAH_obtenirElementEtDefiler(FileDePriorite *p_fdp) {
 	free(p_temp);
 	return a;
 }
+*/
+void FDPAH_obtenirElementEtDefiler(FileDePriorite *fdp, ArbreDeHuffman *a) {
+    assert(!FDPAH_estVide(*fdp));
+
+    *a = (*fdp)->arbre;
+    FileDePriorite temp = *fdp;
+    *fdp = temp->fileSuivante;
+    free(temp);
+}
+
