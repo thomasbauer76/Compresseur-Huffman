@@ -11,7 +11,7 @@ FileDePriorite FDPAH_fileDePriorite() {
 bool FDPAH_estVide(FileDePriorite fdp) {
 	return (fdp == NULL);
 }
-
+/*
 void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a) {
 	if ((FDPAH_estVide(*p_fdp)) || (ADH_obtenirFrequence(a) < ADH_obtenirFrequence((*p_fdp)->arbre)) 
 		|| ((ADH_obtenirFrequence(a) == ADH_obtenirFrequence((*p_fdp)->arbre)) 
@@ -27,6 +27,23 @@ void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a) {
 	else {
 		FDPAH_enfiler(&((*p_fdp) -> fileSuivante), a);
 	}
+}
+*/
+
+void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a) {
+    if (FDPAH_estVide(*p_fdp) || ADH_obtenirFrequence(a) < ADH_obtenirFrequence((*p_fdp)->arbre)
+        || (ADH_obtenirFrequence(a) == ADH_obtenirFrequence((*p_fdp)->arbre)
+            && ADH_obtenirOctet(a) < ADH_obtenirOctet((*p_fdp)->arbre))) 
+	{
+
+        FileDePriorite p_noeud = (FileDePriorite)malloc(sizeof(NoeudFileDePriorite));
+        p_noeud->arbre = a;
+        p_noeud->fileSuivante = *p_fdp;
+
+        *p_fdp = p_noeud;
+    } else {
+        FDPAH_enfiler(&((*p_fdp)->fileSuivante), a);
+    }
 }
 
 ArbreDeHuffman FDPAH_obtenirElementEtDefiler(FileDePriorite *p_fdp) {
