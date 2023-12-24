@@ -191,13 +191,10 @@ void test_creerTableCodage(void) {
   TableDeCodage tdc = TDC_creerTableCodage();
   unsigned char i = 0;
   do {
-    if (i==42) {
-      CU_ASSERT_EQUAL(TDC_octetPresent(tdc, i), 1);
-    } else {
-      CU_ASSERT_EQUAL(TDC_octetPresent(tdc, i), 0);
-    }
+      CU_ASSERT(!(TDC_octetPresent(tdc, i)));
+      i = i + 1;
   }
-  while (i==255);
+  while (i!=255);
 }
 
 void test_octetPresent(void) {
@@ -206,9 +203,14 @@ void test_octetPresent(void) {
   TDC_ajouterCodage(&tdc, 42, cb_test);
   unsigned char i = 0;
   do {
-    CU_ASSERT_EQUAL(TDC_octetPresent(tdc, i), 0);
+    if (i==42) {
+      CU_ASSERT(TDC_octetPresent(tdc, i));
+    } else {
+      CU_ASSERT(!(TDC_octetPresent(tdc, i)));
+    }
+    i = i + 1;
   }
-  while (i==255);
+  while (i!=255);
 }
 
 void test_ajouterCodage(void) {
@@ -223,13 +225,13 @@ void test_ajouterCodage(void) {
   do {
     if ((i==42) || (i==43)) {
       if (i==42) {
-        CU_ASSERT_EQUAL(TDC_octetPresent(tdc, i), 1);
+        CU_ASSERT(TDC_octetPresent(tdc, i));
         CodeBinaire cb_42_lu = TDC_octetVersCodeBinaire(tdc,i);
         CU_ASSERT((CB_obtenirIemeBit(cb_42_lu, 0) == CB_obtenirIemeBit(cb_42_test, 0)));
         CU_ASSERT((CB_obtenirLongueur(cb_42_lu) == CB_obtenirLongueur( cb_42_test)));
         CU_ASSERT((CB_obtenirLongueur(cb_42_lu) == 1));
      } else {
-        CU_ASSERT_EQUAL(TDC_octetPresent(tdc, i), 1);
+        CU_ASSERT(TDC_octetPresent(tdc, i));
         CodeBinaire cb_43_lu = TDC_octetVersCodeBinaire(tdc,i);
         CU_ASSERT((CB_obtenirIemeBit(cb_43_lu, 0) == CB_obtenirIemeBit(cb_43_test, 0)));
         CU_ASSERT((CB_obtenirIemeBit(cb_43_lu, 1) == CB_obtenirIemeBit(cb_43_test, 1)));
@@ -237,10 +239,11 @@ void test_ajouterCodage(void) {
         CU_ASSERT((CB_obtenirLongueur(cb_43_lu) == 2));
      }
     } else {
-      CU_ASSERT_EQUAL(TDC_octetPresent(tdc, i), 0);
+      CU_ASSERT(!(TDC_octetPresent(tdc, i)));
     }
+    i = i + 1;
   }
-  while (i==255);
+  while (i!=255);
 }
 
 void test_octetVersCodeBinaire(void) {
@@ -250,12 +253,12 @@ void test_octetVersCodeBinaire(void) {
   unsigned char i = 0;
   do {
     if (i==42) {
-        CU_ASSERT_EQUAL(TDC_octetPresent(tdc, i), 1);
+        CU_ASSERT(TDC_octetPresent(tdc, i));
         CodeBinaire cb = TDC_octetVersCodeBinaire(tdc, 42);
         CU_ASSERT((CB_obtenirIemeBit(cb,0) == bitA1));
         CU_ASSERT((CB_obtenirLongueur(cb) == 1));
     } else {
-      CU_ASSERT_EQUAL(TDC_octetPresent(tdc, i), 0);
+      CU_ASSERT(!(TDC_octetPresent(tdc, i)));
     }
     i = i + 1;
   }
