@@ -162,22 +162,16 @@ void test_creation_filedePriorite_vide(void) {
 
 
 void test_enfiler(void) {
-   // Créez une file de priorité vide
     FileDePriorite fdp = FDPAH_fileDePriorite();
 
-    // Créez un arbre
     ArbreDeHuffman a1 = ADH_arbreDeHuffman('A', 10);
 
-    // Enfilez l'arbre dans la file de priorité
     FDPAH_enfiler(&fdp, a1);
 
-    // Vérifiez si la file de priorité n'est pas vide
     CU_ASSERT_FALSE(FDPAH_estVide(fdp));
 
-    // Libérez les ressources
     ADH_liberer(a1);
     free(fdp);
- 
 }
 
 void test_obtenirElement_et_Defiler(void) {
