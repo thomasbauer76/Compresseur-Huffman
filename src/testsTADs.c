@@ -192,6 +192,87 @@ void test_obtenirElement_et_Defiler(void) {
 }
 
 
+/* Tests tableDeCodage.c */
+
+void test_creerTableCodage(void) {
+  /* Utilisation d'un do while ... pour éviter le rique d'un dépassement de mémoire (256 avec un unsigned char) */
+  TableDeCodage tdc = TDC_creerTableCodage();
+  unsigned char i = 0;
+  do {
+      CU_ASSERT(!(TDC_octetPresent(tdc, i)));
+      i = i + 1;
+  }
+  while (i!=255);
+}
+
+void test_octetPresent(void) {
+  TableDeCodage tdc = TDC_creerTableCodage();
+  CodeBinaire cb_test = CB_creerCodeBinaire(bitA1);
+  TDC_ajouterCodage(&tdc, 42, cb_test);
+  unsigned char i = 0;
+  do {
+    if (i==42) {
+      CU_ASSERT(TDC_octetPresent(tdc, i));
+    } else {
+      CU_ASSERT(!(TDC_octetPresent(tdc, i)));
+    }
+    i = i + 1;
+  }
+  while (i!=255);
+}
+
+void test_ajouterCodage(void) {
+  TableDeCodage tdc = TDC_creerTableCodage();
+  CodeBinaire cb_42_test = CB_creerCodeBinaire(bitA1);
+  TDC_ajouterCodage(&tdc, 42, cb_42_test);
+  CodeBinaire cb_43_test = CB_creerCodeBinaire(bitA1);
+  CB_ajouterBit(&cb_43_test, bitA0);
+  TDC_ajouterCodage(&tdc, 43, cb_43_test);
+
+  unsigned char i = 0;
+  do {
+    if ((i==42) || (i==43)) {
+      if (i==42) {
+        CU_ASSERT(TDC_octetPresent(tdc, i));
+        CodeBinaire cb_42_lu = TDC_octetVersCodeBinaire(tdc,i);
+        CU_ASSERT((CB_obtenirIemeBit(cb_42_lu, 0) == CB_obtenirIemeBit(cb_42_test, 0)));
+        CU_ASSERT((CB_obtenirLongueur(cb_42_lu) == CB_obtenirLongueur( cb_42_test)));
+        CU_ASSERT((CB_obtenirLongueur(cb_42_lu) == 1));
+     } else {
+        CU_ASSERT(TDC_octetPresent(tdc, i));
+        CodeBinaire cb_43_lu = TDC_octetVersCodeBinaire(tdc,i);
+        CU_ASSERT((CB_obtenirIemeBit(cb_43_lu, 0) == CB_obtenirIemeBit(cb_43_test, 0)));
+        CU_ASSERT((CB_obtenirIemeBit(cb_43_lu, 1) == CB_obtenirIemeBit(cb_43_test, 1)));
+        CU_ASSERT((CB_obtenirLongueur(cb_43_lu) == CB_obtenirLongueur( cb_43_test)));
+        CU_ASSERT((CB_obtenirLongueur(cb_43_lu) == 2));
+     }
+    } else {
+      CU_ASSERT(!(TDC_octetPresent(tdc, i)));
+    }
+    i = i + 1;
+  }
+  while (i!=255);
+}
+
+void test_octetVersCodeBinaire(void) {
+  TableDeCodage tdc = TDC_creerTableCodage();
+  CodeBinaire cb_42_test = CB_creerCodeBinaire(bitA1);
+  TDC_ajouterCodage(&tdc, 42, cb_42_test);
+  unsigned char i = 0;
+  do {
+    if (i==42) {
+        CU_ASSERT(TDC_octetPresent(tdc, i));
+        CodeBinaire cb = TDC_octetVersCodeBinaire(tdc, 42);
+        CU_ASSERT((CB_obtenirIemeBit(cb,0) == bitA1));
+        CU_ASSERT((CB_obtenirLongueur(cb) == 1));
+    } else {
+      CU_ASSERT(!(TDC_octetPresent(tdc, i)));
+    }
+    i = i + 1;
+  }
+  while (i!=255);
+}
+
 int main(int argc, char** argv){
 
   /* initialisation du registre de tests */
@@ -248,6 +329,24 @@ int main(int argc, char** argv){
       return CU_get_error();
     }
   
+  /* ajout d'une suite de test pour tableDeCodage.c */
+  CU_pSuite pTableDeCodage = CU_add_suite("Test tableDeCodage", init_suite_success, clean_suite_success);
+  if (NULL == pTableDeCodage) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
+  /* ajout des tests à la suite tableDeCodage */
+  if ((NULL == CU_add_test(pTableDeCodage, "Création d'une tableDeCodage 'vide'", test_creerTableCodage))
+    || (NULL == CU_add_test(pTableDeCodage, "Vérification qu'un unique élement inséré est retourné présent mais pas les autres", test_octetPresent))
+    || (NULL == CU_add_test(pTableDeCodage, "Vérifications multiples après l'ajout de 2 CodeBinaire de tailles différentes dans la TableDeCodage", test_ajouterCodage))
+    || (NULL == CU_add_test(pTableDeCodage, "Vérifications de la récupération d'un CodeBinaire après une unique insertion dans la TableDeCodage", test_octetVersCodeBinaire))
+  )
+  {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
   /* ajout d'une suite de test pour arbreDeHuffman.c */
   CU_pSuite pSuiteArbreDeHuffman = CU_add_suite("Test arbreDeHuffman", init_suite_success, clean_suite_success);
   if (NULL == pSuiteArbreDeHuffman) {
@@ -268,6 +367,8 @@ int main(int argc, char** argv){
       CU_cleanup_registry();
       return CU_get_error();
     }
+
+
 
   /* Lancement des tests */
   CU_basic_set_mode(CU_BRM_VERBOSE);
