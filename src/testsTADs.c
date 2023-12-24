@@ -191,6 +191,21 @@ void test_creerTableCodage(void) {
   TableDeCodage tdc = TDC_creerTableCodage();
   unsigned char i = 0;
   do {
+    if (i==42) {
+      CU_ASSERT_EQUAL(TDC_octetPresent(tdc, i), 1);
+    } else {
+      CU_ASSERT_EQUAL(TDC_octetPresent(tdc, i), 0);
+    }
+  }
+  while (i==255);
+}
+
+void test_octetPresent(void) {
+  TableDeCodage tdc = TDC_creerTableCodage();
+  CodeBinaire cb_test = CB_creerCodeBinaire(bitA1);
+  TDC_ajouterCodage(&tdc, 42, cb_test);
+  unsigned char i = 0;
+  do {
     CU_ASSERT_EQUAL(TDC_octetPresent(tdc, i), 0);
   }
   while (i==255);
@@ -263,6 +278,7 @@ int main(int argc, char** argv){
 
   /* ajout des tests à la suite tableDeCodage */
   if ((NULL == CU_add_test(pTableDeCodage, "Création d'une tableDeCodage 'vide'", test_creerTableCodage))
+    || (NULL == CU_add_test(pTableDeCodage, "Vérification qu'un unique élement inséré est retourné présent mais pas les autres", test_octetPresent))
   )
   {
     CU_cleanup_registry();
