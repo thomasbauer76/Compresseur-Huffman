@@ -73,84 +73,38 @@ void test_ajout_bit(void) {
   CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, nouvelleLongueur-1), b);
 }
 
+
 /* Tests arbreDeHuffman.c */
 
-void test_creation_arbreDeHuffman(void) {
+void test_creation_arbre_de_huffman_feuille(void) {
   Octet o = 65; 
   unsigned long f = 2;
+
   ArbreDeHuffman a = ADH_arbreDeHuffman(o,f);
+  
   CU_ASSERT(ADH_estUneFeuille(a));
-  //CU_ASSERT_EQUAL(ADH_obtenirFrequence(a), f);
-  //CU_ASSERT_EQUAL(ADH_obtenirOctet(a), o);
+  CU_ASSERT_EQUAL(ADH_obtenirFrequence(a), f);
+  CU_ASSERT_EQUAL(ADH_obtenirOctet(a), o);
+
   ADH_liberer(a);
 }
 
-void test_fussioner_ADH(void) {
+void test_fusionner_ADH(void) {
   Octet og = 241;
   unsigned long ng = 2;
   Octet od = 121;
   unsigned long nd = 3;
+
   ArbreDeHuffman ad = ADH_arbreDeHuffman(od, nd);
   ArbreDeHuffman ag = ADH_arbreDeHuffman(og, ng);
   ArbreDeHuffman a = ADH_fusionner(ad,ag);
 
-  CU_ASSERT_EQUAL(ADH_obtenirFrequence(a),ADH_obtenirFrequence(ag) + ADH_obtenirFrequence(ad));
-  CU_ASSERT_EQUAL(ADH_obtenirFilsDroit(a),ag);
-  CU_ASSERT_EQUAL(ADH_obtenirFilsGauche(a),ad);
+  CU_ASSERT_EQUAL(ADH_obtenirFrequence(a), ADH_obtenirFrequence(ag) + ADH_obtenirFrequence(ad));
+  CU_ASSERT_EQUAL(ADH_obtenirFilsDroit(a), ag);
+  CU_ASSERT_EQUAL(ADH_obtenirFilsGauche(a), ad);
   CU_ASSERT(!ADH_estUneFeuille(a));
-
-  ADH_liberer(ad);
-  ADH_liberer(ag);
 }
 
-void test_estUneFeuille(void) {
-  Octet o = 241; 
-  unsigned long f = 2;
-
-  CU_ASSERT(ADH_estUneFeuille(ADH_arbreDeHuffman(o, f)));
-}
-
-void test_obtenir_octet_ADH(void) {
-  Octet o = 241; 
-  unsigned long f = 2;
-  
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_arbreDeHuffman(o, f)), o);
-}
-
-void test_obtenir_frequence_ADH(void) {
-  Octet og = 241;
-  unsigned long ng = 2;
-  Octet od = 242;
-  unsigned long nd = 3;
-  ArbreDeHuffman ad = ADH_arbreDeHuffman(od, nd);
-  ArbreDeHuffman ag = ADH_arbreDeHuffman(og, ng);
-
-  CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_arbreDeHuffman(od, nd)), nd);
-  CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_arbreDeHuffman(og, ng)), ng);
-  CU_ASSERT_EQUAL(ADH_obtenirFrequence(ADH_fusionner(ad, ag)), ADH_obtenirFrequence(ag) + ADH_obtenirFrequence(ad));
-}
-
-void test_obtenir_fils_gauche(void) {
-  Octet og = 241;
-  unsigned long ng = 2;
-  Octet od = 121;
-  unsigned long nd = 3;
-  ArbreDeHuffman ad = ADH_arbreDeHuffman(od, nd);
-  ArbreDeHuffman ag = ADH_arbreDeHuffman(og, ng);
-
-  CU_ASSERT_EQUAL(ADH_obtenirFilsGauche(ADH_fusionner(ag,ad)), ag);
-}
-
-void test_obtenir_fils_droit(void) {
-  Octet og = 241;
-  unsigned long ng = 2;
-  Octet od = 121;
-  unsigned long nd = 3;
-  ArbreDeHuffman ad = ADH_arbreDeHuffman(od, nd);
-  ArbreDeHuffman ag = ADH_arbreDeHuffman(og, ng);
-  ArbreDeHuffman a = ADH_fusionner(ag,ad);
-  CU_ASSERT_EQUAL(ADH_obtenirFilsDroit(a), ad);
-}
 
 /* Tests FileDePriorite.c */
 
@@ -162,26 +116,26 @@ void test_creation_filedePriorite_vide(void) {
 
 
 void test_enfiler(void) {
-    FileDePriorite fdp = FDPAH_fileDePriorite();
+  FileDePriorite fdp = FDPAH_fileDePriorite();
 
-    ArbreDeHuffman a1 = ADH_arbreDeHuffman('A', 10);
+  ArbreDeHuffman a1 = ADH_arbreDeHuffman(O_naturelVersOctet('A'), 10);
 
-    FDPAH_enfiler(&fdp, a1);
+  FDPAH_enfiler(&fdp, a1);
 
-    CU_ASSERT_FALSE(FDPAH_estVide(fdp));
+  CU_ASSERT_FALSE(FDPAH_estVide(fdp));
 
-    ADH_liberer(a1);
-    free(fdp);
+  ADH_liberer(a1);
 }
 
-void test_obtenirElement_et_Defiler(void) {
+void test_obtenir_element_et_defiler(void) {
 
-  Octet o1 = 'A'; 
-  unsigned long f1 = 2;
-  Octet o2 = 'B'; 
-  unsigned long f2 = 3;
-  Octet o3 = 'C'; 
+  Octet o1 = O_naturelVersOctet('G'); 
+  unsigned long f1 = 3;
+  Octet o2 = O_naturelVersOctet('A'); 
+  unsigned long f2 = 2;
+  Octet o3 = O_naturelVersOctet('D'); 
   unsigned long f3 = 3;
+  
   FileDePriorite fdp;
   fdp = FDPAH_fileDePriorite();
   ArbreDeHuffman a1 = ADH_arbreDeHuffman(o1, f1);
@@ -192,31 +146,10 @@ void test_obtenirElement_et_Defiler(void) {
   FDPAH_enfiler(&fdp, a2);
   FDPAH_enfiler(&fdp, a3);
 
-  ArbreDeHuffman arbre1;
-  FDPAH_obtenirElementEtDefiler(&fdp, &arbre1);
-
-  CU_ASSERT_EQUAL(arbre1, a1);
-  CU_ASSERT_EQUAL(ADH_obtenirFrequence(arbre1), f1);
-
-  ArbreDeHuffman arbre2;
-  FDPAH_obtenirElementEtDefiler(&fdp, &arbre2);
-
-  if (ADH_obtenirFrequence(a2) <= ADH_obtenirFrequence(arbre2)) {
-        CU_ASSERT_EQUAL(arbre2, a2);
-    } else {
-        CU_ASSERT_EQUAL(arbre2, fdp);
-    }
-  
-  
-  ArbreDeHuffman arbre3;
-  FDPAH_obtenirElementEtDefiler(&fdp, &arbre3);
-
-   if (ADH_obtenirFrequence(a3) > ADH_obtenirFrequence(arbre3)) {
-        CU_ASSERT_EQUAL(arbre2, fdp);
-        CU_ASSERT_EQUAL(arbre3, a3);
-    } else {
-        CU_ASSERT_EQUAL(arbre3, a3);
-    }
+  CU_ASSERT_EQUAL(FDPAH_obtenirElementEtDefiler(&fdp), a2);
+  CU_ASSERT_EQUAL(FDPAH_obtenirElementEtDefiler(&fdp), a3);
+  CU_ASSERT_EQUAL(FDPAH_obtenirElementEtDefiler(&fdp), a1);
+  CU_ASSERT(FDPAH_estVide(fdp));
 
   ADH_liberer(a1);
   ADH_liberer(a2);
@@ -237,49 +170,33 @@ void test_creerTableCodage(void) {
   while (i!=255);
 }
 
-void test_octetPresent(void) {
-  TableDeCodage tdc = TDC_creerTableCodage();
-  CodeBinaire cb_test = CB_creerCodeBinaire(bitA1);
-  TDC_ajouterCodage(&tdc, 42, cb_test);
-  unsigned char i = 0;
-  do {
-    if (i==42) {
-      CU_ASSERT(TDC_octetPresent(tdc, i));
-    } else {
-      CU_ASSERT(!(TDC_octetPresent(tdc, i)));
-    }
-    i = i + 1;
-  }
-  while (i!=255);
-}
-
 void test_ajouterCodage(void) {
   TableDeCodage tdc = TDC_creerTableCodage();
   CodeBinaire cb_42_test = CB_creerCodeBinaire(bitA1);
-  TDC_ajouterCodage(&tdc, 42, cb_42_test);
+  TDC_ajouterCodage(&tdc, O_naturelVersOctet(42), cb_42_test);
   CodeBinaire cb_43_test = CB_creerCodeBinaire(bitA1);
   CB_ajouterBit(&cb_43_test, bitA0);
-  TDC_ajouterCodage(&tdc, 43, cb_43_test);
+  TDC_ajouterCodage(&tdc, O_naturelVersOctet(43), cb_43_test);
 
   unsigned char i = 0;
   do {
-    if ((i==42) || (i==43)) {
-      if (i==42) {
-        CU_ASSERT(TDC_octetPresent(tdc, i));
-        CodeBinaire cb_42_lu = TDC_octetVersCodeBinaire(tdc,i);
-        CU_ASSERT((CB_obtenirIemeBit(cb_42_lu, 0) == CB_obtenirIemeBit(cb_42_test, 0)));
-        CU_ASSERT((CB_obtenirLongueur(cb_42_lu) == CB_obtenirLongueur( cb_42_test)));
-        CU_ASSERT((CB_obtenirLongueur(cb_42_lu) == 1));
-     } else {
-        CU_ASSERT(TDC_octetPresent(tdc, i));
-        CodeBinaire cb_43_lu = TDC_octetVersCodeBinaire(tdc,i);
-        CU_ASSERT((CB_obtenirIemeBit(cb_43_lu, 0) == CB_obtenirIemeBit(cb_43_test, 0)));
-        CU_ASSERT((CB_obtenirIemeBit(cb_43_lu, 1) == CB_obtenirIemeBit(cb_43_test, 1)));
-        CU_ASSERT((CB_obtenirLongueur(cb_43_lu) == CB_obtenirLongueur( cb_43_test)));
-        CU_ASSERT((CB_obtenirLongueur(cb_43_lu) == 2));
-     }
-    } else {
-      CU_ASSERT(!(TDC_octetPresent(tdc, i)));
+    if (i==42) {
+      CU_ASSERT(TDC_octetPresent(tdc, O_naturelVersOctet(i)));
+      CodeBinaire cb_42_lu = TDC_octetVersCodeBinaire(tdc,O_naturelVersOctet(i));
+      CU_ASSERT((CB_obtenirIemeBit(cb_42_lu, 0) == CB_obtenirIemeBit(cb_42_test, 0)));
+      CU_ASSERT((CB_obtenirLongueur(cb_42_lu) == CB_obtenirLongueur( cb_42_test)));
+      CU_ASSERT((CB_obtenirLongueur(cb_42_lu) == 1));
+    } 
+    else if (i==43) {
+      CU_ASSERT(TDC_octetPresent(tdc, O_naturelVersOctet(i)));
+      CodeBinaire cb_43_lu = TDC_octetVersCodeBinaire(tdc,O_naturelVersOctet(i));
+      CU_ASSERT((CB_obtenirIemeBit(cb_43_lu, 0) == CB_obtenirIemeBit(cb_43_test, 0)));
+      CU_ASSERT((CB_obtenirIemeBit(cb_43_lu, 1) == CB_obtenirIemeBit(cb_43_test, 1)));
+      CU_ASSERT((CB_obtenirLongueur(cb_43_lu) == CB_obtenirLongueur( cb_43_test)));
+      CU_ASSERT((CB_obtenirLongueur(cb_43_lu) == 2));
+    }
+    else {
+      CU_ASSERT(!(TDC_octetPresent(tdc, O_naturelVersOctet(i))));
     }
     i = i + 1;
   }
@@ -289,16 +206,16 @@ void test_ajouterCodage(void) {
 void test_octetVersCodeBinaire(void) {
   TableDeCodage tdc = TDC_creerTableCodage();
   CodeBinaire cb_42_test = CB_creerCodeBinaire(bitA1);
-  TDC_ajouterCodage(&tdc, 42, cb_42_test);
+  TDC_ajouterCodage(&tdc, O_naturelVersOctet(42), cb_42_test);
   unsigned char i = 0;
   do {
     if (i==42) {
-        CU_ASSERT(TDC_octetPresent(tdc, i));
-        CodeBinaire cb = TDC_octetVersCodeBinaire(tdc, 42);
+        CU_ASSERT(TDC_octetPresent(tdc, O_naturelVersOctet(i)));
+        CodeBinaire cb = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet(42));
         CU_ASSERT((CB_obtenirIemeBit(cb,0) == bitA1));
         CU_ASSERT((CB_obtenirLongueur(cb) == 1));
     } else {
-      CU_ASSERT(!(TDC_octetPresent(tdc, i)));
+      CU_ASSERT(!(TDC_octetPresent(tdc, O_naturelVersOctet(i))));
     }
     i = i + 1;
   }
@@ -354,7 +271,7 @@ int main(int argc, char** argv){
   /* Ajout des tests à la suite FileDePriorite*/
   if ((NULL == CU_add_test(pSuiteFileDePriorite, "Création d'une File De Priorité vide", test_creation_filedePriorite_vide)) 
     || (NULL == CU_add_test(pSuiteFileDePriorite, "Enfiler des éléments dans une File De Priorité ", test_enfiler))
-    || (NULL == CU_add_test(pSuiteFileDePriorite, "Obtenir un élément et défiler la File De Priorité", test_obtenirElement_et_Defiler))
+    || (NULL == CU_add_test(pSuiteFileDePriorite, "Obtenir un élément et défiler la File De Priorité", test_obtenir_element_et_defiler))
   )
     {
       CU_cleanup_registry();
@@ -370,7 +287,6 @@ int main(int argc, char** argv){
 
   /* ajout des tests à la suite tableDeCodage */
   if ((NULL == CU_add_test(pTableDeCodage, "Création d'une tableDeCodage 'vide'", test_creerTableCodage))
-    || (NULL == CU_add_test(pTableDeCodage, "Vérification qu'un unique élement inséré est retourné présent mais pas les autres", test_octetPresent))
     || (NULL == CU_add_test(pTableDeCodage, "Vérifications multiples après l'ajout de 2 CodeBinaire de tailles différentes dans la TableDeCodage", test_ajouterCodage))
     || (NULL == CU_add_test(pTableDeCodage, "Vérifications de la récupération d'un CodeBinaire après une unique insertion dans la TableDeCodage", test_octetVersCodeBinaire))
   )
@@ -387,13 +303,8 @@ int main(int argc, char** argv){
   }
 
   /* Ajout des tests à la suite arbreDeHuffman */
-  if ((NULL == CU_add_test(pSuiteArbreDeHuffman, "Creation d'un arbre de Huffman à partir d'un octet et une occurence", test_creation_arbreDeHuffman)) 
-    || (NULL == CU_add_test(pSuiteArbreDeHuffman, "Fusion de deux feuilles pour cree un arbre de Huffman", test_fussioner_ADH))
-    || (NULL == CU_add_test(pSuiteArbreDeHuffman, "Savoir si l'arbre de Huffman est une Feuille ", test_estUneFeuille))
-    || (NULL == CU_add_test(pSuiteArbreDeHuffman, "Obtenir l'octet present sur une feuille", test_obtenir_octet_ADH))
-    || (NULL == CU_add_test(pSuiteArbreDeHuffman, "Obtenir la frequence d'apparition present sur une feuille", test_obtenir_frequence_ADH))
-    || (NULL == CU_add_test(pSuiteArbreDeHuffman, "Obtenir le Fils gauche d'un arbre de Huffman", test_obtenir_fils_gauche))
-    || (NULL == CU_add_test(pSuiteArbreDeHuffman, "Obtenir le Fils droit d'un arbre de Huffman", test_obtenir_fils_droit))
+  if ((NULL == CU_add_test(pSuiteArbreDeHuffman, "Creation d'un arbre de Huffman feuille à partir d'un octet et une occurence", test_creation_arbre_de_huffman_feuille)) 
+    || (NULL == CU_add_test(pSuiteArbreDeHuffman, "Fusion de deux feuilles pour créer un arbre de Huffman", test_fusionner_ADH))
       ) 
     {
       CU_cleanup_registry();
