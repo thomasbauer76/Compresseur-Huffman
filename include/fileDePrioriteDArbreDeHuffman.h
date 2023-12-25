@@ -37,9 +37,7 @@ void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a);
 \param FileDePriorite de laquelle on souhaiterait défiler un ArbreDeHuffman, cette dernière sera modifiée
 \return L'ArbreDeHuffman obtenu grâce au défilement de la FileDePriorite donnée en paramètre
 */
-//ArbreDeHuffman FDPAH_obtenirElementEtDefiler(FileDePriorite *p_fdp);
-void FDPAH_obtenirElementEtDefiler(FileDePriorite *fdp, ArbreDeHuffman *a);
-
+ArbreDeHuffman FDPAH_obtenirElementEtDefiler(FileDePriorite *p_fdp);
 
 
 #endif
