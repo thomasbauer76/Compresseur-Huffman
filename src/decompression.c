@@ -37,14 +37,6 @@ FILE* D_decoder(ArbreDeHuffman aHuff, FILE *fb1) {
     return fb2;
 }
 
-void D_libererArbreDeHuffman(ArbreDeHuffman a) {
-    if (!(ADH_estUneFeuille(a))) {
-        D_libererArbreDeHuffman(ADH_obtenirFilsDroit(a));
-        D_libererArbreDeHuffman(ADH_obtenirFilsGauche(a));
-    }
-    free(a);
-}
-
 void D_lireStatistiques(FILE *fb, Statistiques s) {
 
 }
