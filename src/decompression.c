@@ -11,7 +11,7 @@ void D_decompresser(FILE *f) {
 }
 
 void D_seDeplacerDansLArbre(Bit b, ArbreDeHuffman *a) {
-    if (b == 0) {
+    if (b == bitA0) {
         *a = ADH_obtenirFilsGauche(*a);
     } else {
         *a = ADH_obtenirFilsDroit(*a);
