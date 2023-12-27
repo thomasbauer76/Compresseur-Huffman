@@ -1,9 +1,10 @@
 \begin{algorithme}
-    \procedure{decoder}{\paramEntree{aHuff : \arbredehuffman},\paramEntreeSortie{fb1:\fichierbinaire} \paramSortie{fb2 : \fichierbinaire}}{}{}
+    \procedure{decoder}{\paramEntree{aHuff : \arbredehuffman, longueur : \naturel},\paramEntreeSortie{fb1:\fichierbinaire} \paramSortie{fb2 : \fichierbinaire}}{compteurOctetsDecodes : \naturel}{}
     {
-       \instruction{ouvrir(fb2, écriture)}
+	   \instruction{ouvrir(fb2, écriture)}	
        \affecter{aTemp}{aHuff}
-       \tantque{non(finFichier(fb1)}{
+       \affecter{compteurOctetsDecodes}{0}
+       \tantque{compteurOctetsDecodes <= longueur}{
        		\affecter{OctetCourant}{lireOctet(fb1)}
        		\pour{i}{0}{7}{}
        		{
@@ -12,6 +13,7 @@
        			\sialors{estUneFeuille(atemp)}{
        				\affecter{octetDecodé}{obtenirOctet(aTemp)}
        				\instruction{écrireOctet(octetDecodé, fb2)}
+       				\affecter{compteurOctetsDecodes}{compteurOctetsDecodes+1}
        				\affecter{aTemp}{aHuff}
        				}
        			}
