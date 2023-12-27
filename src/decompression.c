@@ -6,24 +6,7 @@
 #include "statistiques.h"
 #include "arbreDeHuffman.h"
 #include "octet.h"
-
-void D_decompresser(FILE *fbCompresse) {
-    rewind(fbCompresse);
-    // Dans l'instruction en dessous, il faudrait que le nom du fichier decompresse soit "personnalisé"
-    FILE *fbDecompresse = fopen(strcat("fichierDecompresse",".huff"), "wb");
-    unsigned short int identifiant;
-    fread(&identifiant, sizeof(unsigned short int), 1, fbCompresse);
-    // Le if ci dessous permet de vérifier si l'identifiant est bien celui d'un fichier compressé par Huffman, on devrait sûrement mettre le "1000" dans une constante globale
-    if (identifiant = 1000) {
-        unsigned long long int longueur;
-        fread(&longueur, sizeof(unsigned long long int), 1, fbCompresse);
-        Statistiques s;
-        D_lireStatistiques(fbCompresse, s);
-        ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
-        D_decoder(a, longueur, fbCompresse, fbDecompresse);
-        ADH_liberer(a);
-    }
-}
+#include <string.h>
 
 void D_seDeplacerDansLArbre(Bit b, ArbreDeHuffman *a) {
     if (b == bitA0) {
@@ -54,5 +37,23 @@ void D_decoder(ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *fbCo
                 aTemp = aHuff;
             }
         }
+    }
+}
+
+void D_decompresser(FILE *fbCompresse) {
+    rewind(fbCompresse);
+    // Dans l'instruction en dessous, il faudrait que le nom du fichier decompresse soit "personnalisé"
+    FILE *fbDecompresse = fopen(strcat("fichierDecompresse",".huff"), "wb");
+    unsigned short int identifiant;
+    fread(&identifiant, sizeof(unsigned short int), 1, fbCompresse);
+    // Le if ci dessous permet de vérifier si l'identifiant est bien celui d'un fichier compressé par Huffman, on devrait sûrement mettre le "1000" dans une constante globale
+    if (identifiant == 1000) {
+        unsigned long long int longueur;
+        fread(&longueur, sizeof(unsigned long long int), 1, fbCompresse);
+        Statistiques s;
+        D_lireStatistiques(fbCompresse, s);
+        ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
+        D_decoder(a, longueur, fbCompresse, fbDecompresse);
+        ADH_liberer(a);
     }
 }
