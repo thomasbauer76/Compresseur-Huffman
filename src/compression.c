@@ -12,6 +12,13 @@
 #include "codeBinaire.h"
 #include "construireArbreDeHuffman.h"
 
+unsigned short min(unsigned short a, unsigned short b) {
+  if (a>b)
+    return b;
+  else
+    return a;
+}
+
 void C_obtenirStatistiquesEtTailleFichier(FILE *f, Statistiques *s,  unsigned long *taille) {
     rewind(f);
 
@@ -98,34 +105,27 @@ Octet C_codeBinaireEnOctet(CodeBinaire cb) {
 void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBinaire cb) {
     unsigned short i, j;
 
-    bool octetAEteEcrit = (CB_obtenirLongueur(*p_cbTemp) == 8);
-    if (octetAEteEcrit)
-        *p_cbTemp = cb;
-    
-    unsigned short tailleCbTemp = CB_obtenirLongueur(*p_cbTemp);
     unsigned short tailleCb = CB_obtenirLongueur(cb);
-    unsigned short tailleTotale = tailleCbTemp + tailleCb;
+    unsigned short tailleLibre = MAX_CB - CB_obtenirLongueur(*p_cbTemp);
 
-    if (tailleTotale > 8) {
-        for (i = 0; i < MAX_CB - tailleCbTemp; i++)
-            CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, i));
-        unsigned char octet = O_octetVersNaturel(C_codeBinaireEnOctet(*p_cbTemp));
-        fwrite(&octet, sizeof(unsigned char), 1, f);
-
-        *p_cbTemp = CB_creerCodeBinaire(CB_obtenirIemeBit(cb, i+1));
-        for (j = i + 2; j < tailleCb; j++)
-            CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, j));
+    if (CB_obtenirLongueur(*p_cbTemp) == 8) {
+        *p_cbTemp = cb;
     }
     else {
-        if (!octetAEteEcrit) {
-            for (i = 0; i < tailleCb; i++)
-                CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, i));
-        }
+        for (i = 0; i < min(tailleCb, tailleLibre); i++)
+            CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, i));
+    }
 
-        if (CB_obtenirLongueur(*p_cbTemp) == 8) {
-            unsigned char octet = O_octetVersNaturel(C_codeBinaireEnOctet(*p_cbTemp));
-            fwrite(&octet, sizeof(unsigned char), 1, f);
-        }
+    if (CB_obtenirLongueur(*p_cbTemp) == 8) {
+        unsigned char octet = O_octetVersNaturel(C_codeBinaireEnOctet(*p_cbTemp));
+        fwrite(&octet, sizeof(unsigned char), 1, f);
+    }
+
+    if (i < tailleCb) {
+        // La variable i est incrémenté lors de la dernière itération de la boucle for, d'où la nécessité de prendre le bit correspondant à i plutôt qu'à i + 1
+        *p_cbTemp = CB_creerCodeBinaire(CB_obtenirIemeBit(cb, i));
+        for (j = i + 1; j < tailleCb; j++)
+            CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, j));
     }
 }
 
