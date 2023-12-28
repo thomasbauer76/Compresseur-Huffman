@@ -144,20 +144,13 @@ void test_code_binaire_8_bits_vers_octet(void) {
 }
 
 void test_ecrire_identifiant(void) {
-  
-  
-
   FILE *tempFile = tmpfile();
-  //char *filename;
- // C_ecrireIdentifiant(tempFile);
   
   C_ecrireIdentifiant(tempFile);
 
   rewind(tempFile);
-  //tempFile = fopen(strcat(filename,".huff"), "wb");
-  //tempFile = fopen("tempfile_stat.bin", "rb");
   unsigned short identifiant_lue;
-  unsigned short identifiant_attendue = 1000;
+  unsigned short identifiant_attendue = IDENTIFIANT;
 
   CU_ASSERT_EQUAL(fread(&identifiant_lue, sizeof(unsigned short), 1, tempFile), 1);
   CU_ASSERT_EQUAL(identifiant_lue, identifiant_attendue);
