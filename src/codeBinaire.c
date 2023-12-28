@@ -9,7 +9,7 @@ CodeBinaire CB_creerCodeBinaire(Bit b) {
 }
 
 void CB_ajouterBit(CodeBinaire *cb, Bit b) {
-    assert(CB_obtenirLongueur(*cb) < MAX_CB);
+    assert(CB_obtenirLongueur(*cb) <= MAX_CB );
     cb->tableBit[CB_obtenirLongueur(*cb)] = b;
     cb->nbElements++;
 }
