@@ -16,7 +16,9 @@
         \sialors{taillefb > 0}
         {
             \instruction{ecrireStatistiques(fbCompresse, s)}
-            \instruction{encoder(fb, obtenirTableDeCodage(construireArbreDeHuffman(s)), fCompresse)}
+            \affecter{a}{construireArbreDeHuffman(s)}
+            \instruction{encoder(fb, obtenirTableDeCodage(a), fCompresse)}
+            \instruction{liberer(a)}
         }
         \\
         \instruction{fermer(fbCompresse)}
