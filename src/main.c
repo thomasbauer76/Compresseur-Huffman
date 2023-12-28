@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
             if (strstr(argv[2], ".huff") != NULL) {
                 FILE *f = fopen(argv[2], "rb");
                 if (f != NULL) {
-                    D_decompresser(f);
+                    D_decompresser(f, argv[2]);
                     fclose(f);
                 }
                 else {
