@@ -115,7 +115,6 @@ void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBina
         while (i < tailleCb && CB_obtenirLongueur(*p_cbTemp) < MAX_BITS) {
             CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, i));
             i++;
-            printf("je boucle");
         }
 
         if (CB_obtenirLongueur(*p_cbTemp) == MAX_BITS) {
