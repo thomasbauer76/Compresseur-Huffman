@@ -67,11 +67,20 @@ void C_ecrireTailleFichier(FILE *f, unsigned long long taille) {
 }
 
 void C_ecrireStatistiques(FILE *f, Statistiques s) {
+    unsigned char octet;
+    unsigned long occurence;
+
     unsigned short o;
     for (o = 0; o < MAX_OCTET; o++) {
-        unsigned long occurence = S_obtenirOccurence(s, O_naturelVersOctet(o));
-        fwrite(&occurence, sizeof(unsigned long), 1, f);
+        octet = O_naturelVersOctet(o);
+        occurence = S_obtenirOccurence(s, octet);
+        if (occurence > 0) {
+            fwrite(&occurence, sizeof(unsigned long), 1, f);
+            fwrite(&o, sizeof(unsigned char), 1, f);
+        }
     }
+    occurence = 0;
+    fwrite(&occurence, sizeof(unsigned long), 1, f);
 }
 
 Octet C_codeBinaireEnOctet(CodeBinaire cb) {
