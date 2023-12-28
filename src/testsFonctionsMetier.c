@@ -287,7 +287,7 @@ void test_lireStatistiques(void) {
 
   Statistiques s;
   S_statistiques(&s);
-  D_lireStatistiques(tempFile, s);
+  D_lireStatistiques(tempFile, &s);
 
   Statistiques resAttendu;
   S_statistiques(&resAttendu);
