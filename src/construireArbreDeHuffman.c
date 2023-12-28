@@ -25,5 +25,22 @@ FileDePriorite CADH_construireFileDePriorite(Statistiques s) {
 }
 
 ArbreDeHuffman CADH_construireArbreDeHuffman(Statistiques s){
-    return NULL;
+    FileDePriorite fdp;
+    bool dernierElement;
+    ArbreDeHuffman a1, a2, aFusion;
+
+    fdp = CADH_construireFileDePriorite(s);
+    dernierElement = 0;
+    while (!(dernierElement)) {
+        a1 = FDPAH_obtenirElementEtDefiler(&fdp);
+        if (FDPAH_estVide(fdp)){
+            dernierElement=true;
+        }
+        else {
+            a2 = FDPAH_obtenirElementEtDefiler(&fdp);
+            aFusion = ADH_fusionner(a1, a2);
+            FDPAH_enfiler(&fdp, aFusion);
+        }
+    }
+    return a1;
 }
