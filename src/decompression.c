@@ -26,9 +26,9 @@ void D_lireStatistiques(FILE *fb, Statistiques *s) {
 
     S_statistiques(s);
     do {
-        lireNaturel(fb,occurence);
+        fread(&occurence, sizeof(unsigned long), 1, fb);
         if(occurence!=0){
-            lireOctet(fb,octet);
+            fread(&octet, sizeof(unsigned char), 1, fb);
             S_fixerOccurence(s,octet,occurence);
         }
 
@@ -66,7 +66,7 @@ void D_decompresser(FILE *fbCompresse) {
         unsigned long long int longueur;
         fread(&longueur, sizeof(unsigned long long int), 1, fbCompresse);
         Statistiques s;
-        D_lireStatistiques(fbCompresse, s);
+        D_lireStatistiques(fbCompresse, &s);
         ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
         D_decoder(a, longueur, fbCompresse, fbDecompresse);
         ADH_liberer(a);
