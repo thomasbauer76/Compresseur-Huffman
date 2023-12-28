@@ -12,7 +12,7 @@
 
 #include "octet.h"
 
-#define MAX_CB 8
+#define MAX_CB (MAX_OCTET - 1)
 
 /**
  * \brief Le type CodeBinaire permet de stocker de 1 à 8 bits dans un ordre donné
