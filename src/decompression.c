@@ -22,11 +22,11 @@ void D_seDeplacerDansLArbre(Bit b, ArbreDeHuffman *a) {
 void D_lireStatistiques(FILE *fb, Statistiques *s) {
     
     Octet octet;
-    long unsigned int occurence;
+    unsigned long int occurence;
 
     S_statistiques(s);
     do {
-        fread(&occurence, sizeof(unsigned long), 1, fb);
+        fread(&occurence, sizeof(unsigned long int), 1, fb);
         if(occurence!=0){
             fread(&octet, sizeof(unsigned char), 1, fb);
             S_fixerOccurence(s,octet,occurence);
@@ -56,10 +56,10 @@ void D_decoder(ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *fbCo
     }
 }
 
-void D_decompresser(FILE *fbCompresse) {
+void D_decompresser(FILE *fbCompresse, char *filename) {
     rewind(fbCompresse);
     // Dans l'instruction en dessous, il faudrait que le nom du fichier decompresse soit "personnalisé"
-    FILE *fbDecompresse = fopen(strcat("fichierDecompresse",".huff"), "wb");
+    FILE *fbDecompresse = fopen(filename, "wb");
     unsigned short int identifiant;
     fread(&identifiant, sizeof(unsigned short int), 1, fbCompresse);
     if (identifiant == IDENTIFIANT) {

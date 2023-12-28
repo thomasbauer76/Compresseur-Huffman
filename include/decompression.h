@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 
-void D_decompresser(FILE *fbCompresse);
+void D_decompresser(FILE *fbCompresse, char *filename);
 
 
 #endif
