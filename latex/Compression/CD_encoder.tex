@@ -3,8 +3,14 @@
     {}
     {cbTemp, cb: \codebinaire, o : \octet, i : \naturel}
     {
+		\sialors{estOuvert(fbInitial)}
+        {
+            \instruction{fermer(fbInitial)}
+        }
+        \instruction{ouvrir(fbInitial, lecture)}
+		\\
         \affecter{cbTemp}{creerCodeBinaire(bitA0)}
-        \pour{i}{1}{7}{}{\instruction{ajouterBit(cbTemp,bitA0)}}
+        \pour{i}{ 1}{7}{}{\instruction{ajouterBit(cbTemp,bitA0)}}
         \\
         \tantque{$non$ finfichier(fnInitiale)}{
        		
@@ -15,7 +21,7 @@
         \\
         \sialors{obtenirLongueur(cbTemp) $<$ 8}
 		{
-			\pour{i}{obtenirLongeur(cbTemp)}{7}{}
+			\pour{i}{ obtenirLongeur(cbTemp)}{7}{}
         			{
         					\instruction{ajouterBit(cbTemp, bitA0)}
         			}
