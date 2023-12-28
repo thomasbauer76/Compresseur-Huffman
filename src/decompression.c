@@ -7,6 +7,8 @@
 #include "arbreDeHuffman.h"
 #include "octet.h"
 #include <string.h>
+// On inclut compression.h pour avoir la constante de l'identifiant
+#include "compression.h"
 
 void D_seDeplacerDansLArbre(Bit b, ArbreDeHuffman *a) {
     if (b == bitA0) {
@@ -59,8 +61,7 @@ void D_decompresser(FILE *fbCompresse) {
     FILE *fbDecompresse = fopen(strcat("fichierDecompresse",".huff"), "wb");
     unsigned short int identifiant;
     fread(&identifiant, sizeof(unsigned short int), 1, fbCompresse);
-    // Le if ci dessous permet de vérifier si l'identifiant est bien celui d'un fichier compressé par Huffman, on devrait sûrement mettre le "1000" dans une constante globale
-    if (identifiant == 1000) {
+    if (identifiant == IDENTIFIANT) {
         unsigned long long int longueur;
         fread(&longueur, sizeof(unsigned long long int), 1, fbCompresse);
         Statistiques s;
