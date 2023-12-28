@@ -1,20 +1,14 @@
 \begin{tad}
   \tadNom{CodeBinaire}
-  \tadDependances{\textbf{Octet}, \naturel, \textbf{Bit} }
+  \tadDependances{\textbf{Octet}, \naturel, \textbf{Bit}, \textbf{0..7}}
   \begin{tadOperations}{obtenirLongueur}
   
     \tadOperation{creerCodeBinaire}{Bit}{CodeBinaire}
     \tadOperation{ajouterBit}{\tadParams{CodeBinaire, Bit}}{CodeBinaire}
-    \tadOperationAvecPreconditions{obtenirIemeBit}{\tadParams{CodeBinaire,\naturel}}{Bit}
+    \tadOperation{obtenirIemeBit}{\tadParams{CodeBinaire,\textbf{0..7}}}{Bit}
     \tadOperation{obtenirLongueur}{CodeBinaire}{\naturel}
      
   \end{tadOperations}
-
-
-  \begin{tadPreconditions}{ObtenirBit(CodeBinaire)}
-    \tadPrecondition{obtenirIemeBit(cb : CodeBinaire, i : Naturel)}{i <= obtenirLongueur(cb)}
-  \end{tadPreconditions}
-    
   
   \begin{tadAxiomes}	
   	    \tadAxiome{obtenirLongueur(concatener(CodeBinaire1,CodeBinaire2))=

@@ -3,10 +3,12 @@
 #include <assert.h>
 #include "arbreDeHuffman.h"
 
+
 ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned long n){
 	ArbreDeHuffman a = (ArbreDeHuffman)malloc(sizeof(NoeudArbreDeHuffman));
 	a->octet=o;
 	a->frequence=n;
+    a->estUneFeuille = true;
 	a->arbreGauche=NULL;
 	a->arbreDroit=NULL;
 	return a;
@@ -44,4 +46,10 @@ ArbreDeHuffman ADH_obtenirFilsDroit(ArbreDeHuffman a) {
     return a->arbreDroit;
 }
 
-
+void ADH_liberer(ArbreDeHuffman a) {
+    if (!(ADH_estUneFeuille(a))) {
+        ADH_liberer(ADH_obtenirFilsDroit(a));
+        ADH_liberer(ADH_obtenirFilsGauche(a));
+    }
+    free(a);
+}

@@ -9,20 +9,20 @@
         \\
         \commentaire{Les instructions ci-dessus correspondent à une réinitialisation du curseur en tête de fichier.}
     	\\
-    	\commentaire{Lecture de l'identifiant (un \textit{unsigned long long int})}
+    	\commentaire{Lecture de l'identifiant (un \textit{unsigned short int})}
     	\instruction{lireNaturel(fCompresser, id)}
     	\\
     	\commentaire{On vérifie si on retrouve bien notre identifiant (ici 1000 sous sa forme de naturel), si ce n'est pas le cas, on n'a pas a décompresser le fichier et l'on retourne fCompresser en tant que fichier décompressé}
     	\sialors{id != 1000}{
     		\instruction{retourner fCompresser}
     	}
+		\\		
+		\commentaire{Lecture de la longueur (un \textit{unsigned long long int})}    
     	\instruction{lireNaturel(fCompresser, longueur)}
     	\instruction{lireStatistiques(fCompresser, s)}
     	\instruction{construireArbreDeHuffman(s, abh)}
-    	\instruction{decoder(abh, fCompresse, fDecompresse)}
-    	\\
-    	\commentaire{Normalement on est censé vérifier que la longueur de FDecompresse est égale à la longueur du fichier originel (stocké dans la variable longueur) mais je ne sais pas comment écrire ça en pseudo-code}
-    	\instruction{libererArbreDeHuffman(abh)}
+    	\instruction{decoder(abh, longueur, fCompresse, fDecompresse)}
+		\instruction{libererArbreDeHuffman(abh)}    	
     	\\
     	\commentaire{L'instruction au dessus permet de s'assurer de la libération de l'ArbreDeHuffman (conseillé par le prof)}
     }
