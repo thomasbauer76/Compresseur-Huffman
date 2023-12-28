@@ -27,6 +27,25 @@ FILE *fichierTemporaireRempli() {
   return tempFile;
 }
 
+FILE *fichierTemporaireEncode() {
+  FILE *tempFile = tmpfile();
+  // Pour avoir la version compressé de l'exemple du sujet je vais écrire les 5 entiers en dessous sous forme de 5 unsigned char
+  // 137 249 150 167 38
+  unsigned char octet1 = 137;
+  unsigned char octet2 = 249;
+  unsigned char octet3 = 150;
+  unsigned char octet4 = 167;
+  unsigned char octet5 = 38;
+  // Pour être certain d'écrire au début du fichier
+  rewind(tempFile);
+  fwrite(&octet1, sizeof(unsigned char), 1, tempFile);
+  fwrite(&octet2, sizeof(unsigned char), 1, tempFile);
+  fwrite(&octet3, sizeof(unsigned char), 1, tempFile);
+  fwrite(&octet4, sizeof(unsigned char), 1, tempFile);
+  fwrite(&octet5, sizeof(unsigned char), 1, tempFile);
+  return tempFile;
+}
+
 FILE *fichierTemporaireVide() {
   FILE *tempFile = tmpfile();
 
@@ -273,20 +292,30 @@ void test_concatener_codes_binaires(void) {
   fclose(tempFileSortie);
 }
 
-/* Tests compression.c */
+/* Tests D_decoder */
 
-void test_lireStatistiques(void) {
-  FILE *tempFile = fichierTemporaireRempli();
-
+void test_decoder(void) {
+  FILE *fichierTest = fichierTemporaireRempli();
   Statistiques s;
-  S_statistiques(&s);
-  D_lireStatistiques(tempFile, &s);
+  unsigned long longueur;
+  C_obtenirStatistiquesEtTailleFichier(fichierTest, &s, &longueur);
+  ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
 
-  Statistiques resAttendu;
-  S_statistiques(&resAttendu);
-  //S_fixerOccurence(s, )
+  FILE *fichierTestEncode = fichierTemporaireEncode();
+  FILE *fichierTestDecode = tmpfile();
 
-  //CU_ASSERT_EQUAL(s, );
+  D_decoder(a, longueur, fichierTestEncode, fichierTestDecode);
+
+  rewind(fichierTest);
+  rewind(fichierTestDecode);
+  for (unsigned int i=1; i<=longueur; i++) {
+    unsigned char octetActuelFichierTest;
+    fread(&octetActuelFichierTest, sizeof(unsigned char), 1, fichierTest);
+    unsigned char octetActuelFichierTestDecode;
+    fread(&octetActuelFichierTestDecode, sizeof(unsigned char), 1, fichierTestDecode);
+    CU_ASSERT((octetActuelFichierTest == octetActuelFichierTestDecode));
+  }
+  
 }
 
 int main(int argc, char** argv){
@@ -314,6 +343,7 @@ int main(int argc, char** argv){
     || (NULL == CU_add_test(pSuiteCompression, "ecrire la taille du fichier dans un fichier", test_ecrire_taille_fichier))
     || (NULL == CU_add_test(pSuiteCompression, "ecrire les statistique du fichier dans un fichier", test_ecrire_statistiques))
     || (NULL == CU_add_test(pSuiteCompression, "concatener les codes binaire dans un fichiers", test_concatener_codes_binaires))
+    || (NULL == CU_add_test(pSuiteCompression, "Decodage d'un fichier et vérification que ça a marché", test_decoder))
     //|| (NULL == CU_add_test(pSuiteCompression, "encoder le fichier de sortie de codebinaires", test_encoder_fichier))
     //|| (NULL == CU_add_test(pSuiteCompression, "compressé le fichier", test_compression_fichier)) 
       ) 

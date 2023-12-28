@@ -222,6 +222,47 @@ void test_octetVersCodeBinaire(void) {
   while (i!=255);
 }
 
+/* Tests octet.c*/
+void test_creer_octet(void) {
+    // Test pour 0
+    Bit b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0, b7 = 0;
+    Octet resultat = O_creerOctet(b0, b1, b2, b3, b4, b5, b6, b7);
+    CU_ASSERT_EQUAL(resultat,0);
+
+    // Test pour 255
+    b0 = 1, b1 = 1, b2 = 1, b3 = 1, b4 = 1, b5 = 1, b6 = 1, b7 = 1;
+    resultat = O_creerOctet(b0, b1, b2, b3, b4, b5, b6, b7);
+    CU_ASSERT_EQUAL(resultat,255);
+
+    // Test pour 170
+    b0 = 1, b1 = 0, b2 = 1, b3 = 0, b4 = 1, b5 = 0, b6 = 1, b7 = 0;
+    resultat = O_creerOctet(b0, b1, b2, b3, b4, b5, b6, b7);
+    CU_ASSERT_EQUAL(resultat,170);
+}
+
+void test_obtenir_ieme_bit(void) {
+    Octet octet = 255; // binaire: 11111111
+
+    for (unsigned short i = 0; i <= 7; ++i) {
+        Bit resultat = O_obtenirIemeBit(octet, i);
+        CU_ASSERT_EQUAL(resultat,1);
+    }
+}
+
+void test_octet_vers_naturel(void) {
+    Octet octet = 42;
+
+    unsigned char resultat = O_octetVersNaturel(octet);
+    CU_ASSERT_EQUAL(resultat, octet);
+}
+
+void test_naturel_vers_octet(void) {
+    unsigned char naturel = 42;
+
+    Octet resultat = O_naturelVersOctet(naturel);
+    CU_ASSERT_EQUAL(resultat,naturel);
+}
+
 int main(int argc, char** argv){
 
   /* initialisation du registre de tests */
