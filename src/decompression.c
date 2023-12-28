@@ -22,11 +22,11 @@ void D_seDeplacerDansLArbre(Bit b, ArbreDeHuffman *a) {
 void D_lireStatistiques(FILE *fb, Statistiques *s) {
     
     Octet octet;
-    long unsigned int occurence;
+    unsigned long int occurence;
 
     S_statistiques(s);
     do {
-        fread(&occurence, sizeof(unsigned long), 1, fb);
+        fread(&occurence, sizeof(unsigned long int), 1, fb);
         if(occurence!=0){
             fread(&octet, sizeof(unsigned char), 1, fb);
             S_fixerOccurence(s,octet,occurence);
