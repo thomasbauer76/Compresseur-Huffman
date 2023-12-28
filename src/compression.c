@@ -166,7 +166,9 @@ void C_compresser(FILE *f, char *filename) {
     C_ecrireTailleFichier(fbCompresse, taille);
     if(taille > 0) {
         C_ecrireStatistiques(fbCompresse, s);
-        C_encoder(f, fbCompresse, C_obtenirTableDeCodage(CADH_construireArbreDeHuffman(s)));
+        ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
+        C_encoder(f, fbCompresse, C_obtenirTableDeCodage(a));
+        ADH_liberer(a);
     }
    
     fclose(fbCompresse);
