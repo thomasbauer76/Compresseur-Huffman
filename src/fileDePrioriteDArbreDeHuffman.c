@@ -14,8 +14,11 @@ bool FDPAH_estVide(FileDePriorite fdp) {
 
 void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a) {
     if (FDPAH_estVide(*p_fdp) || ADH_obtenirFrequence(a) < ADH_obtenirFrequence((*p_fdp)->arbre)
+        // Si les deux fréquences sont égales, on compare (si on peut) leurs octets
         || (ADH_obtenirFrequence(a) == ADH_obtenirFrequence((*p_fdp)->arbre)
-            && ADH_obtenirOctet(a) < ADH_obtenirOctet((*p_fdp)->arbre))) 
+            && ADH_estUneFeuille(a) && ADH_estUneFeuille((*p_fdp)->arbre)
+            && ADH_obtenirOctet(a) < ADH_obtenirOctet((*p_fdp)->arbre))
+        ) 
 	{
         FileDePriorite temp = (FileDePriorite)malloc(sizeof(NoeudFileDePriorite));
         temp->arbre = a;
