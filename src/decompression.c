@@ -40,7 +40,7 @@ void D_decoder(ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *fbCo
     rewind(fbDecompresse);
     ArbreDeHuffman aTemp = aHuff;
     unsigned long long int compteurOctetsDecodes = 0;
-    while (compteurOctetsDecodes <= longueur) {
+    while (compteurOctetsDecodes < longueur) {
         Octet o;
         fread(&o, sizeof(unsigned char), 1, fbCompresse);
         for (int i = 0; i <= 7; i++) {
