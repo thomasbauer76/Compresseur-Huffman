@@ -59,7 +59,7 @@ void D_decoder(ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *fbCo
 void D_decompresser(FILE *fbCompresse, char *filename) {
     rewind(fbCompresse);
     // Dans l'instruction en dessous, il faudrait que le nom du fichier decompresse soit "personnalisé"
-    FILE *fbDecompresse = fopen(filename, "wb");
+    FILE *fbDecompresse = fopen(strcat(filename,"decompresse"), "wb");
     unsigned short int identifiant;
     fread(&identifiant, sizeof(unsigned short int), 1, fbCompresse);
     if (identifiant == IDENTIFIANT) {
