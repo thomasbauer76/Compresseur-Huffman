@@ -98,7 +98,8 @@ Octet C_codeBinaireEnOctet(CodeBinaire cb) {
 void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBinaire cb) {
     unsigned short i, j;
 
-    if (CB_obtenirLongueur(*p_cbTemp) == 8)
+    bool octetAEteEcrit = (CB_obtenirLongueur(*p_cbTemp) == 8);
+    if (octetAEteEcrit)
         *p_cbTemp = cb;
     
     unsigned short tailleCbTemp = CB_obtenirLongueur(*p_cbTemp);
@@ -116,8 +117,10 @@ void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBina
             CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, j));
     }
     else {
-        for (i = 0; i < tailleCb; i++)
-            CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, i));
+        if (!octetAEteEcrit) {
+            for (i = 0; i < tailleCb; i++)
+                CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, i));
+        }
 
         if (CB_obtenirLongueur(*p_cbTemp) == 8) {
             unsigned char octet = O_octetVersNaturel(C_codeBinaireEnOctet(*p_cbTemp));
@@ -129,6 +132,7 @@ void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBina
 
 void C_encoder(FILE *f, FILE *fbCompresse, TableDeCodage tdc) {
     unsigned short i;
+    rewind(f);
 
     // Création d'un code binaire temporaire initalisé à 8 bits pour rentrer dans la première condition de la fonction concatenerCodeBinaireEnOctet
     CodeBinaire cbTemp = CB_creerCodeBinaire(bitA0);
