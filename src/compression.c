@@ -103,30 +103,25 @@ Octet C_codeBinaireEnOctet(CodeBinaire cb) {
 }
 
 void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBinaire cb) {
-    unsigned short i, j;
+    unsigned short i = 0;
     unsigned short tailleCb = CB_obtenirLongueur(cb);
-    unsigned short tailleLibre = MAX_BITS - CB_obtenirLongueur(*p_cbTemp);
 
-    if (CB_obtenirLongueur(*p_cbTemp) == MAX_BITS) {
-        *p_cbTemp = cb;
-        // On assigne tailleCb à i pour ne pas entrer dans la dernière condition de la procédure
-        i = tailleCb;
-    }
-    else {
-        for (i = 0; i < min(tailleCb, tailleLibre); i++)
+    while (i != tailleCb) {
+        if (CB_obtenirLongueur(*p_cbTemp) == MAX_BITS) {
+            *p_cbTemp = CB_creerCodeBinaire(CB_obtenirIemeBit(cb, i));
+            i++;
+        }
+
+        while (i < tailleCb && CB_obtenirLongueur(*p_cbTemp) < MAX_BITS) {
             CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, i));
-    }
+            i++;
+            printf("je boucle");
+        }
 
-    if (CB_obtenirLongueur(*p_cbTemp) == MAX_BITS) {
-        unsigned char octet = O_octetVersNaturel(C_codeBinaireEnOctet(*p_cbTemp));
-        fwrite(&octet, sizeof(unsigned char), 1, f);
-    }
-
-    // La variable i est incrémentée lors de la dernière itération de la boucle for, d'où la nécessité de prendre le bit correspondant à i plutôt qu'à i + 1
-    if (i < tailleCb) {
-        *p_cbTemp = CB_creerCodeBinaire(CB_obtenirIemeBit(cb, i));
-        for (j = i + 1; j < tailleCb; j++)
-            CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, j));
+        if (CB_obtenirLongueur(*p_cbTemp) == MAX_BITS) {
+            unsigned char octet = O_octetVersNaturel(C_codeBinaireEnOctet(*p_cbTemp));
+            fwrite(&octet, sizeof(unsigned char), 1, f);
+        }
     }
 }
 
