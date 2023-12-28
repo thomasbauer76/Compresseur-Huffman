@@ -22,6 +22,5 @@ void TDC_ajouterCodage(TableDeCodage *tdc, Octet o, CodeBinaire cb){
 }
 
 CodeBinaire TDC_octetVersCodeBinaire(TableDeCodage tdc, Octet o){
-    assert(TDC_octetPresent(tdc, o));
     return tdc.tableDeCodeBinaire[O_octetVersNaturel(o)];
 }
