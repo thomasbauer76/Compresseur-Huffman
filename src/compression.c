@@ -107,7 +107,7 @@ void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBina
             CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, j));
     }
     else {
-        for (i = tailleCbTemp; i < tailleTotale; i++)
+        for (i = 0; i < tailleCb; i++)
             CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, i));
 
         if (CB_obtenirLongueur(*p_cbTemp) == 8) {
