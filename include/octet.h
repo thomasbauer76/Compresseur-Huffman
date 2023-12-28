@@ -4,12 +4,12 @@
 
 #include <stdbool.h>
 
-#define MAX_OCTET 256
+#define MAX_BITS    8
+#define bitA0       0
+#define bitA1       1
+#define MAX_OCTET   256
 
 typedef bool Bit;
-#define bitA0 0
-#define bitA1 1
-
 typedef unsigned char Octet;
 
 Octet O_creerOctet(Bit b0, Bit b1, Bit b2, Bit b3, Bit b4, Bit b5, Bit b6, Bit b7);

@@ -43,7 +43,7 @@ void D_decoder(ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *fbCo
     while (compteurOctetsDecodes < longueur) {
         Octet o;
         fread(&o, sizeof(unsigned char), 1, fbCompresse);
-        for (int i = 0; i <= 7; i++) {
+        for (int i = 0; i < MAX_BITS; i++) {
             Bit b = O_obtenirIemeBit(o, i);
             D_seDeplacerDansLArbre(b, &aTemp);
             if (ADH_estUneFeuille(aTemp)) {

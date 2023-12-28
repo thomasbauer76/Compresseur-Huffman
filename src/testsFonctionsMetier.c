@@ -155,10 +155,10 @@ void test_code_binaire_8_bits_vers_octet(void) {
   Octet o = O_naturelVersOctet('K');
 
   CodeBinaire cb = CB_creerCodeBinaire(O_obtenirIemeBit(o, 0));
-  for (i = 1; i < MAX_CB; i++)
+  for (i = 1; i < MAX_BITS; i++)
     CB_ajouterBit(&cb, O_obtenirIemeBit(o, i));
   
-  for (i = 0; i < MAX_CB; i++)
+  for (i = 0; i < MAX_BITS; i++)
     CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, i), O_obtenirIemeBit(o, i))
 }
 

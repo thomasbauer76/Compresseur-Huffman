@@ -243,7 +243,7 @@ void test_creer_octet(void) {
 void test_obtenir_ieme_bit(void) {
     Octet octet = 255; // binaire: 11111111
 
-    for (unsigned short i = 0; i <= 7; ++i) {
+    for (unsigned short i = 0; i < MAX_BITS; ++i) {
         Bit resultat = O_obtenirIemeBit(octet, i);
         CU_ASSERT_EQUAL(resultat,1);
     }

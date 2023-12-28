@@ -91,7 +91,7 @@ void C_ecrireStatistiques(FILE *f, Statistiques s) {
 }
 
 Octet C_codeBinaireEnOctet(CodeBinaire cb) {
-    assert(CB_obtenirLongueur(cb) == MAX_CB);
+    assert(CB_obtenirLongueur(cb) == MAX_BITS);
     return O_creerOctet(CB_obtenirIemeBit(cb, 0),
                         CB_obtenirIemeBit(cb, 1),
                         CB_obtenirIemeBit(cb, 2),
@@ -105,9 +105,9 @@ Octet C_codeBinaireEnOctet(CodeBinaire cb) {
 void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBinaire cb) {
     unsigned short i, j;
     unsigned short tailleCb = CB_obtenirLongueur(cb);
-    unsigned short tailleLibre = 8 - CB_obtenirLongueur(*p_cbTemp);
+    unsigned short tailleLibre = MAX_BITS - CB_obtenirLongueur(*p_cbTemp);
 
-    if (CB_obtenirLongueur(*p_cbTemp) == 8) {
+    if (CB_obtenirLongueur(*p_cbTemp) == MAX_BITS) {
         *p_cbTemp = cb;
         // On assigne tailleCb à i pour ne pas entrer dans la dernière condition de la procédure
         i = tailleCb;
@@ -117,7 +117,7 @@ void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBina
             CB_ajouterBit(p_cbTemp, CB_obtenirIemeBit(cb, i));
     }
 
-    if (CB_obtenirLongueur(*p_cbTemp) == 8) {
+    if (CB_obtenirLongueur(*p_cbTemp) == MAX_BITS) {
         unsigned char octet = O_octetVersNaturel(C_codeBinaireEnOctet(*p_cbTemp));
         fwrite(&octet, sizeof(unsigned char), 1, f);
     }
@@ -137,7 +137,7 @@ void C_encoder(FILE *f, FILE *fbCompresse, TableDeCodage tdc) {
 
     // Création d'un code binaire temporaire initalisé à 8 bits pour rentrer dans la première condition de la fonction concatenerCodeBinaireEnOctet
     CodeBinaire cbTemp = CB_creerCodeBinaire(bitA0);
-    for (i = 1; i < MAX_CB; i++)
+    for (i = 1; i < MAX_BITS; i++)
         CB_ajouterBit(&cbTemp, bitA0);
     
     // Boucle d'encodage
@@ -149,8 +149,8 @@ void C_encoder(FILE *f, FILE *fbCompresse, TableDeCodage tdc) {
     }
 
     // Ecriture du dernier octet si le dernier code binaire n'est pas de taille 8 et n'a donc pas été écrit dans le fichier compressé
-    if (CB_obtenirLongueur(cbTemp) < 8) {
-        for (i = CB_obtenirLongueur(cbTemp); i < MAX_CB; i++)
+    if (CB_obtenirLongueur(cbTemp) < MAX_BITS) {
+        for (i = CB_obtenirLongueur(cbTemp); i < MAX_BITS; i++)
             CB_ajouterBit(&cbTemp, bitA0);
         unsigned char octet = O_octetVersNaturel(C_codeBinaireEnOctet(cbTemp));
         fwrite(&octet, sizeof(unsigned char), 1, fbCompresse);
