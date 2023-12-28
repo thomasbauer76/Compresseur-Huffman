@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h> 
+#include <stdbool.h>
 #include "decompression.h"
 #include "fileDePrioriteDArbreDeHuffman.h"
 #include "construireArbreDeHuffman.h"
@@ -70,4 +71,24 @@ void D_decompresser(FILE *fbCompresse) {
         D_decoder(a, longueur, fbCompresse, fbDecompresse);
         ADH_liberer(a);
     }
+}
+ArbreDeHuffman D_construireArbreDeHuffman(Statistiques s){
+    FileDePriorite fdp;
+    bool dernierElement;
+    ArbreDeHuffman a1,a2,aFusion;
+
+    fdp=CADH_construireFileDePriorite(s);
+    dernierElement=FDPAH_estVide(fdp);
+    while (!(dernierElement)){
+       a1=FDPAH_obtenirElementEtDefiler(&fdp);
+        if (FDPAH_estVide(fdp)){
+            dernierElement=true;
+        }else{
+          a2=FDPAH_obtenirElementEtDefiler(&fdp);
+           aFusion=ADH_fusionner(a1,a2);
+           FDPAH_enfiler(&fdp,aFusion);
+        }
+    }
+    a1=FDPAH_obtenirElementEtDefiler(&fdp);
+    return a1;
 }
