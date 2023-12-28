@@ -3,33 +3,26 @@
     {}
     {i, j, tailleCb, tailleLibre : \naturel}
     {
-		\affecter{tailleCb}{obtenirLongeur(cb)}
-		\affecter{tailleLibre}{8 - obtenirLongueur(cbTemp)}	
+		\affecter{i}{0}
+		\affecter{tailleCb}{obtenirLongueur(cb)}	
 		\\
-		\sialorssinon{obtenirLongueur(cbTemp) = 8}
-		{											
-			\affecter{cbTemp}{cb}
-			\instruction{\commentaire{On assigne tailleCb + 1 à i pour ne pas entrer dans la dernière condition de la procédure}}
-			\affecter{i}{tailleCb + 1}
-		}
+		\tantque{i $\neq$ tailleCb}
 		{
-			\pour{i}{ 0}{min(tailleCb, tailleLibre) - 1}{}
+			\sialors{obtenirLongueur(cbTemp) = 8}
+			{											
+				\affecter{cbTemp}{creerCodeBinaire(obtenirIemeBit(cb, i))}
+				\affecter{i}{i + 1}
+			}
+			\\
+			\tantque{i < tailleCb et obtenirLongueur(cbTemp) < 8}
 			{
 				\instruction{ajouterBit(cbTemp, obtenirIemeBit(cb, i))}
+				\affecter{i}{i + 1}
 			}  
-		}
-		\\
-		\sialors{obtenirLongueur(cbTemp) = 8}
-		{											
-			\instruction{ecrireOctet(fbCompresse, codeBinaireEnOctet(cb))}
-		}
-		\\
-		\sialors{i < tailleCb - 1}
-		{
-			\affecter{cbTemp}{creeCodeBinaire(obtenirIemeBit(cb, i $+$ 1))}
-			\pour{j}{ i $+$ 2}{tailleCb $-$ 1}{}
-			{
-					\instruction{ajouterBit(cbTemp, obtenirIemeBit(cb, j))}
+			\\
+			\sialors{obtenirLongueur(cbTemp) = 8}
+			{											
+				\instruction{ecrireOctet(fbCompresse, codeBinaireEnOctet(cb))}
 			}
 		}
     }
