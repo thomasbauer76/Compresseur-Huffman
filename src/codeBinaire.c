@@ -5,7 +5,10 @@
 
 CodeBinaire CB_creerCodeBinaire(Bit b) {
     CodeBinaire cb;
-    cb.codeBinaire = b;
+    if (b == bitA1)
+        cb.codeBinaire = 1;
+    else
+        cb.codeBinaire = 0;
     cb.nbBits = 1;
     return cb;
 }
@@ -15,11 +18,12 @@ unsigned short CB_obtenirLongueur(CodeBinaire cb) {
 }
 
 void CB_ajouterBit(CodeBinaire *cb, Bit b) {
-    assert(CB_obtenirLongueur(*cb) <= MAX_CB);
-    cb->codeBinaire = cb->codeBinaire + (b << cb->nbBits);
+    if (b == bitA1)
+        cb->codeBinaire = cb->codeBinaire + (1 << cb->nbBits);
     cb->nbBits++;
 }
 
 Bit CB_obtenirIemeBit(CodeBinaire cb, unsigned short i) {
+    assert(i < CB_obtenirLongueur(cb));
     return (cb.codeBinaire >> i) & 1;
 }
