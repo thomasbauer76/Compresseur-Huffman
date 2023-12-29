@@ -1,17 +1,17 @@
 \begin{algorithme}
     \begin{enregistrement}{CodeBinaire}
-        \champEnregistrement{tableBit}{\tableauUneDimension{0..7}{de }{\textbf{Bit}}}
-        \champEnregistrement{nbElements}{\textbf{Naturel}}
+        \champEnregistrement{codeBinaire}{\textbf{Naturel}}
+        \champEnregistrement{nbBits}{\textbf{Naturel}}
     \end{enregistrement}
     \\
     \fonction{creeCodeBinaire}
-    {b: \textbf{Bit}}
+    {b: \textbf{Naturel}}
     {\textbf{CodeBinaire}}
     {}
     {cb : \textbf{CodeBinaire}}
     {  		
-    	\affecter{cb.tablebit[0]}{b}
-    	\affecter{cb.nbElements}{1}
+    	\affecter{cb.codebinaire}{b}
+    	\affecter{cb.nbBits}{1}
         \retourner{cb}
     }
     \\
@@ -21,7 +21,7 @@
     {}
     {}
     {
-        \retourner{cb.tableBit[i]}
+        \retourner{cb.codeBinaire/$2^{i}$}
     }
  	\\
     \fonction{obtenirLongueur}{cb : CodeBinaire}
@@ -29,14 +29,14 @@
     {}
     {}
     {
-       \retourner{cb.nbElements}
+       \retourner{cb.bits}
     }
     \\
      \procedure{ajouterBit}{E/S cb : CodeBinaire, E b : bit}
     {}
     {}
     {
-       \affecter {cb.tableBit[obtenirLongueur(cd)+1]}{b}
+       \affecter {cb.codebinaire}{cb.codebinaire + (b*$2^{cb.nbBits}$)}
 	    \affecter {cb.nbElements}{obtenirLongueur(cd)+1}
     }
 \end{algorithme}
