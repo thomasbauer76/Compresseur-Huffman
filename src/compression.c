@@ -46,21 +46,18 @@ void C_obtenirTableDeCodageRecursif(TableDeCodage *tdc, ArbreDeHuffman a, CodeBi
         CB_ajouterBit(&cb, bitA1);
         C_obtenirTableDeCodageRecursif(tdc, ADH_obtenirFilsDroit(a), cb);
     }
-
 }
 
 TableDeCodage C_obtenirTableDeCodage(ArbreDeHuffman a) {
+    assert(!ADH_estUneFeuille(a));
+
     TableDeCodage tdc = TDC_creerTableCodage();
 
-    if(ADH_estUneFeuille(a)) { 
-        TDC_ajouterCodage(&tdc, ADH_obtenirOctet(a), CB_creerCodeBinaire(bitA0));
-    }
-    else {
-        CodeBinaire cbGauche = CB_creerCodeBinaire(bitA0);
-        CodeBinaire cbDroit = CB_creerCodeBinaire(bitA1);
-        C_obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsGauche(a), cbGauche);
-        C_obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsDroit(a), cbDroit);
-    }
+    CodeBinaire cbGauche = CB_creerCodeBinaire(bitA0);
+    CodeBinaire cbDroit = CB_creerCodeBinaire(bitA1);
+    C_obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsGauche(a), cbGauche);
+    C_obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsDroit(a), cbDroit);
+
     return tdc;
 }
 
@@ -163,10 +160,11 @@ void C_compresser(FILE *f, char *filename) {
     // Ecriture des données importantes avant d'encoder
     C_ecrireIdentifiant(fbCompresse);
     C_ecrireTailleFichier(fbCompresse, taille);
-    if(taille > 0) {
+    if(taille > 0) { // Cas particulier d'un fichier vide
         C_ecrireStatistiques(fbCompresse, s);
         ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
-        C_encoder(f, fbCompresse, C_obtenirTableDeCodage(a));
+        if (!ADH_estUneFeuille(a)) // Cas particulier d'un fichier contenant un seul octet (présent plusieurs fois ou non)
+            C_encoder(f, fbCompresse, C_obtenirTableDeCodage(a));
         ADH_liberer(a);
     }
    

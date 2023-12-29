@@ -67,10 +67,19 @@ void D_decompresser(FILE *fbCompresse, char *filename) {
     if (identifiant == IDENTIFIANT) {
         unsigned long long int longueur;
         fread(&longueur, sizeof(unsigned long long int), 1, fbCompresse);
-        Statistiques s;
-        D_lireStatistiques(fbCompresse, &s);
-        ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
-        D_decoder(a, longueur, fbCompresse, fbDecompresse);
-        ADH_liberer(a);
+        if (longueur > 0) { // Cas particulier d'un fichier vide
+            Statistiques s;
+            D_lireStatistiques(fbCompresse, &s);
+            ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
+            if (ADH_estUneFeuille(a)) { // Cas particulier d'un fichier contenant un seul octet (présent plusieurs fois ou non)
+                unsigned char octet = O_octetVersNaturel(ADH_obtenirOctet(a));;
+                for (unsigned long long i = 1; i <= longueur; i++)
+                    fwrite(&octet, sizeof(unsigned char), 1, fbDecompresse);             
+            }
+            else {
+                D_decoder(a, longueur, fbCompresse, fbDecompresse);
+            }
+            ADH_liberer(a);
+        }
     }
 }
