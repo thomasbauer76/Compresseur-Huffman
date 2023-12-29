@@ -19,7 +19,7 @@ unsigned short min(unsigned short a, unsigned short b) {
     return a;
 }
 
-void C_obtenirStatistiquesEtTailleFichier(FILE *f, Statistiques *s,  unsigned long *taille) {
+void C_obtenirStatistiquesEtTailleFichier(FILE *f, Statistiques *s,  unsigned long long *taille) {
     rewind(f);
 
     S_statistiques(s);
@@ -150,7 +150,7 @@ void C_encoder(FILE *f, FILE *fbCompresse, TableDeCodage tdc) {
 
 void C_compresser(FILE *f, char *filename) {
     Statistiques s;
-    unsigned long taille;
+    unsigned long long taille;
 
     rewind(f);
     FILE *fbCompresse = fopen(strcat(filename,".huff"), "wb");

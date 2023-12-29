@@ -59,7 +59,7 @@ void test_file_de_priorite(void) {
   FILE *tempFile = fichierTemporaireRempli();
   
   Statistiques s;
-  unsigned long taille;
+  unsigned long long taille;
   C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
   FileDePriorite fdp = CADH_construireFileDePriorite(s);
@@ -77,7 +77,7 @@ void test_arbre_de_huffman(void) {
   FILE *tempFile = fichierTemporaireRempli();
   
   Statistiques s;
-  unsigned long taille;
+  unsigned long long taille;
   C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
   ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
@@ -98,7 +98,7 @@ void test_obtenir_statistiques(void) {
   FILE *tempFile = fichierTemporaireRempli();
   
   Statistiques s;
-  unsigned long taille;
+  unsigned long long taille;
   C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
   CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet('A')), 4);
@@ -114,7 +114,7 @@ void test_obtenir_taille_fichier(void) {
   FILE *tempFile = fichierTemporaireRempli();
   
   Statistiques s;
-  unsigned long taille;
+  unsigned long long taille;
   C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
   CU_ASSERT_EQUAL(taille, 4 + 2 + 3 + 2 + 1 + 1 + 2);
@@ -124,7 +124,7 @@ void test_table_de_codage(void) {
   FILE *tempFile = fichierTemporaireRempli();
   
   Statistiques s;
-  unsigned long taille;
+  unsigned long long taille;
   C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
   ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
@@ -181,7 +181,7 @@ void test_ecrire_taille_fichier(void) {
   FILE *tempFileEntree = fichierTemporaireRempli();
   
   Statistiques s;
-  unsigned long taille;
+  unsigned long long taille;
 
   C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &taille);
   fclose(tempFileEntree);
@@ -203,7 +203,7 @@ void test_ecrire_statistiques(void) {
     FILE *tempFileEntree = fichierTemporaireRempli();
 
     Statistiques s_entree;
-    unsigned long taille;
+    unsigned long long taille;
     C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s_entree, &taille);
 
     fclose(tempFileEntree);
@@ -335,7 +335,7 @@ void test_concatener_codes_binaires(void) {
 void test_decoder(void) {
   FILE *fichierTest = fichierTemporaireRempli();
   Statistiques s;
-  unsigned long longueur;
+  unsigned long long longueur;
   C_obtenirStatistiquesEtTailleFichier(fichierTest, &s, &longueur);
   ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
 
