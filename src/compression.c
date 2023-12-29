@@ -89,14 +89,14 @@ void C_ecrireStatistiques(FILE *f, Statistiques s) {
 
 Octet C_codeBinaireEnOctet(CodeBinaire cb) {
     assert(CB_obtenirLongueur(cb) == MAX_BITS);
-    return O_creerOctet(CB_obtenirIemeBit(cb, 0),
-                        CB_obtenirIemeBit(cb, 1),
-                        CB_obtenirIemeBit(cb, 2),
-                        CB_obtenirIemeBit(cb, 3),
-                        CB_obtenirIemeBit(cb, 4),
-                        CB_obtenirIemeBit(cb, 5),
+    return O_creerOctet(CB_obtenirIemeBit(cb, 7),
                         CB_obtenirIemeBit(cb, 6),
-                        CB_obtenirIemeBit(cb, 7));
+                        CB_obtenirIemeBit(cb, 5),
+                        CB_obtenirIemeBit(cb, 4),
+                        CB_obtenirIemeBit(cb, 3),
+                        CB_obtenirIemeBit(cb, 2),
+                        CB_obtenirIemeBit(cb, 1),
+                        CB_obtenirIemeBit(cb, 0));
 }
 
 void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBinaire cb) {

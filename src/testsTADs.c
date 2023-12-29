@@ -225,18 +225,18 @@ void test_octetVersCodeBinaire(void) {
 /* Tests octet.c*/
 void test_creer_octet(void) {
     // Test pour 0
-    Bit b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0, b7 = 0;
-    Octet resultat = O_creerOctet(b0, b1, b2, b3, b4, b5, b6, b7);
+    Bit b7 = 0, b6 = 0, b5 = 0, b4 = 0, b3 = 0, b2 = 0, b1 = 0, b0 = 0;
+    Octet resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
     CU_ASSERT_EQUAL(resultat,0);
 
     // Test pour 255
-    b0 = 1, b1 = 1, b2 = 1, b3 = 1, b4 = 1, b5 = 1, b6 = 1, b7 = 1;
-    resultat = O_creerOctet(b0, b1, b2, b3, b4, b5, b6, b7);
+    b7 = 1, b6 = 1, b5 = 1, b4 = 1, b3 = 1, b2 = 1, b1 = 1, b0 = 1;
+    resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
     CU_ASSERT_EQUAL(resultat,255);
 
     // Test pour 170
-    b0 = 1, b1 = 0, b2 = 1, b3 = 0, b4 = 1, b5 = 0, b6 = 1, b7 = 0;
-    resultat = O_creerOctet(b0, b1, b2, b3, b4, b5, b6, b7);
+    b7 = 1, b6 = 0, b5 = 1, b4 = 0, b3 = 1, b2 = 0, b1 = 1, b0 = 0;
+    resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
     CU_ASSERT_EQUAL(resultat,170);
 }
 
@@ -268,6 +268,24 @@ int main(int argc, char** argv){
   /* initialisation du registre de tests */
   if (CUE_SUCCESS != CU_initialize_registry())
     return CU_get_error();
+
+  /* ajout d'une suite de test pour octet.c */
+  CU_pSuite pSuiteOctet = CU_add_suite("Test octet", init_suite_success, clean_suite_success);
+  if (NULL == pSuiteOctet) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
+  /* Ajout des tests à la suite octet */
+  if ((NULL == CU_add_test(pSuiteOctet, "Création d'un octet", test_creer_octet)) 
+    || (NULL == CU_add_test(pSuiteOctet, "Obtention du ième bit d'un octet", test_obtenir_ieme_bit))
+    || (NULL == CU_add_test(pSuiteOctet, "Octet vers naturel", test_octet_vers_naturel))
+    || (NULL == CU_add_test(pSuiteOctet, "Naturel vers octet", test_naturel_vers_octet))
+      ) 
+    {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }  
 
   /* ajout d'une suite de test pour statistiques.c */
   CU_pSuite pSuiteStatistiques = CU_add_suite("Test statistiques", init_suite_success, clean_suite_success);

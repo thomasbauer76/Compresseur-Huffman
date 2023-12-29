@@ -15,13 +15,15 @@
 #define MAX_CB (MAX_OCTET - 1)
 
 /**
- * \brief Le type CodeBinaire permet de stocker de 1 à 8 bits dans un ordre donné
+ * \brief Le type CodeBinaire permet de stocker des bits dans un ordre donné
  * 
  */
+
 typedef struct CodeBinaire {
-    Bit tableBit[MAX_CB]; /**< le tableau contenant ces 1 à 8 bits */
-    unsigned short nbElements; /**< le nombre de bits du code binaire */
+    unsigned long long codeBinaire; /**< les octets (stockés sous forme de naturel) contenant ces bits */
+    unsigned short nbBits; /**< le nombre de bits du code binaire */
 } CodeBinaire;
+
 
 /**
  * \fn CodeBinaire CB_creerCodeBinaire(Bit b)
