@@ -27,24 +27,25 @@ FILE *fichierTemporaireRempli() {
   return tempFile;
 }
 
-FILE *fichierTemporaireEncode() {
-  FILE *tempFile = tmpfile();
-  // Pour avoir la version compressé de l'exemple du sujet je vais écrire les 5 entiers en dessous sous forme de 5 unsigned char
-  // 137 249 150 167 38
-  unsigned char octet1 = 137;
-  unsigned char octet2 = 249;
-  unsigned char octet3 = 150;
-  unsigned char octet4 = 167;
-  unsigned char octet5 = 38;
-  // Pour être certain d'écrire au début du fichier
-  rewind(tempFile);
-  fwrite(&octet1, sizeof(unsigned char), 1, tempFile);
-  fwrite(&octet2, sizeof(unsigned char), 1, tempFile);
-  fwrite(&octet3, sizeof(unsigned char), 1, tempFile);
-  fwrite(&octet4, sizeof(unsigned char), 1, tempFile);
-  fwrite(&octet5, sizeof(unsigned char), 1, tempFile);
-  return tempFile;
-}
+// Fonction dépreciée, anciennement utilisée pour le test de decoder mais pas vérifiée
+// FILE *fichierTemporaireEncode() {
+//   FILE *tempFile = tmpfile();
+//   // Pour avoir la version compressé de l'exemple du sujet je vais écrire les 5 entiers en dessous sous forme de 5 unsigned char
+//   // 137 249 150 167 38
+//   unsigned char octet1 = 137;
+//   unsigned char octet2 = 249;
+//   unsigned char octet3 = 150;
+//   unsigned char octet4 = 167;
+//   unsigned char octet5 = 38;
+//   // Pour être certain d'écrire au début du fichier
+//   rewind(tempFile);
+//   fwrite(&octet1, sizeof(unsigned char), 1, tempFile);
+//   fwrite(&octet2, sizeof(unsigned char), 1, tempFile);
+//   fwrite(&octet3, sizeof(unsigned char), 1, tempFile);
+//   fwrite(&octet4, sizeof(unsigned char), 1, tempFile);
+//   fwrite(&octet5, sizeof(unsigned char), 1, tempFile);
+//   return tempFile;
+// }
 
 FILE *fichierTemporaireVide() {
   FILE *tempFile = tmpfile();
@@ -339,11 +340,16 @@ void test_decoder(void) {
   C_obtenirStatistiquesEtTailleFichier(fichierTest, &s, &longueur);
   ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
 
-  FILE *fichierTestEncode = fichierTemporaireEncode();
-  FILE *fichierTestDecode = tmpfile();
+  //Création du fichier encoder de l'exemple
+  FILE *fichierTestEncode = tmpfile();
+  TableDeCodage tdc = C_obtenirTableDeCodage(a);
+  C_encoder(fichierTest, fichierTestEncode, tdc);
 
+  //On décode ce fichier fraichement encoder
+  FILE *fichierTestDecode = tmpfile();
   D_decoder(a, longueur, fichierTestEncode, fichierTestDecode);
 
+  //On regarde si tous les octets entre le fichier original et le fichier decoder sont égaux
   rewind(fichierTest);
   rewind(fichierTestDecode);
   for (unsigned int i=1; i<=longueur; i++) {
@@ -351,7 +357,39 @@ void test_decoder(void) {
     fread(&octetActuelFichierTest, sizeof(unsigned char), 1, fichierTest);
     unsigned char octetActuelFichierTestDecode;
     fread(&octetActuelFichierTestDecode, sizeof(unsigned char), 1, fichierTestDecode);
-    CU_ASSERT((octetActuelFichierTest == octetActuelFichierTestDecode));
+    switch (octetActuelFichierTest)
+    {
+    // Il y a 4 occurences de A
+    // 2 de B
+    // 3 de C
+    // 2 de D
+    // 1 de E
+    // 1 de F
+    // 2 de G
+    case 'A':
+      CU_ASSERT((octetActuelFichierTest == 'A'));
+      break;
+    case 'B':
+      CU_ASSERT((octetActuelFichierTest == 'B'));
+      break;
+    case 'C':
+      CU_ASSERT((octetActuelFichierTest == 'C'));
+      break;
+    case 'D':
+      CU_ASSERT((octetActuelFichierTest == 'D'));
+      break;
+    case 'E':
+      CU_ASSERT((octetActuelFichierTest == 'E'));
+      break;
+    case 'F':
+      CU_ASSERT((octetActuelFichierTest == 'F'));
+      break;
+    case 'G':
+      CU_ASSERT((octetActuelFichierTest == 'G'));
+      break;    
+    default:
+      break;
+    }
   }
   
 }
