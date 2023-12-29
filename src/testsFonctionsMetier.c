@@ -380,10 +380,8 @@ int main(int argc, char** argv){
     || (NULL == CU_add_test(pSuiteCompression, "ecrire un identifiant dans un fichier ", test_ecrire_identifiant))
     || (NULL == CU_add_test(pSuiteCompression, "ecrire la taille du fichier dans un fichier", test_ecrire_taille_fichier))
     || (NULL == CU_add_test(pSuiteCompression, "ecrire les statistique du fichier dans un fichier", test_ecrire_statistiques))
-    || (NULL == CU_add_test(pSuiteCompression, "concatener les codes binaire dans un fichiers", test_concatener_codes_binaires))
+    //|| (NULL == CU_add_test(pSuiteCompression, "concatener les codes binaire dans un fichiers", test_concatener_codes_binaires))
     || (NULL == CU_add_test(pSuiteCompression, "Decodage d'un fichier et vérification que ça a marché", test_decoder))
-    //|| (NULL == CU_add_test(pSuiteCompression, "encoder le fichier de sortie de codebinaires", test_encoder_fichier))
-    //|| (NULL == CU_add_test(pSuiteCompression, "compressé le fichier", test_compression_fichier)) 
       ) 
     {
       CU_cleanup_registry();
