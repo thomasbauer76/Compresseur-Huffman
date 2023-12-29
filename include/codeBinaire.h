@@ -12,9 +12,9 @@
 
 #include "octet.h"
 
-#define MAX_CB (MAX_OCTET - 1)
+#define MAX_CB (8 * sizeof(unsigned long long))
 /**
- * \brief Le type CodeBinaire permet de stocker des bits dans un ordre donné
+ * \brief Le type CodeBinaire permet de stocker des bits à la suite
  * 
  */
 
@@ -44,7 +44,7 @@ void CB_ajouterBit(CodeBinaire *p_cb, Bit b);
 
 /**
  * \fn Bit CB_obtenirIemeBit(CodeBinaire cb, unsigned short i)
- * \brief Fonction permettant de retourner le bit à d'indice i (0 étant le bit le plus à gauche et 7 le plus à droite) d'un code binaire
+ * \brief Fonction permettant de retourner le bit à d'indice i d'un code binaire
  *
  * \param cb : le code binaire
  * \param i : l'indice du bit à retourner
