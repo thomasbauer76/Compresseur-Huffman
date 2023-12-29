@@ -4,13 +4,19 @@
         \champEnregistrement{nbBits}{\textbf{Naturel}}
     \end{enregistrement}
     \\
-    \fonction{creeCodeBinaire}
-    {b: \textbf{Naturel}}
+    \fonction{creerCodeBinaire}
+    {b: \textbf{Bit}}
     {\textbf{CodeBinaire}}
     {}
     {cb : \textbf{CodeBinaire}}
     {  		
-    	\affecter{cb.codebinaire}{b}
+        \sialorssinon{b = bitA1}
+        {
+            \affecter{cb.codeBinaire}{1}
+        }
+        {
+            \affecter{cb.codeBinaire}{0}
+        }
     	\affecter{cb.nbBits}{1}
         \retourner{cb}
     }
@@ -21,7 +27,7 @@
     {}
     {}
     {
-        \retourner{cb.codeBinaire/$2^{i}$}
+        \retourner{(cb.codeBinaire \textbf{div} 2\^{}i) \textbf{mod} 2}
     }
  	\\
     \fonction{obtenirLongueur}{cb : CodeBinaire}
@@ -29,14 +35,17 @@
     {}
     {}
     {
-       \retourner{cb.bits}
+       \retourner{cb.nbBits}
     }
     \\
      \procedure{ajouterBit}{E/S cb : CodeBinaire, E b : bit}
     {}
     {}
-    {
-       \affecter {cb.codebinaire}{cb.codebinaire + (b*$2^{cb.nbBits}$)}
-	    \affecter {cb.nbElements}{obtenirLongueur(cd)+1}
+    {   
+        \sialors{b = bitA1}
+        {
+            \affecter{cb.codebinaire}{cb.codebinaire + 2\^{}(cb.nbBits)}
+        }
+	    \affecter{cb.nbBits}{cb.nbBits + 1}
     }
 \end{algorithme}

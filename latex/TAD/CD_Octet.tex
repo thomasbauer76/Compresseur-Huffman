@@ -2,7 +2,7 @@
     \type{Octet}{\textbf{0..255}}
     \\
     \fonction{creerOctet}
-    {b0, b1, b2, b3, b4, b5, b6, b7 : \textbf{Bit}}
+    {b7, b6, b5, b4, b3, b2, b1, b0 : \textbf{Bit}}
     {\textbf{Octet}}
     {}
     {o : \textbf{Octet}}
@@ -17,7 +17,7 @@
     {}
     {}
     {
-        \retourner{(o \textbf{div} 2\^{}(7-b)) \textbf{mod} 2}
+        \retourner{(o \textbf{div} 2\^{}b) \textbf{mod} 2}
     }
  	\\
     \fonction{octetVersNaturel}
