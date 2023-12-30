@@ -63,3 +63,7 @@ dkms.conf
 *.ods#
 latex/main_test.tex
 /doc/*
+*.html
+*.js
+/doc/*.tex
+/doc/*.sty
