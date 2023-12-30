@@ -41,18 +41,20 @@ void D_decoder(ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *fbCo
     rewind(fbDecompresse);
     ArbreDeHuffman aTemp = aHuff;
     unsigned long long int compteurOctetsDecodes = 0;
-    while (compteurOctetsDecodes < longueur) {
+    bool finDecodage = false;
+    while (!finDecodage) {
         Octet o;
         fread(&o, sizeof(unsigned char), 1, fbCompresse);
         for (int i = 0; i < MAX_BITS; i++) {
-            if (compteurOctetsDecodes < longueur) { //if qui permet de régler les bugs sur le dernier octets
+            if (!finDecodage) { //if qui permet de régler les bugs sur le dernier octets
                 Bit b = O_obtenirIemeBit(o, i);
                 D_seDeplacerDansLArbre(b, &aTemp);
                 if (ADH_estUneFeuille(aTemp)) {
                     Octet oDecode = ADH_obtenirOctet(aTemp);
                     fwrite(&oDecode, sizeof(unsigned char), 1, fbDecompresse);
-                    compteurOctetsDecodes = compteurOctetsDecodes + 1;
                     aTemp = aHuff;
+                    compteurOctetsDecodes = compteurOctetsDecodes + 1;
+                    finDecodage = (compteurOctetsDecodes == longueur);
                 }
             }
         }
