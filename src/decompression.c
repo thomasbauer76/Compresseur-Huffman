@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h> 
 #include <stdbool.h>
+#include <sys/stat.h>
 #include "decompression.h"
 #include "fileDePrioriteDArbreDeHuffman.h"
 #include "construireArbreDeHuffman.h"
@@ -84,4 +85,7 @@ void D_decompresser(FILE *fbCompresse, char *filename) {
             ADH_liberer(a);
         }
     }
+
+    fclose(fbDecompresse);
+    chmod(filename, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 }
