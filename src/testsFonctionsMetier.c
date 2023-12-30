@@ -187,7 +187,7 @@ void test_seDeplacerDansLArbre(void) {
   // L'octet 'C' se situe 2 cran à gauche
   ArbreDeHuffman abhTest = abh;
   for (unsigned int i = 0; i<2; i++) {
-    D_seDeplacerDansLArbre(bitA0, abhTest);
+    D_seDeplacerDansLArbre(bitA0, &abhTest);
   }
   CU_ASSERT(ADH_obtenirOctet(abhTest)=='C');
 }
