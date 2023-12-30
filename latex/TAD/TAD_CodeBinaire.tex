@@ -1,22 +1,30 @@
 \begin{tad}
   \tadNom{CodeBinaire}
-  \tadDependances{\textbf{Octet}, \naturel, \textbf{Bit}, \textbf{0..7}}
+  \tadDependances{\textbf{Octet}, \naturel, \textbf{Bit}}
   \begin{tadOperations}{obtenirLongueur}
   
-    \tadOperation{creerCodeBinaire}{Bit}{CodeBinaire}
-    \tadOperation{ajouterBit}{\tadParams{CodeBinaire, Bit}}{CodeBinaire}
-    \tadOperation{obtenirIemeBit}{\tadParams{CodeBinaire,\textbf{0..7}}}{Bit}
-    \tadOperation{obtenirLongueur}{CodeBinaire}{\naturel}
+    \tadOperation{creerCodeBinaire}{\bit}{\codebinaire}
+    \tadOperation{ajouterBit}{\tadParams{\codebinaire, \bit}}{\codebinaire}
+    \tadOperationAvecPreconditions{obtenirIemeBit}{\tadParams{\codebinaire, \naturel}}{\bit}
+    \tadOperation{obtenirLongueur}{\codebinaire}{\naturel}
      
   \end{tadOperations}
-  
+
+  \begin{tadPreconditions}{obtenirIemeBit(cb, i)}
+    \tadPrecondition{obtenirIemeBit(cb, i)}{i < obtenirLongueur(cb)}
+  \end{tadPreconditions}
+
   \begin{tadAxiomes}	
-  	    \tadAxiome{obtenirLongueur(concatener(CodeBinaire1,CodeBinaire2))=
-  		obtenirLongueur(CodeBinaire1,CodeBinaire2)}
-  		\tadAxiome{obtenirLongueur(ajouterBit(CodeBinaire,Bit))=obtenirLongueur(CodeBinaire)+1}
-   \end{tadAxiomes}
+
+    \tadAxiome{obtenirLongueur(creerCodeBinaire(b)) = 1}
+    \tadAxiome{obtenirLongueur(ajouterBit(cb, b)) = obtenirLongueur(cb) + 1}
+
+  \end{tadAxiomes}
   
-  	\begin{tadSemantiques}{ajouterBit}
-  		\tadSemantique{ajouterBit}{Ajoute le bit en question à la fin du CodeBinaire}
-  	\end{tadSemantiques}
+  \begin{tadSemantiques}{obtenirIemeBit}
+
+    \tadSemantique{ajouterBit}{Ajoute le bit en question à la fin du CodeBinaire}
+    \tadSemantique{obtenirIemeBit}{Retourne le bit à la position i du CodeBinaire (0 étant la position du premier bit)}
+    
+  \end{tadSemantiques}
 \end{tad}

@@ -11,6 +11,11 @@
     %\tadOperation{longueur}{FileDePriorite}{\naturel}
     
   \end{tadOperations}
+
+  \begin{tadPreconditions}{obtenirElementEtDefiler(f)}
+    \tadPrecondition{obtenirElementEtDefiler(f)}{non(estVide(f))}
+  \end{tadPreconditions}
+
   \parbox{\linewidth}{\raggedright
       \begin{tadAxiomes}
           \tadAxiome{estVide(fileDePriorite())}
@@ -20,10 +25,5 @@
           \tadAxiome{e > obtenirElementEtDefiler(f)[2] \Rightarrow obtenirElementEtDefiler(enfiler(f,e)) = enfiler(obtenirElementEtDefiler(f)[1],e),obtenirElementEtDefiler(f)[2]}
       \end{tadAxiomes}
   }
-  
-  \begin{tadPreconditions}{obtenirElementEtDefiler(f)}
-    \tadPrecondition{obtenirElementEtDefiler(f)}{non(estVide(f))}
-  \end{tadPreconditions}
-  
 \end{tad}
 

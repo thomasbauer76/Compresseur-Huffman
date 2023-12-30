@@ -12,6 +12,13 @@
     \tadOperationAvecPreconditions{obtenirFilsDroit}{ArbreDeHuffman}{ArbreDeHuffman}
     
   \end{tadOperations}
+
+  \begin{tadPreconditions}{obtenirFilsGauche(a)}
+    \tadPrecondition{obtenirOctet(a)}{estUneFeuille(a)}
+    \tadPrecondition{obtenirFilsGauche(a)}{non(estUneFeuille(a))}
+    \tadPrecondition{obtenirFilsDroit(a)}{non(estUneFeuille(a))}
+  \end{tadPreconditions}
+
   \parbox{\linewidth}{\raggedright
       \begin{tadAxiomes}
             \tadAxiome{estUneFeuille(arbreDeHuffman(o,f))}
@@ -23,12 +30,6 @@
             \tadAxiome{obtenirFilsDroit(fusionner(a_g,a_d)) = a_d}
       \end{tadAxiomes}
   }
-  
-  \begin{tadPreconditions}{obtenirFilsGauche(a)}
-    \tadPrecondition{obtenirOctet(a)}{estUneFeuille(a)}
-    \tadPrecondition{obtenirFilsGauche(a)}{non(estUneFeuille(a))}
-    \tadPrecondition{obtenirFilsDroit(a)}{non(estUneFeuille(a))}
-  \end{tadPreconditions}
   
 \end{tad}
 

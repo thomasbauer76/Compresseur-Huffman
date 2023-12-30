@@ -5,10 +5,10 @@
     \end{enregistrement}
     \\
     \fonction{creerCodeBinaire}
-    {b: \textbf{Bit}}
-    {\textbf{CodeBinaire}}
+    {b: \bit}
+    {\codebinaire}
     {}
-    {cb : \textbf{CodeBinaire}}
+    {cb : \codebinaire}
     {  		
         \affecter{cb.codeBinaire}{b}
     	\affecter{cb.nbBits}{1}
@@ -16,15 +16,15 @@
     }
     \\
     \fonction{obtenirIemeBit}
-    {cb : \textbf{CodeBinaire}, i: \textbf{0..7}}
-    {\textbf{Bit}}
-    {}
+    {cb : \codebinaire, i : \naturel}
+    {\bit}
+    {i < obtenirLongueur(cb)}
     {}
     {
         \retourner{(cb.codeBinaire \textbf{div} 2\^{}i) \textbf{mod} 2}
     }
  	\\
-    \fonction{obtenirLongueur}{cb : CodeBinaire}
+    \fonction{obtenirLongueur}{cb : \codebinaire}
     {\textbf{Naturel}}
     {}
     {}
@@ -32,7 +32,7 @@
        \retourner{cb.nbBits}
     }
     \\
-     \procedure{ajouterBit}{E/S cb : CodeBinaire, E b : bit}
+    \procedure{ajouterBit}{\paramEntreeSortie{cb : \codebinaire}, \paramEntree{b : bit}}
     {}
     {}
     {   
