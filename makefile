@@ -7,7 +7,7 @@ LATEXDIR=latex
 INCLUDEDIR=include
 TESTSDIR=tests
 CC=gcc
-CFLAGS=-Wall -pedantic -std=c99 -I$(INCLUDEDIR)
+CFLAGS=-Wall -pedantic -std=c99 -O3 -I$(INCLUDEDIR)
 LDFLAGS=-lcunit
 
 SRCS=$(wildcard $(SRCDIR)/*.c)
