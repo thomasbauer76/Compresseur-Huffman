@@ -10,13 +10,7 @@
     {}
     {cb : \textbf{CodeBinaire}}
     {  		
-        \sialorssinon{b = bitA1}
-        {
-            \affecter{cb.codeBinaire}{1}
-        }
-        {
-            \affecter{cb.codeBinaire}{0}
-        }
+        \affecter{cb.codeBinaire}{b}
     	\affecter{cb.nbBits}{1}
         \retourner{cb}
     }
@@ -42,10 +36,7 @@
     {}
     {}
     {   
-        \sialors{b = bitA1}
-        {
-            \affecter{cb.codebinaire}{cb.codebinaire + 2\^{}(cb.nbBits)}
-        }
+        \affecter{cb.codebinaire}{cb.codebinaire + b * 2\^{}(cb.nbBits)}
 	    \affecter{cb.nbBits}{cb.nbBits + 1}
     }
 \end{algorithme}
