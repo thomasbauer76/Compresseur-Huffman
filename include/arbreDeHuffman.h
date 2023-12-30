@@ -70,11 +70,41 @@ bool ADH_estUneFeuille(ArbreDeHuffman a);
  * \param a : ArbreDeHuffman
  * \return Octet
  */
-
 Octet ADH_obtenirOctet(ArbreDeHuffman a);
+
+/**
+ * \fn ADH_obtenirFrequence(ArbreDeHuffman a)
+ * \brief Fonction permettant d'obtenir la fréquence d'un ArbreDeHuffman
+ *
+ * \param a : ArbreDeHuffman
+ * \return unsigned long
+ */
 unsigned long ADH_obtenirFrequence(ArbreDeHuffman a);
+
+/**
+ * \fn ADH_obtenirFilsGauche(ArbreDeHuffman a)
+ * \brief Fonction permettant d'obtenir le fils gauche d'un ArbreDeHuffman
+ *
+ * \param a : ArbreDeHuffman
+ * \return ArbreDeHuffman
+ */
 ArbreDeHuffman ADH_obtenirFilsGauche(ArbreDeHuffman a);
+
+/**
+ * \fn ADH_obtenirFilsDroit(ArbreDeHuffman a)
+ * \brief Fonction permettant d'obtenir le fils droit d'un ArbreDeHuffman
+ *
+ * \param a : ArbreDeHuffman
+ * \return ArbreDeHuffman
+ */
 ArbreDeHuffman ADH_obtenirFilsDroit(ArbreDeHuffman a);
+
+/**
+ * \fn ADH_liberer(ArbreDeHuffman a)
+ * \brief Fonction permettant de libérer la mémoire associée à un ArbreDeHuffman
+ *
+ * \param a : ArbreDeHuffman
+ */
 void ADH_liberer(ArbreDeHuffman a);
 
 
