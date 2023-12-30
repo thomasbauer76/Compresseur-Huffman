@@ -177,6 +177,20 @@ void test_ecrire_identifiant(void) {
   fclose(tempFile);
 }
 
+void test_seDeplacerDansLArbre(void) {
+  FILE *tempFileEntree = fichierTemporaireRempli();
+  Statistiques s;
+  unsigned long long taille;
+  C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &taille);
+  ArbreDeHuffman abh = CADH_construireArbreDeHuffman(s);
+  // On vérifie arbitrairement si on arrive à retrouver notre octet tout à gauche, celui tout à droite et un dernier entre les deux selon l'exemple du sujet
+  // L'octet 'C' se situe 2 cran à gauche
+  ArbreDeHuffman abhTest = abh;
+  for (unsigned int i = 0; i<2; i++) {
+    D_seDeplacerDansLArbre(bitA0, abhTest);
+  }
+  CU_ASSERT(ADH_obtenirOctet(abhTest)=='C');
+}
 
 void test_ecrire_taille_fichier(void) {
   FILE *tempFileEntree = fichierTemporaireRempli();
@@ -420,6 +434,7 @@ int main(int argc, char** argv){
     || (NULL == CU_add_test(pSuiteCompression, "ecrire les statistique du fichier dans un fichier", test_ecrire_statistiques))
     //|| (NULL == CU_add_test(pSuiteCompression, "concatener les codes binaire dans un fichiers", test_concatener_codes_binaires))
     || (NULL == CU_add_test(pSuiteCompression, "Decodage d'un fichier et vérification que ça a marché", test_decoder))
+    || (NULL == CU_add_test(pSuiteCompression, "3 tests arbitraires pour D_seDeplacerDansLArbre", test_seDeplacerDansLArbre))
       ) 
     {
       CU_cleanup_registry();
