@@ -198,6 +198,12 @@ void test_seDeplacerDansLArbre(void) {
   }
   CU_ASSERT(ADH_obtenirOctet(abhTest)=='F');
 
+  // L'octet 'D' se situe 1 cran à droite, puis 1 à gauche et enfin 1 à droite
+  abhTest = abh;
+  D_seDeplacerDansLArbre(bitA1, &abhTest);
+  D_seDeplacerDansLArbre(bitA0, &abhTest);
+  D_seDeplacerDansLArbre(bitA1, &abhTest);
+  CU_ASSERT(ADH_obtenirOctet(abhTest)=='D');
 }
 
 void test_ecrire_taille_fichier(void) {
