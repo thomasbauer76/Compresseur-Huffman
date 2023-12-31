@@ -32,6 +32,9 @@ pdf :
 	cd $(LATEXDIR); pdflatex main.tex
 	rm -f ./$(LATEXDIR)/*.fls ./$(LATEXDIR)/*.fdb_latexmk ./$(LATEXDIR)/*.aux ./$(LATEXDIR)/*.log
 
+doc:
+	doxygen ./Doxyfile
+
 clean :
 	rm -rf ./$(TESTSDIR)/$(EXE_TESTS_TADS) ./$(TESTSDIR)/$(EXE_TESTS_FONCTIONS_METIER)
 	rm -rf ./$(BINDIR)/$(EXE)
