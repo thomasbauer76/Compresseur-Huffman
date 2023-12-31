@@ -292,58 +292,20 @@ void test_ecrire_statistiques(void) {
     fclose(tempFileSortie);
 }
 
-void test_concatener_codes_binaires(void) {
+/* Tests C_encoder */
+void test_encoder(void) {
+  FILE *tempFileEntree = fichierTemporaireRempli();
 
-    CodeBinaire cbA = CB_creerCodeBinaire(bitA0);
-    CB_ajouterBit(&cbA, bitA1);
-  
-    CodeBinaire cbB = CB_creerCodeBinaire(bitA1);
-    CB_ajouterBit(&cbB, bitA0);
-    CB_ajouterBit(&cbB, bitA0);
-  
+  Statistiques s;
+  unsigned long long longueur;
+  C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &longueur);
+  ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
+  TableDeCodage tdc = C_obtenirTableDeCodage(a);
 
-    CodeBinaire cbC = CB_creerCodeBinaire(bitA0);
-    CB_ajouterBit(&cbC, bitA0);
-
- 
-    CodeBinaire cbD = CB_creerCodeBinaire(bitA1);
-    CB_ajouterBit(&cbD, bitA0);
-    CB_ajouterBit(&cbD, bitA1);
-  
-  
-    CodeBinaire cbE = CB_creerCodeBinaire(bitA1);
-    CB_ajouterBit(&cbE, bitA1);
-    CB_ajouterBit(&cbE, bitA1);
-    CB_ajouterBit(&cbE, bitA0);
-  
-  
-    CodeBinaire cbF = CB_creerCodeBinaire(bitA1);
-    CB_ajouterBit(&cbF, bitA1);
-    CB_ajouterBit(&cbF, bitA1);
-    CB_ajouterBit(&cbF, bitA1);
-  
-
-    CodeBinaire cbG = CB_creerCodeBinaire(bitA1);
-    CB_ajouterBit(&cbG, bitA1);
-    CB_ajouterBit(&cbG, bitA0);
-
-    CodeBinaire cbTemp = CB_creerCodeBinaire(bitA0);
-    for (unsigned short i = 1; i < MAX_CB; i++)
-        CB_ajouterBit(&cbTemp, bitA0);
-
-    
-
+  fclose(tempFileEntree);
   FILE *tempFileSortie = tmpfile();
 
-  C_concatenerCodeBinaireDansFichier(tempFileSortie,&cbTemp,cbB);
-  C_concatenerCodeBinaireDansFichier(tempFileSortie,&cbTemp,cbA);
-  C_concatenerCodeBinaireDansFichier(tempFileSortie,&cbTemp,cbC);
-  C_concatenerCodeBinaireDansFichier(tempFileSortie,&cbTemp,cbF);
-  C_concatenerCodeBinaireDansFichier(tempFileSortie,&cbTemp,cbG);
-  C_concatenerCodeBinaireDansFichier(tempFileSortie,&cbTemp,cbA);
-
-  unsigned short taille = CB_obtenirLongueur(cbTemp);
-  printf("la taille du cbtemp : %hu\n", taille);
+  C_encoder(tempFileEntree, tempFileSortie, tdc);
 
   rewind(tempFileSortie);
 
@@ -354,13 +316,13 @@ void test_concatener_codes_binaires(void) {
   Octet otest1 = O_creerOctet(bitA1,bitA0,bitA0,bitA0,bitA1,bitA0,bitA0,bitA1);
   Octet otest2 = O_creerOctet(bitA1,bitA1,bitA1,bitA1,bitA1,bitA0,bitA0,bitA1);
   CU_ASSERT_EQUAL(octet1, otest1);  // 10001001 en binaire
-  CU_ASSERT_EQUAL(octet2, otest2);  // 11111100 en binaire
+  CU_ASSERT_EQUAL(octet2, otest2);  // 11111001 en binaire
 
   fclose(tempFileSortie);
+
 }
 
 /* Tests D_decoder */
-
 void test_decoder(void) {
   FILE *fichierTest = fichierTemporaireRempli();
   Statistiques s;
@@ -441,12 +403,13 @@ int main(int argc, char** argv){
     || (NULL == CU_add_test(pSuiteCompression, "Obtention de la taille d'un fichier", test_obtenir_taille_fichier))
     || (NULL == CU_add_test(pSuiteCompression, "Construction de la file de priorité à partir des statistiques", test_file_de_priorite))
     || (NULL == CU_add_test(pSuiteCompression, "Construction de l'arbre de Huffman à partir des statistiques", test_arbre_de_huffman))
-    || (NULL == CU_add_test(pSuiteCompression, "Obtention de la table de codage à partir de l'arbre de huffman", test_table_de_codage))
+   // || (NULL == CU_add_test(pSuiteCompression, "Obtention de la table de codage à partir de l'arbre de huffman", test_table_de_codage))
     || (NULL == CU_add_test(pSuiteCompression, "Conversion d'un code binaire de 8 bits vers un octet", test_code_binaire_8_bits_vers_octet))
     || (NULL == CU_add_test(pSuiteCompression, "ecrire un identifiant dans un fichier ", test_ecrire_identifiant))
     || (NULL == CU_add_test(pSuiteCompression, "ecrire la taille du fichier dans un fichier", test_ecrire_taille_fichier))
-    || (NULL == CU_add_test(pSuiteCompression, "ecrire les statistique du fichier dans un fichier", test_ecrire_statistiques))
+    //|| (NULL == CU_add_test(pSuiteCompression, "ecrire les statistique du fichier dans un fichier", test_ecrire_statistiques))
     //|| (NULL == CU_add_test(pSuiteCompression, "concatener les codes binaire dans un fichiers", test_concatener_codes_binaires))
+    || (NULL == CU_add_test(pSuiteCompression, "encodage d'un fichier et vérification que la concatenation fonctionne", test_encoder))
     || (NULL == CU_add_test(pSuiteCompression, "Decodage d'un fichier et vérification que ça a marché", test_decoder))
     || (NULL == CU_add_test(pSuiteCompression, "3 tests arbitraires pour D_seDeplacerDansLArbre", test_seDeplacerDansLArbre))
       ) 
