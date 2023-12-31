@@ -29,6 +29,7 @@ typedef struct NoeudFileDePriorite {
 } NoeudFileDePriorite;
 
 /**
+* \fn FileDePriorite FDPAH_fileDePriorite(void)
 * \brief Fonction créant une FileDePriorite, pointant sur NULL, pour des ArbreDeHuffman
 *
 * \return FileDePriorite
@@ -36,6 +37,7 @@ typedef struct NoeudFileDePriorite {
 FileDePriorite FDPAH_fileDePriorite(void);
 
 /**
+* \fn bool FDPAH_estVide(FileDePriorite fdp)
 * \brief Fonction renvoyant VRAI si une FileDePriorite est vide, càd qu'elle ne contient aucun ArbreDeHuffman. Retourne FAUX sinon.
 *
 * \param fdp : FileDePriorite
@@ -44,6 +46,7 @@ FileDePriorite FDPAH_fileDePriorite(void);
 bool FDPAH_estVide(FileDePriorite fdp);
 
 /**
+* \fn void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a)
 * \brief Fonction permettant d'insérer à l'endroit correct (par rapport à l'élément contenu dans la racine de l'arbre) un ArbreDeHuffman dans une FileDePriorite.
 *
 * \param p_fdp : la FileDePriorite à modifier
@@ -52,6 +55,7 @@ bool FDPAH_estVide(FileDePriorite fdp);
 void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a);
 
 /**
+* \fn ArbreDeHuffman FDPAH_obtenirElementEtDefiler(FileDePriorite *p_fdp)
 * \brief Fonction permettant d'extraire l'ArbreDeHuffman au bout de la FileDePriorite
 *
 * \param p_fdp : FileDePriorite dont on extrait l'ArbreDeHuffman
