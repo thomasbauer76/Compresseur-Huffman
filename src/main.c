@@ -18,8 +18,9 @@ int main(int argc, char *argv[]) {
                 fclose(f);
             }
             else {
-                printf("Erreur : fichier inexistant ou corrompu\n");
+                printf("Erreur : fichier inexistant ou corrompu.\n");
                 printUtilisation();
+                exit(EXIT_FAILURE);
             }
         }
         else if (strcmp(argv[1], "d") == 0) {
@@ -30,23 +31,27 @@ int main(int argc, char *argv[]) {
                     fclose(f);
                 }
                 else {
-                    printf("Erreur : fichier inexistant ou corrompu\n");
+                    printf("Erreur : fichier inexistant ou corrompu.\n");
                     printUtilisation();
+                    exit(EXIT_FAILURE);
                 }
             }
             else {
-                printf("Erreur : impossible de décompresser un fichier non compressé\n");
+                printf("Erreur : impossible de décompresser un fichier non compressé.\n");
                 printUtilisation();
+                exit(EXIT_FAILURE);
             }
         }
         else {
-            printf("Erreur : deuxième paramètre incorrect\n");
+            printf("Erreur : deuxième paramètre incorrect.\n");
             printUtilisation();
+            exit(EXIT_FAILURE);
         }
     }
     else {
-        printf("Erreur : nombre de paramètres incorrect\n");
+        printf("Erreur : nombre de paramètres incorrect.\n");
         printUtilisation();
+        exit(EXIT_FAILURE);
     }
     return EXIT_SUCCESS;
 }
