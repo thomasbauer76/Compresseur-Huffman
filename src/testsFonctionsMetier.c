@@ -394,7 +394,7 @@ void test_decoder(void) {
   TableDeCodage tdc = C_obtenirTableDeCodage(a);
   C_encoder(fichierTest, fichierTestEncode, tdc);
 
-  //On décode ce fichier fraichement encoder
+  //On décode ce fichier fraichement encodé
   FILE *fichierTestDecode = tmpfile();
   D_decoder(a, longueur, fichierTestEncode, fichierTestDecode);
 
@@ -458,6 +458,22 @@ int main(int argc, char** argv){
     return CU_get_error();
 
 
+  /* ajout d'une suite de test pour decompression.c */
+  CU_pSuite pSuiteDecompression = CU_add_suite("Test decompression", init_suite_success, clean_suite_success);
+  if (NULL == pSuiteDecompression) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
+  /* Ajout des tests à la suite decompression */
+  if ((NULL == CU_add_test(pSuiteDecompression, "Decodage d'un fichier et vérification que ça a marché", test_decoder))
+    || (NULL == CU_add_test(pSuiteDecompression, "3 tests arbitraires pour D_seDeplacerDansLArbre", test_seDeplacerDansLArbre))
+      ) 
+    {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
+
   /* ajout d'une suite de test pour compression.c et construireArbreDeHuffman.c */
   CU_pSuite pSuiteCompression = CU_add_suite("Test compression", init_suite_success, clean_suite_success);
   if (NULL == pSuiteCompression) {
@@ -476,13 +492,13 @@ int main(int argc, char** argv){
     || (NULL == CU_add_test(pSuiteCompression, "ecrire la taille du fichier dans un fichier", test_ecrire_taille_fichier))
     || (NULL == CU_add_test(pSuiteCompression, "ecrire les statistique du fichier dans un fichier", test_ecrire_statistiques))
     || (NULL == CU_add_test(pSuiteCompression, "encodage d'un fichier et vérification que la concatenation fonctionne", test_encoder))
-    || (NULL == CU_add_test(pSuiteCompression, "Decodage d'un fichier et vérification que ça a marché", test_decoder))
-    || (NULL == CU_add_test(pSuiteCompression, "3 tests arbitraires pour D_seDeplacerDansLArbre", test_seDeplacerDansLArbre))
       ) 
     {
       CU_cleanup_registry();
       return CU_get_error();
     }
+
+
 
   /* Lancement des tests */
   CU_basic_set_mode(CU_BRM_VERBOSE);
