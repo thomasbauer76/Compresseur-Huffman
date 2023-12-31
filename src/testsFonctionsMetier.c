@@ -47,12 +47,6 @@ FILE *fichierTemporaireRempli() {
 //   return tempFile;
 // }
 
-FILE *fichierTemporaireVide() {
-  FILE *tempFile = tmpfile();
-
-  return tempFile;
-}
-
 
 /* Tests construireArbreDeHuffman.c */
 
