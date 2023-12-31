@@ -403,9 +403,17 @@ void test_decoder(void) {
   rewind(fichierTestDecode);
   for (unsigned int i=1; i<=longueur; i++) {
     unsigned char octetActuelFichierTest;
-    fread(&octetActuelFichierTest, sizeof(unsigned char), 1, fichierTest);
+    size_t nbBlocsLus = fread(&octetActuelFichierTest, sizeof(unsigned char), 1, fichierTest);
+    if (nbBlocsLus < 1) {
+      printf("Erreur testsFonctionsMetier.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
+      exit(EXIT_FAILURE);
+    }
     unsigned char octetActuelFichierTestDecode;
-    fread(&octetActuelFichierTestDecode, sizeof(unsigned char), 1, fichierTestDecode);
+    nbBlocsLus = fread(&octetActuelFichierTestDecode, sizeof(unsigned char), 1, fichierTestDecode);
+    if (nbBlocsLus < 1) {
+      printf("Erreur testsFonctionsMetier.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
+      exit(EXIT_FAILURE);
+    }
     switch (octetActuelFichierTest)
     {
     // Il y a 4 occurences de A
