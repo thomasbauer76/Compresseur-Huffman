@@ -51,11 +51,15 @@ void D_decoder(ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *fbCo
     ArbreDeHuffman aTemp = aHuff;
     unsigned long long int compteurOctetsDecodes = 0;
     bool finDecodage = false;
-    short o;
-    while ((o = fgetc(fbCompresse)) != EOF && !finDecodage) {
+    while (!finDecodage) {
+        Octet o;
+        size_t nbBlocsLus = fread(&o, sizeof(unsigned char), 1, fbCompresse);
+        if (nbBlocsLus < 1) {
+            printf("Erreur decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread");
+        }
         for (int i = 0; i < MAX_BITS; i++) {
             if (!finDecodage) { //if qui permet de régler les bugs sur le dernier octets
-                Bit b = O_obtenirIemeBit(O_naturelVersOctet(o), i);
+                Bit b = O_obtenirIemeBit(o, i);
                 D_seDeplacerDansLArbre(b, &aTemp);
                 if (ADH_estUneFeuille(aTemp)) {
                     Octet oDecode = ADH_obtenirOctet(aTemp);
