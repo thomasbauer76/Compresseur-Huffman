@@ -32,12 +32,14 @@ void D_lireStatistiques(FILE *fb, Statistiques *s) {
         // ces cas avec des variables d'erreur (que nous ne maitrisons pas forcement) mais un simple (et moche) printf)
         size_t nbBlocsLus = fread(&occurence, sizeof(unsigned long int), 1, fb);
         if (nbBlocsLus < 1) {
-            printf("Erreur decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread");
+            printf("Erreur decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
+            exit(EXIT_FAILURE);
         }
         if(occurence!=0){
             size_t nbBlocsLus = fread(&octet, sizeof(unsigned char), 1, fb);
             if (nbBlocsLus < 1) {
-            printf("Erreur decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread");
+                printf("Erreur decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
+                exit(EXIT_FAILURE);
             }
             S_fixerOccurence(s,octet,occurence);
         }
@@ -55,7 +57,8 @@ void D_decoder(ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *fbCo
         Octet o;
         size_t nbBlocsLus = fread(&o, sizeof(unsigned char), 1, fbCompresse);
         if (nbBlocsLus < 1) {
-            printf("Erreur decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread");
+            printf("Erreur decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
+            exit(EXIT_FAILURE);
         }
         for (int i = 0; i < MAX_BITS; i++) {
             if (!finDecodage) { //if qui permet de régler les bugs sur le dernier octets
@@ -82,13 +85,15 @@ void D_decompresser(FILE *fbCompresse, char *filename) {
     unsigned short int identifiant;
     size_t nbBlocsLus = fread(&identifiant, sizeof(unsigned short int), 1, fbCompresse);
     if (nbBlocsLus < 1) {
-        printf("Erreur decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread");
+        printf("Erreur decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
+        exit(EXIT_FAILURE);
     }
     if (identifiant == IDENTIFIANT) {
         unsigned long long int longueur;
         size_t nbBlocsLus = fread(&longueur, sizeof(unsigned long long int), 1, fbCompresse);
         if (nbBlocsLus < 1) {
-            printf("Erreur decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread");
+            printf("Erreur decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
+            exit(EXIT_FAILURE);
         }
         if (longueur > 0) { // Cas particulier d'un fichier vide
             Statistiques s;
