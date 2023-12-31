@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ProjetHuffman: src/fileDePrioriteDArbreDeHuffman.c File Reference</title>
+<title>ProjetHuffman: /home/saunier/Documents/ITI3/ALGO/Projet_Huffman/iti_algo_2023_2024_gp2.3/src/fileDePrioriteDArbreDeHuffman.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -73,6 +73,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;stddef.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;assert.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="file_de_priorite_d_arbre_de_huffman_8h_source.html">fileDePrioriteDArbreDeHuffman.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="arbre_de_huffman_8h_source.html">arbreDeHuffman.h</a>&quot;</code><br />
 </div><table class="memberdecls">
@@ -87,9 +88,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ad60331d04524de3f77dbb6535ee24e97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file_de_priorite_d_arbre_de_huffman_8c.html#ad60331d04524de3f77dbb6535ee24e97">FDPAH_enfiler</a> (<a class="el" href="file_de_priorite_d_arbre_de_huffman_8h.html#a5406bb7a672b2bff9973d23701180bac">FileDePriorite</a> *p_fdp, <a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> a)</td></tr>
 <tr class="memdesc:ad60331d04524de3f77dbb6535ee24e97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant d'insérer à l'endroit correct (par rapport à l'élément contenu dans la racine de l'arbre) un ArbreDeHuffman dans une FileDePriorite.  <a href="file_de_priorite_d_arbre_de_huffman_8c.html#ad60331d04524de3f77dbb6535ee24e97">More...</a><br /></td></tr>
 <tr class="separator:ad60331d04524de3f77dbb6535ee24e97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1466a8bcd62deb7bdc764392d8c25520"><td class="memItemLeft" align="right" valign="top"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file_de_priorite_d_arbre_de_huffman_8c.html#a1466a8bcd62deb7bdc764392d8c25520">FDPAH_obtenirElementEtDefiler</a> (<a class="el" href="file_de_priorite_d_arbre_de_huffman_8h.html#a5406bb7a672b2bff9973d23701180bac">FileDePriorite</a> *p_fdp)</td></tr>
-<tr class="memdesc:a1466a8bcd62deb7bdc764392d8c25520"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant d'extraire l'ArbreDeHuffman au bout de la FileDePriorite.  <a href="file_de_priorite_d_arbre_de_huffman_8c.html#a1466a8bcd62deb7bdc764392d8c25520">More...</a><br /></td></tr>
-<tr class="separator:a1466a8bcd62deb7bdc764392d8c25520"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a750f287f8e6894278c6a57a409d785ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file_de_priorite_d_arbre_de_huffman_8c.html#a750f287f8e6894278c6a57a409d785ee">FDPAH_obtenirElementEtDefiler</a> (<a class="el" href="file_de_priorite_d_arbre_de_huffman_8h.html#a5406bb7a672b2bff9973d23701180bac">FileDePriorite</a> *fdp)</td></tr>
+<tr class="memdesc:a750f287f8e6894278c6a57a409d785ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant d'extraire l'ArbreDeHuffman au bout de la FileDePriorite.  <a href="file_de_priorite_d_arbre_de_huffman_8c.html#a750f287f8e6894278c6a57a409d785ee">More...</a><br /></td></tr>
+<tr class="separator:a750f287f8e6894278c6a57a409d785ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ad60331d04524de3f77dbb6535ee24e97"></a>
@@ -177,8 +178,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a1466a8bcd62deb7bdc764392d8c25520"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1466a8bcd62deb7bdc764392d8c25520">&#9670;&nbsp;</a></span>FDPAH_obtenirElementEtDefiler()</h2>
+<a id="a750f287f8e6894278c6a57a409d785ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a750f287f8e6894278c6a57a409d785ee">&#9670;&nbsp;</a></span>FDPAH_obtenirElementEtDefiler()</h2>
 
 <div class="memitem">
 <div class="memproto">

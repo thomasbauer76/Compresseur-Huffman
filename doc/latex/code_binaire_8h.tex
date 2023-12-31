@@ -1,32 +1,48 @@
-\hypertarget{code_binaire_8h}{}\doxysection{include/code\+Binaire.h File Reference}
-\label{code_binaire_8h}\index{include/codeBinaire.h@{include/codeBinaire.h}}
+\hypertarget{code_binaire_8h}{}\doxysection{/home/saunier/\+Documents/\+ITI3/\+ALGO/\+Projet\+\_\+\+Huffman/iti\+\_\+algo\+\_\+2023\+\_\+2024\+\_\+gp2.3/include/code\+Binaire.h File Reference}
+\label{code_binaire_8h}\index{/home/saunier/Documents/ITI3/ALGO/Projet\_Huffman/iti\_algo\_2023\_2024\_gp2.3/include/codeBinaire.h@{/home/saunier/Documents/ITI3/ALGO/Projet\_Huffman/iti\_algo\_2023\_2024\_gp2.3/include/codeBinaire.h}}
+
+
+Implantation du TAD \mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}} pour le compresseur d\textquotesingle{}Huffman.  
+
+
 {\ttfamily \#include \char`\"{}octet.\+h\char`\"{}}\newline
 \doxysubsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Le type \mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}} permet de stocker des bits à la suite. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{code_binaire_8h_a17867afd1c3f51ee016c6aa53e557a53}{MAX\+\_\+\+CB}}
+\#define \mbox{\hyperlink{code_binaire_8h_a17867afd1c3f51ee016c6aa53e557a53}{MAX\+\_\+\+CB}}~(8 $\ast$ sizeof(unsigned long long))
 \end{DoxyCompactItemize}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
 typedef struct \mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}} \mbox{\hyperlink{code_binaire_8h_a1ea847162f45ab995dba50ec3a23e663}{Code\+Binaire}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Le type \mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}} permet de stocker des bits à la suite. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}} \mbox{\hyperlink{code_binaire_8h_a7723dcb60f0e344c22e0a7dbdc857525}{CB\+\_\+creer\+Code\+Binaire}} (\mbox{\hyperlink{octet_8h_a4d5c9a78a20b519c1a07250a71d224a6}{Bit}} b)
-\item 
-\mbox{\hyperlink{octet_8h_a4d5c9a78a20b519c1a07250a71d224a6}{Bit}} \mbox{\hyperlink{code_binaire_8h_a648f02507f03fdd898f347d2e8a38fb9}{CB\+\_\+obtenir\+Ieme\+Bit}} (\mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}} cb, unsigned short i)
-\item 
-unsigned short \mbox{\hyperlink{code_binaire_8h_afc1a700058656a908996a72085109385}{CB\+\_\+obtenir\+Longueur}} (\mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}} cb)
-\item 
+\begin{DoxyCompactList}\small\item\em Fonction de création d\textquotesingle{}un code binaire à 1 bit. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{code_binaire_8h_aa8a927360c36204b0e5b3d7cde516ed7}{CB\+\_\+ajouter\+Bit}} (\mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}} $\ast$p\+\_\+cb, \mbox{\hyperlink{octet_8h_a4d5c9a78a20b519c1a07250a71d224a6}{Bit}} b)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Procédure permettant d\textquotesingle{}ajouter un bit à un code binaire. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{octet_8h_a4d5c9a78a20b519c1a07250a71d224a6}{Bit}} \mbox{\hyperlink{code_binaire_8h_a648f02507f03fdd898f347d2e8a38fb9}{CB\+\_\+obtenir\+Ieme\+Bit}} (\mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}} cb, unsigned short i)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de retourner le bit à d\textquotesingle{}indice i d\textquotesingle{}un code binaire. \end{DoxyCompactList}\item 
+unsigned short \mbox{\hyperlink{code_binaire_8h_afc1a700058656a908996a72085109385}{CB\+\_\+obtenir\+Longueur}} (\mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}} cb)
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}obtenir le nombre de bits présents dans un code binaire. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implantation du TAD \mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}} pour le compresseur d\textquotesingle{}Huffman. 
+
+\begin{DoxyAuthor}{Author}
+T. Bauer 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+17/12/2023 
+\end{DoxyDate}
 
 
 \doxysubsection{Macro Definition Documentation}
@@ -34,7 +50,7 @@ void \mbox{\hyperlink{code_binaire_8h_aa8a927360c36204b0e5b3d7cde516ed7}{CB\+\_\
 \index{codeBinaire.h@{codeBinaire.h}!MAX\_CB@{MAX\_CB}}
 \index{MAX\_CB@{MAX\_CB}!codeBinaire.h@{codeBinaire.h}}
 \doxysubsubsection{\texorpdfstring{MAX\_CB}{MAX\_CB}}
-{\footnotesize\ttfamily \#define MAX\+\_\+\+CB}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+CB~(8 $\ast$ sizeof(unsigned long long))}
 
 
 
@@ -47,6 +63,10 @@ void \mbox{\hyperlink{code_binaire_8h_aa8a927360c36204b0e5b3d7cde516ed7}{CB\+\_\
 
 
 
+Le type \mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}} permet de stocker des bits à la suite. 
+
+
+
 \doxysubsection{Function Documentation}
 \mbox{\Hypertarget{code_binaire_8h_aa8a927360c36204b0e5b3d7cde516ed7}\label{code_binaire_8h_aa8a927360c36204b0e5b3d7cde516ed7}} 
 \index{codeBinaire.h@{codeBinaire.h}!CB\_ajouterBit@{CB\_ajouterBit}}
@@ -54,21 +74,70 @@ void \mbox{\hyperlink{code_binaire_8h_aa8a927360c36204b0e5b3d7cde516ed7}{CB\+\_\
 \doxysubsubsection{\texorpdfstring{CB\_ajouterBit()}{CB\_ajouterBit()}}
 {\footnotesize\ttfamily void CB\+\_\+ajouter\+Bit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}} $\ast$}]{p\+\_\+cb,  }\item[{\mbox{\hyperlink{octet_8h_a4d5c9a78a20b519c1a07250a71d224a6}{Bit}}}]{b }\end{DoxyParamCaption})}
 
+
+
+Procédure permettant d\textquotesingle{}ajouter un bit à un code binaire. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+cb} & \+: un pointeur sur le code binaire à modifier \\
+\hline
+{\em b} & \+: le bit à ajouter \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{code_binaire_8h_a7723dcb60f0e344c22e0a7dbdc857525}\label{code_binaire_8h_a7723dcb60f0e344c22e0a7dbdc857525}} 
 \index{codeBinaire.h@{codeBinaire.h}!CB\_creerCodeBinaire@{CB\_creerCodeBinaire}}
 \index{CB\_creerCodeBinaire@{CB\_creerCodeBinaire}!codeBinaire.h@{codeBinaire.h}}
 \doxysubsubsection{\texorpdfstring{CB\_creerCodeBinaire()}{CB\_creerCodeBinaire()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}} CB\+\_\+creer\+Code\+Binaire (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{octet_8h_a4d5c9a78a20b519c1a07250a71d224a6}{Bit}}}]{b }\end{DoxyParamCaption})}
 
+
+
+Fonction de création d\textquotesingle{}un code binaire à 1 bit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & \+: le bit \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}} 
+\end{DoxyReturn}
 \mbox{\Hypertarget{code_binaire_8h_a648f02507f03fdd898f347d2e8a38fb9}\label{code_binaire_8h_a648f02507f03fdd898f347d2e8a38fb9}} 
 \index{codeBinaire.h@{codeBinaire.h}!CB\_obtenirIemeBit@{CB\_obtenirIemeBit}}
 \index{CB\_obtenirIemeBit@{CB\_obtenirIemeBit}!codeBinaire.h@{codeBinaire.h}}
 \doxysubsubsection{\texorpdfstring{CB\_obtenirIemeBit()}{CB\_obtenirIemeBit()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{octet_8h_a4d5c9a78a20b519c1a07250a71d224a6}{Bit}} CB\+\_\+obtenir\+Ieme\+Bit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}}}]{cb,  }\item[{unsigned short}]{i }\end{DoxyParamCaption})}
 
+
+
+Fonction permettant de retourner le bit à d\textquotesingle{}indice i d\textquotesingle{}un code binaire. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & \+: le code binaire \\
+\hline
+{\em i} & \+: l\textquotesingle{}indice du bit à retourner \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}} 
+\end{DoxyReturn}
 \mbox{\Hypertarget{code_binaire_8h_afc1a700058656a908996a72085109385}\label{code_binaire_8h_afc1a700058656a908996a72085109385}} 
 \index{codeBinaire.h@{codeBinaire.h}!CB\_obtenirLongueur@{CB\_obtenirLongueur}}
 \index{CB\_obtenirLongueur@{CB\_obtenirLongueur}!codeBinaire.h@{codeBinaire.h}}
 \doxysubsubsection{\texorpdfstring{CB\_obtenirLongueur()}{CB\_obtenirLongueur()}}
 {\footnotesize\ttfamily unsigned short CB\+\_\+obtenir\+Longueur (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_code_binaire}{Code\+Binaire}}}]{cb }\end{DoxyParamCaption})}
 
+
+
+Fonction permettant d\textquotesingle{}obtenir le nombre de bits présents dans un code binaire. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & \+: le code binaire \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned short 
+\end{DoxyReturn}

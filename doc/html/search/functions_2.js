@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['fdpah_5fenfiler_91',['FDPAH_enfiler',['../file_de_priorite_d_arbre_de_huffman_8h.html#ad60331d04524de3f77dbb6535ee24e97',1,'FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a):&#160;fileDePrioriteDArbreDeHuffman.c'],['../file_de_priorite_d_arbre_de_huffman_8c.html#ad60331d04524de3f77dbb6535ee24e97',1,'FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a):&#160;fileDePrioriteDArbreDeHuffman.c']]],
-  ['fdpah_5festvide_92',['FDPAH_estVide',['../file_de_priorite_d_arbre_de_huffman_8h.html#a3f482d9a627a48cf40ee43f260cd4c0b',1,'FDPAH_estVide(FileDePriorite fdp):&#160;fileDePrioriteDArbreDeHuffman.c'],['../file_de_priorite_d_arbre_de_huffman_8c.html#a3f482d9a627a48cf40ee43f260cd4c0b',1,'FDPAH_estVide(FileDePriorite fdp):&#160;fileDePrioriteDArbreDeHuffman.c']]],
-  ['fdpah_5ffiledepriorite_93',['FDPAH_fileDePriorite',['../file_de_priorite_d_arbre_de_huffman_8h.html#ae552ab3b5dca991ae8fe454fa8693541',1,'FDPAH_fileDePriorite(void):&#160;fileDePrioriteDArbreDeHuffman.c'],['../file_de_priorite_d_arbre_de_huffman_8c.html#ac367b713d9895a71b051d12e1a7fe8e8',1,'FDPAH_fileDePriorite():&#160;fileDePrioriteDArbreDeHuffman.c']]],
-  ['fdpah_5fobtenirelementetdefiler_94',['FDPAH_obtenirElementEtDefiler',['../file_de_priorite_d_arbre_de_huffman_8h.html#a1466a8bcd62deb7bdc764392d8c25520',1,'FDPAH_obtenirElementEtDefiler(FileDePriorite *p_fdp):&#160;fileDePrioriteDArbreDeHuffman.c'],['../file_de_priorite_d_arbre_de_huffman_8c.html#a1466a8bcd62deb7bdc764392d8c25520',1,'FDPAH_obtenirElementEtDefiler(FileDePriorite *p_fdp):&#160;fileDePrioriteDArbreDeHuffman.c']]]
+  ['d_5fdecoder_177',['D_decoder',['../decompression_8c.html#a13cb4909c930cef4d6bb8805ee16646d',1,'decompression.c']]],
+  ['d_5fdecompresser_178',['D_decompresser',['../decompression_8h.html#ac43ac287c64f348f4af1f0fe8016dffa',1,'D_decompresser(FILE *fbCompresse, char *filename):&#160;decompression.c'],['../decompression_8c.html#ac43ac287c64f348f4af1f0fe8016dffa',1,'D_decompresser(FILE *fbCompresse, char *filename):&#160;decompression.c']]],
+  ['d_5flirestatistiques_179',['D_lireStatistiques',['../decompression_8c.html#a78af357332e661a81a1b58436d654cc6',1,'decompression.c']]],
+  ['d_5fsedeplacerdanslarbre_180',['D_seDeplacerDansLArbre',['../decompression_8c.html#a9dd1ce405a7ab196b88f683c64f3cd11',1,'decompression.c']]]
 ];

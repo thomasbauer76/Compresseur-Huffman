@@ -1,11 +1,6 @@
 var searchData=
 [
-  ['o_5fcreeroctet_38',['O_creerOctet',['../octet_8h.html#a5be17190de41abe6b00c290d829be413',1,'O_creerOctet(Bit b0, Bit b1, Bit b2, Bit b3, Bit b4, Bit b5, Bit b6, Bit b7, Octet o):&#160;octet.c'],['../octet_8c.html#a5be17190de41abe6b00c290d829be413',1,'O_creerOctet(Bit b0, Bit b1, Bit b2, Bit b3, Bit b4, Bit b5, Bit b6, Bit b7, Octet o):&#160;octet.c']]],
-  ['o_5fnaturelversoctet_39',['O_naturelVersOctet',['../octet_8h.html#a0cc23d7b9fbccaf4a05ba6c7dbf65dc9',1,'O_naturelVersOctet(unsigned char n):&#160;octet.c'],['../octet_8c.html#a0cc23d7b9fbccaf4a05ba6c7dbf65dc9',1,'O_naturelVersOctet(unsigned char n):&#160;octet.c']]],
-  ['o_5fobteniriemebit_40',['O_obtenirIemeBit',['../octet_8h.html#ae49071e3b76c020e1d7bb22b1c5612a3',1,'O_obtenirIemeBit(Octet o, unsigned short i):&#160;octet.c'],['../octet_8c.html#ae49071e3b76c020e1d7bb22b1c5612a3',1,'O_obtenirIemeBit(Octet o, unsigned short i):&#160;octet.c']]],
-  ['o_5foctetversnaturel_41',['O_octetVersNaturel',['../octet_8h.html#a54e9d4a4130957da65f6dc1d11a70eec',1,'O_octetVersNaturel(Octet o):&#160;octet.c'],['../octet_8c.html#a54e9d4a4130957da65f6dc1d11a70eec',1,'O_octetVersNaturel(Octet o):&#160;octet.c']]],
-  ['octet_42',['octet',['../struct_noeud_arbre_de_huffman.html#a21d4ae385a958ce3017d3f4ea44aa0c7',1,'NoeudArbreDeHuffman']]],
-  ['octet_43',['Octet',['../octet_8h.html#af8e1bf583f840a555f39a222bc5d3ec0',1,'octet.h']]],
-  ['octet_2ec_44',['octet.c',['../octet_8c.html',1,'']]],
-  ['octet_2eh_45',['octet.h',['../octet_8h.html',1,'']]]
+  ['nbbits_68',['nbBits',['../struct_code_binaire.html#a45817cae8241d18520d1f8a4774be33d',1,'CodeBinaire']]],
+  ['noeudarbredehuffman_69',['NoeudArbreDeHuffman',['../struct_noeud_arbre_de_huffman.html',1,'NoeudArbreDeHuffman'],['../arbre_de_huffman_8h.html#a2aaff003fb741572d33250bc91402b17',1,'NoeudArbreDeHuffman():&#160;arbreDeHuffman.h']]],
+  ['noeudfiledepriorite_70',['NoeudFileDePriorite',['../struct_noeud_file_de_priorite.html',1,'NoeudFileDePriorite'],['../file_de_priorite_d_arbre_de_huffman_8h.html#ab1a0d36516240dbfed81c2d3abe358d1',1,'NoeudFileDePriorite():&#160;fileDePrioriteDArbreDeHuffman.h']]]
 ];

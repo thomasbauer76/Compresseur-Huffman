@@ -1,7 +1,8 @@
-\hypertarget{file_de_priorite_d_arbre_de_huffman_8c}{}\doxysection{src/file\+De\+Priorite\+DArbre\+De\+Huffman.c File Reference}
-\label{file_de_priorite_d_arbre_de_huffman_8c}\index{src/fileDePrioriteDArbreDeHuffman.c@{src/fileDePrioriteDArbreDeHuffman.c}}
+\hypertarget{file_de_priorite_d_arbre_de_huffman_8c}{}\doxysection{/home/saunier/\+Documents/\+ITI3/\+ALGO/\+Projet\+\_\+\+Huffman/iti\+\_\+algo\+\_\+2023\+\_\+2024\+\_\+gp2.3/src/file\+De\+Priorite\+DArbre\+De\+Huffman.c File Reference}
+\label{file_de_priorite_d_arbre_de_huffman_8c}\index{/home/saunier/Documents/ITI3/ALGO/Projet\_Huffman/iti\_algo\_2023\_2024\_gp2.3/src/fileDePrioriteDArbreDeHuffman.c@{/home/saunier/Documents/ITI3/ALGO/Projet\_Huffman/iti\_algo\_2023\_2024\_gp2.3/src/fileDePrioriteDArbreDeHuffman.c}}
 {\ttfamily \#include $<$stddef.\+h$>$}\newline
 {\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}file\+De\+Priorite\+DArbre\+De\+Huffman.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}arbre\+De\+Huffman.\+h\char`\"{}}\newline
 \doxysubsection*{Functions}
@@ -13,7 +14,7 @@ bool \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8c_a3f482d9a627a48cf40
 \begin{DoxyCompactList}\small\item\em Fonction renvoyant VRAI si une File\+De\+Priorite est vide, càd qu\textquotesingle{}elle ne contient aucun Arbre\+De\+Huffman. Retourne FAUX sinon. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8c_ad60331d04524de3f77dbb6535ee24e97}{FDPAH\+\_\+enfiler}} (\mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} $\ast$p\+\_\+fdp, \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} a)
 \begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}insérer à l\textquotesingle{}endroit correct (par rapport à l\textquotesingle{}élément contenu dans la racine de l\textquotesingle{}arbre) un Arbre\+De\+Huffman dans une File\+De\+Priorite. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8c_a1466a8bcd62deb7bdc764392d8c25520}{FDPAH\+\_\+obtenir\+Element\+Et\+Defiler}} (\mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} $\ast$p\+\_\+fdp)
+\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8c_a750f287f8e6894278c6a57a409d785ee}{FDPAH\+\_\+obtenir\+Element\+Et\+Defiler}} (\mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} $\ast$fdp)
 \begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}extraire l\textquotesingle{}Arbre\+De\+Huffman au bout de la File\+De\+Priorite. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -66,7 +67,7 @@ Fonction créant une File\+De\+Priorite pour des Arbre\+De\+Huffman.
 \begin{DoxyReturn}{Returns}
 File\+De\+Priorite pointant sur NULL 
 \end{DoxyReturn}
-\mbox{\Hypertarget{file_de_priorite_d_arbre_de_huffman_8c_a1466a8bcd62deb7bdc764392d8c25520}\label{file_de_priorite_d_arbre_de_huffman_8c_a1466a8bcd62deb7bdc764392d8c25520}} 
+\mbox{\Hypertarget{file_de_priorite_d_arbre_de_huffman_8c_a750f287f8e6894278c6a57a409d785ee}\label{file_de_priorite_d_arbre_de_huffman_8c_a750f287f8e6894278c6a57a409d785ee}} 
 \index{fileDePrioriteDArbreDeHuffman.c@{fileDePrioriteDArbreDeHuffman.c}!FDPAH\_obtenirElementEtDefiler@{FDPAH\_obtenirElementEtDefiler}}
 \index{FDPAH\_obtenirElementEtDefiler@{FDPAH\_obtenirElementEtDefiler}!fileDePrioriteDArbreDeHuffman.c@{fileDePrioriteDArbreDeHuffman.c}}
 \doxysubsubsection{\texorpdfstring{FDPAH\_obtenirElementEtDefiler()}{FDPAH\_obtenirElementEtDefiler()}}

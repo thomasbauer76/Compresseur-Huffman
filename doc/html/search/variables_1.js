@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['estunefeuille_113',['estUneFeuille',['../struct_noeud_arbre_de_huffman.html#abe02d014971d447a46ef5fb48d5fbadb',1,'NoeudArbreDeHuffman']]]
+  ['codebinaire_235',['codeBinaire',['../struct_code_binaire.html#ab08eb427b3ec100641a9b8754ba366b8',1,'CodeBinaire']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['nbelements_116',['nbElements',['../struct_code_binaire.html#a7af042179442eb1abbb89faa5056511d',1,'CodeBinaire']]]
+  ['filesuivante_237',['fileSuivante',['../struct_noeud_file_de_priorite.html#a24ced77a24f6073d63738ad268b0a9b2',1,'NoeudFileDePriorite']]],
+  ['frequence_238',['frequence',['../struct_noeud_arbre_de_huffman.html#ab03b37ecfde3593c26e91993a1d2affc',1,'NoeudArbreDeHuffman']]]
 ];

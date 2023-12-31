@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ProjetHuffman: src/codeBinaire.c File Reference</title>
+<title>ProjetHuffman: /home/saunier/Documents/ITI3/ALGO/Projet_Huffman/iti_algo_2023_2024_gp2.3/src/codeBinaire.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -71,18 +71,25 @@ $(function() {
 <div class="title">codeBinaire.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="code_binaire_8h_source.html">codeBinaire.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;assert.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="code_binaire_8h_source.html">codeBinaire.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a7723dcb60f0e344c22e0a7dbdc857525"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_code_binaire.html">CodeBinaire</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code_binaire_8c.html#a7723dcb60f0e344c22e0a7dbdc857525">CB_creerCodeBinaire</a> (<a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b)</td></tr>
+<tr class="memdesc:a7723dcb60f0e344c22e0a7dbdc857525"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction de création d'un code binaire à 1 bit.  <a href="code_binaire_8c.html#a7723dcb60f0e344c22e0a7dbdc857525">More...</a><br /></td></tr>
 <tr class="separator:a7723dcb60f0e344c22e0a7dbdc857525"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a648f02507f03fdd898f347d2e8a38fb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code_binaire_8c.html#a648f02507f03fdd898f347d2e8a38fb9">CB_obtenirIemeBit</a> (<a class="el" href="struct_code_binaire.html">CodeBinaire</a> cb, unsigned short i)</td></tr>
-<tr class="separator:a648f02507f03fdd898f347d2e8a38fb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc1a700058656a908996a72085109385"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code_binaire_8c.html#afc1a700058656a908996a72085109385">CB_obtenirLongueur</a> (<a class="el" href="struct_code_binaire.html">CodeBinaire</a> cb)</td></tr>
+<tr class="memdesc:afc1a700058656a908996a72085109385"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant d'obtenir le nombre de bits présents dans un code binaire.  <a href="code_binaire_8c.html#afc1a700058656a908996a72085109385">More...</a><br /></td></tr>
 <tr class="separator:afc1a700058656a908996a72085109385"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5c02a2252849ccec6d09ca3b9c34741"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code_binaire_8c.html#ab5c02a2252849ccec6d09ca3b9c34741">CB_ajouterBit</a> (<a class="el" href="struct_code_binaire.html">CodeBinaire</a> *cb, <a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b)</td></tr>
+<tr class="memdesc:ab5c02a2252849ccec6d09ca3b9c34741"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procédure permettant d'ajouter un bit à un code binaire.  <a href="code_binaire_8c.html#ab5c02a2252849ccec6d09ca3b9c34741">More...</a><br /></td></tr>
 <tr class="separator:ab5c02a2252849ccec6d09ca3b9c34741"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a648f02507f03fdd898f347d2e8a38fb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code_binaire_8c.html#a648f02507f03fdd898f347d2e8a38fb9">CB_obtenirIemeBit</a> (<a class="el" href="struct_code_binaire.html">CodeBinaire</a> cb, unsigned short i)</td></tr>
+<tr class="memdesc:a648f02507f03fdd898f347d2e8a38fb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de retourner le bit à d'indice i d'un code binaire.  <a href="code_binaire_8c.html#a648f02507f03fdd898f347d2e8a38fb9">More...</a><br /></td></tr>
+<tr class="separator:a648f02507f03fdd898f347d2e8a38fb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ab5c02a2252849ccec6d09ca3b9c34741"></a>
@@ -111,6 +118,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Procédure permettant d'ajouter un bit à un code binaire. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p_cb</td><td>: un pointeur sur le code binaire à modifier </td></tr>
+    <tr><td class="paramname">b</td><td>: le bit à ajouter </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a7723dcb60f0e344c22e0a7dbdc857525"></a>
@@ -128,6 +144,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Fonction de création d'un code binaire à 1 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">b</td><td>: le bit </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_code_binaire.html" title="Le type CodeBinaire permet de stocker des bits à la suite.">CodeBinaire</a> </dd></dl>
 
 </div>
 </div>
@@ -157,6 +182,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Fonction permettant de retourner le bit à d'indice i d'un code binaire. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cb</td><td>: le code binaire </td></tr>
+    <tr><td class="paramname">i</td><td>: l'indice du bit à retourner </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_code_binaire.html" title="Le type CodeBinaire permet de stocker des bits à la suite.">CodeBinaire</a> </dd></dl>
+
 </div>
 </div>
 <a id="afc1a700058656a908996a72085109385"></a>
@@ -174,6 +209,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Fonction permettant d'obtenir le nombre de bits présents dans un code binaire. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cb</td><td>: le code binaire </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>unsigned short </dd></dl>
 
 </div>
 </div>

@@ -1,36 +1,54 @@
-\hypertarget{arbre_de_huffman_8h}{}\doxysection{include/arbre\+De\+Huffman.h File Reference}
-\label{arbre_de_huffman_8h}\index{include/arbreDeHuffman.h@{include/arbreDeHuffman.h}}
+\hypertarget{arbre_de_huffman_8h}{}\doxysection{/home/saunier/\+Documents/\+ITI3/\+ALGO/\+Projet\+\_\+\+Huffman/iti\+\_\+algo\+\_\+2023\+\_\+2024\+\_\+gp2.3/include/arbre\+De\+Huffman.h File Reference}
+\label{arbre_de_huffman_8h}\index{/home/saunier/Documents/ITI3/ALGO/Projet\_Huffman/iti\_algo\_2023\_2024\_gp2.3/include/arbreDeHuffman.h@{/home/saunier/Documents/ITI3/ALGO/Projet\_Huffman/iti\_algo\_2023\_2024\_gp2.3/include/arbreDeHuffman.h}}
+
+
+Implantation du TAD Arbre\+De\+Huffman pour le compresseur d\textquotesingle{}Huffman.  
+
+
 {\ttfamily \#include $<$stdbool.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}octet.\+h\char`\"{}}\newline
 \doxysubsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{struct_noeud_arbre_de_huffman}{Noeud\+Arbre\+De\+Huffman}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Le type \mbox{\hyperlink{struct_noeud_arbre_de_huffman}{Noeud\+Arbre\+De\+Huffman}} est une structure qui contient un octet ainsi qu\textquotesingle{}une fréquence associée à cet octet. La valeur de l\textquotesingle{}octet n\textquotesingle{}a de sens que si le noeud est une feuille et cette information est stocée dans le booléen \textquotesingle{}est\+Une\+Feuille\textquotesingle{}. Les deux derniers champs de cette structure sont 2 Arbre\+De\+Huffman qui représentent un fils gauche et un fils droit. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
 typedef struct \mbox{\hyperlink{struct_noeud_arbre_de_huffman}{Noeud\+Arbre\+De\+Huffman}} $\ast$ \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}}
-\item 
+\begin{DoxyCompactList}\small\item\em Le type Arbre\+De\+Huffman est un pointeur vers un \mbox{\hyperlink{struct_noeud_arbre_de_huffman}{Noeud\+Arbre\+De\+Huffman}}. \end{DoxyCompactList}\item 
 typedef struct \mbox{\hyperlink{struct_noeud_arbre_de_huffman}{Noeud\+Arbre\+De\+Huffman}} \mbox{\hyperlink{arbre_de_huffman_8h_a2aaff003fb741572d33250bc91402b17}{Noeud\+Arbre\+De\+Huffman}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Le type \mbox{\hyperlink{struct_noeud_arbre_de_huffman}{Noeud\+Arbre\+De\+Huffman}} est une structure qui contient un octet ainsi qu\textquotesingle{}une fréquence associée à cet octet. La valeur de l\textquotesingle{}octet n\textquotesingle{}a de sens que si le noeud est une feuille et cette information est stocée dans le booléen \textquotesingle{}est\+Une\+Feuille\textquotesingle{}. Les deux derniers champs de cette structure sont 2 Arbre\+De\+Huffman qui représentent un fils gauche et un fils droit. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} \mbox{\hyperlink{arbre_de_huffman_8h_a1b2f2d544704449b255cc4f842f73f26}{ADH\+\_\+arbre\+De\+Huffman}} (\mbox{\hyperlink{octet_8h_af8e1bf583f840a555f39a222bc5d3ec0}{Octet}} o, unsigned long n)
-\item 
+\begin{DoxyCompactList}\small\item\em Fonction de création d\textquotesingle{}un Arbre\+De\+Huffman \char`\"{}feuille\char`\"{} (avec un octet et une fréquence associée) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} \mbox{\hyperlink{arbre_de_huffman_8h_a83cfe10b30b3c3d716a53978d8bc4a19}{ADH\+\_\+fusionner}} (\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} ag, \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} ad)
-\item 
-bool \mbox{\hyperlink{arbre_de_huffman_8h_abf2536a19b4373bf4aae7aa7f1bc68bc}{ADH\+\_\+est\+Une\+Feuille}} (\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} a)
-\item 
-void \mbox{\hyperlink{arbre_de_huffman_8h_a82359173514a8def52f36165f73cb303}{ADH\+\_\+obtenir\+Octet}} (\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} a, \mbox{\hyperlink{octet_8h_af8e1bf583f840a555f39a222bc5d3ec0}{Octet}} o)
-\item 
-unsigned long \mbox{\hyperlink{arbre_de_huffman_8h_a0ffe8391419bb88d83e93ba4f4daef2e}{ADH\+\_\+obtenir\+Frequence}} (\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} a)
-\item 
-\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} \mbox{\hyperlink{arbre_de_huffman_8h_a1387c88c1d0e57b311889bdc641fee81}{ADH\+\_\+obtenir\+Fils\+Gauche}} (\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} a)
-\item 
-\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} \mbox{\hyperlink{arbre_de_huffman_8h_a11089829d16fbefbc795748b8bfe2a74}{ADH\+\_\+obtenir\+Fils\+Droit}} (\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} a)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Fonction permettant la fusion de 2 Arbre\+De\+Huffman avec une racine qui a pour fréquence la somme des fréquences des 2 Arbre\+De\+Huffman. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{arbre_de_huffman_8h_a387c4f5566756f399b9e28a9a30a9dc6}{ADH\+\_\+est\+Une\+Feuille}} (\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} a)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de savoir si un Arbre\+De\+Huffman est une feuille. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{octet_8h_af8e1bf583f840a555f39a222bc5d3ec0}{Octet}} \mbox{\hyperlink{arbre_de_huffman_8h_a2d4d0260fa5dfdd0aad8ff95c763cff3}{ADH\+\_\+obtenir\+Octet}} (\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} a)
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}obtenir l\textquotesingle{}octet d\textquotesingle{}un Arbre\+De\+Huffman. \end{DoxyCompactList}\item 
+unsigned long \mbox{\hyperlink{arbre_de_huffman_8h_a70838a1c6d55573d65f8a39d32978c5e}{ADH\+\_\+obtenir\+Frequence}} (\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} a)
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}obtenir la fréquence d\textquotesingle{}un Arbre\+De\+Huffman. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} \mbox{\hyperlink{arbre_de_huffman_8h_a9cd3a89a1d998a22eef12deb40f89e0a}{ADH\+\_\+obtenir\+Fils\+Gauche}} (\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} a)
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}obtenir le fils gauche d\textquotesingle{}un Arbre\+De\+Huffman. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} \mbox{\hyperlink{arbre_de_huffman_8h_aafa10f6ea3dac4c50c0c7327bfdda312}{ADH\+\_\+obtenir\+Fils\+Droit}} (\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} a)
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}obtenir le fils droit d\textquotesingle{}un Arbre\+De\+Huffman. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{arbre_de_huffman_8h_a2fd771be357d9c5d2fc7581216442818}{ADH\+\_\+liberer}} (\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} a)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de libérer la mémoire associée à un Arbre\+De\+Huffman. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implantation du TAD Arbre\+De\+Huffman pour le compresseur d\textquotesingle{}Huffman. 
+
+\begin{DoxyAuthor}{Author}
+M. Saunier 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+31/12/2023 
+\end{DoxyDate}
 
 
 \doxysubsection{Typedef Documentation}
@@ -40,11 +58,19 @@ unsigned long \mbox{\hyperlink{arbre_de_huffman_8h_a0ffe8391419bb88d83e93ba4f4da
 \doxysubsubsection{\texorpdfstring{ArbreDeHuffman}{ArbreDeHuffman}}
 {\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_noeud_arbre_de_huffman}{Noeud\+Arbre\+De\+Huffman}}$\ast$ \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}}}
 
+
+
+Le type Arbre\+De\+Huffman est un pointeur vers un \mbox{\hyperlink{struct_noeud_arbre_de_huffman}{Noeud\+Arbre\+De\+Huffman}}. 
+
 \mbox{\Hypertarget{arbre_de_huffman_8h_a2aaff003fb741572d33250bc91402b17}\label{arbre_de_huffman_8h_a2aaff003fb741572d33250bc91402b17}} 
 \index{arbreDeHuffman.h@{arbreDeHuffman.h}!NoeudArbreDeHuffman@{NoeudArbreDeHuffman}}
 \index{NoeudArbreDeHuffman@{NoeudArbreDeHuffman}!arbreDeHuffman.h@{arbreDeHuffman.h}}
 \doxysubsubsection{\texorpdfstring{NoeudArbreDeHuffman}{NoeudArbreDeHuffman}}
 {\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_noeud_arbre_de_huffman}{Noeud\+Arbre\+De\+Huffman}} \mbox{\hyperlink{struct_noeud_arbre_de_huffman}{Noeud\+Arbre\+De\+Huffman}}}
+
+
+
+Le type \mbox{\hyperlink{struct_noeud_arbre_de_huffman}{Noeud\+Arbre\+De\+Huffman}} est une structure qui contient un octet ainsi qu\textquotesingle{}une fréquence associée à cet octet. La valeur de l\textquotesingle{}octet n\textquotesingle{}a de sens que si le noeud est une feuille et cette information est stocée dans le booléen \textquotesingle{}est\+Une\+Feuille\textquotesingle{}. Les deux derniers champs de cette structure sont 2 Arbre\+De\+Huffman qui représentent un fils gauche et un fils droit. 
 
 
 
@@ -55,39 +81,142 @@ unsigned long \mbox{\hyperlink{arbre_de_huffman_8h_a0ffe8391419bb88d83e93ba4f4da
 \doxysubsubsection{\texorpdfstring{ADH\_arbreDeHuffman()}{ADH\_arbreDeHuffman()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} ADH\+\_\+arbre\+De\+Huffman (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{octet_8h_af8e1bf583f840a555f39a222bc5d3ec0}{Octet}}}]{o,  }\item[{unsigned long}]{n }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{arbre_de_huffman_8h_abf2536a19b4373bf4aae7aa7f1bc68bc}\label{arbre_de_huffman_8h_abf2536a19b4373bf4aae7aa7f1bc68bc}} 
+
+
+Fonction de création d\textquotesingle{}un Arbre\+De\+Huffman \char`\"{}feuille\char`\"{} (avec un octet et une fréquence associée) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & \+: l\textquotesingle{}octet \\
+\hline
+{\em n} & \+: la fréquence associé à l\textquotesingle{}octet \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Arbre\+De\+Huffman 
+\end{DoxyReturn}
+\mbox{\Hypertarget{arbre_de_huffman_8h_a387c4f5566756f399b9e28a9a30a9dc6}\label{arbre_de_huffman_8h_a387c4f5566756f399b9e28a9a30a9dc6}} 
 \index{arbreDeHuffman.h@{arbreDeHuffman.h}!ADH\_estUneFeuille@{ADH\_estUneFeuille}}
 \index{ADH\_estUneFeuille@{ADH\_estUneFeuille}!arbreDeHuffman.h@{arbreDeHuffman.h}}
 \doxysubsubsection{\texorpdfstring{ADH\_estUneFeuille()}{ADH\_estUneFeuille()}}
-{\footnotesize\ttfamily bool ADH\+\_\+est\+Une\+Feuille (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}}}]{a }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily ADH\+\_\+est\+Une\+Feuille (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}}}]{a }\end{DoxyParamCaption})}
 
+
+
+Fonction permettant de savoir si un Arbre\+De\+Huffman est une feuille. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & \+: Arbre\+De\+Huffman \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Booleen 
+\end{DoxyReturn}
 \mbox{\Hypertarget{arbre_de_huffman_8h_a83cfe10b30b3c3d716a53978d8bc4a19}\label{arbre_de_huffman_8h_a83cfe10b30b3c3d716a53978d8bc4a19}} 
 \index{arbreDeHuffman.h@{arbreDeHuffman.h}!ADH\_fusionner@{ADH\_fusionner}}
 \index{ADH\_fusionner@{ADH\_fusionner}!arbreDeHuffman.h@{arbreDeHuffman.h}}
 \doxysubsubsection{\texorpdfstring{ADH\_fusionner()}{ADH\_fusionner()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} ADH\+\_\+fusionner (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}}}]{ag,  }\item[{\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}}}]{ad }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{arbre_de_huffman_8h_a11089829d16fbefbc795748b8bfe2a74}\label{arbre_de_huffman_8h_a11089829d16fbefbc795748b8bfe2a74}} 
+
+
+Fonction permettant la fusion de 2 Arbre\+De\+Huffman avec une racine qui a pour fréquence la somme des fréquences des 2 Arbre\+De\+Huffman. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ag} & \+: Arbre\+De\+Huffman \\
+\hline
+{\em ad} & \+: Arbre\+De\+Huffman \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Arbre\+De\+Huffman 
+\end{DoxyReturn}
+\mbox{\Hypertarget{arbre_de_huffman_8h_a2fd771be357d9c5d2fc7581216442818}\label{arbre_de_huffman_8h_a2fd771be357d9c5d2fc7581216442818}} 
+\index{arbreDeHuffman.h@{arbreDeHuffman.h}!ADH\_liberer@{ADH\_liberer}}
+\index{ADH\_liberer@{ADH\_liberer}!arbreDeHuffman.h@{arbreDeHuffman.h}}
+\doxysubsubsection{\texorpdfstring{ADH\_liberer()}{ADH\_liberer()}}
+{\footnotesize\ttfamily ADH\+\_\+liberer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}}}]{a }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de libérer la mémoire associée à un Arbre\+De\+Huffman. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & \+: Arbre\+De\+Huffman \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{arbre_de_huffman_8h_aafa10f6ea3dac4c50c0c7327bfdda312}\label{arbre_de_huffman_8h_aafa10f6ea3dac4c50c0c7327bfdda312}} 
 \index{arbreDeHuffman.h@{arbreDeHuffman.h}!ADH\_obtenirFilsDroit@{ADH\_obtenirFilsDroit}}
 \index{ADH\_obtenirFilsDroit@{ADH\_obtenirFilsDroit}!arbreDeHuffman.h@{arbreDeHuffman.h}}
 \doxysubsubsection{\texorpdfstring{ADH\_obtenirFilsDroit()}{ADH\_obtenirFilsDroit()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} ADH\+\_\+obtenir\+Fils\+Droit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}}}]{a }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily ADH\+\_\+obtenir\+Fils\+Droit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}}}]{a }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{arbre_de_huffman_8h_a1387c88c1d0e57b311889bdc641fee81}\label{arbre_de_huffman_8h_a1387c88c1d0e57b311889bdc641fee81}} 
+
+
+Fonction permettant d\textquotesingle{}obtenir le fils droit d\textquotesingle{}un Arbre\+De\+Huffman. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & \+: Arbre\+De\+Huffman \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Arbre\+De\+Huffman 
+\end{DoxyReturn}
+\mbox{\Hypertarget{arbre_de_huffman_8h_a9cd3a89a1d998a22eef12deb40f89e0a}\label{arbre_de_huffman_8h_a9cd3a89a1d998a22eef12deb40f89e0a}} 
 \index{arbreDeHuffman.h@{arbreDeHuffman.h}!ADH\_obtenirFilsGauche@{ADH\_obtenirFilsGauche}}
 \index{ADH\_obtenirFilsGauche@{ADH\_obtenirFilsGauche}!arbreDeHuffman.h@{arbreDeHuffman.h}}
 \doxysubsubsection{\texorpdfstring{ADH\_obtenirFilsGauche()}{ADH\_obtenirFilsGauche()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} ADH\+\_\+obtenir\+Fils\+Gauche (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}}}]{a }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily ADH\+\_\+obtenir\+Fils\+Gauche (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}}}]{a }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{arbre_de_huffman_8h_a0ffe8391419bb88d83e93ba4f4daef2e}\label{arbre_de_huffman_8h_a0ffe8391419bb88d83e93ba4f4daef2e}} 
+
+
+Fonction permettant d\textquotesingle{}obtenir le fils gauche d\textquotesingle{}un Arbre\+De\+Huffman. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & \+: Arbre\+De\+Huffman \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Arbre\+De\+Huffman 
+\end{DoxyReturn}
+\mbox{\Hypertarget{arbre_de_huffman_8h_a70838a1c6d55573d65f8a39d32978c5e}\label{arbre_de_huffman_8h_a70838a1c6d55573d65f8a39d32978c5e}} 
 \index{arbreDeHuffman.h@{arbreDeHuffman.h}!ADH\_obtenirFrequence@{ADH\_obtenirFrequence}}
 \index{ADH\_obtenirFrequence@{ADH\_obtenirFrequence}!arbreDeHuffman.h@{arbreDeHuffman.h}}
 \doxysubsubsection{\texorpdfstring{ADH\_obtenirFrequence()}{ADH\_obtenirFrequence()}}
-{\footnotesize\ttfamily unsigned long ADH\+\_\+obtenir\+Frequence (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}}}]{a }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily ADH\+\_\+obtenir\+Frequence (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}}}]{a }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{arbre_de_huffman_8h_a82359173514a8def52f36165f73cb303}\label{arbre_de_huffman_8h_a82359173514a8def52f36165f73cb303}} 
+
+
+Fonction permettant d\textquotesingle{}obtenir la fréquence d\textquotesingle{}un Arbre\+De\+Huffman. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & \+: Arbre\+De\+Huffman \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned long 
+\end{DoxyReturn}
+\mbox{\Hypertarget{arbre_de_huffman_8h_a2d4d0260fa5dfdd0aad8ff95c763cff3}\label{arbre_de_huffman_8h_a2d4d0260fa5dfdd0aad8ff95c763cff3}} 
 \index{arbreDeHuffman.h@{arbreDeHuffman.h}!ADH\_obtenirOctet@{ADH\_obtenirOctet}}
 \index{ADH\_obtenirOctet@{ADH\_obtenirOctet}!arbreDeHuffman.h@{arbreDeHuffman.h}}
 \doxysubsubsection{\texorpdfstring{ADH\_obtenirOctet()}{ADH\_obtenirOctet()}}
-{\footnotesize\ttfamily void ADH\+\_\+obtenir\+Octet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}}}]{a,  }\item[{\mbox{\hyperlink{octet_8h_af8e1bf583f840a555f39a222bc5d3ec0}{Octet}}}]{o }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily ADH\+\_\+obtenir\+Octet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}}}]{a }\end{DoxyParamCaption})}
 
+
+
+Fonction permettant d\textquotesingle{}obtenir l\textquotesingle{}octet d\textquotesingle{}un Arbre\+De\+Huffman. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & \+: Arbre\+De\+Huffman \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Octet 
+\end{DoxyReturn}

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ProjetHuffman: src/octet.c File Reference</title>
+<title>ProjetHuffman: /home/saunier/Documents/ITI3/ALGO/Projet_Huffman/iti_algo_2023_2024_gp2.3/src/octet.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -72,12 +72,13 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;assert.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="octet_8h_source.html">octet.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5be17190de41abe6b00c290d829be413"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="octet_8c.html#a5be17190de41abe6b00c290d829be413">O_creerOctet</a> (<a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b0, <a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b1, <a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b2, <a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b3, <a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b4, <a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b5, <a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b6, <a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b7, <a class="el" href="octet_8h.html#af8e1bf583f840a555f39a222bc5d3ec0">Octet</a> o)</td></tr>
-<tr class="separator:a5be17190de41abe6b00c290d829be413"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca08f647ddf1d248683ed969fc37b595"><td class="memItemLeft" align="right" valign="top"><a class="el" href="octet_8h.html#af8e1bf583f840a555f39a222bc5d3ec0">Octet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="octet_8c.html#aca08f647ddf1d248683ed969fc37b595">O_creerOctet</a> (<a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b7, <a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b6, <a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b5, <a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b4, <a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b3, <a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b2, <a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b1, <a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a> b0)</td></tr>
+<tr class="separator:aca08f647ddf1d248683ed969fc37b595"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae49071e3b76c020e1d7bb22b1c5612a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="octet_8c.html#ae49071e3b76c020e1d7bb22b1c5612a3">O_obtenirIemeBit</a> (<a class="el" href="octet_8h.html#af8e1bf583f840a555f39a222bc5d3ec0">Octet</a> o, unsigned short i)</td></tr>
 <tr class="separator:ae49071e3b76c020e1d7bb22b1c5612a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54e9d4a4130957da65f6dc1d11a70eec"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="octet_8c.html#a54e9d4a4130957da65f6dc1d11a70eec">O_octetVersNaturel</a> (<a class="el" href="octet_8h.html#af8e1bf583f840a555f39a222bc5d3ec0">Octet</a> o)</td></tr>
@@ -86,47 +87,17 @@ Functions</h2></td></tr>
 <tr class="separator:a0cc23d7b9fbccaf4a05ba6c7dbf65dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a5be17190de41abe6b00c290d829be413"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5be17190de41abe6b00c290d829be413">&#9670;&nbsp;</a></span>O_creerOctet()</h2>
+<a id="aca08f647ddf1d248683ed969fc37b595"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca08f647ddf1d248683ed969fc37b595">&#9670;&nbsp;</a></span>O_creerOctet()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void O_creerOctet </td>
+          <td class="memname"><a class="el" href="octet_8h.html#af8e1bf583f840a555f39a222bc5d3ec0">Octet</a> O_creerOctet </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a>&#160;</td>
-          <td class="paramname"><em>b0</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a>&#160;</td>
-          <td class="paramname"><em>b1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a>&#160;</td>
-          <td class="paramname"><em>b2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a>&#160;</td>
-          <td class="paramname"><em>b3</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a>&#160;</td>
-          <td class="paramname"><em>b4</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a>&#160;</td>
-          <td class="paramname"><em>b5</em>, </td>
+          <td class="paramname"><em>b7</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -138,13 +109,37 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a>&#160;</td>
-          <td class="paramname"><em>b7</em>, </td>
+          <td class="paramname"><em>b5</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="octet_8h.html#af8e1bf583f840a555f39a222bc5d3ec0">Octet</a>&#160;</td>
-          <td class="paramname"><em>o</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a>&#160;</td>
+          <td class="paramname"><em>b4</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a>&#160;</td>
+          <td class="paramname"><em>b3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a>&#160;</td>
+          <td class="paramname"><em>b2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a>&#160;</td>
+          <td class="paramname"><em>b1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="octet_8h.html#a4d5c9a78a20b519c1a07250a71d224a6">Bit</a>&#160;</td>
+          <td class="paramname"><em>b0</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

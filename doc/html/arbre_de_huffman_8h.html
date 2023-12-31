@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ProjetHuffman: include/arbreDeHuffman.h File Reference</title>
+<title>ProjetHuffman: /home/saunier/Documents/ITI3/ALGO/Projet_Huffman/iti_algo_2023_2024_gp2.3/include/arbreDeHuffman.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -73,6 +73,9 @@ $(function() {
 <div class="title">arbreDeHuffman.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implantation du TAD ArbreDeHuffman pour le compresseur d'Huffman.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="octet_8h_source.html">octet.h</a>&quot;</code><br />
 </div>
@@ -81,33 +84,50 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noeud_arbre_de_huffman.html">NoeudArbreDeHuffman</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le type <a class="el" href="struct_noeud_arbre_de_huffman.html" title="Le type NoeudArbreDeHuffman est une structure qui contient un octet ainsi qu&#39;une fréquence associée à...">NoeudArbreDeHuffman</a> est une structure qui contient un octet ainsi qu'une fréquence associée à cet octet. La valeur de l'octet n'a de sens que si le noeud est une feuille et cette information est stocée dans le booléen 'estUneFeuille'. Les deux derniers champs de cette structure sont 2 ArbreDeHuffman qui représentent un fils gauche et un fils droit.  <a href="struct_noeud_arbre_de_huffman.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a6e5e2ef2c2be0051261817946a8176f7"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_noeud_arbre_de_huffman.html">NoeudArbreDeHuffman</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a></td></tr>
+<tr class="memdesc:a6e5e2ef2c2be0051261817946a8176f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le type ArbreDeHuffman est un pointeur vers un <a class="el" href="struct_noeud_arbre_de_huffman.html" title="Le type NoeudArbreDeHuffman est une structure qui contient un octet ainsi qu&#39;une fréquence associée à...">NoeudArbreDeHuffman</a>.  <a href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">More...</a><br /></td></tr>
 <tr class="separator:a6e5e2ef2c2be0051261817946a8176f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2aaff003fb741572d33250bc91402b17"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_noeud_arbre_de_huffman.html">NoeudArbreDeHuffman</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arbre_de_huffman_8h.html#a2aaff003fb741572d33250bc91402b17">NoeudArbreDeHuffman</a></td></tr>
+<tr class="memdesc:a2aaff003fb741572d33250bc91402b17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le type <a class="el" href="struct_noeud_arbre_de_huffman.html" title="Le type NoeudArbreDeHuffman est une structure qui contient un octet ainsi qu&#39;une fréquence associée à...">NoeudArbreDeHuffman</a> est une structure qui contient un octet ainsi qu'une fréquence associée à cet octet. La valeur de l'octet n'a de sens que si le noeud est une feuille et cette information est stocée dans le booléen 'estUneFeuille'. Les deux derniers champs de cette structure sont 2 ArbreDeHuffman qui représentent un fils gauche et un fils droit.  <a href="arbre_de_huffman_8h.html#a2aaff003fb741572d33250bc91402b17">More...</a><br /></td></tr>
 <tr class="separator:a2aaff003fb741572d33250bc91402b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a1b2f2d544704449b255cc4f842f73f26"><td class="memItemLeft" align="right" valign="top"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arbre_de_huffman_8h.html#a1b2f2d544704449b255cc4f842f73f26">ADH_arbreDeHuffman</a> (<a class="el" href="octet_8h.html#af8e1bf583f840a555f39a222bc5d3ec0">Octet</a> o, unsigned long n)</td></tr>
+<tr class="memdesc:a1b2f2d544704449b255cc4f842f73f26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction de création d'un ArbreDeHuffman "feuille" (avec un octet et une fréquence associée)  <a href="arbre_de_huffman_8h.html#a1b2f2d544704449b255cc4f842f73f26">More...</a><br /></td></tr>
 <tr class="separator:a1b2f2d544704449b255cc4f842f73f26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83cfe10b30b3c3d716a53978d8bc4a19"><td class="memItemLeft" align="right" valign="top"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arbre_de_huffman_8h.html#a83cfe10b30b3c3d716a53978d8bc4a19">ADH_fusionner</a> (<a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> ag, <a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> ad)</td></tr>
+<tr class="memdesc:a83cfe10b30b3c3d716a53978d8bc4a19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant la fusion de 2 ArbreDeHuffman avec une racine qui a pour fréquence la somme des fréquences des 2 ArbreDeHuffman.  <a href="arbre_de_huffman_8h.html#a83cfe10b30b3c3d716a53978d8bc4a19">More...</a><br /></td></tr>
 <tr class="separator:a83cfe10b30b3c3d716a53978d8bc4a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf2536a19b4373bf4aae7aa7f1bc68bc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arbre_de_huffman_8h.html#abf2536a19b4373bf4aae7aa7f1bc68bc">ADH_estUneFeuille</a> (<a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> a)</td></tr>
-<tr class="separator:abf2536a19b4373bf4aae7aa7f1bc68bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82359173514a8def52f36165f73cb303"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arbre_de_huffman_8h.html#a82359173514a8def52f36165f73cb303">ADH_obtenirOctet</a> (<a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> a, <a class="el" href="octet_8h.html#af8e1bf583f840a555f39a222bc5d3ec0">Octet</a> o)</td></tr>
-<tr class="separator:a82359173514a8def52f36165f73cb303"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ffe8391419bb88d83e93ba4f4daef2e"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arbre_de_huffman_8h.html#a0ffe8391419bb88d83e93ba4f4daef2e">ADH_obtenirFrequence</a> (<a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> a)</td></tr>
-<tr class="separator:a0ffe8391419bb88d83e93ba4f4daef2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1387c88c1d0e57b311889bdc641fee81"><td class="memItemLeft" align="right" valign="top"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arbre_de_huffman_8h.html#a1387c88c1d0e57b311889bdc641fee81">ADH_obtenirFilsGauche</a> (<a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> a)</td></tr>
-<tr class="separator:a1387c88c1d0e57b311889bdc641fee81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11089829d16fbefbc795748b8bfe2a74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arbre_de_huffman_8h.html#a11089829d16fbefbc795748b8bfe2a74">ADH_obtenirFilsDroit</a> (<a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> a)</td></tr>
-<tr class="separator:a11089829d16fbefbc795748b8bfe2a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a387c4f5566756f399b9e28a9a30a9dc6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arbre_de_huffman_8h.html#a387c4f5566756f399b9e28a9a30a9dc6">ADH_estUneFeuille</a> (<a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> a)</td></tr>
+<tr class="memdesc:a387c4f5566756f399b9e28a9a30a9dc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de savoir si un ArbreDeHuffman est une feuille.  <a href="arbre_de_huffman_8h.html#a387c4f5566756f399b9e28a9a30a9dc6">More...</a><br /></td></tr>
+<tr class="separator:a387c4f5566756f399b9e28a9a30a9dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d4d0260fa5dfdd0aad8ff95c763cff3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="octet_8h.html#af8e1bf583f840a555f39a222bc5d3ec0">Octet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arbre_de_huffman_8h.html#a2d4d0260fa5dfdd0aad8ff95c763cff3">ADH_obtenirOctet</a> (<a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> a)</td></tr>
+<tr class="memdesc:a2d4d0260fa5dfdd0aad8ff95c763cff3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant d'obtenir l'octet d'un ArbreDeHuffman.  <a href="arbre_de_huffman_8h.html#a2d4d0260fa5dfdd0aad8ff95c763cff3">More...</a><br /></td></tr>
+<tr class="separator:a2d4d0260fa5dfdd0aad8ff95c763cff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70838a1c6d55573d65f8a39d32978c5e"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arbre_de_huffman_8h.html#a70838a1c6d55573d65f8a39d32978c5e">ADH_obtenirFrequence</a> (<a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> a)</td></tr>
+<tr class="memdesc:a70838a1c6d55573d65f8a39d32978c5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant d'obtenir la fréquence d'un ArbreDeHuffman.  <a href="arbre_de_huffman_8h.html#a70838a1c6d55573d65f8a39d32978c5e">More...</a><br /></td></tr>
+<tr class="separator:a70838a1c6d55573d65f8a39d32978c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cd3a89a1d998a22eef12deb40f89e0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arbre_de_huffman_8h.html#a9cd3a89a1d998a22eef12deb40f89e0a">ADH_obtenirFilsGauche</a> (<a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> a)</td></tr>
+<tr class="memdesc:a9cd3a89a1d998a22eef12deb40f89e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant d'obtenir le fils gauche d'un ArbreDeHuffman.  <a href="arbre_de_huffman_8h.html#a9cd3a89a1d998a22eef12deb40f89e0a">More...</a><br /></td></tr>
+<tr class="separator:a9cd3a89a1d998a22eef12deb40f89e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafa10f6ea3dac4c50c0c7327bfdda312"><td class="memItemLeft" align="right" valign="top"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arbre_de_huffman_8h.html#aafa10f6ea3dac4c50c0c7327bfdda312">ADH_obtenirFilsDroit</a> (<a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> a)</td></tr>
+<tr class="memdesc:aafa10f6ea3dac4c50c0c7327bfdda312"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant d'obtenir le fils droit d'un ArbreDeHuffman.  <a href="arbre_de_huffman_8h.html#aafa10f6ea3dac4c50c0c7327bfdda312">More...</a><br /></td></tr>
+<tr class="separator:aafa10f6ea3dac4c50c0c7327bfdda312"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fd771be357d9c5d2fc7581216442818"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arbre_de_huffman_8h.html#a2fd771be357d9c5d2fc7581216442818">ADH_liberer</a> (<a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> a)</td></tr>
+<tr class="memdesc:a2fd771be357d9c5d2fc7581216442818"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de libérer la mémoire associée à un ArbreDeHuffman.  <a href="arbre_de_huffman_8h.html#a2fd771be357d9c5d2fc7581216442818">More...</a><br /></td></tr>
+<tr class="separator:a2fd771be357d9c5d2fc7581216442818"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implantation du TAD ArbreDeHuffman pour le compresseur d'Huffman. </p>
+<dl class="section author"><dt>Author</dt><dd>M. Saunier </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>31/12/2023 </dd></dl>
+</div><h2 class="groupheader">Typedef Documentation</h2>
 <a id="a6e5e2ef2c2be0051261817946a8176f7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6e5e2ef2c2be0051261817946a8176f7">&#9670;&nbsp;</a></span>ArbreDeHuffman</h2>
 
@@ -119,6 +139,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Le type ArbreDeHuffman est un pointeur vers un <a class="el" href="struct_noeud_arbre_de_huffman.html" title="Le type NoeudArbreDeHuffman est une structure qui contient un octet ainsi qu&#39;une fréquence associée à...">NoeudArbreDeHuffman</a>. </p>
 
 </div>
 </div>
@@ -133,6 +155,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Le type <a class="el" href="struct_noeud_arbre_de_huffman.html" title="Le type NoeudArbreDeHuffman est une structure qui contient un octet ainsi qu&#39;une fréquence associée à...">NoeudArbreDeHuffman</a> est une structure qui contient un octet ainsi qu'une fréquence associée à cet octet. La valeur de l'octet n'a de sens que si le noeud est une feuille et cette information est stocée dans le booléen 'estUneFeuille'. Les deux derniers champs de cette structure sont 2 ArbreDeHuffman qui représentent un fils gauche et un fils droit. </p>
 
 </div>
 </div>
@@ -163,16 +187,26 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Fonction de création d'un ArbreDeHuffman "feuille" (avec un octet et une fréquence associée) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">o</td><td>: l'octet </td></tr>
+    <tr><td class="paramname">n</td><td>: la fréquence associé à l'octet </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ArbreDeHuffman </dd></dl>
+
 </div>
 </div>
-<a id="abf2536a19b4373bf4aae7aa7f1bc68bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf2536a19b4373bf4aae7aa7f1bc68bc">&#9670;&nbsp;</a></span>ADH_estUneFeuille()</h2>
+<a id="a387c4f5566756f399b9e28a9a30a9dc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a387c4f5566756f399b9e28a9a30a9dc6">&#9670;&nbsp;</a></span>ADH_estUneFeuille()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool ADH_estUneFeuille </td>
+          <td class="memname">ADH_estUneFeuille </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a>&#160;</td>
           <td class="paramname"><em>a</em></td><td>)</td>
@@ -180,6 +214,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Fonction permettant de savoir si un ArbreDeHuffman est une feuille. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>: ArbreDeHuffman </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Booleen </dd></dl>
 
 </div>
 </div>
@@ -209,16 +252,26 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Fonction permettant la fusion de 2 ArbreDeHuffman avec une racine qui a pour fréquence la somme des fréquences des 2 ArbreDeHuffman. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ag</td><td>: ArbreDeHuffman </td></tr>
+    <tr><td class="paramname">ad</td><td>: ArbreDeHuffman </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ArbreDeHuffman </dd></dl>
+
 </div>
 </div>
-<a id="a11089829d16fbefbc795748b8bfe2a74"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a11089829d16fbefbc795748b8bfe2a74">&#9670;&nbsp;</a></span>ADH_obtenirFilsDroit()</h2>
+<a id="a2fd771be357d9c5d2fc7581216442818"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fd771be357d9c5d2fc7581216442818">&#9670;&nbsp;</a></span>ADH_liberer()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> ADH_obtenirFilsDroit </td>
+          <td class="memname">ADH_liberer </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a>&#160;</td>
           <td class="paramname"><em>a</em></td><td>)</td>
@@ -227,16 +280,24 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Fonction permettant de libérer la mémoire associée à un ArbreDeHuffman. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>: ArbreDeHuffman </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a id="a1387c88c1d0e57b311889bdc641fee81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1387c88c1d0e57b311889bdc641fee81">&#9670;&nbsp;</a></span>ADH_obtenirFilsGauche()</h2>
+<a id="aafa10f6ea3dac4c50c0c7327bfdda312"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafa10f6ea3dac4c50c0c7327bfdda312">&#9670;&nbsp;</a></span>ADH_obtenirFilsDroit()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> ADH_obtenirFilsGauche </td>
+          <td class="memname">ADH_obtenirFilsDroit </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a>&#160;</td>
           <td class="paramname"><em>a</em></td><td>)</td>
@@ -245,16 +306,25 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Fonction permettant d'obtenir le fils droit d'un ArbreDeHuffman. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>: ArbreDeHuffman </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ArbreDeHuffman </dd></dl>
+
 </div>
 </div>
-<a id="a0ffe8391419bb88d83e93ba4f4daef2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0ffe8391419bb88d83e93ba4f4daef2e">&#9670;&nbsp;</a></span>ADH_obtenirFrequence()</h2>
+<a id="a9cd3a89a1d998a22eef12deb40f89e0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cd3a89a1d998a22eef12deb40f89e0a">&#9670;&nbsp;</a></span>ADH_obtenirFilsGauche()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned long ADH_obtenirFrequence </td>
+          <td class="memname">ADH_obtenirFilsGauche </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a>&#160;</td>
           <td class="paramname"><em>a</em></td><td>)</td>
@@ -263,33 +333,68 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Fonction permettant d'obtenir le fils gauche d'un ArbreDeHuffman. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>: ArbreDeHuffman </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ArbreDeHuffman </dd></dl>
+
 </div>
 </div>
-<a id="a82359173514a8def52f36165f73cb303"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82359173514a8def52f36165f73cb303">&#9670;&nbsp;</a></span>ADH_obtenirOctet()</h2>
+<a id="a70838a1c6d55573d65f8a39d32978c5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70838a1c6d55573d65f8a39d32978c5e">&#9670;&nbsp;</a></span>ADH_obtenirFrequence()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ADH_obtenirOctet </td>
+          <td class="memname">ADH_obtenirFrequence </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a>&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>a</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="octet_8h.html#af8e1bf583f840a555f39a222bc5d3ec0">Octet</a>&#160;</td>
-          <td class="paramname"><em>o</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Fonction permettant d'obtenir la fréquence d'un ArbreDeHuffman. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>: ArbreDeHuffman </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>unsigned long </dd></dl>
+
+</div>
+</div>
+<a id="a2d4d0260fa5dfdd0aad8ff95c763cff3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d4d0260fa5dfdd0aad8ff95c763cff3">&#9670;&nbsp;</a></span>ADH_obtenirOctet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ADH_obtenirOctet </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a>&#160;</td>
+          <td class="paramname"><em>a</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant d'obtenir l'octet d'un ArbreDeHuffman. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>: ArbreDeHuffman </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Octet </dd></dl>
 
 </div>
 </div>

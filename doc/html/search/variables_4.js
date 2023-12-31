@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['octet_117',['octet',['../struct_noeud_arbre_de_huffman.html#a21d4ae385a958ce3017d3f4ea44aa0c7',1,'NoeudArbreDeHuffman']]]
+  ['nbbits_239',['nbBits',['../struct_code_binaire.html#a45817cae8241d18520d1f8a4774be33d',1,'CodeBinaire']]]
 ];
