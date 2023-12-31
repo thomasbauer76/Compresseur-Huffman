@@ -1,12 +1,17 @@
 EXE=huffman
 EXE_TESTS_TADS=testsTADs
 EXE_TESTS_FONCTIONS_METIER=testsFonctionsMetier
+
+LATEX_MAIN=main.tex
+DOXYFILE_NAME=doxyfile
+
 BINDIR=bin
 SRCDIR=src
+INCLUDEDIR=include
 LATEXDIR=latex
 DOCDIR=doc
-INCLUDEDIR=include
 TESTSDIR=tests
+
 CC=gcc
 CFLAGS=-Wall -pedantic -std=c99 -O3 -I$(INCLUDEDIR)
 LDFLAGS=-lcunit
@@ -30,11 +35,11 @@ $(SRCDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 pdf :
-	cd $(LATEXDIR); pdflatex main.tex
+	cd $(LATEXDIR); pdflatex $(LATEX_MAIN)
 	rm -f ./$(LATEXDIR)/*.fls ./$(LATEXDIR)/*.fdb_latexmk ./$(LATEXDIR)/*.aux ./$(LATEXDIR)/*.log
 
 doc:
-	doxygen ./Doxyfile
+	doxygen $(DOXYFILE_NAME)
 
 clean :
 	rm -rf ./$(TESTSDIR)/$(EXE_TESTS_TADS) ./$(TESTSDIR)/$(EXE_TESTS_FONCTIONS_METIER)
