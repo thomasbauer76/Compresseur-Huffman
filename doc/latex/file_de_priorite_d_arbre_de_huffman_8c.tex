@@ -9,7 +9,7 @@
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8c_ac367b713d9895a71b051d12e1a7fe8e8}{FDPAH\+\_\+file\+De\+Priorite}} ()
-\begin{DoxyCompactList}\small\item\em Fonction créant une File\+De\+Priorite pour des Arbre\+De\+Huffman. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Fonction créant une File\+De\+Priorite, pointant sur NULL, pour des Arbre\+De\+Huffman. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8c_a3f482d9a627a48cf40ee43f260cd4c0b}{FDPAH\+\_\+est\+Vide}} (\mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} fdp)
 \begin{DoxyCompactList}\small\item\em Fonction renvoyant VRAI si une File\+De\+Priorite est vide, càd qu\textquotesingle{}elle ne contient aucun Arbre\+De\+Huffman. Retourne FAUX sinon. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8c_ad60331d04524de3f77dbb6535ee24e97}{FDPAH\+\_\+enfiler}} (\mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} $\ast$p\+\_\+fdp, \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} a)
@@ -31,9 +31,9 @@ Fonction permettant d\textquotesingle{}insérer à l\textquotesingle{}endroit co
 
 
 \begin{DoxyParams}{Parameters}
-{\em File\+De\+Priorite} & à laquelle on aimerait ajouter un Arbre\+De\+Huffman, cette dernière sera modifiée \\
+{\em p\+\_\+fdp} & \+: la File\+De\+Priorite à modifier \\
 \hline
-{\em Arbre\+De\+Huffman} & que l\textquotesingle{}on souhaiter enfiler dans la File\+De\+Priorite \\
+{\em a} & \+: l\textquotesingle{}Arbre\+De\+Huffman à insérer \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{file_de_priorite_d_arbre_de_huffman_8c_a3f482d9a627a48cf40ee43f260cd4c0b}\label{file_de_priorite_d_arbre_de_huffman_8c_a3f482d9a627a48cf40ee43f260cd4c0b}} 
@@ -48,11 +48,11 @@ Fonction renvoyant VRAI si une File\+De\+Priorite est vide, càd qu\textquotesin
 
 
 \begin{DoxyParams}{Parameters}
-{\em File\+De\+Priorite} & que l\textquotesingle{}on veut tester \\
+{\em fdp} & \+: File\+De\+Priorite \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Booleen indiquant si la File\+De\+Priorite en paramètre est vide ou non 
+Booleen 
 \end{DoxyReturn}
 \mbox{\Hypertarget{file_de_priorite_d_arbre_de_huffman_8c_ac367b713d9895a71b051d12e1a7fe8e8}\label{file_de_priorite_d_arbre_de_huffman_8c_ac367b713d9895a71b051d12e1a7fe8e8}} 
 \index{fileDePrioriteDArbreDeHuffman.c@{fileDePrioriteDArbreDeHuffman.c}!FDPAH\_fileDePriorite@{FDPAH\_fileDePriorite}}
@@ -62,16 +62,16 @@ Booleen indiquant si la File\+De\+Priorite en paramètre est vide ou non
 
 
 
-Fonction créant une File\+De\+Priorite pour des Arbre\+De\+Huffman. 
+Fonction créant une File\+De\+Priorite, pointant sur NULL, pour des Arbre\+De\+Huffman. 
 
 \begin{DoxyReturn}{Returns}
-File\+De\+Priorite pointant sur NULL 
+File\+De\+Priorite 
 \end{DoxyReturn}
 \mbox{\Hypertarget{file_de_priorite_d_arbre_de_huffman_8c_a750f287f8e6894278c6a57a409d785ee}\label{file_de_priorite_d_arbre_de_huffman_8c_a750f287f8e6894278c6a57a409d785ee}} 
 \index{fileDePrioriteDArbreDeHuffman.c@{fileDePrioriteDArbreDeHuffman.c}!FDPAH\_obtenirElementEtDefiler@{FDPAH\_obtenirElementEtDefiler}}
 \index{FDPAH\_obtenirElementEtDefiler@{FDPAH\_obtenirElementEtDefiler}!fileDePrioriteDArbreDeHuffman.c@{fileDePrioriteDArbreDeHuffman.c}}
 \doxysubsubsection{\texorpdfstring{FDPAH\_obtenirElementEtDefiler()}{FDPAH\_obtenirElementEtDefiler()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} FDPAH\+\_\+obtenir\+Element\+Et\+Defiler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} $\ast$}]{p\+\_\+fdp }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} FDPAH\+\_\+obtenir\+Element\+Et\+Defiler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} $\ast$}]{fdp }\end{DoxyParamCaption})}
 
 
 
@@ -79,9 +79,9 @@ Fonction permettant d\textquotesingle{}extraire l\textquotesingle{}Arbre\+De\+Hu
 
 
 \begin{DoxyParams}{Parameters}
-{\em File\+De\+Priorite} & de laquelle on souhaiterait défiler un Arbre\+De\+Huffman, cette dernière sera modifiée \\
+{\em p\+\_\+fdp} & \+: File\+De\+Priorite dont on extrait l\textquotesingle{}Arbre\+De\+Huffman \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-L\textquotesingle{}Arbre\+De\+Huffman obtenu grâce au défilement de la File\+De\+Priorite donnée en paramètre 
+Arbre\+De\+Huffman 
 \end{DoxyReturn}

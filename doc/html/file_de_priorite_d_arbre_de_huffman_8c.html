@@ -80,7 +80,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ac367b713d9895a71b051d12e1a7fe8e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="file_de_priorite_d_arbre_de_huffman_8h.html#a5406bb7a672b2bff9973d23701180bac">FileDePriorite</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file_de_priorite_d_arbre_de_huffman_8c.html#ac367b713d9895a71b051d12e1a7fe8e8">FDPAH_fileDePriorite</a> ()</td></tr>
-<tr class="memdesc:ac367b713d9895a71b051d12e1a7fe8e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction créant une FileDePriorite pour des ArbreDeHuffman.  <a href="file_de_priorite_d_arbre_de_huffman_8c.html#ac367b713d9895a71b051d12e1a7fe8e8">More...</a><br /></td></tr>
+<tr class="memdesc:ac367b713d9895a71b051d12e1a7fe8e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction créant une FileDePriorite, pointant sur NULL, pour des ArbreDeHuffman.  <a href="file_de_priorite_d_arbre_de_huffman_8c.html#ac367b713d9895a71b051d12e1a7fe8e8">More...</a><br /></td></tr>
 <tr class="separator:ac367b713d9895a71b051d12e1a7fe8e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f482d9a627a48cf40ee43f260cd4c0b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file_de_priorite_d_arbre_de_huffman_8c.html#a3f482d9a627a48cf40ee43f260cd4c0b">FDPAH_estVide</a> (<a class="el" href="file_de_priorite_d_arbre_de_huffman_8h.html#a5406bb7a672b2bff9973d23701180bac">FileDePriorite</a> fdp)</td></tr>
 <tr class="memdesc:a3f482d9a627a48cf40ee43f260cd4c0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction renvoyant VRAI si une FileDePriorite est vide, càd qu'elle ne contient aucun ArbreDeHuffman. Retourne FAUX sinon.  <a href="file_de_priorite_d_arbre_de_huffman_8c.html#a3f482d9a627a48cf40ee43f260cd4c0b">More...</a><br /></td></tr>
@@ -122,8 +122,8 @@ Functions</h2></td></tr>
 <p>Fonction permettant d'insérer à l'endroit correct (par rapport à l'élément contenu dans la racine de l'arbre) un ArbreDeHuffman dans une FileDePriorite. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">FileDePriorite</td><td>à laquelle on aimerait ajouter un ArbreDeHuffman, cette dernière sera modifiée </td></tr>
-    <tr><td class="paramname">ArbreDeHuffman</td><td>que l'on souhaiter enfiler dans la FileDePriorite </td></tr>
+    <tr><td class="paramname">p_fdp</td><td>: la FileDePriorite à modifier </td></tr>
+    <tr><td class="paramname">a</td><td>: l'ArbreDeHuffman à insérer </td></tr>
   </table>
   </dd>
 </dl>
@@ -149,11 +149,11 @@ Functions</h2></td></tr>
 <p>Fonction renvoyant VRAI si une FileDePriorite est vide, càd qu'elle ne contient aucun ArbreDeHuffman. Retourne FAUX sinon. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">FileDePriorite</td><td>que l'on veut tester </td></tr>
+    <tr><td class="paramname">fdp</td><td>: FileDePriorite </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Booleen indiquant si la FileDePriorite en paramètre est vide ou non </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Booleen </dd></dl>
 
 </div>
 </div>
@@ -173,8 +173,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Fonction créant une FileDePriorite pour des ArbreDeHuffman. </p>
-<dl class="section return"><dt>Returns</dt><dd>FileDePriorite pointant sur NULL </dd></dl>
+<p>Fonction créant une FileDePriorite, pointant sur NULL, pour des ArbreDeHuffman. </p>
+<dl class="section return"><dt>Returns</dt><dd>FileDePriorite </dd></dl>
 
 </div>
 </div>
@@ -188,7 +188,7 @@ Functions</h2></td></tr>
           <td class="memname"><a class="el" href="arbre_de_huffman_8h.html#a6e5e2ef2c2be0051261817946a8176f7">ArbreDeHuffman</a> FDPAH_obtenirElementEtDefiler </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="file_de_priorite_d_arbre_de_huffman_8h.html#a5406bb7a672b2bff9973d23701180bac">FileDePriorite</a> *&#160;</td>
-          <td class="paramname"><em>p_fdp</em></td><td>)</td>
+          <td class="paramname"><em>fdp</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -197,11 +197,11 @@ Functions</h2></td></tr>
 <p>Fonction permettant d'extraire l'ArbreDeHuffman au bout de la FileDePriorite. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">FileDePriorite</td><td>de laquelle on souhaiterait défiler un ArbreDeHuffman, cette dernière sera modifiée </td></tr>
+    <tr><td class="paramname">p_fdp</td><td>: FileDePriorite dont on extrait l'ArbreDeHuffman </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>L'ArbreDeHuffman obtenu grâce au défilement de la FileDePriorite donnée en paramètre </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ArbreDeHuffman </dd></dl>
 
 </div>
 </div>

@@ -1,30 +1,46 @@
 \hypertarget{file_de_priorite_d_arbre_de_huffman_8h}{}\doxysection{/home/saunier/\+Documents/\+ITI3/\+ALGO/\+Projet\+\_\+\+Huffman/iti\+\_\+algo\+\_\+2023\+\_\+2024\+\_\+gp2.3/include/file\+De\+Priorite\+DArbre\+De\+Huffman.h File Reference}
 \label{file_de_priorite_d_arbre_de_huffman_8h}\index{/home/saunier/Documents/ITI3/ALGO/Projet\_Huffman/iti\_algo\_2023\_2024\_gp2.3/include/fileDePrioriteDArbreDeHuffman.h@{/home/saunier/Documents/ITI3/ALGO/Projet\_Huffman/iti\_algo\_2023\_2024\_gp2.3/include/fileDePrioriteDArbreDeHuffman.h}}
+
+
+Implantation du TAD File\+De\+Priorite pour le compresseur d\textquotesingle{}Huffman.  
+
+
 {\ttfamily \#include $<$stdbool.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}arbre\+De\+Huffman.\+h\char`\"{}}\newline
 \doxysubsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{struct_noeud_file_de_priorite}{Noeud\+File\+De\+Priorite}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Le type \mbox{\hyperlink{struct_noeud_file_de_priorite}{Noeud\+File\+De\+Priorite}} est une structure qui contient 2 champs \+: un Arbre\+De\+Huffan et une autre File\+De\+Priorite. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
 typedef struct \mbox{\hyperlink{struct_noeud_file_de_priorite}{Noeud\+File\+De\+Priorite}} $\ast$ \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}}
-\item 
+\begin{DoxyCompactList}\small\item\em Le type File\+De\+Priorite est un pointeur vers un \mbox{\hyperlink{struct_noeud_file_de_priorite}{Noeud\+File\+De\+Priorite}}. \end{DoxyCompactList}\item 
 typedef struct \mbox{\hyperlink{struct_noeud_file_de_priorite}{Noeud\+File\+De\+Priorite}} \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_ab1a0d36516240dbfed81c2d3abe358d1}{Noeud\+File\+De\+Priorite}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Le type \mbox{\hyperlink{struct_noeud_file_de_priorite}{Noeud\+File\+De\+Priorite}} est une structure qui contient 2 champs \+: un Arbre\+De\+Huffan et une autre File\+De\+Priorite. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_ae552ab3b5dca991ae8fe454fa8693541}{FDPAH\+\_\+file\+De\+Priorite}} (void)
-\begin{DoxyCompactList}\small\item\em Fonction créant une File\+De\+Priorite pour des Arbre\+De\+Huffman. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Fonction créant une File\+De\+Priorite, pointant sur NULL, pour des Arbre\+De\+Huffman. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a3f482d9a627a48cf40ee43f260cd4c0b}{FDPAH\+\_\+est\+Vide}} (\mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} fdp)
 \begin{DoxyCompactList}\small\item\em Fonction renvoyant VRAI si une File\+De\+Priorite est vide, càd qu\textquotesingle{}elle ne contient aucun Arbre\+De\+Huffman. Retourne FAUX sinon. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_ad60331d04524de3f77dbb6535ee24e97}{FDPAH\+\_\+enfiler}} (\mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} $\ast$p\+\_\+fdp, \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} a)
 \begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}insérer à l\textquotesingle{}endroit correct (par rapport à l\textquotesingle{}élément contenu dans la racine de l\textquotesingle{}arbre) un Arbre\+De\+Huffman dans une File\+De\+Priorite. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{arbre_de_huffman_8h_a6e5e2ef2c2be0051261817946a8176f7}{Arbre\+De\+Huffman}} \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a1466a8bcd62deb7bdc764392d8c25520}{FDPAH\+\_\+obtenir\+Element\+Et\+Defiler}} (\mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}} $\ast$p\+\_\+fdp)
 \begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}extraire l\textquotesingle{}Arbre\+De\+Huffman au bout de la File\+De\+Priorite. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implantation du TAD File\+De\+Priorite pour le compresseur d\textquotesingle{}Huffman. 
+
+\begin{DoxyAuthor}{Author}
+M. Saunier 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+31/12/2023 
+\end{DoxyDate}
 
 
 \doxysubsection{Typedef Documentation}
@@ -34,11 +50,19 @@ void \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_ad60331d04524de3f77
 \doxysubsubsection{\texorpdfstring{FileDePriorite}{FileDePriorite}}
 {\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_noeud_file_de_priorite}{Noeud\+File\+De\+Priorite}}$\ast$ \mbox{\hyperlink{file_de_priorite_d_arbre_de_huffman_8h_a5406bb7a672b2bff9973d23701180bac}{File\+De\+Priorite}}}
 
+
+
+Le type File\+De\+Priorite est un pointeur vers un \mbox{\hyperlink{struct_noeud_file_de_priorite}{Noeud\+File\+De\+Priorite}}. 
+
 \mbox{\Hypertarget{file_de_priorite_d_arbre_de_huffman_8h_ab1a0d36516240dbfed81c2d3abe358d1}\label{file_de_priorite_d_arbre_de_huffman_8h_ab1a0d36516240dbfed81c2d3abe358d1}} 
 \index{fileDePrioriteDArbreDeHuffman.h@{fileDePrioriteDArbreDeHuffman.h}!NoeudFileDePriorite@{NoeudFileDePriorite}}
 \index{NoeudFileDePriorite@{NoeudFileDePriorite}!fileDePrioriteDArbreDeHuffman.h@{fileDePrioriteDArbreDeHuffman.h}}
 \doxysubsubsection{\texorpdfstring{NoeudFileDePriorite}{NoeudFileDePriorite}}
 {\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_noeud_file_de_priorite}{Noeud\+File\+De\+Priorite}} \mbox{\hyperlink{struct_noeud_file_de_priorite}{Noeud\+File\+De\+Priorite}}}
+
+
+
+Le type \mbox{\hyperlink{struct_noeud_file_de_priorite}{Noeud\+File\+De\+Priorite}} est une structure qui contient 2 champs \+: un Arbre\+De\+Huffan et une autre File\+De\+Priorite. 
 
 
 
@@ -55,9 +79,9 @@ Fonction permettant d\textquotesingle{}insérer à l\textquotesingle{}endroit co
 
 
 \begin{DoxyParams}{Parameters}
-{\em File\+De\+Priorite} & à laquelle on aimerait ajouter un Arbre\+De\+Huffman, cette dernière sera modifiée \\
+{\em p\+\_\+fdp} & \+: la File\+De\+Priorite à modifier \\
 \hline
-{\em Arbre\+De\+Huffman} & que l\textquotesingle{}on souhaiter enfiler dans la File\+De\+Priorite \\
+{\em a} & \+: l\textquotesingle{}Arbre\+De\+Huffman à insérer \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{file_de_priorite_d_arbre_de_huffman_8h_a3f482d9a627a48cf40ee43f260cd4c0b}\label{file_de_priorite_d_arbre_de_huffman_8h_a3f482d9a627a48cf40ee43f260cd4c0b}} 
@@ -72,11 +96,11 @@ Fonction renvoyant VRAI si une File\+De\+Priorite est vide, càd qu\textquotesin
 
 
 \begin{DoxyParams}{Parameters}
-{\em File\+De\+Priorite} & que l\textquotesingle{}on veut tester \\
+{\em fdp} & \+: File\+De\+Priorite \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Booleen indiquant si la File\+De\+Priorite en paramètre est vide ou non 
+Booleen 
 \end{DoxyReturn}
 \mbox{\Hypertarget{file_de_priorite_d_arbre_de_huffman_8h_ae552ab3b5dca991ae8fe454fa8693541}\label{file_de_priorite_d_arbre_de_huffman_8h_ae552ab3b5dca991ae8fe454fa8693541}} 
 \index{fileDePrioriteDArbreDeHuffman.h@{fileDePrioriteDArbreDeHuffman.h}!FDPAH\_fileDePriorite@{FDPAH\_fileDePriorite}}
@@ -86,10 +110,10 @@ Booleen indiquant si la File\+De\+Priorite en paramètre est vide ou non
 
 
 
-Fonction créant une File\+De\+Priorite pour des Arbre\+De\+Huffman. 
+Fonction créant une File\+De\+Priorite, pointant sur NULL, pour des Arbre\+De\+Huffman. 
 
 \begin{DoxyReturn}{Returns}
-File\+De\+Priorite pointant sur NULL 
+File\+De\+Priorite 
 \end{DoxyReturn}
 \mbox{\Hypertarget{file_de_priorite_d_arbre_de_huffman_8h_a1466a8bcd62deb7bdc764392d8c25520}\label{file_de_priorite_d_arbre_de_huffman_8h_a1466a8bcd62deb7bdc764392d8c25520}} 
 \index{fileDePrioriteDArbreDeHuffman.h@{fileDePrioriteDArbreDeHuffman.h}!FDPAH\_obtenirElementEtDefiler@{FDPAH\_obtenirElementEtDefiler}}
@@ -103,9 +127,9 @@ Fonction permettant d\textquotesingle{}extraire l\textquotesingle{}Arbre\+De\+Hu
 
 
 \begin{DoxyParams}{Parameters}
-{\em File\+De\+Priorite} & de laquelle on souhaiterait défiler un Arbre\+De\+Huffman, cette dernière sera modifiée \\
+{\em p\+\_\+fdp} & \+: File\+De\+Priorite dont on extrait l\textquotesingle{}Arbre\+De\+Huffman \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-L\textquotesingle{}Arbre\+De\+Huffman obtenu grâce au défilement de la File\+De\+Priorite donnée en paramètre 
+Arbre\+De\+Huffman 
 \end{DoxyReturn}
