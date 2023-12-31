@@ -236,54 +236,115 @@ void test_ecrire_statistiques(void) {
     C_ecrireStatistiques(tempFileSortie, s_entree);
 
     rewind(tempFileSortie);
-    unsigned long occurence, octet;
-    
-    fread(&occurence, sizeof(unsigned long), 1, tempFileSortie);
+    unsigned long occurence;
+    unsigned char octet;
+    size_t result;
+
+    result = fread(&occurence, sizeof(unsigned long), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(occurence, 4);
 
-    fread(&octet, sizeof(unsigned char), 1, tempFileSortie);
+    result = fread(&octet, sizeof(unsigned char), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(octet, 'A');
 
-    fread(&occurence, sizeof(unsigned long), 1, tempFileSortie);
+    result = fread(&occurence, sizeof(unsigned long), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(occurence, 2);
 
-    fread(&octet, sizeof(unsigned char), 1, tempFileSortie);
+    result = fread(&octet, sizeof(unsigned char), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(octet, 'B');
 
-    fread(&occurence, sizeof(unsigned long), 1, tempFileSortie);
+    result = fread(&occurence, sizeof(unsigned long), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(occurence, 3);
 
-    fread(&octet, sizeof(unsigned char), 1, tempFileSortie);
+    result = fread(&octet, sizeof(unsigned char), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(octet, 'C');
 
-    fread(&occurence, sizeof(unsigned long), 1, tempFileSortie);
+    result = fread(&occurence, sizeof(unsigned long), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(occurence, 2);
 
-    fread(&octet, sizeof(unsigned char), 1, tempFileSortie);
+    result = fread(&octet, sizeof(unsigned char), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(octet, 'D');
 
-    fread(&occurence, sizeof(unsigned long), 1, tempFileSortie);
+    result = fread(&occurence, sizeof(unsigned long), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(occurence, 1);
 
-    fread(&octet, sizeof(unsigned char), 1, tempFileSortie);
+    result = fread(&octet, sizeof(unsigned char), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(octet, 'E');
 
-    fread(&occurence, sizeof(unsigned long), 1, tempFileSortie);
+    result = fread(&occurence, sizeof(unsigned long), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(occurence, 1);
 
-    fread(&octet, sizeof(unsigned char), 1, tempFileSortie);
+    result = fread(&octet, sizeof(unsigned char), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(octet, 'F');
 
-    fread(&occurence, sizeof(unsigned long), 1, tempFileSortie);
+    result = fread(&occurence, sizeof(unsigned long), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(occurence, 2);
 
-    fread(&octet, sizeof(unsigned char), 1, tempFileSortie);
+    result = fread(&octet, sizeof(unsigned char), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(octet, 'G');
     
-    fread(&occurence, sizeof(unsigned long), 1, tempFileSortie);
+    result = fread(&occurence, sizeof(unsigned long), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(occurence, 0);
 
     fclose(tempFileSortie);
+}
+
+void test_concatener_codes_binaires(void) {
+  FILE *tempFileEntree = fichierTemporaireRempli();
+  
+  unsigned short i;
+  Statistiques s;
+  unsigned long long longueur;
+  C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &longueur);
+  ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
+  TableDeCodage tdc = C_obtenirTableDeCodage(a);
+
+  fclose(tempFileEntree);
+  FILE *tempFileSortie = tmpfile();
+
+  CodeBinaire cbTemp = CB_creerCodeBinaire(bitA0);
+    for (i = 1; i < MAX_BITS; i++)
+        CB_ajouterBit(&cbTemp, bitA0);
+    
+    // Boucle d'encodage
+    CodeBinaire cb;
+    short o;
+    while ((o = fgetc(tempFileEntree)) != EOF) {
+        cb = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet(o));
+        C_concatenerCodeBinaireDansFichier(tempFileSortie, &cbTemp, cb);
+    }
+  
+  rewind(tempFileSortie);
+
+ unsigned char octet1, octet2;
+  size_t result;
+  Octet otest1 = O_creerOctet(bitA1,bitA0,bitA0,bitA0,bitA1,bitA0,bitA0,bitA1);
+  Octet otest2 = O_creerOctet(bitA1,bitA1,bitA1,bitA1,bitA1,bitA0,bitA0,bitA1);
+
+  result = fread(&octet1, sizeof(unsigned char), 1, tempFileSortie);
+  CU_ASSERT_EQUAL_FATAL(result, 1);
+  CU_ASSERT_EQUAL(octet1, otest1);  // 10001001 en binaire
+
+  result = fread(&octet2, sizeof(unsigned char), 1, tempFileSortie);
+  CU_ASSERT_EQUAL_FATAL(result, 1);
+  CU_ASSERT_EQUAL(octet2, otest2);  // 11111001 en binaire
+
+  fclose(tempFileSortie);
+
 }
 
 /* Tests C_encoder */
@@ -304,12 +365,16 @@ void test_encoder(void) {
   rewind(tempFileSortie);
 
   unsigned char octet1, octet2;
-  fread(&octet1, sizeof(unsigned char), 1, tempFileSortie);
-  fread(&octet2, sizeof(unsigned char), 1, tempFileSortie);
-
+  size_t result;
   Octet otest1 = O_creerOctet(bitA1,bitA0,bitA0,bitA0,bitA1,bitA0,bitA0,bitA1);
   Octet otest2 = O_creerOctet(bitA1,bitA1,bitA1,bitA1,bitA1,bitA0,bitA0,bitA1);
+
+  result = fread(&octet1, sizeof(unsigned char), 1, tempFileSortie);
+  CU_ASSERT_EQUAL_FATAL(result, 1);
   CU_ASSERT_EQUAL(octet1, otest1);  // 10001001 en binaire
+
+  result = fread(&octet2, sizeof(unsigned char), 1, tempFileSortie);
+  CU_ASSERT_EQUAL_FATAL(result, 1);
   CU_ASSERT_EQUAL(octet2, otest2);  // 11111001 en binaire
 
   fclose(tempFileSortie);
