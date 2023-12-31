@@ -4,6 +4,7 @@ EXE_TESTS_FONCTIONS_METIER=testsFonctionsMetier
 BINDIR=bin
 SRCDIR=src
 LATEXDIR=latex
+DOCDIR=doc
 INCLUDEDIR=include
 TESTSDIR=tests
 CC=gcc
@@ -40,3 +41,4 @@ clean :
 	rm -rf ./$(BINDIR)/$(EXE)
 	rm -rf ./$(SRCDIR)/*.o
 	rm -rf ./$(LATEXDIR)/*.pdf ./$(LATEXDIR)/*.fls ./$(LATEXDIR)/*.fdb_latexmk ./$(LATEXDIR)/*.aux ./$(LATEXDIR)/*.log
+	rm -rf ./$(DOCDIR)
