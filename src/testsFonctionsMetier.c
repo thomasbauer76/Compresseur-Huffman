@@ -323,7 +323,7 @@ void test_lire_statistiques(void) {
 
     for (unsigned long int o=0;o<256;++o)
     {
-     Octet occurence=S_obtenirOccurence(s_lu,O_naturelVersOctet(o));
+     unsigned long occurence=S_obtenirOccurence(s_lu,O_naturelVersOctet(o));
       switch (o){
 
         case 'A':
@@ -523,6 +523,7 @@ int main(int argc, char** argv){
   /* Ajout des tests à la suite decompression */
   if ((NULL == CU_add_test(pSuiteDecompression, "Decodage d'un fichier et vérification que ça a marché", test_decoder))
     || (NULL == CU_add_test(pSuiteDecompression, "3 tests arbitraires pour D_seDeplacerDansLArbre", test_seDeplacerDansLArbre))
+    || (NULL == CU_add_test(pSuiteDecompression, "lecture des statistique et verification ", test_lire_statistiques))
       ) 
     {
       CU_cleanup_registry();
