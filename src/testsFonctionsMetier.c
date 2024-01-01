@@ -303,30 +303,49 @@ void test_ecrire_statistiques(void) {
     fclose(tempFileSortie);
 }
 
-void test_lire_statistique (void) {
-  // Crée un fichier de statistiques.
+void test_lire_statistiques(void) {
+    FILE *tempFileEntree = fichierTemporaireRempli();
 
-  FILE *fb = fopen("statistiques.txt", "w");
-  unsigned long int occ1 = 1;
-  unsigned char o1= 'a';
-  fwrite(&occ1,sizeof(unsigned long int),1,fb);
-  fwrite(&o1,sizeof(unsigned char),1,fb);
+    Statistiques s_entree;
+    unsigned long long taille;
+    C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s_entree, &taille);
 
-  // Crée une structure de Statistiques.
+    fclose(tempFileEntree);
 
-  Statistiques s;
+    FILE *tempFileSortie = tmpfile();
 
-  // Lit les statistiques du fichier.
+    C_ecrireStatistiques(tempFileSortie, s_entree);
 
-  D_lireStatistiques(fb, &s);
+    rewind(tempFileSortie);
 
-  // Vérifie que les statistiques ont été lues correctement.
+    Statistiques s_lu;
 
-  CU_ASSERT_EQUAL(s[0],1);
-  CU_ASSERT_EQUAL(s[O_naturelVersOctet(0)],'a');
-  // Ferme le fichier.
+    D_lireStatistiques(tempFileSortie, &s_lu);
+    CU_ASSERT_EQUAL(S_obtenirOccurence((s_lu),O_naturelVersOctet(4)), 4);
+    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('A')), 'A');
+    
+    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet(2)), 2);
+    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('B')), 'B');
 
-  fclose(fb);
+    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet(3)), 3);
+    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('C')), 'C');
+
+    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet(2)), 2);
+    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('D')), 'D');
+
+    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet(1)), 1);
+    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('E')), 'E');
+
+    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet(1)), 1);
+    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('F')), 'F');
+
+    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet(2)), 2);
+    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('G')), 'G');
+
+    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu, O_naturelVersOctet(0)), 0);
+
+
+    fclose(tempFileSortie);
 }
 
 void test_concatener_codes_binaires(void) {
