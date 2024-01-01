@@ -323,31 +323,32 @@ void test_lire_statistiques(void) {
 
     for (unsigned long int o=0;o<256;++o)
     {
+     Octet occurence=O_naturelVersOctet(o);
       switch (o){
 
         case 'A':
-          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('A')), 4);
+          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,occurence), 4);
           break;
         case 'B':
-          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('B')), 2);
+          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,occurence), 2);
           break;
         case 'C':
-          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('C')), 3);
+          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,occurence), 3);
           break;
         case 'D':
-          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('D')), 2);
+          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,occurence), 2);
           break;
         case 'E':
-          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('E')), 1);
+          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,occurence), 1);
           break;
         case 'F':
-          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('F')), 1);
+          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,occurence), 1);
           break;
         case 'G':
-          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('G')), 2);
+          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,occurence), 2);
           break;
         default :
-          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu, O_naturelVersOctet(0)), 0);
+          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,occurence), 0);
           break;
         }
     }
