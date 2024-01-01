@@ -303,6 +303,32 @@ void test_ecrire_statistiques(void) {
     fclose(tempFileSortie);
 }
 
+void test_lire_statistique (void) {
+  // Crée un fichier de statistiques.
+
+  FILE *fb = fopen("statistiques.txt", "w");
+  unsigned long int occ1 = 1;
+  unsigned char o1= 'a';
+  fwrite(&occ1,sizeof(unsigned long int),1,fb);
+  fwrite(&o1,sizeof(unsigned char),1,fb);
+
+  // Crée une structure de Statistiques.
+
+  Statistiques s;
+
+  // Lit les statistiques du fichier.
+
+  D_lireStatistiques(fb, &s);
+
+  // Vérifie que les statistiques ont été lues correctement.
+
+  CU_ASSERT_EQUAL(s[O_naturelVersOctet],'a');
+  CU_ASSERT_EQUAL(s[0],1);
+  // Ferme le fichier.
+
+  fclose(fb);
+}
+
 void test_concatener_codes_binaires(void) {
   FILE *tempFileEntree = fichierTemporaireRempli();
   
