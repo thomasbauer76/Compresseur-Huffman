@@ -322,8 +322,8 @@ void test_lire_statistique (void) {
 
   // Vérifie que les statistiques ont été lues correctement.
 
-  CU_ASSERT_EQUAL(s[O_naturelVersOctet],'a');
   CU_ASSERT_EQUAL(s[0],1);
+  CU_ASSERT_EQUAL(s[O_naturelVersOctet(0)],'a');
   // Ferme le fichier.
 
   fclose(fb);
