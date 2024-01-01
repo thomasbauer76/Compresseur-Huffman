@@ -323,32 +323,32 @@ void test_lire_statistiques(void) {
 
     for (unsigned long int o=0;o<256;++o)
     {
-     Octet occurence=O_naturelVersOctet(o);
+     Octet occurence=S_obtenirOccurence(s_lu,O_naturelVersOctet(o));
       switch (o){
 
         case 'A':
-          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,occurence), 4);
+          CU_ASSERT_EQUAL(occurence, 4);
           break;
         case 'B':
-          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,occurence), 2);
+          CU_ASSERT_EQUAL(occurence, 2);
           break;
         case 'C':
-          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,occurence), 3);
+          CU_ASSERT_EQUAL(occurence, 3);
           break;
         case 'D':
-          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,occurence), 2);
+          CU_ASSERT_EQUAL(occurence, 2);
           break;
         case 'E':
-          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,occurence), 1);
+          CU_ASSERT_EQUAL(occurence, 1);
           break;
         case 'F':
-          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,occurence), 1);
+          CU_ASSERT_EQUAL(occurence, 1);
           break;
         case 'G':
-          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,occurence), 2);
+          CU_ASSERT_EQUAL(occurence, 2);
           break;
         default :
-          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,occurence), 0);
+          CU_ASSERT_EQUAL(occurence, 0);
           break;
         }
     }
