@@ -153,8 +153,11 @@ void test_code_binaire_8_bits_vers_octet(void) {
   for (i = 1; i < MAX_BITS; i++)
     CB_ajouterBit(&cb, O_obtenirIemeBit(o, i));
   
+  Octet otest = C_codeBinaireEnOctet(cb);
+
+
   for (i = 0; i < MAX_BITS; i++)
-    CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, i), O_obtenirIemeBit(o, i))
+    CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, i), O_obtenirIemeBit(otest, i));
 }
 
 void test_ecrire_identifiant(void) {
