@@ -71,7 +71,7 @@ void C_ecrireTailleFichier(FILE *f, unsigned long long taille) {
 }
 
 void C_ecrireStatistiques(FILE *f, Statistiques s) {
-    unsigned char octet;
+    Octet octet;
     unsigned long occurence;
 
     unsigned short o;

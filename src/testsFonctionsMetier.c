@@ -39,13 +39,13 @@ void test_file_de_priorite(void) {
 
   FileDePriorite fdp = CADH_construireFileDePriorite(s);
 
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'E');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'F');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'B');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'D');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'G');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'C');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'A');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'E');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'F');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'B');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'D');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'G');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'C');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'A');
 }
 
 void test_arbre_de_huffman(void) {
@@ -57,13 +57,13 @@ void test_arbre_de_huffman(void) {
 
   ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
 
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(a))), 'C');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(a))), 'A');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(a)))), 'B');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(a)))), 'D');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a)))), 'G');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a))))), 'E');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a))))), 'F');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(a)))), 'C');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(a)))), 'A');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(a))))), 'B');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(a))))), 'D');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a))))), 'G');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a)))))), 'E');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a)))))), 'F');
 }
 
 
@@ -283,8 +283,8 @@ void test_concatener_codes_binaires(void) {
 
  unsigned char octet1, octet2;
   size_t result;
-  Octet otest1 = O_creerOctet(bitA1,bitA0,bitA0,bitA0,bitA1,bitA0,bitA0,bitA1);
-  Octet otest2 = O_creerOctet(bitA1,bitA1,bitA1,bitA1,bitA1,bitA0,bitA0,bitA1);
+  unsigned char otest1 = O_octetVersNaturel(O_creerOctet(bitA1,bitA0,bitA0,bitA0,bitA1,bitA0,bitA0,bitA1));
+  unsigned char otest2 = O_octetVersNaturel(O_creerOctet(bitA1,bitA1,bitA1,bitA1,bitA1,bitA0,bitA0,bitA1));
 
   result = fread(&octet1, sizeof(unsigned char), 1, tempFileSortie);
   CU_ASSERT_EQUAL_FATAL(result, 1);
@@ -316,8 +316,8 @@ void test_encoder(void) {
 
   unsigned char octet1, octet2;
   size_t result;
-  Octet otest1 = O_creerOctet(bitA1,bitA0,bitA0,bitA0,bitA1,bitA0,bitA0,bitA1);
-  Octet otest2 = O_creerOctet(bitA1,bitA1,bitA1,bitA1,bitA1,bitA0,bitA0,bitA1);
+  unsigned char otest1 = O_octetVersNaturel(O_creerOctet(bitA1,bitA0,bitA0,bitA0,bitA1,bitA0,bitA0,bitA1));
+  unsigned char otest2 = O_octetVersNaturel(O_creerOctet(bitA1,bitA1,bitA1,bitA1,bitA1,bitA0,bitA0,bitA1));
 
   result = fread(&octet1, sizeof(unsigned char), 1, tempFileSortie);
   CU_ASSERT_EQUAL_FATAL(result, 1);
@@ -346,21 +346,21 @@ void test_seDeplacerDansLArbre(void) {
   for (unsigned int i = 0; i<2; i++) {
     D_seDeplacerDansLArbre(bitA0, &abhTest);
   }
-  CU_ASSERT(ADH_obtenirOctet(abhTest)=='C');
+  CU_ASSERT(O_octetVersNaturel(ADH_obtenirOctet(abhTest))=='C');
 
   // L'octet 'F' se situe 4 crans à droite
   abhTest = abh;
   for (unsigned int i = 0; i<4; i++) {
     D_seDeplacerDansLArbre(bitA1, &abhTest);
   }
-  CU_ASSERT(ADH_obtenirOctet(abhTest)=='F');
+  CU_ASSERT(O_octetVersNaturel(ADH_obtenirOctet(abhTest))=='F');
 
   // L'octet 'D' se situe 1 cran à droite, puis 1 à gauche et enfin 1 à droite
   abhTest = abh;
   D_seDeplacerDansLArbre(bitA1, &abhTest);
   D_seDeplacerDansLArbre(bitA0, &abhTest);
   D_seDeplacerDansLArbre(bitA1, &abhTest);
-  CU_ASSERT(ADH_obtenirOctet(abhTest)=='D');
+  CU_ASSERT(O_octetVersNaturel(ADH_obtenirOctet(abhTest))=='D');
 }
 
 void test_lire_statistiques(void) {
