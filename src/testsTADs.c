@@ -63,6 +63,7 @@ void test_creation_codebinaire(void) {
   CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, 0), b);
 }
 
+
 void test_ajout_bit(void) {
   CodeBinaire cb = CB_creerCodeBinaire(bitA0);
   unsigned short ancienneLongueur = CB_obtenirLongueur(cb);
@@ -240,6 +241,15 @@ void test_creer_octet(void) {
     CU_ASSERT_EQUAL(resultat,170);
 }
 
+void test_obtenir_ieme_bit(void) {
+    Octet octet = 255; // binaire: 11111111
+
+    for (unsigned short i = 0; i < MAX_BITS; ++i) {
+        Bit resultat = O_obtenirIemeBit(octet, i);
+        CU_ASSERT_EQUAL(resultat,1);
+    }
+}
+
 void test_naturel_vers_octet(void) {
     unsigned char naturel = 42;
 
@@ -262,6 +272,7 @@ int main(int argc, char** argv){
 
   /* Ajout des tests à la suite octet */
   if ((NULL == CU_add_test(pSuiteOctet, "Création d'un octet", test_creer_octet))
+    || (NULL == CU_add_test(pSuiteOctet, "Obtention du ième bit d'un octet", test_obtenir_ieme_bit))
     || (NULL == CU_add_test(pSuiteOctet, "Naturel vers octet", test_naturel_vers_octet))
       ) 
     {
