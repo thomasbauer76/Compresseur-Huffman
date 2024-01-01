@@ -225,36 +225,41 @@ void test_octetVersCodeBinaire(void) {
 
 /* Tests octet.c*/
 void test_creer_octet(void) {
-    // Test pour 0
-    Bit b7 = 0, b6 = 0, b5 = 0, b4 = 0, b3 = 0, b2 = 0, b1 = 0, b0 = 0;
-    Octet resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
-    CU_ASSERT_EQUAL(resultat,0);
+  // Test pour 0 (Binaire : 00000000)
+  Bit b7 = 0, b6 = 0, b5 = 0, b4 = 0, b3 = 0, b2 = 0, b1 = 0, b0 = 0;
+  Octet resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
+  CU_ASSERT_EQUAL(O_octetVersNaturel(resultat), 0);
 
-    // Test pour 255
-    b7 = 1, b6 = 1, b5 = 1, b4 = 1, b3 = 1, b2 = 1, b1 = 1, b0 = 1;
-    resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
-    CU_ASSERT_EQUAL(resultat,255);
+  // Test pour 255 (Binaire : 11111111)
+  b7 = 1, b6 = 1, b5 = 1, b4 = 1, b3 = 1, b2 = 1, b1 = 1, b0 = 1;
+  resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
+  CU_ASSERT_EQUAL(O_octetVersNaturel(resultat), 255);
 
-    // Test pour 170
-    b7 = 1, b6 = 0, b5 = 1, b4 = 0, b3 = 1, b2 = 0, b1 = 1, b0 = 0;
-    resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
-    CU_ASSERT_EQUAL(resultat,170);
+  // Test pour 155 (Binaire : 10011011)
+  b7 = 1, b6 = 0, b5 = 0, b4 = 1, b3 = 1, b2 = 0, b1 = 1, b0 = 1;
+  resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
+  CU_ASSERT_EQUAL(O_octetVersNaturel(resultat), 155);
 }
 
 void test_obtenir_ieme_bit(void) {
-    Octet octet = 255; // binaire: 11111111
+  // Test pour 155 (Binaire : 10011011)
+  Octet octet = O_naturelVersOctet(155);
 
-    for (unsigned short i = 0; i < MAX_BITS; ++i) {
-        Bit resultat = O_obtenirIemeBit(octet, i);
-        CU_ASSERT_EQUAL(resultat,1);
-    }
+  CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 7), bitA1);
+  CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 6), bitA0);
+  CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 5), bitA0);
+  CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 4), bitA1);
+  CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 3), bitA1);
+  CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 2), bitA0);
+  CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 1), bitA1);
+  CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 0), bitA1);
 }
 
 void test_naturel_vers_octet(void) {
-    unsigned char naturel = 42;
+  unsigned char naturel = 42;
 
-    Octet resultat = O_naturelVersOctet(naturel);
-    CU_ASSERT_EQUAL(resultat,naturel);
+  Octet resultat = O_naturelVersOctet(naturel);
+  CU_ASSERT_EQUAL(O_octetVersNaturel(resultat), naturel);
 }
 
 int main(int argc, char** argv){
