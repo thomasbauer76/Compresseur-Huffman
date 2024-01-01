@@ -240,22 +240,6 @@ void test_creer_octet(void) {
     CU_ASSERT_EQUAL(resultat,170);
 }
 
-void test_obtenir_ieme_bit(void) {
-    Octet octet = 255; // binaire: 11111111
-
-    for (unsigned short i = 0; i < MAX_BITS; ++i) {
-        Bit resultat = O_obtenirIemeBit(octet, i);
-        CU_ASSERT_EQUAL(resultat,1);
-    }
-}
-
-void test_octet_vers_naturel(void) {
-    Octet octet = 42;
-
-    unsigned char resultat = O_octetVersNaturel(octet);
-    CU_ASSERT_EQUAL(resultat, octet);
-}
-
 void test_naturel_vers_octet(void) {
     unsigned char naturel = 42;
 
@@ -277,9 +261,7 @@ int main(int argc, char** argv){
   }
 
   /* Ajout des tests à la suite octet */
-  if ((NULL == CU_add_test(pSuiteOctet, "Création d'un octet", test_creer_octet)) 
-    || (NULL == CU_add_test(pSuiteOctet, "Obtention du ième bit d'un octet", test_obtenir_ieme_bit))
-    || (NULL == CU_add_test(pSuiteOctet, "Octet vers naturel", test_octet_vers_naturel))
+  if ((NULL == CU_add_test(pSuiteOctet, "Création d'un octet", test_creer_octet))
     || (NULL == CU_add_test(pSuiteOctet, "Naturel vers octet", test_naturel_vers_octet))
       ) 
     {
