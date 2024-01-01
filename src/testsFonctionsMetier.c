@@ -319,30 +319,39 @@ void test_lire_statistiques(void) {
     rewind(tempFileSortie);
 
     Statistiques s_lu;
-
     D_lireStatistiques(tempFileSortie, &s_lu);
-    CU_ASSERT_EQUAL(S_obtenirOccurence((s_lu),O_naturelVersOctet(4)), 4);
-    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('A')), 'A');
-    
-    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet(2)), 2);
-    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('B')), 'B');
 
-    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet(3)), 3);
-    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('C')), 'C');
+    for (unsigned long int o=0;o<256;++o)
+    {
+      switch (o){
 
-    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet(2)), 2);
-    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('D')), 'D');
+        case 'A':
+          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('A')), 4);
+          break;
+        case 'B':
+          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('B')), 2);
+          break;
+        case 'C':
+          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('C')), 3);
+          break;
+        case 'D':
+          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('D')), 2);
+          break;
+        case 'E':
+          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('E')), 1);
+          break;
+        case 'F':
+          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('F')), 1);
+          break;
+        case 'G':
+          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('G')), 2);
+          break;
+        default :
+          CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu, O_naturelVersOctet(0)), 0);
+          break;
+        }
+    }
 
-    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet(1)), 1);
-    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('E')), 'E');
-
-    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet(1)), 1);
-    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('F')), 'F');
-
-    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet(2)), 2);
-    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu,O_naturelVersOctet('G')), 'G');
-
-    CU_ASSERT_EQUAL(S_obtenirOccurence(s_lu, O_naturelVersOctet(0)), 0);
 
 
     fclose(tempFileSortie);
