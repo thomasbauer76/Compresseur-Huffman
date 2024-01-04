@@ -1,6 +1,6 @@
 /**
  * \file codeBinaire.h
- * \brief Implantation du TAD CodeBinaire pour le compresseur d'Huffman
+ * \brief Implémentation du TAD CodeBinaire pour le compresseur d'Huffman
  * \author T. Bauer
  * \date 17/12/2023
  *

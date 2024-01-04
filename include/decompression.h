@@ -1,6 +1,6 @@
 /**
  * \file decompression.h
- * \brief Implantation de la fonction decompresser pour le compresseur d'Huffman
+ * \brief Implémentation de la fonction decompresser pour le compresseur d'Huffman
  * \author M. Saunier
  * \date 31/12/2023
  *
