@@ -587,6 +587,7 @@ int main(int argc, char** argv){
   if ((NULL == CU_add_test(pSuiteDecompression, "Decodage d'un fichier et vérification que ça a marché", test_decoder))
     || (NULL == CU_add_test(pSuiteDecompression, "3 tests arbitraires pour D_seDeplacerDansLArbre", test_seDeplacerDansLArbre))
     || (NULL == CU_add_test(pSuiteDecompression, "lecture des statistique et verification ", test_lire_statistiques))
+    || (NULL == CU_add_test(pSuiteDecompression, "lecture d'un fichier compresser puis décompresser", test_decompresser))
       ) 
     {
       CU_cleanup_registry();
