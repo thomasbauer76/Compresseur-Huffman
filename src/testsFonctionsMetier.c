@@ -485,6 +485,65 @@ void test_decoder(void) {
   
 }
 
+void test_decompresser(void) {
+    //création d'un fichier
+  FILE *tempFileEntree = fichierTemporaireRempli();
+  // Compression du fichier temporaire
+  C_compresser(tempFileEntree, "texte");
+  // Décompression du fichier compressé
+  D_decompresser(tempFileEntree, "texte.out");
+
+
+  // Vérification du contenu du fichier décompressé
+  FILE *fDecompresseCheck = fopen("texte.out", "rb");
+    char lettre;
+
+    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
+    CU_ASSERT_EQUAL(lettre, 'B');
+
+    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
+    CU_ASSERT_EQUAL(lettre, 'A');
+    
+    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
+    CU_ASSERT_EQUAL(lettre, 'C');
+
+    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
+    CU_ASSERT_EQUAL(lettre, 'F');
+
+    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
+    CU_ASSERT_EQUAL(lettre, 'G');
+
+    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
+    CU_ASSERT_EQUAL(lettre, 'A');
+
+    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
+    CU_ASSERT_EQUAL(lettre, 'D');
+
+    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
+    CU_ASSERT_EQUAL(lettre, 'D');
+    
+    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
+    CU_ASSERT_EQUAL(lettre, 'A');
+
+    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
+    CU_ASSERT_EQUAL(lettre, 'C');
+
+    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
+    CU_ASSERT_EQUAL(lettre, 'E');
+
+    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
+    CU_ASSERT_EQUAL(lettre, 'A');
+
+    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
+    CU_ASSERT_EQUAL(lettre, 'C');
+
+    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
+    CU_ASSERT_EQUAL(lettre, 'G');
+    
+    fclose(fDecompresseCheck);
+    }
+
+
 int main(int argc, char** argv){
 
   /* initialisation du registre de tests */
