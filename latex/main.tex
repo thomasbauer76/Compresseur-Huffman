@@ -21,52 +21,56 @@
 \newcommand{\fichierbinaire}{\textbf{FichierBinaire}}
 %%fin
 \begin{document}
+
     \chapter{Types Abstraits de Données}
+
         \section{Analyse : les TAD}
             \subsection{TAD Octet}
-            \input{TAD/TAD_Octet.tex}
+                \input{TAD/TAD_Octet.tex}
             \subsection{TAD Statistiques}
-            \input{TAD/TAD_Statistiques.tex}
+                \input{TAD/TAD_Statistiques.tex}
             \subsection{TAD FileDePriorite}
-            \input{TAD/TAD_FileDePriorite.tex}
+                \input{TAD/TAD_FileDePriorite.tex}
             \subsection{TAD ArbreDeHuffman}
-            \input{TAD/TAD_ArbreDeHuffman.tex}
+                \input{TAD/TAD_ArbreDeHuffman.tex}
             \subsection{TAD CodeBinaire}
-            \input{TAD/TAD_CodeBinaire.tex}
+                \input{TAD/TAD_CodeBinaire.tex}
             \subsection{TAD TableDeCodage}
-            \input{TAD/TAD_TableDeCodage.tex}
+                \input{TAD/TAD_TableDeCodage.tex}
 
         \newpage
         \section{Conception Préliminaire}
             \subsection{Signatures et fonctions de Octet}
-            \input{TAD/CP_Octet.tex}
+                \input{TAD/CP_Octet.tex}
             \subsection{Signatures et fonctions de Statistiques}
-            \input{TAD/CP_Statistiques.tex}
+                \input{TAD/CP_Statistiques.tex}
             \subsection{Signatures et fonctions de FileDePriorite}
-            \input{TAD/CP_FileDePriorite.tex}
+                \input{TAD/CP_FileDePriorite.tex}
             \subsection{Signatures et fonctions de ArbreDeHuffman}
-            \input{TAD/CP_ArbreDeHuffman.tex}
+                \input{TAD/CP_ArbreDeHuffman.tex}
             \subsection{Signatures et fonctions de CodeBinaire}
-            \input{TAD/CP_CodeBinaire.tex}
+                \input{TAD/CP_CodeBinaire.tex}
             \subsection{Signatures et fonctions de TableDeCodage}
-            \input{TAD/CP_TableDeCodage.tex}
+                \input{TAD/CP_TableDeCodage.tex}
 
         \newpage
         \section{Conception Détaillée}
             \textbf{// Dans le but de simplifier la conception détaillée ainsi que le développement, nous considérons bitA0 = 0 et bitA1 = 1. Nous pouvons ainsi utiliser le type Bit comme un naturel. Cela permet d'éviter des instructions conditionnelles répétitives et coûteuses bien que triviales.}
             \subsection{Algorithmes de Octet}
-            \input{TAD/CD_Octet.tex}
+                \input{TAD/CD_Octet.tex}
             \subsection{Algorithmes de Statistiques}
-            \input{TAD/CD_Statistiques.tex}
+                \input{TAD/CD_Statistiques.tex}
             \subsection{Algorithmes de FileDePriorite}
-            \input{TAD/CD_FileDePriorite.tex}
+                \input{TAD/CD_FileDePriorite.tex}
             \subsection{Algorithmes de ArbreDeHuffman}
-            \input{TAD/CD_ArbreDeHuffman.tex}
+                \input{TAD/CD_ArbreDeHuffman.tex}
             \subsection{Algorithmes de CodeBinaire}
-            \input{TAD/CD_CodeBinaire.tex}
+                \input{TAD/CD_CodeBinaire.tex}
             \subsection{Algorithmes de TableDeCodage}
-            \input{TAD/CD_TableDeCodage.tex}
+                \input{TAD/CD_TableDeCodage.tex}
+
     \chapter{Compression}
+
         \section{Analyse descendante}
 
         \newpage
@@ -90,7 +94,9 @@
 			\input{Compression/CD_concatenerCodeBinaireDansFichier.tex}
             \input{Compression/CD_encoder.tex}
             \input{Compression/CD_compresser.tex}
-        \chapter{Décompression}
+    
+    \chapter{Décompression}
+
         \section{Analyse descendante}
 
         \newpage
@@ -109,4 +115,52 @@
         	\input{Decompression/CD_seDeplacerDansLArbre.tex}
         	\input{Decompression/CD_decompresser.tex}
         	\input{Decompression/CD_construireArbreDeHuffman.tex}
+
+    \chapter{Développement}
+
+        \section{Fichiers d'en-tête}
+            \subsection{TAD Octet}
+                \inputminted[breaklines]{c}{../include/octet.h}
+            \subsection{TAD Statistiques}
+                \inputminted[breaklines]{c}{../include/statistiques.h}
+            \subsection{TAD FileDePriorite}
+                \inputminted[breaklines]{c}{../include/fileDePrioriteDArbreDeHuffman.h}
+            \subsection{TAD ArbreDeHuffman}
+                \inputminted[breaklines]{c}{../include/arbreDeHuffman.h}
+            \subsection{TAD CodeBinaire}
+                \inputminted[breaklines]{c}{../include/codeBinaire.h}
+            \subsection{TAD TableDeCodage}
+                \inputminted[breaklines]{c}{../include/tableDeCodage.h}
+            \subsection{Construction de l'arbre de Huffman}
+                \inputminted[breaklines]{c}{../include/construireArbreDeHuffman.h}
+            \subsection{Compression}
+                \inputminted[breaklines]{c}{../include/compression.h}
+            \subsection{Décompression}
+                \inputminted[breaklines]{c}{../include/decompression.h}  
+        \section{Code source}
+            \subsection{TAD Octet}
+                \inputminted[breaklines]{c}{../src/octet.c}
+            \subsection{TAD Statistiques}
+                \inputminted[breaklines]{c}{../src/statistiques.c}
+            \subsection{TAD FileDePriorite}
+                \inputminted[breaklines]{c}{../src/fileDePrioriteDArbreDeHuffman.c}
+            \subsection{TAD ArbreDeHuffman}
+                \inputminted[breaklines]{c}{../src/arbreDeHuffman.c}
+            \subsection{TAD CodeBinaire}
+                \inputminted[breaklines]{c}{../src/codeBinaire.c}
+            \subsection{TAD TableDeCodage}
+                \inputminted[breaklines]{c}{../src/tableDeCodage.c}
+            \subsection{Fonctions communes à la compression et à la décompression}
+                \inputminted[breaklines]{c}{../src/construireArbreDeHuffman.c}
+            \subsection{Compression}
+                \inputminted[breaklines]{c}{../src/compression.c}
+            \subsection{Décompression}
+                \inputminted[breaklines]{c}{../src/decompression.c} 
+            \subsection{Programme principal}
+                \inputminted[breaklines]{c}{../src/main.c}
+        \section{Tests unitaires}
+            \subsection{Tests des TADs}
+                \inputminted[breaklines]{c}{../src/testsTADs.c}
+            \subsection{Tests des fonctions métier}
+                \inputminted[breaklines]{c}{../src/testsFonctionsMetier.c}
 \end{document}
