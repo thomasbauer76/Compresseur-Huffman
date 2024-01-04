@@ -36,7 +36,7 @@ $(SRCDIR)/%.o : $(SRCDIR)/%.c
 
 pdf :
 	cd $(LATEXDIR); pdflatex --shell-escape $(LATEX_MAIN)
-	rm -f ./$(LATEXDIR)/_minted-main ./$(LATEXDIR)/*.fls ./$(LATEXDIR)/*.fdb_latexmk ./$(LATEXDIR)/*.aux ./$(LATEXDIR)/*.log
+	rm -rf ./$(LATEXDIR)/_minted-main ./$(LATEXDIR)/*.fls ./$(LATEXDIR)/*.fdb_latexmk ./$(LATEXDIR)/*.aux ./$(LATEXDIR)/*.log
 
 doc:
 	doxygen $(DOXYFILE_NAME)
