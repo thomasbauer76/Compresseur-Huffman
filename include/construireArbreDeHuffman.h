@@ -1,6 +1,6 @@
 /**
  * \file construireArbreDeHuffman.h
- * \brief Implantation des fonctions utilisées pour construire un arbre de Huffman à partir de statistiques
+ * \brief Implémentation des fonctions utilisées pour construire un arbre de Huffman à partir de statistiques
  * \author T. Bauer
  * \date 19/12/2023
  *

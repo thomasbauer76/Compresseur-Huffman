@@ -27,26 +27,6 @@ FILE *fichierTemporaireRempli() {
   return tempFile;
 }
 
-// Fonction dépreciée, anciennement utilisée pour le test de decoder mais pas vérifiée
-// FILE *fichierTemporaireEncode() {
-//   FILE *tempFile = tmpfile();
-//   // Pour avoir la version compressé de l'exemple du sujet je vais écrire les 5 entiers en dessous sous forme de 5 unsigned char
-//   // 137 249 150 167 38
-//   unsigned char octet1 = 137;
-//   unsigned char octet2 = 249;
-//   unsigned char octet3 = 150;
-//   unsigned char octet4 = 167;
-//   unsigned char octet5 = 38;
-//   // Pour être certain d'écrire au début du fichier
-//   rewind(tempFile);
-//   fwrite(&octet1, sizeof(unsigned char), 1, tempFile);
-//   fwrite(&octet2, sizeof(unsigned char), 1, tempFile);
-//   fwrite(&octet3, sizeof(unsigned char), 1, tempFile);
-//   fwrite(&octet4, sizeof(unsigned char), 1, tempFile);
-//   fwrite(&octet5, sizeof(unsigned char), 1, tempFile);
-//   return tempFile;
-// }
-
 
 /* Tests construireArbreDeHuffman.c */
 
@@ -59,13 +39,13 @@ void test_file_de_priorite(void) {
 
   FileDePriorite fdp = CADH_construireFileDePriorite(s);
 
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'E');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'F');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'B');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'D');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'G');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'C');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp)), 'A');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'E');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'F');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'B');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'D');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'G');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'C');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'A');
 }
 
 void test_arbre_de_huffman(void) {
@@ -77,13 +57,13 @@ void test_arbre_de_huffman(void) {
 
   ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
 
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(a))), 'C');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(a))), 'A');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(a)))), 'B');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(a)))), 'D');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a)))), 'G');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a))))), 'E');
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a))))), 'F');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(a)))), 'C');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(a)))), 'A');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(a))))), 'B');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(a))))), 'D');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a))))), 'G');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a)))))), 'E');
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a)))))), 'F');
 }
 
 
@@ -172,35 +152,6 @@ void test_ecrire_identifiant(void) {
   CU_ASSERT_EQUAL(fread(&identifiant_lue, sizeof(unsigned short), 1, tempFile), 1);
   CU_ASSERT_EQUAL(identifiant_lue, identifiant_attendue);
   fclose(tempFile);
-}
-
-void test_seDeplacerDansLArbre(void) {
-  FILE *tempFileEntree = fichierTemporaireRempli();
-  Statistiques s;
-  unsigned long long taille;
-  C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &taille);
-  ArbreDeHuffman abh = CADH_construireArbreDeHuffman(s);
-  // On vérifie arbitrairement si on arrive à retrouver notre octet tout à gauche, celui tout à droite et un dernier entre les deux selon l'exemple du sujet
-  // L'octet 'C' se situe 2 cran à gauche
-  ArbreDeHuffman abhTest = abh;
-  for (unsigned int i = 0; i<2; i++) {
-    D_seDeplacerDansLArbre(bitA0, &abhTest);
-  }
-  CU_ASSERT(ADH_obtenirOctet(abhTest)=='C');
-
-  // L'octet 'F' se situe 4 crans à droite
-  abhTest = abh;
-  for (unsigned int i = 0; i<4; i++) {
-    D_seDeplacerDansLArbre(bitA1, &abhTest);
-  }
-  CU_ASSERT(ADH_obtenirOctet(abhTest)=='F');
-
-  // L'octet 'D' se situe 1 cran à droite, puis 1 à gauche et enfin 1 à droite
-  abhTest = abh;
-  D_seDeplacerDansLArbre(bitA1, &abhTest);
-  D_seDeplacerDansLArbre(bitA0, &abhTest);
-  D_seDeplacerDansLArbre(bitA1, &abhTest);
-  CU_ASSERT(ADH_obtenirOctet(abhTest)=='D');
 }
 
 void test_ecrire_taille_fichier(void) {
@@ -306,61 +257,6 @@ void test_ecrire_statistiques(void) {
     fclose(tempFileSortie);
 }
 
-void test_lire_statistiques(void) {
-    FILE *tempFileEntree = fichierTemporaireRempli();
-
-    Statistiques s_entree;
-    unsigned long long taille;
-    C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s_entree, &taille);
-
-    fclose(tempFileEntree);
-
-    FILE *tempFileSortie = tmpfile();
-
-    C_ecrireStatistiques(tempFileSortie, s_entree);
-
-    rewind(tempFileSortie);
-
-    Statistiques s_lu;
-    D_lireStatistiques(tempFileSortie, &s_lu);
-
-    for (unsigned long int o=0;o<256;++o)
-    {
-     Octet occurence=S_obtenirOccurence(s_lu,O_naturelVersOctet(o));
-      switch (o){
-
-        case 'A':
-          CU_ASSERT_EQUAL(occurence, 4);
-          break;
-        case 'B':
-          CU_ASSERT_EQUAL(occurence, 2);
-          break;
-        case 'C':
-          CU_ASSERT_EQUAL(occurence, 3);
-          break;
-        case 'D':
-          CU_ASSERT_EQUAL(occurence, 2);
-          break;
-        case 'E':
-          CU_ASSERT_EQUAL(occurence, 1);
-          break;
-        case 'F':
-          CU_ASSERT_EQUAL(occurence, 1);
-          break;
-        case 'G':
-          CU_ASSERT_EQUAL(occurence, 2);
-          break;
-        default :
-          CU_ASSERT_EQUAL(occurence, 0);
-          break;
-        }
-    }
-
-
-
-    fclose(tempFileSortie);
-}
-
 void test_concatener_codes_binaires(void) {
   FILE *tempFileEntree = fichierTemporaireRempli();
   
@@ -390,8 +286,8 @@ void test_concatener_codes_binaires(void) {
 
  unsigned char octet1, octet2;
   size_t result;
-  Octet otest1 = O_creerOctet(bitA1,bitA0,bitA0,bitA0,bitA1,bitA0,bitA0,bitA1);
-  Octet otest2 = O_creerOctet(bitA1,bitA1,bitA1,bitA1,bitA1,bitA0,bitA0,bitA1);
+  unsigned char otest1 = O_octetVersNaturel(O_creerOctet(bitA1,bitA0,bitA0,bitA0,bitA1,bitA0,bitA0,bitA1));
+  unsigned char otest2 = O_octetVersNaturel(O_creerOctet(bitA1,bitA1,bitA1,bitA1,bitA1,bitA0,bitA0,bitA1));
 
   result = fread(&octet1, sizeof(unsigned char), 1, tempFileSortie);
   CU_ASSERT_EQUAL_FATAL(result, 1);
@@ -405,7 +301,6 @@ void test_concatener_codes_binaires(void) {
 
 }
 
-/* Tests C_encoder */
 void test_encoder(void) {
   FILE *tempFileEntree = fichierTemporaireRempli();
 
@@ -424,8 +319,8 @@ void test_encoder(void) {
 
   unsigned char octet1, octet2;
   size_t result;
-  Octet otest1 = O_creerOctet(bitA1,bitA0,bitA0,bitA0,bitA1,bitA0,bitA0,bitA1);
-  Octet otest2 = O_creerOctet(bitA1,bitA1,bitA1,bitA1,bitA1,bitA0,bitA0,bitA1);
+  unsigned char otest1 = O_octetVersNaturel(O_creerOctet(bitA1,bitA0,bitA0,bitA0,bitA1,bitA0,bitA0,bitA1));
+  unsigned char otest2 = O_octetVersNaturel(O_creerOctet(bitA1,bitA1,bitA1,bitA1,bitA1,bitA0,bitA0,bitA1));
 
   result = fread(&octet1, sizeof(unsigned char), 1, tempFileSortie);
   CU_ASSERT_EQUAL_FATAL(result, 1);
@@ -439,7 +334,91 @@ void test_encoder(void) {
 
 }
 
-/* Tests D_decoder */
+
+/* Tests decompression.c */
+
+void test_seDeplacerDansLArbre(void) {
+  FILE *tempFileEntree = fichierTemporaireRempli();
+  Statistiques s;
+  unsigned long long taille;
+  C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &taille);
+  ArbreDeHuffman abh = CADH_construireArbreDeHuffman(s);
+  // On vérifie arbitrairement si on arrive à retrouver notre octet tout à gauche, celui tout à droite et un dernier entre les deux selon l'exemple du sujet
+  // L'octet 'C' se situe 2 cran à gauche
+  ArbreDeHuffman abhTest = abh;
+  for (unsigned int i = 0; i<2; i++) {
+    D_seDeplacerDansLArbre(bitA0, &abhTest);
+  }
+  CU_ASSERT(O_octetVersNaturel(ADH_obtenirOctet(abhTest))=='C');
+
+  // L'octet 'F' se situe 4 crans à droite
+  abhTest = abh;
+  for (unsigned int i = 0; i<4; i++) {
+    D_seDeplacerDansLArbre(bitA1, &abhTest);
+  }
+  CU_ASSERT(O_octetVersNaturel(ADH_obtenirOctet(abhTest))=='F');
+
+  // L'octet 'D' se situe 1 cran à droite, puis 1 à gauche et enfin 1 à droite
+  abhTest = abh;
+  D_seDeplacerDansLArbre(bitA1, &abhTest);
+  D_seDeplacerDansLArbre(bitA0, &abhTest);
+  D_seDeplacerDansLArbre(bitA1, &abhTest);
+  CU_ASSERT(O_octetVersNaturel(ADH_obtenirOctet(abhTest))=='D');
+}
+
+void test_lire_statistiques(void) {
+  FILE *tempFileEntree = fichierTemporaireRempli();
+
+  Statistiques s_entree;
+  unsigned long long taille;
+  C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s_entree, &taille);
+
+  fclose(tempFileEntree);
+
+  FILE *tempFileSortie = tmpfile();
+
+  C_ecrireStatistiques(tempFileSortie, s_entree);
+
+  rewind(tempFileSortie);
+
+  Statistiques s_lu;
+  D_lireStatistiques(tempFileSortie, &s_lu);
+
+  for (unsigned long int o=0;o<256;++o)
+  {
+    unsigned long occurence=S_obtenirOccurence(s_lu,O_naturelVersOctet(o));
+    switch (o){
+
+      case 'A':
+        CU_ASSERT_EQUAL(occurence, 4);
+        break;
+      case 'B':
+        CU_ASSERT_EQUAL(occurence, 2);
+        break;
+      case 'C':
+        CU_ASSERT_EQUAL(occurence, 3);
+        break;
+      case 'D':
+        CU_ASSERT_EQUAL(occurence, 2);
+        break;
+      case 'E':
+        CU_ASSERT_EQUAL(occurence, 1);
+        break;
+      case 'F':
+        CU_ASSERT_EQUAL(occurence, 1);
+        break;
+      case 'G':
+        CU_ASSERT_EQUAL(occurence, 2);
+        break;
+      default :
+        CU_ASSERT_EQUAL(occurence, 0);
+        break;
+      }
+  }
+
+  fclose(tempFileSortie);
+}
+
 void test_decoder(void) {
   FILE *fichierTest = fichierTemporaireRempli();
   Statistiques s;
@@ -509,28 +488,13 @@ void test_decoder(void) {
   
 }
 
+
 int main(int argc, char** argv){
 
   /* initialisation du registre de tests */
   if (CUE_SUCCESS != CU_initialize_registry())
     return CU_get_error();
 
-
-  /* ajout d'une suite de test pour decompression.c */
-  CU_pSuite pSuiteDecompression = CU_add_suite("Test decompression", init_suite_success, clean_suite_success);
-  if (NULL == pSuiteDecompression) {
-    CU_cleanup_registry();
-    return CU_get_error();
-  }
-
-  /* Ajout des tests à la suite decompression */
-  if ((NULL == CU_add_test(pSuiteDecompression, "Decodage d'un fichier et vérification que ça a marché", test_decoder))
-    || (NULL == CU_add_test(pSuiteDecompression, "3 tests arbitraires pour D_seDeplacerDansLArbre", test_seDeplacerDansLArbre))
-      ) 
-    {
-      CU_cleanup_registry();
-      return CU_get_error();
-    }
 
   /* ajout d'une suite de test pour compression.c et construireArbreDeHuffman.c */
   CU_pSuite pSuiteCompression = CU_add_suite("Test compression", init_suite_success, clean_suite_success);
@@ -556,6 +520,23 @@ int main(int argc, char** argv){
       return CU_get_error();
     }
 
+
+  /* ajout d'une suite de test pour decompression.c */
+  CU_pSuite pSuiteDecompression = CU_add_suite("Test decompression", init_suite_success, clean_suite_success);
+  if (NULL == pSuiteDecompression) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
+  /* Ajout des tests à la suite decompression */
+  if ((NULL == CU_add_test(pSuiteDecompression, "lecture des statistique et verification ", test_lire_statistiques))
+    || (NULL == CU_add_test(pSuiteDecompression, "3 tests arbitraires pour D_seDeplacerDansLArbre", test_seDeplacerDansLArbre))
+    || (NULL == CU_add_test(pSuiteDecompression, "Decodage d'un fichier et vérification que ça a marché", test_decoder))
+      ) 
+    {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
 
 
   /* Lancement des tests */

@@ -1,6 +1,6 @@
 /**
  * \file statistiques.h
- * \brief Implantation du TAD Statistiques pour le compresseur d'Huffman
+ * \brief Implémentation du TAD Statistiques pour le compresseur d'Huffman
  * \author T. Bauer
  * \date 17/12/2023
  *

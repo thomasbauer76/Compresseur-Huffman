@@ -1,6 +1,6 @@
 /**
  * \file arbreDeHuffman.h
- * \brief Implantation du TAD ArbreDeHuffman pour le compresseur d'Huffman
+ * \brief Implémentation du TAD ArbreDeHuffman pour le compresseur d'Huffman
  * \author M. Saunier
  * \date 31/12/2023
  *

@@ -25,7 +25,7 @@ void test_statistiques_vides(void) {
     S_statistiques(&s);
 
     for(unsigned short o = 0; o < MAX_OCTET; o++) {
-        CU_ASSERT_EQUAL(S_obtenirOccurence(s,o),0);
+        CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet(o)), 0);
     }
 }
 
@@ -34,10 +34,10 @@ void test_statistiques_incrementees(void) {
     S_statistiques(&s);
 
     Octet o = O_naturelVersOctet(241);
-    unsigned long ancienneOccurence = S_obtenirOccurence(s,o);
+    unsigned long ancienneOccurence = S_obtenirOccurence(s, o);
 
     S_incrementerOccurence(&s,o);
-    unsigned long nouvelleOccurence = S_obtenirOccurence(s,o);
+    unsigned long nouvelleOccurence = S_obtenirOccurence(s, o);
 
     CU_ASSERT_EQUAL(nouvelleOccurence,ancienneOccurence+1);
 }
@@ -78,22 +78,22 @@ void test_ajout_bit(void) {
 /* Tests arbreDeHuffman.c */
 
 void test_creation_arbre_de_huffman_feuille(void) {
-  Octet o = 65; 
+  unsigned char o = 65; 
   unsigned long f = 2;
 
-  ArbreDeHuffman a = ADH_arbreDeHuffman(o,f);
+  ArbreDeHuffman a = ADH_arbreDeHuffman(O_naturelVersOctet(o), f);
   
   CU_ASSERT(ADH_estUneFeuille(a));
   CU_ASSERT_EQUAL(ADH_obtenirFrequence(a), f);
-  CU_ASSERT_EQUAL(ADH_obtenirOctet(a), o);
+  CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(a)), o);
 
   ADH_liberer(a);
 }
 
 void test_fusionner_ADH(void) {
-  Octet og = 241;
+  Octet og = O_naturelVersOctet(241);
   unsigned long ng = 2;
-  Octet od = 121;
+  Octet od = O_naturelVersOctet(121);
   unsigned long nd = 3;
 
   ArbreDeHuffman ad = ADH_arbreDeHuffman(od, nd);
@@ -163,12 +163,12 @@ void test_obtenir_element_et_defiler(void) {
 void test_creerTableCodage(void) {
   /* Utilisation d'un do while ... pour éviter le rique d'un dépassement de mémoire (256 avec un unsigned char) */
   TableDeCodage tdc = TDC_creerTableCodage();
-  unsigned char i = 0;
+  unsigned char o = 0;
   do {
-      CU_ASSERT(!(TDC_octetPresent(tdc, i)));
-      i = i + 1;
+      CU_ASSERT(!(TDC_octetPresent(tdc, O_naturelVersOctet(o))));
+      o++;
   }
-  while (i!=255);
+  while (o != MAX_OCTET - 1);
 }
 
 void test_ajouterCodage(void) {
@@ -225,36 +225,41 @@ void test_octetVersCodeBinaire(void) {
 
 /* Tests octet.c*/
 void test_creer_octet(void) {
-    // Test pour 0
-    Bit b7 = 0, b6 = 0, b5 = 0, b4 = 0, b3 = 0, b2 = 0, b1 = 0, b0 = 0;
-    Octet resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
-    CU_ASSERT_EQUAL(resultat,0);
+  // Test pour 0 (Binaire : 00000000)
+  Bit b7 = 0, b6 = 0, b5 = 0, b4 = 0, b3 = 0, b2 = 0, b1 = 0, b0 = 0;
+  Octet resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
+  CU_ASSERT_EQUAL(O_octetVersNaturel(resultat), 0);
 
-    // Test pour 255
-    b7 = 1, b6 = 1, b5 = 1, b4 = 1, b3 = 1, b2 = 1, b1 = 1, b0 = 1;
-    resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
-    CU_ASSERT_EQUAL(resultat,255);
+  // Test pour 255 (Binaire : 11111111)
+  b7 = 1, b6 = 1, b5 = 1, b4 = 1, b3 = 1, b2 = 1, b1 = 1, b0 = 1;
+  resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
+  CU_ASSERT_EQUAL(O_octetVersNaturel(resultat), 255);
 
-    // Test pour 170
-    b7 = 1, b6 = 0, b5 = 1, b4 = 0, b3 = 1, b2 = 0, b1 = 1, b0 = 0;
-    resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
-    CU_ASSERT_EQUAL(resultat,170);
+  // Test pour 155 (Binaire : 10011011)
+  b7 = 1, b6 = 0, b5 = 0, b4 = 1, b3 = 1, b2 = 0, b1 = 1, b0 = 1;
+  resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
+  CU_ASSERT_EQUAL(O_octetVersNaturel(resultat), 155);
 }
 
 void test_obtenir_ieme_bit(void) {
-    Octet octet = 255; // binaire: 11111111
+  // Test pour 155 (Binaire : 10011011)
+  Octet octet = O_naturelVersOctet(155);
 
-    for (unsigned short i = 0; i < MAX_BITS; ++i) {
-        Bit resultat = O_obtenirIemeBit(octet, i);
-        CU_ASSERT_EQUAL(resultat,1);
-    }
+  CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 7), bitA1);
+  CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 6), bitA0);
+  CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 5), bitA0);
+  CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 4), bitA1);
+  CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 3), bitA1);
+  CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 2), bitA0);
+  CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 1), bitA1);
+  CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 0), bitA1);
 }
 
 void test_naturel_vers_octet(void) {
-    unsigned char naturel = 42;
+  unsigned char naturel = 42;
 
-    Octet resultat = O_naturelVersOctet(naturel);
-    CU_ASSERT_EQUAL(resultat,naturel);
+  Octet resultat = O_naturelVersOctet(naturel);
+  CU_ASSERT_EQUAL(O_octetVersNaturel(resultat), naturel);
 }
 
 int main(int argc, char** argv){
