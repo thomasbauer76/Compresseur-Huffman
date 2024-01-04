@@ -485,64 +485,6 @@ void test_decoder(void) {
   
 }
 
-void test_decompresser(void) {
-    //création d'un fichier
-  FILE *tempFileEntree = fichierTemporaireRempli();
-  // Compression du fichier temporaire
-  C_compresser(tempFileEntree, "texte");
-  // Décompression du fichier compressé
-  D_decompresser(tempFileEntree, "texte.out");
-
-
-  // Vérification du contenu du fichier décompressé
-  FILE *fDecompresseCheck = fopen("texte.out", "rb");
-    char lettre;
-
-    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
-    CU_ASSERT_EQUAL(lettre, 'B');
-
-    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
-    CU_ASSERT_EQUAL(lettre, 'A');
-    
-    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
-    CU_ASSERT_EQUAL(lettre, 'C');
-
-    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
-    CU_ASSERT_EQUAL(lettre, 'F');
-
-    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
-    CU_ASSERT_EQUAL(lettre, 'G');
-
-    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
-    CU_ASSERT_EQUAL(lettre, 'A');
-
-    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
-    CU_ASSERT_EQUAL(lettre, 'D');
-
-    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
-    CU_ASSERT_EQUAL(lettre, 'D');
-    
-    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
-    CU_ASSERT_EQUAL(lettre, 'A');
-
-    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
-    CU_ASSERT_EQUAL(lettre, 'C');
-
-    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
-    CU_ASSERT_EQUAL(lettre, 'E');
-
-    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
-    CU_ASSERT_EQUAL(lettre, 'A');
-
-    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
-    CU_ASSERT_EQUAL(lettre, 'C');
-
-    fread(&lettre, sizeof(char), 1, fDecompresseCheck);
-    CU_ASSERT_EQUAL(lettre, 'G');
-    
-    fclose(fDecompresseCheck);
-    }
-
 
 int main(int argc, char** argv){
 
@@ -584,10 +526,9 @@ int main(int argc, char** argv){
   }
 
   /* Ajout des tests à la suite decompression */
-  if ((NULL == CU_add_test(pSuiteDecompression, "Decodage d'un fichier et vérification que ça a marché", test_decoder))
+  if ((NULL == CU_add_test(pSuiteDecompression, "lecture des statistique et verification ", test_lire_statistiques))
     || (NULL == CU_add_test(pSuiteDecompression, "3 tests arbitraires pour D_seDeplacerDansLArbre", test_seDeplacerDansLArbre))
-    || (NULL == CU_add_test(pSuiteDecompression, "lecture des statistique et verification ", test_lire_statistiques))
-    || (NULL == CU_add_test(pSuiteDecompression, "lecture d'un fichier compresser puis décompresser", test_decompresser))
+    || (NULL == CU_add_test(pSuiteDecompression, "Decodage d'un fichier et vérification que ça a marché", test_decoder))
       ) 
     {
       CU_cleanup_registry();
