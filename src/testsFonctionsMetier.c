@@ -300,7 +300,7 @@ void test_concatener_codes_binaires(void) {
   fclose(tempFileSortie);
 
 }
-
+/*
 void test_encoder(void) {
   FILE *tempFileEntree = fichierTemporaireRempli();
   
@@ -318,7 +318,7 @@ void test_encoder(void) {
 
   C_encoder(tempFileEntree, tempFileSortie, tdc);
   ADH_liberer(a);
-  
+
   rewind(tempFileSortie);
 
   unsigned char octet1, octet2;
@@ -327,14 +327,49 @@ void test_encoder(void) {
   unsigned char otest2 = O_octetVersNaturel(O_creerOctet(bitA1,bitA1,bitA1,bitA1,bitA1,bitA0,bitA0,bitA1));
 
   result = fread(&octet1, sizeof(unsigned char), 1, tempFileSortie);
-  CU_ASSERT_EQUAL(result, 1);
+  CU_ASSERT_EQUAL_FATAL(result, 1);
   CU_ASSERT_EQUAL(octet1, otest1);  // 10001001 
 
   result = fread(&octet2, sizeof(unsigned char), 1, tempFileSortie);
-  CU_ASSERT_EQUAL(result, 1);
+  CU_ASSERT_EQUAL_FATAL(result, 1);
   CU_ASSERT_EQUAL(octet2, otest2);  // 11111001 
 
   fclose(tempFileSortie);
+
+}
+*/
+void test_encoder(void) {
+    Statistiques s;
+    unsigned long long taille;
+    FILE *tempFileEntree = fichierTemporaireRempli();
+  
+    rewind(tempFileEntree);
+    FILE *tempFileSortie = tmpfile();
+
+    C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &taille);
+
+    if(taille > 0) { 
+        ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
+        if (!ADH_estUneFeuille(a)) // Cas particulier d'un fichier contenant un seul octet (présent plusieurs fois ou non)
+            C_encoder(tempFileEntree, tempFileSortie, C_obtenirTableDeCodage(a));
+        ADH_liberer(a);
+    }
+
+  rewind(tempFileSortie);
+
+  unsigned char octet1, octet2;
+  size_t result;
+  unsigned char otest1 = O_octetVersNaturel(O_creerOctet(bitA1,bitA0,bitA0,bitA0,bitA1,bitA0,bitA0,bitA1));
+  unsigned char otest2 = O_octetVersNaturel(O_creerOctet(bitA1,bitA1,bitA1,bitA1,bitA1,bitA0,bitA0,bitA1));
+
+  result = fread(&octet1, sizeof(unsigned char), 1, tempFileSortie);
+  CU_ASSERT_EQUAL_FATAL(result, 1);
+  CU_ASSERT_EQUAL(octet1, otest1);  // 10001001 
+
+  result = fread(&octet2, sizeof(unsigned char), 1, tempFileSortie);
+  CU_ASSERT_EQUAL_FATAL(result, 1);
+  CU_ASSERT_EQUAL(octet2, otest2);  // 11111001 
+    fclose(tempFileSortie);
 
 }
 
