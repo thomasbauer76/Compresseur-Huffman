@@ -62,6 +62,6 @@ dkms.conf
 *.gz
 *.ods#
 latex/main_test.tex
-/doc
+/doc/*
 *.html
 *.js
