@@ -314,9 +314,10 @@ void test_encoder(void) {
   TableDeCodage tdc = C_obtenirTableDeCodage(a);
 
   FILE *tempFileSortie = tmpfile();
-  ADH_liberer(a);
+  
 
   C_encoder(tempFileEntree, tempFileSortie, tdc);
+  ADH_liberer(a);
   
   rewind(tempFileSortie);
 
