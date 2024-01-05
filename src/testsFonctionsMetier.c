@@ -133,8 +133,11 @@ void test_code_binaire_8_bits_vers_octet(void) {
   for (i = 1; i < MAX_BITS; i++)
     CB_ajouterBit(&cb, O_obtenirIemeBit(o, i));
   
+  Octet otest = C_codeBinaireEnOctet(cb);
+
+
   for (i = 0; i < MAX_BITS; i++)
-    CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, i), O_obtenirIemeBit(o, i))
+    CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, i), O_obtenirIemeBit(otest, i));
 }
 
 void test_ecrire_identifiant(void) {
@@ -299,18 +302,21 @@ void test_concatener_codes_binaires(void) {
 }
 
 void test_encoder(void) {
-  FILE *tempFileEntree = fichierTemporaireRempli();
+    Statistiques s;
+    unsigned long long taille;
+    FILE *tempFileEntree = fichierTemporaireRempli();
+  
+    rewind(tempFileEntree);
+    FILE *tempFileSortie = tmpfile();
 
-  Statistiques s;
-  unsigned long long longueur;
-  C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &longueur);
-  ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
-  TableDeCodage tdc = C_obtenirTableDeCodage(a);
+    C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &taille);
 
-  fclose(tempFileEntree);
-  FILE *tempFileSortie = tmpfile();
-
-  C_encoder(tempFileEntree, tempFileSortie, tdc);
+    if(taille > 0) { 
+        ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
+        if (!ADH_estUneFeuille(a)) // Cas particulier d'un fichier contenant un seul octet (présent plusieurs fois ou non)
+            C_encoder(tempFileEntree, tempFileSortie, C_obtenirTableDeCodage(a));
+        ADH_liberer(a);
+    }
 
   rewind(tempFileSortie);
 
@@ -321,13 +327,12 @@ void test_encoder(void) {
 
   result = fread(&octet1, sizeof(unsigned char), 1, tempFileSortie);
   CU_ASSERT_EQUAL_FATAL(result, 1);
-  CU_ASSERT_EQUAL(octet1, otest1);  // 10001001 en binaire
+  CU_ASSERT_EQUAL(octet1, otest1);  // 10001001 
 
   result = fread(&octet2, sizeof(unsigned char), 1, tempFileSortie);
   CU_ASSERT_EQUAL_FATAL(result, 1);
-  CU_ASSERT_EQUAL(octet2, otest2);  // 11111001 en binaire
-
-  fclose(tempFileSortie);
+  CU_ASSERT_EQUAL(octet2, otest2);  // 11111001 
+    fclose(tempFileSortie);
 
 }
 

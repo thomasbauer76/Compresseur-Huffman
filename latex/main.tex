@@ -8,7 +8,7 @@
 \usepackage{mdframed}
 \usepackage{xcolor}
 \usepackage{minted}
-
+\usepackage{graphicx}  % Package pour l'inclusion d'images
 %%definition de commande
 \newcommand{\octet}{\textbf{Octet}}
 \newcommand{\codebinaire}{\textbf{CodeBinaire}}
@@ -21,7 +21,8 @@
 \newcommand{\fichierbinaire}{\textbf{FichierBinaire}}
 %%fin
 \begin{document}
-
+	\tableofcontents
+	\chapter{Introduction}    
     \chapter{Types Abstraits de Données}
 
         \section{Analyse : les TAD}
@@ -55,7 +56,8 @@
 
         \newpage
         \section{Conception Détaillée}
-            \textbf{// Dans le but de simplifier la conception détaillée ainsi que le développement, nous considérons bitA0 = 0 et bitA1 = 1. Nous pouvons ainsi utiliser le type Bit comme un naturel. Cela permet d'éviter des instructions conditionnelles répétitives et coûteuses bien que triviales.}
+            \textbf{// Dans le but de Py
+simplifier la conception détaillée ainsi que le développement, nous considérons bitA0 = 0 et bitA1 = 1. Nous pouvons ainsi utiliser le type Bit comme un naturel. Cela permet d'éviter des instructions conditionnelles répétitives et coûteuses bien que triviales.}
             \subsection{Algorithmes de Octet}
                 \input{TAD/CD_Octet.tex}
             \subsection{Algorithmes de Statistiques}
@@ -98,7 +100,12 @@
     \chapter{Décompression}
 
         \section{Analyse descendante}
-
+		\begin{figure}[h] 
+   			 \centering      
+    		\includegraphics[width=1.1\textwidth]{decompresser.png}
+    		\caption{Analyse descendante de la décompression}
+    		\label{fig:exemple}
+		\end{figure}
         \newpage
         \section{Conception Préliminaire}
         	\input{Decompression/CP_lireStatistiques.tex}
@@ -111,7 +118,6 @@
         	\input{Decompression/CD_lireStatistiques.tex}
         	\input{Decompression/CD_decoder.tex}
         	\input{Decompression/CD_libererArbreDeHuffman.tex}
-        	\input{Decompression/CD_seDeplacerDansLArbre.tex}
         	\input{Decompression/CD_seDeplacerDansLArbre.tex}
         	\input{Decompression/CD_decompresser.tex}
         	\input{Decompression/CD_construireArbreDeHuffman.tex}
@@ -167,4 +173,25 @@
                 \inputminted[breaklines]{c}{../src/testsTADs.c}
             \subsection{Tests des fonctions métier}
                 \inputminted[breaklines]{c}{../src/testsFonctionsMetier.c}
+                
+        \chapter{Travail de Groupe}
+        \begin{figure}[h] 
+   			 \centering      
+    		\includegraphics[width=1.1\textwidth]{TadTableau.png}
+    		\caption{Tableau des tâches des TAD}
+    		\label{fig:exemple}
+		\end{figure}
+		\begin{figure}[h] 
+   			 \centering      
+    		\includegraphics[width=1.1\textwidth]{compressionTableau.png}
+    		\caption{Tableau des tâches de la compression}
+    		\label{fig:exemple}
+		\end{figure}
+		\begin{figure}[h] 
+   			 \centering      
+    		\includegraphics[width=1.1\textwidth]{decompressionTableau.png}
+    		\caption{Tableau des tâches de la décompression}
+    		\label{fig:exemple}
+		\end{figure}
+        \chapter{Conclusion}
 \end{document}
