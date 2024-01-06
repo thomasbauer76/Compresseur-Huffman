@@ -35,8 +35,9 @@ $(SRCDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 pdf :
-	cd $(LATEXDIR); pdflatex --shell-escape $(LATEX_MAIN)
-	rm -rf ./$(LATEXDIR)/_minted-main ./$(LATEXDIR)/*.fls ./$(LATEXDIR)/*.fdb_latexmk ./$(LATEXDIR)/*.aux ./$(LATEXDIR)/*.log
+	cd $(LATEXDIR); pdflatex --shell-escape $(LATEX_MAIN); cd ..
+	cd $(LATEXDIR); pdflatex --shell-escape $(LATEX_MAIN); cd ..
+	rm -rf ./$(LATEXDIR)/_minted-main ./$(LATEXDIR)/*.fls ./$(LATEXDIR)/*.fdb_latexmk ./$(LATEXDIR)/*.aux ./$(LATEXDIR)/*.log ./$(LATEXDIR)/*.toc
 
 doc:
 	doxygen $(DOXYFILE_NAME)
@@ -46,5 +47,5 @@ clean :
 	rm -rf ./$(TESTSDIR)/*
 	rm -rf ./$(BINDIR)/*
 	rm -rf ./$(SRCDIR)/*.o
-	rm -rf ./$(LATEXDIR)/*.pdf ./$(LATEXDIR)/_minted-main ./$(LATEXDIR)/*.fls ./$(LATEXDIR)/*.fdb_latexmk ./$(LATEXDIR)/*.aux ./$(LATEXDIR)/*.log
+	rm -rf ./$(LATEXDIR)/*.pdf ./$(LATEXDIR)/_minted-main ./$(LATEXDIR)/*.fls ./$(LATEXDIR)/*.fdb_latexmk ./$(LATEXDIR)/*.aux ./$(LATEXDIR)/*.log ./$(LATEXDIR)/*.toc
 	rm -rf ./$(DOCDIR)/*
