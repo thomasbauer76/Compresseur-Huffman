@@ -46,6 +46,8 @@ void test_file_de_priorite(void) {
   CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'G');
   CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'C');
   CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'A');
+
+  fclose(tempFile);
 }
 
 void test_arbre_de_huffman(void) {
@@ -64,6 +66,8 @@ void test_arbre_de_huffman(void) {
   CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a))))), 'G');
   CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a)))))), 'E');
   CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(ADH_obtenirFilsDroit(a)))))), 'F');
+
+  fclose(tempFile);
 }
 
 
@@ -83,6 +87,8 @@ void test_obtenir_statistiques(void) {
   CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet('E')), 1);
   CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet('F')), 1);
   CU_ASSERT_EQUAL(S_obtenirOccurence(s, O_naturelVersOctet('G')), 2);
+
+  fclose(tempFile);
 }
 
 void test_obtenir_taille_fichier(void) {
@@ -93,6 +99,8 @@ void test_obtenir_taille_fichier(void) {
   C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
   CU_ASSERT_EQUAL(taille, 4 + 2 + 3 + 2 + 1 + 1 + 2);
+
+  fclose(tempFile);
 }
 
 void test_table_de_codage(void) {
@@ -122,6 +130,8 @@ void test_table_de_codage(void) {
   CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, 1), bitA1);
   CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, 2), bitA1);
   CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, 3), bitA0);
+
+  fclose(tempFile);
 }
 
 void test_code_binaire_8_bits_vers_octet(void) {
@@ -269,20 +279,20 @@ void test_concatener_codes_binaires(void) {
   FILE *tempFileSortie = tmpfile();
 
   CodeBinaire cbTemp = CB_creerCodeBinaire(bitA0);
-    for (i = 1; i < MAX_BITS; i++)
-        CB_ajouterBit(&cbTemp, bitA0);
+  for (i = 1; i < MAX_BITS; i++)
+    CB_ajouterBit(&cbTemp, bitA0);
     
-    // Boucle d'encodage
-    CodeBinaire cb;
-    short o;
-    while ((o = fgetc(tempFileEntree)) != EOF) {
-        cb = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet(o));
-        C_concatenerCodeBinaireDansFichier(tempFileSortie, &cbTemp, cb);
-    }
+  // Boucle d'encodage
+  CodeBinaire cb;
+  short o;
+  while ((o = fgetc(tempFileEntree)) != EOF) {
+    cb = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet(o));
+    C_concatenerCodeBinaireDansFichier(tempFileSortie, &cbTemp, cb);
+  }
   
   rewind(tempFileSortie);
 
- unsigned char octet1, octet2;
+  unsigned char octet1, octet2;
   size_t result;
   unsigned char otest1 = O_octetVersNaturel(O_creerOctet(bitA1,bitA0,bitA0,bitA0,bitA1,bitA0,bitA0,bitA1));
   unsigned char otest2 = O_octetVersNaturel(O_creerOctet(bitA1,bitA1,bitA1,bitA1,bitA1,bitA0,bitA0,bitA1));
@@ -330,8 +340,8 @@ void test_encoder(void) {
   result = fread(&octet2, sizeof(unsigned char), 1, tempFileSortie);
   CU_ASSERT_EQUAL_FATAL(result, 1);
   CU_ASSERT_EQUAL(octet2, otest2);  // 11111001 
-    fclose(tempFileSortie);
-
+  
+  fclose(tempFileSortie);
 }
 
 
@@ -364,6 +374,8 @@ void test_seDeplacerDansLArbre(void) {
   D_seDeplacerDansLArbre(bitA0, &abhTest);
   D_seDeplacerDansLArbre(bitA1, &abhTest);
   CU_ASSERT(O_octetVersNaturel(ADH_obtenirOctet(abhTest))=='D');
+
+  fclose(tempFileEntree);
 }
 
 void test_lire_statistiques(void) {
@@ -436,6 +448,7 @@ void test_decoder(void) {
   FILE *fichierTestDecode = tmpfile();
   rewind(fichierTestEncode);
   D_decoder(a, longueur, fichierTestEncode, fichierTestDecode);
+  fclose(fichierTestEncode);
 
   //On regarde si tous les octets entre le fichier original et le fichier decoder sont égaux
   rewind(fichierTest);
@@ -459,6 +472,8 @@ void test_decoder(void) {
     CU_ASSERT_EQUAL(octetActuelFichierTest, octetActuelFichierTestDecode);
   }
   
+  fclose(fichierTest);
+  fclose(fichierTestDecode);
 }
 
 
