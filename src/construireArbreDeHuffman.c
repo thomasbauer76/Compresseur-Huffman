@@ -1,8 +1,9 @@
 #include <stdio.h>
-#include "octet.h"
-#include "statistiques.h"
+
 #include "arbreDeHuffman.h"
 #include "fileDePrioriteDArbreDeHuffman.h"
+#include "octet.h"
+#include "statistiques.h"
 
 FileDePriorite CADH_construireFileDePriorite(Statistiques s) {
     FileDePriorite fdp;
@@ -12,11 +13,11 @@ FileDePriorite CADH_construireFileDePriorite(Statistiques s) {
     fdp = FDPAH_fileDePriorite();
 
     unsigned short o;
-    for(o = 0; o < MAX_OCTET; o++) {
+    for (o = 0; o < MAX_OCTET; o++) {
         octet = O_naturelVersOctet(o);
         occurence = S_obtenirOccurence(s, octet);
 
-        if(occurence > 0) {
+        if (occurence > 0) {
             FDPAH_enfiler(&fdp, ADH_arbreDeHuffman(octet, occurence));
         }
     }
@@ -24,7 +25,7 @@ FileDePriorite CADH_construireFileDePriorite(Statistiques s) {
     return fdp;
 }
 
-ArbreDeHuffman CADH_construireArbreDeHuffman(Statistiques s){
+ArbreDeHuffman CADH_construireArbreDeHuffman(Statistiques s) {
     FileDePriorite fdp;
     bool dernierElement;
     ArbreDeHuffman a1, a2, aFusion;
@@ -33,10 +34,9 @@ ArbreDeHuffman CADH_construireArbreDeHuffman(Statistiques s){
     dernierElement = 0;
     while (!(dernierElement)) {
         a1 = FDPAH_obtenirElementEtDefiler(&fdp);
-        if (FDPAH_estVide(fdp)){
-            dernierElement=true;
-        }
-        else {
+        if (FDPAH_estVide(fdp)) {
+            dernierElement = true;
+        } else {
             a2 = FDPAH_obtenirElementEtDefiler(&fdp);
             aFusion = ADH_fusionner(a1, a2);
             FDPAH_enfiler(&fdp, aFusion);

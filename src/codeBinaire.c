@@ -1,7 +1,8 @@
+#include "codeBinaire.h"
+
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "codeBinaire.h"
 
 CodeBinaire CB_creerCodeBinaire(Bit b) {
     CodeBinaire cb;

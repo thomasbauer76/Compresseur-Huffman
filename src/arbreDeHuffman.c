@@ -1,17 +1,17 @@
-#include <stddef.h>
-#include <stdlib.h>
-#include <assert.h>
 #include "arbreDeHuffman.h"
 
+#include <assert.h>
+#include <stddef.h>
+#include <stdlib.h>
 
-ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned long n){
-	ArbreDeHuffman a = (ArbreDeHuffman)malloc(sizeof(NoeudArbreDeHuffman));
-	a->octet=o;
-	a->frequence=n;
+ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned long n) {
+    ArbreDeHuffman a = (ArbreDeHuffman)malloc(sizeof(NoeudArbreDeHuffman));
+    a->octet = o;
+    a->frequence = n;
     a->estUneFeuille = true;
-	a->arbreGauche=NULL;
-	a->arbreDroit=NULL;
-	return a;
+    a->arbreGauche = NULL;
+    a->arbreDroit = NULL;
+    return a;
 }
 
 unsigned long ADH_obtenirFrequence(ArbreDeHuffman a) {
@@ -36,7 +36,7 @@ ArbreDeHuffman ADH_obtenirFilsGauche(ArbreDeHuffman a) {
     return a->arbreGauche;
 }
 
-Octet ADH_obtenirOctet(ArbreDeHuffman a){
+Octet ADH_obtenirOctet(ArbreDeHuffman a) {
     assert(ADH_estUneFeuille(a));
     return a->octet;
 }

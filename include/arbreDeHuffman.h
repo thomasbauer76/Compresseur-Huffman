@@ -9,13 +9,13 @@
 #ifndef __ARBRE_DE_HUFFMAN__
 #define __ARBRE_DE_HUFFMAN__
 
-
 #include <stdbool.h>
+
 #include "octet.h"
 
 /**
  * \brief Le type ArbreDeHuffman est un pointeur vers un NoeudArbreDeHuffman
- * 
+ *
  */
 typedef struct NoeudArbreDeHuffman *ArbreDeHuffman;
 
@@ -24,7 +24,7 @@ typedef struct NoeudArbreDeHuffman *ArbreDeHuffman;
  * associée à cet octet. La valeur de l'octet n'a de sens que si le noeud est une feuille et cette information
  * est stocée dans le booléen 'estUneFeuille'. Les deux derniers champs de cette structure sont 2 ArbreDeHuffman
  * qui représentent un fils gauche et un fils droit
- * 
+ *
  */
 typedef struct NoeudArbreDeHuffman {
     Octet octet;
@@ -106,6 +106,5 @@ ArbreDeHuffman ADH_obtenirFilsDroit(ArbreDeHuffman a);
  * \param a : ArbreDeHuffman
  */
 void ADH_liberer(ArbreDeHuffman a);
-
 
 #endif

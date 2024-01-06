@@ -9,19 +9,18 @@
 #define __OCTET__
 /**
  * \brief Le type octet est un type composé de 8 bits
- * 
+ *
  */
-
 
 #include <stdbool.h>
 
-#define MAX_BITS    8 /**< le nombre de bits maximum que contient un octet*/
-#define bitA0       0 /**< valeur 0 d'un bit */
-#define bitA1       1 /**< valeur 1 d'un bit*/
-#define MAX_OCTET   256 /**< valeur maximal d'un octet*/
+#define MAX_BITS 8    /**< le nombre de bits maximum que contient un octet*/
+#define bitA0 0       /**< valeur 0 d'un bit */
+#define bitA1 1       /**< valeur 1 d'un bit*/
+#define MAX_OCTET 256 /**< valeur maximal d'un octet*/
 
-typedef bool Bit;/**le type bool peut valoir soit 0 soit 1*/
-typedef unsigned char Octet;/**la valeur de l'octet est comprise entre 0 et 255*/
+typedef bool Bit;            /**le type bool peut valoir soit 0 soit 1*/
+typedef unsigned char Octet; /**la valeur de l'octet est comprise entre 0 et 255*/
 
 /**
  * \fn Octet O_creerOctet(Bit b7, Bit b6, Bit b5, Bit b4, Bit b3, Bit b2, Bit b1, Bit b0);
@@ -35,7 +34,7 @@ typedef unsigned char Octet;/**la valeur de l'octet est comprise entre 0 et 255*
  * \param b2: 6ème bit
  * \param b1: 7ème bit
  * \param b0: 8ème bit le bit le plus à droite
- 
+
  * \return Octet
  */
 
@@ -45,11 +44,10 @@ Octet O_creerOctet(Bit b7, Bit b6, Bit b5, Bit b4, Bit b3, Bit b2, Bit b1, Bit b
  * \fn Bit O_obtenirIemeBit(Octet o, unsigned short i);
  * \brief Fonction qui retourne la valeur du bit situé à la ième position
  *
- * \param o : un octet de 8 bits  
+ * \param o : un octet de 8 bits
  * \param i : position du bit dont on cherche la valeur
  * \return Octet
  */
-
 
 Bit O_obtenirIemeBit(Octet o, unsigned short i);
 
@@ -70,6 +68,5 @@ unsigned char O_octetVersNaturel(Octet o);
  * \return Octet
  */
 Octet O_naturelVersOctet(unsigned char n);
-
 
 #endif

@@ -9,20 +9,18 @@
 #ifndef __CODE_BINAIRE__
 #define __CODE_BINAIRE__
 
-
 #include "octet.h"
 
 #define MAX_CB (8 * sizeof(unsigned long long))
 /**
  * \brief Le type CodeBinaire permet de stocker des bits à la suite
- * 
+ *
  */
 
 typedef struct CodeBinaire {
     unsigned long long codeBinaire; /**< les octets (stockés sous forme de naturel) contenant ces bits */
-    unsigned short nbBits; /**< le nombre de bits du code binaire */
+    unsigned short nbBits;          /**< le nombre de bits du code binaire */
 } CodeBinaire;
-
 
 /**
  * \fn CodeBinaire CB_creerCodeBinaire(Bit b)
@@ -60,6 +58,5 @@ Bit CB_obtenirIemeBit(CodeBinaire cb, unsigned short i);
  * \return unsigned short
  */
 unsigned short CB_obtenirLongueur(CodeBinaire cb);
-
 
 #endif

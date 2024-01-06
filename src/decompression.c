@@ -1,16 +1,17 @@
-#include <stdio.h>
-#include <stdlib.h> 
-#include <stdbool.h>
-#include <sys/stat.h>
 #include "decompression.h"
-#include "fileDePrioriteDArbreDeHuffman.h"
-#include "construireArbreDeHuffman.h"
-#include "statistiques.h"
-#include "arbreDeHuffman.h"
-#include "octet.h"
+
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-// On inclut compression.h pour avoir la constante de l'identifiant
-#include "compression.h"
+#include <sys/stat.h>
+
+#include "arbreDeHuffman.h"
+#include "construireArbreDeHuffman.h"
+#include "fileDePrioriteDArbreDeHuffman.h"
+#include "octet.h"
+#include "statistiques.h"
+#include "compression.h" // On inclut compression.h pour avoir la constante de l'identifiant
 
 void D_seDeplacerDansLArbre(Bit b, ArbreDeHuffman *a) {
     if (b == bitA0) {
@@ -21,30 +22,28 @@ void D_seDeplacerDansLArbre(Bit b, ArbreDeHuffman *a) {
 }
 
 void D_lireStatistiques(FILE *fb, Statistiques *s) {
-    
     Octet octet;
     unsigned long int occurence;
 
     S_statistiques(s);
     do {
-        // Note : la valeur de type size_t retournée par la fonction fread est le nombre de blocs lus. Si elle est inférieure au nombre de blocs 
+        // Note : la valeur de type size_t retournée par la fonction fread est le nombre de blocs lus. Si elle est inférieure au nombre de blocs
         // à lire indiqué en paramètre, c'est que nous sommes arrivés à la fin du fichier ou qu'une erreur est survenue.
         size_t nbBlocsLus = fread(&occurence, sizeof(unsigned long int), 1, fb);
         if (nbBlocsLus < 1) {
             printf("Erreur : problème de lecture. Cela peut être causé par un fichier corrumpu.\n");
             exit(EXIT_FAILURE);
         }
-        if(occurence!=0){
+        if (occurence != 0) {
             size_t nbBlocsLus = fread(&octet, sizeof(unsigned char), 1, fb);
             if (nbBlocsLus < 1) {
                 printf("Erreur : problème de lecture. Cela peut être causé par un fichier corrumpu.\n");
                 exit(EXIT_FAILURE);
             }
-            S_fixerOccurence(s,octet,occurence);
+            S_fixerOccurence(s, octet, occurence);
         }
 
-    } while (occurence!=0);
-
+    } while (occurence != 0);
 }
 
 void D_decoder(ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *fbCompresse, FILE *fbDecompresse) {
@@ -60,7 +59,7 @@ void D_decoder(ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *fbCo
             exit(EXIT_FAILURE);
         }
         for (int i = 0; i < MAX_BITS; i++) {
-            if (!finDecodage) { //if qui permet de régler les bugs sur le dernier octets
+            if (!finDecodage) {  // if qui permet de régler les bugs sur le dernier octets
                 Bit b = O_obtenirIemeBit(o, i);
                 D_seDeplacerDansLArbre(b, &aTemp);
                 if (ADH_estUneFeuille(aTemp)) {
@@ -94,22 +93,21 @@ void D_decompresser(FILE *fbCompresse, char *filename) {
             printf("Erreur : problème de lecture. Cela peut être causé par un fichier corrumpu.\n");
             exit(EXIT_FAILURE);
         }
-        if (longueur > 0) { // Cas particulier d'un fichier vide
+        if (longueur > 0) {  // Cas particulier d'un fichier vide
             Statistiques s;
             D_lireStatistiques(fbCompresse, &s);
             ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
-            if (ADH_estUneFeuille(a)) { // Cas particulier d'un fichier contenant un seul octet (présent plusieurs fois ou non)
-                unsigned char octet = O_octetVersNaturel(ADH_obtenirOctet(a));;
+            if (ADH_estUneFeuille(a)) {  // Cas particulier d'un fichier contenant un seul octet (présent plusieurs fois ou non)
+                unsigned char octet = O_octetVersNaturel(ADH_obtenirOctet(a));
+                ;
                 for (unsigned long long i = 1; i <= longueur; i++)
-                    fwrite(&octet, sizeof(unsigned char), 1, fbDecompresse);             
-            }
-            else {
+                    fwrite(&octet, sizeof(unsigned char), 1, fbDecompresse);
+            } else {
                 D_decoder(a, longueur, fbCompresse, fbDecompresse);
             }
             ADH_liberer(a);
         }
-    }
-    else {
+    } else {
         printf("Erreur : identifiant de compression incorrect. Il semble que le fichier ait été compressé à l'origine avec un compresseur différent.");
         exit(EXIT_FAILURE);
     }

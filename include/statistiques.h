@@ -9,12 +9,11 @@
 #ifndef __STATISTIQUES__
 #define __STATISTIQUES__
 
-
 #include "octet.h"
 
 /**
  * \brief Le type Statistiques permet de stocker le nombre d'occurences des 256 octets possiblement présents dans un fichier
- * 
+ *
  */
 typedef unsigned long Statistiques[MAX_OCTET];
 
@@ -54,6 +53,5 @@ void S_fixerOccurence(Statistiques *p_s, Octet o, unsigned long n);
  * \return unsigned long
  */
 unsigned long S_obtenirOccurence(Statistiques s, Octet o);
-
 
 #endif

@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+
 #include "compression.h"
 #include "decompression.h"
 
@@ -16,39 +17,33 @@ int main(int argc, char *argv[]) {
             if (f != NULL) {
                 C_compresser(f, argv[2]);
                 fclose(f);
-            }
-            else {
+            } else {
                 printf("Erreur : fichier inexistant ou corrompu.\n");
                 printUtilisation();
                 exit(EXIT_FAILURE);
             }
-        }
-        else if (strcmp(argv[1], "d") == 0) {
+        } else if (strcmp(argv[1], "d") == 0) {
             if (strstr(argv[2], ".huff") != NULL) {
                 FILE *f = fopen(argv[2], "rb");
                 if (f != NULL) {
                     D_decompresser(f, argv[2]);
                     fclose(f);
-                }
-                else {
+                } else {
                     printf("Erreur : fichier inexistant ou corrompu.\n");
                     printUtilisation();
                     exit(EXIT_FAILURE);
                 }
-            }
-            else {
+            } else {
                 printf("Erreur : impossible de décompresser un fichier non compressé.\n");
                 printUtilisation();
                 exit(EXIT_FAILURE);
             }
-        }
-        else {
+        } else {
             printf("Erreur : deuxième paramètre incorrect.\n");
             printUtilisation();
             exit(EXIT_FAILURE);
         }
-    }
-    else {
+    } else {
         printf("Erreur : nombre de paramètres incorrect.\n");
         printUtilisation();
         exit(EXIT_FAILURE);
