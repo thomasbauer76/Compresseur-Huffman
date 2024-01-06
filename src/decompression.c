@@ -27,18 +27,17 @@ void D_lireStatistiques(FILE *fb, Statistiques *s) {
 
     S_statistiques(s);
     do {
-        // Note : la valeur de type size_t retourner par la fonction fread est le nombre de blocs lus. Si elle est inférieure au nombre de blocs 
-        // à lire indiqué en paramètre c'est que nous sommes arrivés à la fin du fichier ou qu'une erreur est survenue (nous n'avons pas élaboré
-        // ces cas avec des variables d'erreur (que nous ne maitrisons pas forcement) mais un simple (et moche) printf)
+        // Note : la valeur de type size_t retournée par la fonction fread est le nombre de blocs lus. Si elle est inférieure au nombre de blocs 
+        // à lire indiqué en paramètre, c'est que nous sommes arrivés à la fin du fichier ou qu'une erreur est survenue.
         size_t nbBlocsLus = fread(&occurence, sizeof(unsigned long int), 1, fb);
         if (nbBlocsLus < 1) {
-            printf("Erreur035 decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
+            printf("Erreur : problème de lecture. Cela peut être causé par un fichier corrumpu.\n");
             exit(EXIT_FAILURE);
         }
         if(occurence!=0){
             size_t nbBlocsLus = fread(&octet, sizeof(unsigned char), 1, fb);
             if (nbBlocsLus < 1) {
-                printf("Erreur041 decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
+                printf("Erreur : problème de lecture. Cela peut être causé par un fichier corrumpu.\n");
                 exit(EXIT_FAILURE);
             }
             S_fixerOccurence(s,octet,occurence);
@@ -58,7 +57,7 @@ void D_decoder(ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *fbCo
         size_t nbBlocsLus = fread(&o, sizeof(unsigned char), 1, fbCompresse);
         if (nbBlocsLus < 1) {
             printf("Erreur060 decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
-            //exit(EXIT_FAILURE);
+            exit(EXIT_FAILURE);
         }
         for (int i = 0; i < MAX_BITS; i++) {
             if (!finDecodage) { //if qui permet de régler les bugs sur le dernier octets
@@ -85,14 +84,14 @@ void D_decompresser(FILE *fbCompresse, char *filename) {
     unsigned short int identifiant;
     size_t nbBlocsLus = fread(&identifiant, sizeof(unsigned short int), 1, fbCompresse);
     if (nbBlocsLus < 1) {
-        printf("Erreur087 decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
+        printf("Erreur : problème de lecture. Cela peut être causé par un fichier corrumpu.\n");
         exit(EXIT_FAILURE);
     }
     if (identifiant == IDENTIFIANT) {
         unsigned long long int longueur;
         size_t nbBlocsLus = fread(&longueur, sizeof(unsigned long long int), 1, fbCompresse);
         if (nbBlocsLus < 1) {
-            printf("Erreur095 decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
+            printf("Erreur : problème de lecture. Cela peut être causé par un fichier corrumpu.\n");
             exit(EXIT_FAILURE);
         }
         if (longueur > 0) { // Cas particulier d'un fichier vide
