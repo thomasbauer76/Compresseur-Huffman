@@ -431,61 +431,34 @@ void test_decoder(void) {
   //Création du fichier encoder de l'exemple
   FILE *fichierTestEncode = tmpfile();
   TableDeCodage tdc = C_obtenirTableDeCodage(a);
+  rewind(fichierTest);
   C_encoder(fichierTest, fichierTestEncode, tdc);
 
   //On décode ce fichier fraichement encodé
   FILE *fichierTestDecode = tmpfile();
+  rewind(fichierTestEncode);
   D_decoder(a, longueur, fichierTestEncode, fichierTestDecode);
 
   //On regarde si tous les octets entre le fichier original et le fichier decoder sont égaux
   rewind(fichierTest);
   rewind(fichierTestDecode);
   for (unsigned int i=1; i<=longueur; i++) {
+
     unsigned char octetActuelFichierTest;
     size_t nbBlocsLus = fread(&octetActuelFichierTest, sizeof(unsigned char), 1, fichierTest);
     if (nbBlocsLus < 1) {
       printf("Erreur testsFonctionsMetier.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
       exit(EXIT_FAILURE);
     }
+    
     unsigned char octetActuelFichierTestDecode;
     nbBlocsLus = fread(&octetActuelFichierTestDecode, sizeof(unsigned char), 1, fichierTestDecode);
     if (nbBlocsLus < 1) {
       printf("Erreur testsFonctionsMetier.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
       exit(EXIT_FAILURE);
     }
-    switch (octetActuelFichierTest)
-    {
-    // Il y a 4 occurences de A
-    // 2 de B
-    // 3 de C
-    // 2 de D
-    // 1 de E
-    // 1 de F
-    // 2 de G
-    case 'A':
-      CU_ASSERT((octetActuelFichierTest == 'A'));
-      break;
-    case 'B':
-      CU_ASSERT((octetActuelFichierTest == 'B'));
-      break;
-    case 'C':
-      CU_ASSERT((octetActuelFichierTest == 'C'));
-      break;
-    case 'D':
-      CU_ASSERT((octetActuelFichierTest == 'D'));
-      break;
-    case 'E':
-      CU_ASSERT((octetActuelFichierTest == 'E'));
-      break;
-    case 'F':
-      CU_ASSERT((octetActuelFichierTest == 'F'));
-      break;
-    case 'G':
-      CU_ASSERT((octetActuelFichierTest == 'G'));
-      break;    
-    default:
-      break;
-    }
+
+    CU_ASSERT_EQUAL(octetActuelFichierTest, octetActuelFichierTestDecode);
   }
   
 }
