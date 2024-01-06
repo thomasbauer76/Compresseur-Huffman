@@ -135,9 +135,7 @@ void test_code_binaire_8_bits_vers_octet(void) {
   
   Octet otest = C_codeBinaireEnOctet(cb);
 
-
-  for (i = 0; i < MAX_BITS; i++)
-    CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, i), O_obtenirIemeBit(otest, i));
+  CU_ASSERT_EQUAL(O_octetVersNaturel(o), O_octetVersNaturel(otest));
 }
 
 void test_ecrire_identifiant(void) {
@@ -450,7 +448,7 @@ void test_decoder(void) {
       printf("Erreur testsFonctionsMetier.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
       exit(EXIT_FAILURE);
     }
-    
+
     unsigned char octetActuelFichierTestDecode;
     nbBlocsLus = fread(&octetActuelFichierTestDecode, sizeof(unsigned char), 1, fichierTestDecode);
     if (nbBlocsLus < 1) {
@@ -471,7 +469,24 @@ int main(int argc, char** argv){
     return CU_get_error();
 
 
-  /* ajout d'une suite de test pour compression.c et construireArbreDeHuffman.c */
+  /* ajout d'une suite de test pour construireArbreDeHuffman.c*/
+  CU_pSuite pSuiteConstruireArbreDeHuffman = CU_add_suite("Test construction de l'Arbre de Huffman", init_suite_success, clean_suite_success);
+  if (NULL == pSuiteConstruireArbreDeHuffman) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
+  /* Ajout des tests à la suite compression */
+  if ((NULL == CU_add_test(pSuiteConstruireArbreDeHuffman, "Construction de la file de priorité à partir des statistiques", test_file_de_priorite))
+    || (NULL == CU_add_test(pSuiteConstruireArbreDeHuffman, "Construction de l'arbre de Huffman à partir des statistiques", test_arbre_de_huffman))
+      ) 
+    {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
+
+
+  /* ajout d'une suite de test pour compression.c */
   CU_pSuite pSuiteCompression = CU_add_suite("Test compression", init_suite_success, clean_suite_success);
   if (NULL == pSuiteCompression) {
     CU_cleanup_registry();
@@ -481,8 +496,6 @@ int main(int argc, char** argv){
   /* Ajout des tests à la suite compression */
   if ((NULL == CU_add_test(pSuiteCompression, "Obtention des statistiques d'un fichier", test_obtenir_statistiques))
     || (NULL == CU_add_test(pSuiteCompression, "Obtention de la taille d'un fichier", test_obtenir_taille_fichier))
-    || (NULL == CU_add_test(pSuiteCompression, "Construction de la file de priorité à partir des statistiques", test_file_de_priorite))
-    || (NULL == CU_add_test(pSuiteCompression, "Construction de l'arbre de Huffman à partir des statistiques", test_arbre_de_huffman))
     || (NULL == CU_add_test(pSuiteCompression, "Obtention de la table de codage à partir de l'arbre de huffman", test_table_de_codage))
     || (NULL == CU_add_test(pSuiteCompression, "Conversion d'un code binaire de 8 bits vers un octet", test_code_binaire_8_bits_vers_octet))
     || (NULL == CU_add_test(pSuiteCompression, "ecrire un identifiant dans un fichier ", test_ecrire_identifiant))
@@ -504,9 +517,9 @@ int main(int argc, char** argv){
   }
 
   /* Ajout des tests à la suite decompression */
-  if ((NULL == CU_add_test(pSuiteDecompression, "lecture des statistique et verification ", test_lire_statistiques))
+  if ((NULL == CU_add_test(pSuiteDecompression, "Lecture des statistiques", test_lire_statistiques))
     || (NULL == CU_add_test(pSuiteDecompression, "3 tests arbitraires pour D_seDeplacerDansLArbre", test_seDeplacerDansLArbre))
-    || (NULL == CU_add_test(pSuiteDecompression, "Decodage d'un fichier et vérification que ça a marché", test_decoder))
+    || (NULL == CU_add_test(pSuiteDecompression, "Decodage d'un fichier", test_decoder))
       ) 
     {
       CU_cleanup_registry();
