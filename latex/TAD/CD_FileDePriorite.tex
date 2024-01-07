@@ -3,11 +3,11 @@
     {temp : \textbf{FileDePriorite}}
     {
          \sialorssinon{estVide(fdp) ou e $<$ fdp\motclefDereferencer .element}
-         {
-            \affecter{temp}{fdp}
-            \instruction{\allouer{fdp}}
-            \affecter{fdp\motclefDereferencer .element}{e}
-            \affecter{fdp\motclefDereferencer .fileSuivante}{temp}
+         { 
+            \instruction{\allouer{temp}}
+            \affecter{temp\motclefDereferencer .element}{e}
+            \affecter{temp\motclefDereferencer .fileSuivante}{fdp}
+            \affecter{fdp}{temp}            
          }
          {
             \instruction{\textbf{enfiler}(fdp\motclefDereferencer .fileSuivante, e)}{}
