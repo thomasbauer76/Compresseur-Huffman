@@ -22,8 +22,8 @@ void D_seDeplacerDansLArbre(O_Bit b, ADH_ArbreDeHuffman *a) {
 }
 
 void D_lireStatistiques(FILE *fb, S_Statistiques *s) {
-    O_Octet octet;
-    unsigned long int occurence;
+    unsigned char octet;
+    unsigned long occurence;
 
     S_statistiques(s);
     do {
@@ -40,7 +40,7 @@ void D_lireStatistiques(FILE *fb, S_Statistiques *s) {
                 printf("Erreur : problème de lecture. Cela peut être causé par un fichier corrumpu.\n");
                 exit(EXIT_FAILURE);
             }
-            S_fixerOccurence(s, octet, occurence);
+            S_fixerOccurence(s, O_naturelVersOctet(octet), occurence);
         }
 
     } while (occurence != 0);
@@ -52,7 +52,7 @@ void D_decoder(ADH_ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *
     unsigned long long int compteurOctetsDecodes = 0;
     bool finDecodage = false;
     while (!finDecodage) {
-        O_Octet o;
+        unsigned char o;
         size_t nbBlocsLus = fread(&o, sizeof(unsigned char), 1, fbCompresse);
         if (nbBlocsLus < 1) {
             printf("Erreur060 decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
@@ -60,7 +60,7 @@ void D_decoder(ADH_ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *
         }
         for (int i = 0; i < MAX_BITS; i++) {
             if (!finDecodage) {  // if qui permet de régler les bugs sur le dernier octets
-                O_Bit b = O_obtenirIemeBit(o, i);
+                O_Bit b = O_obtenirIemeBit(O_naturelVersOctet(o), i);
                 D_seDeplacerDansLArbre(b, &aTemp);
                 if (ADH_estUneFeuille(aTemp)) {
                     O_Octet oDecode = ADH_obtenirOctet(aTemp);
@@ -99,7 +99,6 @@ void D_decompresser(FILE *fbCompresse, char *filename) {
             ADH_ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
             if (ADH_estUneFeuille(a)) {  // Cas particulier d'un fichier contenant un seul octet (présent plusieurs fois ou non)
                 unsigned char octet = O_octetVersNaturel(ADH_obtenirOctet(a));
-                ;
                 for (unsigned long long i = 1; i <= longueur; i++)
                     fwrite(&octet, sizeof(unsigned char), 1, fbDecompresse);
             } else {

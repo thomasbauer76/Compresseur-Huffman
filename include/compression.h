@@ -5,6 +5,7 @@
  * \date 07/01/2024
  *
  */
+
 #ifndef __COMPRESSION__
 #define __COMPRESSION__
 
@@ -12,12 +13,13 @@
 #include <stdio.h>
 
 #define IDENTIFIANT 1000
+
 /**
  * \fn C_Compresser(FILE *f, char *filename)
- * \brief Fonction permettant la compression d'un fichier, dont le nom est donné en entrée afin de reduire le nombre d'octet à la décompression en gardant exactement les mêmes données. 
+ * \brief Fonction permettant la compression d'un fichier par la méthode du codage de Huffman 
  *
- * \param f : le FichierBinaire initiale
- * \param filename : le nom du FichierBinaire compressé
+ * \param f : le fichier à compresser
+ * \param filename : le nom du fichier à compresser
  */
 void C_compresser(FILE *f, char *filename);
 

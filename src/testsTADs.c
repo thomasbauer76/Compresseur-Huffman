@@ -262,7 +262,9 @@ int main(int argc, char** argv) {
     }
 
     /* Ajout des tests à la suite octet */
-    if ((NULL == CU_add_test(pSuiteOctet, "Création d'un octet", test_creer_octet)) || (NULL == CU_add_test(pSuiteOctet, "Obtention du ième bit d'un octet", test_obtenir_ieme_bit)) || (NULL == CU_add_test(pSuiteOctet, "Naturel vers octet", test_naturel_vers_octet))) {
+    if ((NULL == CU_add_test(pSuiteOctet, "Création d'un octet", test_creer_octet)) 
+    || (NULL == CU_add_test(pSuiteOctet, "Obtention du ième bit d'un octet", test_obtenir_ieme_bit)) 
+    || (NULL == CU_add_test(pSuiteOctet, "Naturel vers octet", test_naturel_vers_octet))) {
         CU_cleanup_registry();
         return CU_get_error();
     }
@@ -275,7 +277,9 @@ int main(int argc, char** argv) {
     }
 
     /* Ajout des tests à la suite statistiques */
-    if ((NULL == CU_add_test(pSuiteStatistiques, "Création des statistiques aux occurences vides", test_statistiques_vides)) || (NULL == CU_add_test(pSuiteStatistiques, "Incrementation de l'occurence d'un octet", test_statistiques_incrementees)) || (NULL == CU_add_test(pSuiteStatistiques, "Fixer le nombre d'occurences d'un octet", test_statistiques_fixer_occurence))) {
+    if ((NULL == CU_add_test(pSuiteStatistiques, "Création des statistiques aux occurences vides", test_statistiques_vides)) 
+    || (NULL == CU_add_test(pSuiteStatistiques, "Incrementation de l'occurence d'un octet", test_statistiques_incrementees)) 
+    || (NULL == CU_add_test(pSuiteStatistiques, "Fixer le nombre d'occurences d'un octet", test_statistiques_fixer_occurence))) {
         CU_cleanup_registry();
         return CU_get_error();
     }
@@ -288,7 +292,8 @@ int main(int argc, char** argv) {
     }
 
     /* Ajout des tests à la suite codeBinaire */
-    if ((NULL == CU_add_test(pSuiteCodeBinaire, "Creation Code Binaire", test_creation_codebinaire)) || (NULL == CU_add_test(pSuiteCodeBinaire, "Ajout d'un bit", test_ajout_bit))) {
+    if ((NULL == CU_add_test(pSuiteCodeBinaire, "Creation Code Binaire", test_creation_codebinaire)) 
+    || (NULL == CU_add_test(pSuiteCodeBinaire, "Ajout d'un bit", test_ajout_bit))) {
         CU_cleanup_registry();
         return CU_get_error();
     }
@@ -301,7 +306,9 @@ int main(int argc, char** argv) {
     }
 
     /* Ajout des tests à la suite FileDePriorite*/
-    if ((NULL == CU_add_test(pSuiteFileDePriorite, "Création d'une File De Priorité vide", test_creation_filedePriorite_vide)) || (NULL == CU_add_test(pSuiteFileDePriorite, "Enfiler des éléments dans une File De Priorité ", test_enfiler)) || (NULL == CU_add_test(pSuiteFileDePriorite, "Obtenir un élément et défiler la File De Priorité", test_obtenir_element_et_defiler))) {
+    if ((NULL == CU_add_test(pSuiteFileDePriorite, "Création d'une File De Priorité vide", test_creation_filedePriorite_vide)) 
+    || (NULL == CU_add_test(pSuiteFileDePriorite, "Enfiler des éléments dans une File De Priorité ", test_enfiler)) 
+    || (NULL == CU_add_test(pSuiteFileDePriorite, "Obtenir un élément et défiler la File De Priorité", test_obtenir_element_et_defiler))) {
         CU_cleanup_registry();
         return CU_get_error();
     }
@@ -314,7 +321,9 @@ int main(int argc, char** argv) {
     }
 
     /* ajout des tests à la suite tableDeCodage */
-    if ((NULL == CU_add_test(pTableDeCodage, "Création d'une tableDeCodage 'vide'", test_creerTableCodage)) || (NULL == CU_add_test(pTableDeCodage, "Vérifications multiples après l'ajout de 2 CodeBinaire de tailles différentes dans la TableDeCodage", test_ajouterCodage)) || (NULL == CU_add_test(pTableDeCodage, "Vérifications de la récupération d'un CodeBinaire après une unique insertion dans la TableDeCodage", test_octetVersCodeBinaire))) {
+    if ((NULL == CU_add_test(pTableDeCodage, "Création d'une tableDeCodage 'vide'", test_creerTableCodage)) 
+    || (NULL == CU_add_test(pTableDeCodage, "Vérifications multiples après l'ajout de 2 CodeBinaire de tailles différentes dans la TableDeCodage", test_ajouterCodage)) 
+    || (NULL == CU_add_test(pTableDeCodage, "Vérifications de la récupération d'un CodeBinaire après une unique insertion dans la TableDeCodage", test_octetVersCodeBinaire))) {
         CU_cleanup_registry();
         return CU_get_error();
     }
@@ -327,7 +336,8 @@ int main(int argc, char** argv) {
     }
 
     /* Ajout des tests à la suite arbreDeHuffman */
-    if ((NULL == CU_add_test(pSuiteArbreDeHuffman, "Creation d'un arbre de Huffman feuille à partir d'un octet et une occurence", test_creation_arbre_de_huffman_feuille)) || (NULL == CU_add_test(pSuiteArbreDeHuffman, "Fusion de deux feuilles pour créer un arbre de Huffman", test_fusionner_ADH))) {
+    if ((NULL == CU_add_test(pSuiteArbreDeHuffman, "Creation d'un arbre de Huffman feuille à partir d'un octet et une occurence", test_creation_arbre_de_huffman_feuille)) 
+    || (NULL == CU_add_test(pSuiteArbreDeHuffman, "Fusion de deux feuilles pour créer un arbre de Huffman", test_fusionner_ADH))) {
         CU_cleanup_registry();
         return CU_get_error();
     }
