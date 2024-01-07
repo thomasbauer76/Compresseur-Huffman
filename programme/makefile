@@ -26,6 +26,8 @@ TESTS_OBJS=$(filter-out $(SRCDIR)/main.o, $(OBJS))
 TESTS_TADS_OBJS=$(filter-out $(SRCDIR)/testsFonctionsMetier.o $(SRCDIR)/compression.o $(SRCDIR)/decompression.o, $(TESTS_OBJS))
 TESTS_FONCTIONS_METIER_OBJS=$(filter-out $(SRCDIR)/testsTADs.o $(SRCDIR)/compression.o $(SRCDIR)/decompression.o, $(TESTS_OBJS))
 
+.PHONY: pdf doc clean
+
 all : $(MAIN_OBJS)
 	$(CC) -o $(BINDIR)/$(EXE) $(MAIN_OBJS) $(LDFLAGS)
 
@@ -42,7 +44,6 @@ pdf :
 	rm -rf ./$(LATEXDIR)/_minted-main ./$(LATEXDIR)/*.aux ./$(LATEXDIR)/*.log ./$(LATEXDIR)/*.toc ./$(LATEXDIR)/*.out
 	mv $(LATEXDIR)/$(LATEX_MAIN:.tex=.pdf) $(RAPPORTDIR)/$(NOMS_RAPPORT).pdf
 
-.PHONY: doc
 doc:
 	doxygen $(DOCDIR)/$(DOXYFILE_NAME)
 	cd $(DOCDIR)/latex; make; cd ../../
