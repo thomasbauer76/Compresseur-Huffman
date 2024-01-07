@@ -1,6 +1,6 @@
 \begin{algorithme}
-    \signatureFonction{fileDePriorite}{}{FileDePriorite}{}
-    \signatureFonction{estVide}{fdp : FileDePriorite}{Booléen}{}
-    \signatureProcedure{enfiler}{E/S fdp : FileDePriorite, E e : Element}{}
-    \signatureProcedure{obtenirElementEtDefiler}{E/S fdp : FileDePriorite, S Element}{non(estVide(fdp))}
+    \signatureFonction{fileDePriorite}{}{\filedepriorite}{}
+    \signatureFonction{estVide}{fdp : \filedepriorite}{Booléen}{}
+    \signatureProcedure{enfiler}{\paramEntreeSortie{fdp : \filedepriorite}, \paramEntree{e : \textbf{Element}}}{}
+    \signatureProcedure{obtenirElementEtDefiler}{\paramEntreeSortie{fdp : \filedepriorite}, \paramSortie{e : Element}}{non(estVide(fdp))}
 \end{algorithme}
