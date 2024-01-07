@@ -14,7 +14,9 @@
         {
             \instruction{ecrireStatistiques(fbCompresse, s)}
             \affecter{a}{construireArbreDeHuffman(s)}
-            \instruction{encoder(fb, obtenirTableDeCodage(a), fCompresse)}
+            \sialors{non(estUneFeuille(a))}{
+                \instruction{encoder(fb, obtenirTableDeCodage(a), fCompresse)}
+            }
             \instruction{liberer(a)}
         }
         \\
