@@ -59,4 +59,14 @@
     {
         \retourner{a\motclefDereferencer .filsDroit}
     }
+    \\
+    \procedure{liberer}{\paramEntree{arbre : \arbredehuffman}}{}{}
+    {
+        \sialors{non(estUneFeuille(arbre))}
+        {
+            \instruction{liberer(obtenirFilsGauche(arbre))}
+            \instruction{liberer(obtenirFilsDroit(arbre))}
+        }
+        \instruction{desallouer(arbre)}
+    }
 \end{algorithme}

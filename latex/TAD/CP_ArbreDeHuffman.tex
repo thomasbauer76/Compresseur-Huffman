@@ -4,7 +4,6 @@
     {o : \textbf{Octet}, n : \textbf{Naturel}}
     {\textbf{ArbreDeHuffman}}{}
     \signatureFonction{fusionner}{ag : ArbreDeHuffman, ad : ArbreDeHuffman} {\textbf{ArbreDeHuffman}}{}
-    
     \signatureFonction{estUneFeuille}{a: ArbreDeHuffman}
     {\textbf{Booleen}}{}
     \signatureFonction{obtenirOctect}
@@ -13,11 +12,12 @@
     \signatureFonction{obtenirFrequence}
     {a: ArbreDeHuffman}
     {\textbf{Naturel}}{}
-     \signatureFonction{obtenirFilsGauche}
+    \signatureFonction{obtenirFilsGauche}
     {a: ArbreDeHuffman}
     {\textbf{ArbreDeHuffman}}{non(estUneFeuille(a))}
-      \signatureFonction{obtenirFilsDroit}
+    \signatureFonction{obtenirFilsDroit}
     {a: ArbreDeHuffman}
     {\textbf{ArbreDeHuffman}}{non(estUneFeuille(a))}
+    \signatureProcedure{liberer}{\paramEntree{arbre : \arbredehuffman}}{}\commentaire{Procédure métier permettant de libérer un arbre de Huffman de la mémoire}
     
 \end{algorithme}

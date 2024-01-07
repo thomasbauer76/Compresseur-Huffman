@@ -3,11 +3,7 @@
     {}
     {cbTemp, cb: \codebinaire, o : \octet, i : \naturel}
     {
-		\sialors{estOuvert(fbInitial)}
-        {
-            \instruction{fermer(fbInitial)}
-        }
-        \instruction{ouvrir(fbInitial, lecture)}
+		\instruction{positionnerAuDebut(f)}
 		\\
         \affecter{cbTemp}{creerCodeBinaire(bitA0)}
         \pour{i}{ 1}{7}{}{\instruction{ajouterBit(cbTemp,bitA0)}}
