@@ -59,7 +59,8 @@ rapport/latex/*.aux
 rapport/latex/*.log
 programme/bin/*
 programme/tests/*
+programme/doc/html
+programme/doc/latex
 *.gz
-programme/doc
 *.html
 *.js

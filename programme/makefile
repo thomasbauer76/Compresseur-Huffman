@@ -4,7 +4,7 @@ EXE_TESTS_FONCTIONS_METIER=testsFonctionsMetier
 
 NOMS_RAPPORT=Bauer-Hamdani-Ouathrani-Saunier
 LATEX_MAIN=main.tex
-DOXYFILE_NAME=doxyfile
+DOXYFILE_NAME=Doxyfile
 
 BINDIR=bin
 SRCDIR=src
@@ -42,8 +42,9 @@ pdf :
 	rm -rf ./$(LATEXDIR)/_minted-main ./$(LATEXDIR)/*.aux ./$(LATEXDIR)/*.log ./$(LATEXDIR)/*.toc ./$(LATEXDIR)/*.out
 	mv $(LATEXDIR)/$(LATEX_MAIN:.tex=.pdf) $(RAPPORTDIR)/$(NOMS_RAPPORT).pdf
 
+.PHONY: doc
 doc:
-	doxygen $(DOXYFILE_NAME)
+	doxygen $(DOCDIR)/$(DOXYFILE_NAME)
 	cd $(DOCDIR)/latex; make; cd ../../
 
 clean :
