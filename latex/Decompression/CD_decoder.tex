@@ -1,17 +1,22 @@
 \begin{algorithme}
-\procedure{decoder}{\paramEntree{aHuff: \arbredehuffman}, \paramEntreeSortie{fb1 : \fichierbinaire, fb2 : \fichierbinaire}}{estOuvert(fb1) et (mode(fb1) $=$ lecture) et estOuvert(fb2) et (mode(fb2) $=$ écriture)}{}
+\procedure{decoder}{\paramEntree{aHuff: \arbredehuffman, longueur : \naturel}, \paramEntreeSortie{fb1 : \fichierbinaire, fb2 : \fichierbinaire}}{estOuvert(fb1) et (mode(fb1) $=$ lecture) et estOuvert(fb2) et (mode(fb2) $=$ écriture)}{aTemp : \arbredehuffman, finDecodage : \booleen, OctetCourant, octetDecodé : \octet, bit : \bit, compteurOctetsDecodes : \naturel}
 {
-	\affecter{atemp}{aHuff}
-	\tantque{non(finFichier(fb1))}
+	\affecter{aTemp}{aHuff}
+	\affecter{finDecodage}{FAUX}
+	\affecter{compteurOctetsDecodes}{0}
+	\instruction{positionnerAuDebut(fb1)}
+	\tantque{non(finDecodage))}
 	{
 		\affecter{OctetCourant}{lireOctet(fb1)}
 		\pour{i}{0}{7}{}{
 			\affecter{bit}{ObtenirIemebit(OctetCourant,i)}
-			\instruction{seDeplacerDansArbre(atemp,bit)}
-			\sialors{estUneFeuille(atemp)}{
+			\instruction{seDeplacerDansArbre(aTemp,bit)}
+			\sialors{estUneFeuille(aTemp)}{
 				\affecter{octetDecodé}{obtenirOctet(arbreCourant)}
 				\instruction{ecrireOctet(octetDecodé, fb2)}
 				\affecter{aTemp}{aHuff}
+				\affecter{compteurOctetsDecodes}{compteurOctetsDecodes + 1}
+				\affecter{finDecodage}{(compteurOctetsDecodes = longueur)}
 				}
 			}
 		}
