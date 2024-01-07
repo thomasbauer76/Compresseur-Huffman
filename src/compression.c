@@ -33,13 +33,13 @@ void C_obtenirStatistiquesEtTailleFichier(FILE *f, Statistiques *s, unsigned lon
     }
 }
 
-void C_obtenirTableDeCodageRecursif(TableDeCodage *tdc, ADH_ArbreDeHuffman a, CodeBinaire cb) {
-    CodeBinaire cbCopie;
+void C_obtenirTableDeCodageRecursif(TableDeCodage *tdc, ADH_ArbreDeHuffman a, CB_CodeBinaire cb) {
+    CB_CodeBinaire cbCopie;
 
     if (ADH_estUneFeuille(a)) {
         TDC_ajouterCodage(tdc, ADH_obtenirOctet(a), cb);
     } else {
-        memcpy(&cbCopie, &cb, sizeof(CodeBinaire));
+        memcpy(&cbCopie, &cb, sizeof(CB_CodeBinaire));
 
         CB_ajouterBit(&cbCopie, bitA0);
         C_obtenirTableDeCodageRecursif(tdc, ADH_obtenirFilsGauche(a), cbCopie);
@@ -53,8 +53,8 @@ TableDeCodage C_obtenirTableDeCodage(ADH_ArbreDeHuffman a) {
 
     TableDeCodage tdc = TDC_creerTableCodage();
 
-    CodeBinaire cbGauche = CB_creerCodeBinaire(bitA0);
-    CodeBinaire cbDroit = CB_creerCodeBinaire(bitA1);
+    CB_CodeBinaire cbGauche = CB_creerCodeBinaire(bitA0);
+    CB_CodeBinaire cbDroit = CB_creerCodeBinaire(bitA1);
     C_obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsGauche(a), cbGauche);
     C_obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsDroit(a), cbDroit);
 
@@ -87,7 +87,7 @@ void C_ecrireStatistiques(FILE *f, Statistiques s) {
     fwrite(&occurence, sizeof(unsigned long), 1, f);
 }
 
-Octet C_codeBinaireEnOctet(CodeBinaire cb) {
+Octet C_codeBinaireEnOctet(CB_CodeBinaire cb) {
     assert(CB_obtenirLongueur(cb) == MAX_BITS);
     return O_creerOctet(CB_obtenirIemeBit(cb, 7),
                         CB_obtenirIemeBit(cb, 6),
@@ -99,7 +99,7 @@ Octet C_codeBinaireEnOctet(CodeBinaire cb) {
                         CB_obtenirIemeBit(cb, 0));
 }
 
-void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBinaire cb) {
+void C_concatenerCodeBinaireDansFichier(FILE *f, CB_CodeBinaire *p_cbTemp, CB_CodeBinaire cb) {
     unsigned short i = 0;
     unsigned short tailleCb = CB_obtenirLongueur(cb);
 
@@ -126,12 +126,12 @@ void C_encoder(FILE *f, FILE *fbCompresse, TableDeCodage tdc) {
     rewind(f);
 
     // Création d'un code binaire temporaire initalisé à 8 bits pour rentrer dans la première condition de la fonction concatenerCodeBinaireEnOctet
-    CodeBinaire cbTemp = CB_creerCodeBinaire(bitA0);
+    CB_CodeBinaire cbTemp = CB_creerCodeBinaire(bitA0);
     for (i = 1; i < MAX_BITS; i++)
         CB_ajouterBit(&cbTemp, bitA0);
 
     // Boucle d'encodage
-    CodeBinaire cb;
+    CB_CodeBinaire cb;
     short o;
     while ((o = fgetc(f)) != EOF) {
         cb = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet(o));

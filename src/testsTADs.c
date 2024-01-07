@@ -56,13 +56,13 @@ void test_statistiques_fixer_occurence(void) {
 
 void test_creation_codebinaire(void) {
     Bit b = bitA0;
-    CodeBinaire cb = CB_creerCodeBinaire(b);
+    CB_CodeBinaire cb = CB_creerCodeBinaire(b);
     CU_ASSERT_EQUAL(CB_obtenirLongueur(cb), 1);
     CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, 0), b);
 }
 
 void test_ajout_bit(void) {
-    CodeBinaire cb = CB_creerCodeBinaire(bitA0);
+    CB_CodeBinaire cb = CB_creerCodeBinaire(bitA0);
     unsigned short ancienneLongueur = CB_obtenirLongueur(cb);
     Bit b = bitA1;
     CB_ajouterBit(&cb, b);
@@ -164,9 +164,9 @@ void test_creerTableCodage(void) {
 
 void test_ajouterCodage(void) {
     TableDeCodage tdc = TDC_creerTableCodage();
-    CodeBinaire cb_42_test = CB_creerCodeBinaire(bitA1);
+    CB_CodeBinaire cb_42_test = CB_creerCodeBinaire(bitA1);
     TDC_ajouterCodage(&tdc, O_naturelVersOctet(42), cb_42_test);
-    CodeBinaire cb_43_test = CB_creerCodeBinaire(bitA1);
+    CB_CodeBinaire cb_43_test = CB_creerCodeBinaire(bitA1);
     CB_ajouterBit(&cb_43_test, bitA0);
     TDC_ajouterCodage(&tdc, O_naturelVersOctet(43), cb_43_test);
 
@@ -174,13 +174,13 @@ void test_ajouterCodage(void) {
     do {
         if (i == 42) {
             CU_ASSERT(TDC_octetPresent(tdc, O_naturelVersOctet(i)));
-            CodeBinaire cb_42_lu = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet(i));
+            CB_CodeBinaire cb_42_lu = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet(i));
             CU_ASSERT((CB_obtenirIemeBit(cb_42_lu, 0) == CB_obtenirIemeBit(cb_42_test, 0)));
             CU_ASSERT((CB_obtenirLongueur(cb_42_lu) == CB_obtenirLongueur(cb_42_test)));
             CU_ASSERT((CB_obtenirLongueur(cb_42_lu) == 1));
         } else if (i == 43) {
             CU_ASSERT(TDC_octetPresent(tdc, O_naturelVersOctet(i)));
-            CodeBinaire cb_43_lu = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet(i));
+            CB_CodeBinaire cb_43_lu = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet(i));
             CU_ASSERT((CB_obtenirIemeBit(cb_43_lu, 0) == CB_obtenirIemeBit(cb_43_test, 0)));
             CU_ASSERT((CB_obtenirIemeBit(cb_43_lu, 1) == CB_obtenirIemeBit(cb_43_test, 1)));
             CU_ASSERT((CB_obtenirLongueur(cb_43_lu) == CB_obtenirLongueur(cb_43_test)));
@@ -194,13 +194,13 @@ void test_ajouterCodage(void) {
 
 void test_octetVersCodeBinaire(void) {
     TableDeCodage tdc = TDC_creerTableCodage();
-    CodeBinaire cb_42_test = CB_creerCodeBinaire(bitA1);
+    CB_CodeBinaire cb_42_test = CB_creerCodeBinaire(bitA1);
     TDC_ajouterCodage(&tdc, O_naturelVersOctet(42), cb_42_test);
     unsigned char i = 0;
     do {
         if (i == 42) {
             CU_ASSERT(TDC_octetPresent(tdc, O_naturelVersOctet(i)));
-            CodeBinaire cb = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet(42));
+            CB_CodeBinaire cb = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet(42));
             CU_ASSERT((CB_obtenirIemeBit(cb, 0) == bitA1));
             CU_ASSERT((CB_obtenirLongueur(cb) == 1));
         } else {

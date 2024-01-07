@@ -112,7 +112,7 @@ void test_table_de_codage(void) {
 
     TableDeCodage tdc = C_obtenirTableDeCodage(a);
 
-    CodeBinaire cb;
+    CB_CodeBinaire cb;
 
     // On effectue un test sur 3 octets
     cb = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet('A'));
@@ -137,7 +137,7 @@ void test_code_binaire_8_bits_vers_octet(void) {
 
     Octet o = O_naturelVersOctet('K');
 
-    CodeBinaire cb = CB_creerCodeBinaire(O_obtenirIemeBit(o, 0));
+    CB_CodeBinaire cb = CB_creerCodeBinaire(O_obtenirIemeBit(o, 0));
     for (i = 1; i < MAX_BITS; i++)
         CB_ajouterBit(&cb, O_obtenirIemeBit(o, i));
 
@@ -276,12 +276,12 @@ void test_concatener_codes_binaires(void) {
     fclose(tempFileEntree);
     FILE *tempFileSortie = tmpfile();
 
-    CodeBinaire cbTemp = CB_creerCodeBinaire(bitA0);
+    CB_CodeBinaire cbTemp = CB_creerCodeBinaire(bitA0);
     for (i = 1; i < MAX_BITS; i++)
         CB_ajouterBit(&cbTemp, bitA0);
 
     // Boucle d'encodage
-    CodeBinaire cb;
+    CB_CodeBinaire cb;
     short o;
     while ((o = fgetc(tempFileEntree)) != EOF) {
         cb = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet(o));

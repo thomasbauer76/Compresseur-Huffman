@@ -7,13 +7,13 @@
 #include "octet.h"
 
 typedef struct TableDeCodage {
-    CodeBinaire tableDeCodeBinaire[MAX_OCTET];
+    CB_CodeBinaire tableDeCodeBinaire[MAX_OCTET];
     bool tableDePresence[MAX_OCTET];
 } TableDeCodage;
 
 TableDeCodage TDC_creerTableCodage();
-void TDC_ajouterCodage(TableDeCodage* p_tdc, Octet o, CodeBinaire cb);
-CodeBinaire TDC_octetVersCodeBinaire(TableDeCodage tdc, Octet o);
+void TDC_ajouterCodage(TableDeCodage* p_tdc, Octet o, CB_CodeBinaire cb);
+CB_CodeBinaire TDC_octetVersCodeBinaire(TableDeCodage tdc, Octet o);
 bool TDC_octetPresent(TableDeCodage tdc, Octet o);
 
 #endif

@@ -13,50 +13,50 @@
 
 #define MAX_CB (8 * sizeof(unsigned long long))
 /**
- * \brief Le type CodeBinaire permet de stocker des bits à la suite
+ * \brief Le type CB_CodeBinaire permet de stocker des bits à la suite
  *
  */
 
-typedef struct CodeBinaire {
+typedef struct CB_CodeBinaire {
     unsigned long long codeBinaire; /**< les octets (stockés sous forme de naturel) contenant ces bits */
     unsigned short nbBits;          /**< le nombre de bits du code binaire */
-} CodeBinaire;
+} CB_CodeBinaire;
 
 /**
- * \fn CodeBinaire CB_creerCodeBinaire(Bit b)
+ * \fn CB_CodeBinaire CB_creerCodeBinaire(Bit b)
  * \brief Fonction de création d'un code binaire à 1 bit
  *
  * \param b : le bit
- * \return CodeBinaire
+ * \return CB_CodeBinaire
  */
-CodeBinaire CB_creerCodeBinaire(Bit b);
+CB_CodeBinaire CB_creerCodeBinaire(Bit b);
 
 /**
- * \fn void CB_ajouterBit(CodeBinaire *p_cb, Bit b)
+ * \fn void CB_ajouterBit(CB_CodeBinaire *p_cb, Bit b)
  * \brief Procédure permettant d'ajouter un bit à un code binaire
  *
  * \param p_cb : un pointeur sur le code binaire à modifier
  * \param b : le bit à ajouter
  */
-void CB_ajouterBit(CodeBinaire *p_cb, Bit b);
+void CB_ajouterBit(CB_CodeBinaire *p_cb, Bit b);
 
 /**
- * \fn Bit CB_obtenirIemeBit(CodeBinaire cb, unsigned short i)
+ * \fn Bit CB_obtenirIemeBit(CB_CodeBinaire cb, unsigned short i)
  * \brief Fonction permettant de retourner le bit à d'indice i d'un code binaire
  *
  * \param cb : le code binaire
  * \param i : l'indice du bit à retourner
- * \return CodeBinaire
+ * \return CB_CodeBinaire
  */
-Bit CB_obtenirIemeBit(CodeBinaire cb, unsigned short i);
+Bit CB_obtenirIemeBit(CB_CodeBinaire cb, unsigned short i);
 
 /**
- * \fn unsigned short CB_obtenirLongueur(CodeBinaire cb)
+ * \fn unsigned short CB_obtenirLongueur(CB_CodeBinaire cb)
  * \brief Fonction permettant d'obtenir le nombre de bits présents dans un code binaire
  *
  * \param cb : le code binaire
  * \return unsigned short
  */
-unsigned short CB_obtenirLongueur(CodeBinaire cb);
+unsigned short CB_obtenirLongueur(CB_CodeBinaire cb);
 
 #endif

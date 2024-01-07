@@ -52,7 +52,7 @@ Octet O_creerOctet(Bit b7, Bit b6, Bit b5, Bit b4, Bit b3, Bit b2, Bit b1, Bit b
 Bit O_obtenirIemeBit(Octet o, unsigned short i);
 
 /**
- * \fn CodeBinaire CB_creerCodeBinaire(Bit b)
+ * \fn CB_CodeBinaire CB_creerCodeBinaire(Bit b)
  * \brief Fonction qui retourne le naturel associé à l'octet o
  *
  * \param o : un octet de 8 bits
