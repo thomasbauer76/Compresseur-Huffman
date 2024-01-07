@@ -8,7 +8,6 @@
 #ifndef __TABLE_DE_CODAGE__
 #define __TABLE_DE_CODAGE__
 
-
 #include <stdbool.h>
 
 #include "codeBinaire.h"
@@ -18,8 +17,8 @@
  *
  */
 typedef struct TDC_TableDeCodage {
-    CB_CodeBinaire tableDeCodeBinaire[MAX_OCTET];
-    bool tableDePresence[MAX_OCTET];
+    CB_CodeBinaire tableDeCodeBinaire[MAX_OCTET];   /**< le tableau contenant les codes binaires */
+    bool tableDePresence[MAX_OCTET];                /**< le tableau permettant de connaître la présence ou non des codes binaires */
 } TDC_TableDeCodage;
 
 /**
