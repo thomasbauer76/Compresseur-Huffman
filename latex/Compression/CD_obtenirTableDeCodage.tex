@@ -17,24 +17,16 @@
     }
     
     \fonction{obtenirTableDeCodage}{a : \arbredehuffman}{\tabledecodage}
-    {}
+    {non(estUneFeuille(a))}
     {tdc : \tabledecodage, cbGauche, cbDroit : \codebinaire}
     {
         \affecter{tdc}{creerTableDeCodage()}
         \\
-        \commentaire{Si a est une feuille, alors le fichier ne contient qu'un octet (qui peut-être présent plusieurs fois).}
+        \affecter{cbGauche}{creerCodeBinaire(bitA0)}
+        \affecter{cbDroit}{creerCodeBinaire(bitA1)}
+        \instruction{obtenirTableDeCodageRecursif(tdc, obtenirFilsGauche(a), cbGauche)}
+        \instruction{obtenirTableDeCodageRecursif(tdc, obtenirFilsDroit(a), cbDroit)}
         \\
-        \commentaire{L'arbre n'a donc pas de fils. On encode alors le seul octet avec le code binaire bitA0.}
-        \sialorssinon{estUneFeuille(a)}
-        {
-            \instruction{ajouterCodage(tdc, obtenirOctet(a), creerCodeBinaire(bitA0))}
-        }
-        {
-            \affecter{cbGauche}{creerCodeBinaire(bitA0)}
-            \affecter{cbDroit}{creerCodeBinaire(bitA1)}
-            \instruction{obtenirTableDeCodageRecursif(tdc, obtenirFilsGauche(a), cbGauche)}
-            \instruction{obtenirTableDeCodageRecursif(tdc, obtenirFilsDroit(a), cbDroit)}
-            \retourner{tdc}
-        }
+        \retourner{tdc}
     }
 \end{algorithme}
