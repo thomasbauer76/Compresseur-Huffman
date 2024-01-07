@@ -4,11 +4,10 @@
   \tadDependances{\booleen}
   \begin{tadOperations}{obtenirElementEtDefiler}
   
-    \tadOperation{fileDePriorite}{}{FileDePriorite}
-    \tadOperation{estVide}{FileDePriorite}{\booleen}
-    \tadOperation{enfiler}{\tadParams{FileDePriorite, Element}}{FileDePriorite}
-    \tadOperationAvecPreconditions{obtenirElementEtDefiler}{FileDePriorite}{\tadParams{FileDePriorite, Element}}
-    %\tadOperation{longueur}{FileDePriorite}{\naturel}
+    \tadOperation{fileDePriorite}{}{\filedepriorite}
+    \tadOperation{estVide}{\filedepriorite}{\booleen}
+    \tadOperation{enfiler}{\tadParams{\filedepriorite, \textbf{Element}}}{\filedepriorite}
+    \tadOperationAvecPreconditions{obtenirElementEtDefiler}{\filedepriorite}{\tadParams{\filedepriorite, \textbf{Element}}}
     
   \end{tadOperations}
 
