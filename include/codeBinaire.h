@@ -12,11 +12,11 @@
 #include "octet.h"
 
 #define MAX_CB (8 * sizeof(unsigned long long))
+
 /**
  * \brief Le type CB_CodeBinaire permet de stocker des bits à la suite
  *
  */
-
 typedef struct CB_CodeBinaire {
     unsigned long long codeBinaire; /**< les octets (stockés sous forme de naturel) contenant ces bits */
     unsigned short nbBits;          /**< le nombre de bits du code binaire */
