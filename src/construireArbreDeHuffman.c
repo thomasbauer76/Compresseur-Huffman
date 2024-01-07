@@ -31,7 +31,7 @@ ADH_ArbreDeHuffman CADH_construireArbreDeHuffman(S_Statistiques s) {
     ADH_ArbreDeHuffman a1, a2, aFusion;
 
     fdp = CADH_construireFileDePriorite(s);
-    dernierElement = 0;
+    dernierElement = false;
     while (!(dernierElement)) {
         a1 = FDPAH_obtenirElementEtDefiler(&fdp);
         if (FDPAH_estVide(fdp)) {
