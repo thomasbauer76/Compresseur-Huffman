@@ -52,16 +52,14 @@ Mkfile.old
 dkms.conf
 
 # Ignorer choses inutiles du dossier latex
-/latex/*.pdf
-/latex/*.fls
-/latex/*.fdb_latexmk
-/latex/*.aux
-/latex/*.log
-/bin/*
-/tests/*
+rapport/latex/*.pdf
+rapport/latex/*.fls
+rapport/latex/*.fdb_latexmk
+rapport/latex/*.aux
+rapport/latex/*.log
+programme/bin/*
+programme/tests/*
 *.gz
-*.ods#
-latex/main_test.tex
-/doc
+programme/doc
 *.html
 *.js

@@ -8,7 +8,8 @@ DOXYFILE_NAME=doxyfile
 BINDIR=bin
 SRCDIR=src
 INCLUDEDIR=include
-LATEXDIR=latex
+RAPPORTDIR=../rapport
+LATEXDIR=$(RAPPORTDIR)/latex
 DOCDIR=doc
 TESTSDIR=tests
 
@@ -38,6 +39,7 @@ pdf :
 	cd $(LATEXDIR); pdflatex --shell-escape $(LATEX_MAIN); cd ..
 	cd $(LATEXDIR); pdflatex --shell-escape $(LATEX_MAIN); cd ..
 	rm -rf ./$(LATEXDIR)/_minted-main ./$(LATEXDIR)/*.aux ./$(LATEXDIR)/*.log ./$(LATEXDIR)/*.toc ./$(LATEXDIR)/*.out
+	mv $(LATEXDIR)/$(LATEX_MAIN:.tex=.pdf) $(RAPPORTDIR)
 
 doc:
 	doxygen $(DOXYFILE_NAME)
