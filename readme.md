@@ -4,11 +4,16 @@ Ce répertoire contient un projet de compression de données implémenté en lan
 
 ## Structure du Projet
 
-- **bin/** : Répertoire où les fichiers exécutables seront générés.
-- **src/** : Contient les fichiers source du projet.
-- **include/** : Contient les fichiers d'en-tête.
+### Dossier rapport
 - **latex/** : Contient les fichiers LaTeX pour la documentation.
-- **doc/** : Répertoire où la documentation générée sera stockée.
+- main.pdf : le rapport de notre projet
+
+### Dossier programme
+- **bin/** : Répertoire où les fichiers exécutables seront générés.
+- **include/** : Contient les fichiers d'en-tête.
+- **lib/** : Contient les bibliothèques du projet.
+- **src/** : Contient les fichiers source du projet.
+- **doc/** : Répertoire où la documentation générée sera stockée. Ce dernier est crée après la commande "make doc".
 - **tests/** : Répertoire où les fichiers de tests seront générés.
 
 ## Fichiers Importants
@@ -29,7 +34,7 @@ Cela générera un exécutable nommé "huffman" dans le répertoire "bin/".
 
 ## Tests
 
-Pour exécuter les tests, utilisez la commande suivante :
+Pour créer les tests, utilisez la commande suivante :
 
 ```
 make tests
@@ -43,6 +48,16 @@ Pour générer la documentation, utilisez la commande suivante :
 
 ```
 make doc
+```
+
+La documentation générée sera disponible dans le répertoire "doc/".
+
+## Génération du rapport
+
+Pour générer le rapport du projet, utilisez la commande suivante :
+
+```
+make pdf
 ```
 
 La documentation générée sera disponible dans le répertoire "doc/".
