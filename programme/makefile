@@ -2,6 +2,7 @@ EXE=huffman
 EXE_TESTS_TADS=testsTADs
 EXE_TESTS_FONCTIONS_METIER=testsFonctionsMetier
 
+NOMS_RAPPORT=Bauer-Hamdani-Ouathrani-Saunier
 LATEX_MAIN=main.tex
 DOXYFILE_NAME=doxyfile
 
@@ -39,7 +40,7 @@ pdf :
 	cd $(LATEXDIR); pdflatex --shell-escape $(LATEX_MAIN); cd ..
 	cd $(LATEXDIR); pdflatex --shell-escape $(LATEX_MAIN); cd ..
 	rm -rf ./$(LATEXDIR)/_minted-main ./$(LATEXDIR)/*.aux ./$(LATEXDIR)/*.log ./$(LATEXDIR)/*.toc ./$(LATEXDIR)/*.out
-	mv $(LATEXDIR)/$(LATEX_MAIN:.tex=.pdf) $(RAPPORTDIR)
+	mv $(LATEXDIR)/$(LATEX_MAIN:.tex=.pdf) $(RAPPORTDIR)/$(NOMS_RAPPORT).pdf
 
 doc:
 	doxygen $(DOXYFILE_NAME)
