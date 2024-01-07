@@ -36,7 +36,7 @@ void test_file_de_priorite(void) {
     unsigned long long taille;
     C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
-    FileDePriorite fdp = CADH_construireFileDePriorite(s);
+    FDPAH_FileDePriorite fdp = CADH_construireFileDePriorite(s);
 
     CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'E');
     CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(FDPAH_obtenirElementEtDefiler(&fdp))), 'F');

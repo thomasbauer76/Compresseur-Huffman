@@ -105,13 +105,13 @@ void test_fusionner_ADH(void) {
 /* Tests FileDePriorite.c */
 
 void test_creation_filedePriorite_vide(void) {
-    FileDePriorite fdp = FDPAH_fileDePriorite();
+    FDPAH_FileDePriorite fdp = FDPAH_fileDePriorite();
 
     CU_ASSERT(FDPAH_estVide(fdp));
 }
 
 void test_enfiler(void) {
-    FileDePriorite fdp = FDPAH_fileDePriorite();
+    FDPAH_FileDePriorite fdp = FDPAH_fileDePriorite();
 
     ADH_ArbreDeHuffman a1 = ADH_arbreDeHuffman(O_naturelVersOctet('A'), 10);
 
@@ -130,7 +130,7 @@ void test_obtenir_element_et_defiler(void) {
     Octet o3 = O_naturelVersOctet('D');
     unsigned long f3 = 3;
 
-    FileDePriorite fdp;
+    FDPAH_FileDePriorite fdp;
     fdp = FDPAH_fileDePriorite();
     ADH_ArbreDeHuffman a1 = ADH_arbreDeHuffman(o1, f1);
     ADH_ArbreDeHuffman a2 = ADH_arbreDeHuffman(o2, f2);
