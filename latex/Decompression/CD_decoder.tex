@@ -1,5 +1,5 @@
 \begin{algorithme}
-\procedure{decoder}{\paramEntree{aHuff: \arbredehuffman, longueur : \naturel}, \paramEntreeSortie{fb1 : \fichierbinaire, fb2 : \fichierbinaire}}{estOuvert(fb1) et (mode(fb1) $=$ lecture) et estOuvert(fb2) et (mode(fb2) $=$ écriture)}{aTemp : \arbredehuffman, finDecodage : \booleen, OctetCourant, octetDecodé : \octet, bit : \bit, compteurOctetsDecodes : \naturel}
+\procedure{decoder}{\paramEntree{aHuff: \arbredehuffman, longueur : \naturel}, \paramEntreeSortie{fb1 : \fichierbinaire, fb2 : \fichierbinaire}}{estOuvert(fb1) et (mode(fb1) $=$ lecture) et estOuvert(fb2) et (mode(fb2) $=$ écriture)}{aTemp : \arbredehuffman, finDecodage : \booleen, octetCourant, octetDecodé : \octet, bit : \bit, compteurOctetsDecodes, i : \naturel}
 {
 	\affecter{aTemp}{aHuff}
 	\affecter{finDecodage}{FAUX}
@@ -7,9 +7,9 @@
 	\instruction{positionnerAuDebut(fb1)}
 	\tantque{non(finDecodage))}
 	{
-		\affecter{OctetCourant}{lireOctet(fb1)}
+		\affecter{octetCourant}{lireOctet(fb1)}
 		\pour{i}{0}{7}{}{
-			\affecter{bit}{ObtenirIemebit(OctetCourant,i)}
+			\affecter{bit}{ObtenirIemebit(octetCourant,i)}
 			\instruction{seDeplacerDansArbre(aTemp,bit)}
 			\sialors{estUneFeuille(aTemp)}{
 				\affecter{octetDecodé}{obtenirOctet(arbreCourant)}

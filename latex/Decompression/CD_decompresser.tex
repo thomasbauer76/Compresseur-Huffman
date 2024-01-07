@@ -1,22 +1,31 @@
 \begin{algorithme}
 	\procedure{decompresser}{\paramEntreeSortie{fCompresse : \fichierbinaire}, \paramSortie{fDecompresse : \fichierbinaire}}
 	{estOuvert(fCompresse) et (mode(fCompresse) $=$ lecture)}
-	{fDecompresse : \fichierbinaire, id, longueur : \naturel, s : \statistiques, abh : \arbredehuffman}
+	{i, id, longueur : \naturel, s : \statistiques, abh : \arbredehuffman, octetUnique : \octet}
     {
 		\instruction{ouvrir(fDecompresse, ecriture)}
     	\instruction{positionnerAuDebut(fCompresse)}
-    	\\
     	\instruction{lireNaturel(fCompresser, id)}
 		\\
     	\commentaire{On vérifie si on retrouve bien notre identifiant (ici 1000 sous sa forme de naturel), si ce n'est pas le cas, on n'a pas a décompresser le fichier}
     	\sialors{id = 1000}{   
 			\instruction{lireNaturel(fCompresser, longueur)}
-			\instruction{lireStatistiques(fCompresser, s)}
-			\instruction{construireArbreDeHuffman(s, abh)}
-			\instruction{decoder(abh, longueur, fCompresse, fDecompresse)}
-			\instruction{liberer(abh)}
+			\sialors{(longueur > 0)}{
+				\instruction{lireStatistiques(fCompresser, s)}
+				\instruction{construireArbreDeHuffman(s, abh)}
+				\sialorssinon{estUneFeuille(abh)}
+				{
+					\affecter{octetUnique}{octetVersNaturel(obtenirOctet(abh))}
+					\pour{i}{1}{longueur}{}{
+						\instruction{ecrireOctet(octetUnique, fDecompresse)}
+					}
+				}
+				{
+					\instruction{decoder(abh, longueur, fCompresse, fDecompresse)}
+				}
+				\instruction{liberer(abh)}
+			}
     	}
-		\\
 		\instruction{fermer(fDecompresse)}
     }
 \end{algorithme}
