@@ -1,6 +1,6 @@
 \begin{algorithme}
     \begin{enregistrement}{TableDeCodage}
-        \champEnregistrement{tableDOctet}{\tableauUneDimension{0..255}{de}{\codebinaire}}
+        \champEnregistrement{tableDeCodeBinaire}{\tableauUneDimension{0..255}{de }{\codebinaire}}
         \champEnregistrement{tableDePresence}{\tableauUneDimension{0..255}{de }{\booleen}}
     \end{enregistrement}
     \\
@@ -19,7 +19,7 @@
     {}
     {
         \affecter{octet}{octetVersNaturel(o)}
-        \affecter{tdc.tableDOctet[octet]}{cb}
+        \affecter{tdc.tableDeCodeBinaire[octet]}{cb}
         \affecter{tdc.tableDePresence[octet]}{\textbf{Vrai}}
     }
     \\
@@ -27,7 +27,7 @@
     {octetPresent(t, octet)}
     {}
     {
-        \retourner{tdc.tableDOctet[octetVersNaturel(o)]}
+        \retourner{tdc.tableDeCodeBinaire[octetVersNaturel(o)]}
     }
     \\
     \fonction{octetPresent}{tdc : \tabledecodage, o : \octet}{\booleen}
