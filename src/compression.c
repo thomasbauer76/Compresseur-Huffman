@@ -71,7 +71,7 @@ void C_ecrireTailleFichier(FILE *f, unsigned long long taille) {
 }
 
 void C_ecrireStatistiques(FILE *f, Statistiques s) {
-    Octet octet;
+    O_Octet octet;
     unsigned long occurence;
 
     unsigned short o;
@@ -87,7 +87,7 @@ void C_ecrireStatistiques(FILE *f, Statistiques s) {
     fwrite(&occurence, sizeof(unsigned long), 1, f);
 }
 
-Octet C_codeBinaireEnOctet(CB_CodeBinaire cb) {
+O_Octet C_codeBinaireEnOctet(CB_CodeBinaire cb) {
     assert(CB_obtenirLongueur(cb) == MAX_BITS);
     return O_creerOctet(CB_obtenirIemeBit(cb, 7),
                         CB_obtenirIemeBit(cb, 6),

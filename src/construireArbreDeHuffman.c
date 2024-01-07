@@ -7,7 +7,7 @@
 
 FDPAH_FileDePriorite CADH_construireFileDePriorite(Statistiques s) {
     FDPAH_FileDePriorite fdp;
-    Octet octet;
+    O_Octet octet;
     unsigned long occurence;
 
     fdp = FDPAH_fileDePriorite();

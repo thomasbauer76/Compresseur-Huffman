@@ -27,7 +27,7 @@ typedef struct ADH_Noeud *ADH_ArbreDeHuffman;
  *
  */
 typedef struct ADH_Noeud {
-    Octet octet;
+    O_Octet octet;
     unsigned long frequence;
     bool estUneFeuille;
     ADH_ArbreDeHuffman arbreGauche;
@@ -35,14 +35,14 @@ typedef struct ADH_Noeud {
 } ADH_Noeud;
 
 /**
- * \fn ADH_ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned long n)
+ * \fn ADH_ArbreDeHuffman ADH_arbreDeHuffman(O_Octet o, unsigned long n)
  * \brief Fonction de création d'un ArbreDeHuffman "feuille" (avec un octet et une fréquence associée)
  *
  * \param o : l'octet
  * \param n : la fréquence associé à l'octet
  * \return ADH_ArbreDeHuffman
  */
-ADH_ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned long n);
+ADH_ArbreDeHuffman ADH_arbreDeHuffman(O_Octet o, unsigned long n);
 
 /**
  * \fn ADH_ArbreDeHuffman ADH_fusionner(ADH_ArbreDeHuffman ag, ADH_ArbreDeHuffman ad)
@@ -68,9 +68,9 @@ bool ADH_estUneFeuille(ADH_ArbreDeHuffman a);
  * \brief Fonction permettant d'obtenir l'octet d'un ArbreDeHuffman
  *
  * \param a : ADH_ArbreDeHuffman
- * \return Octet
+ * \return O_Octet
  */
-Octet ADH_obtenirOctet(ADH_ArbreDeHuffman a);
+O_Octet ADH_obtenirOctet(ADH_ArbreDeHuffman a);
 
 /**
  * \fn ADH_obtenirFrequence(ADH_ArbreDeHuffman a)

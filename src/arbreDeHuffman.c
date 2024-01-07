@@ -4,7 +4,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-ADH_ArbreDeHuffman ADH_arbreDeHuffman(Octet o, unsigned long n) {
+ADH_ArbreDeHuffman ADH_arbreDeHuffman(O_Octet o, unsigned long n) {
     ADH_ArbreDeHuffman a = (ADH_ArbreDeHuffman)malloc(sizeof(ADH_Noeud));
     a->octet = o;
     a->frequence = n;
@@ -36,7 +36,7 @@ ADH_ArbreDeHuffman ADH_obtenirFilsGauche(ADH_ArbreDeHuffman a) {
     return a->arbreGauche;
 }
 
-Octet ADH_obtenirOctet(ADH_ArbreDeHuffman a) {
+O_Octet ADH_obtenirOctet(ADH_ArbreDeHuffman a) {
     assert(ADH_estUneFeuille(a));
     return a->octet;
 }

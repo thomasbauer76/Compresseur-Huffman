@@ -13,7 +13,7 @@
 #include "statistiques.h"
 #include "compression.h" // On inclut compression.h pour avoir la constante de l'identifiant
 
-void D_seDeplacerDansLArbre(Bit b, ADH_ArbreDeHuffman *a) {
+void D_seDeplacerDansLArbre(O_Bit b, ADH_ArbreDeHuffman *a) {
     if (b == bitA0) {
         *a = ADH_obtenirFilsGauche(*a);
     } else {
@@ -22,7 +22,7 @@ void D_seDeplacerDansLArbre(Bit b, ADH_ArbreDeHuffman *a) {
 }
 
 void D_lireStatistiques(FILE *fb, Statistiques *s) {
-    Octet octet;
+    O_Octet octet;
     unsigned long int occurence;
 
     S_statistiques(s);
@@ -52,7 +52,7 @@ void D_decoder(ADH_ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *
     unsigned long long int compteurOctetsDecodes = 0;
     bool finDecodage = false;
     while (!finDecodage) {
-        Octet o;
+        O_Octet o;
         size_t nbBlocsLus = fread(&o, sizeof(unsigned char), 1, fbCompresse);
         if (nbBlocsLus < 1) {
             printf("Erreur060 decompression.c : fin du fichier atteinte de manière innatendue ou erreur de la fonction fread \n");
@@ -60,10 +60,10 @@ void D_decoder(ADH_ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *
         }
         for (int i = 0; i < MAX_BITS; i++) {
             if (!finDecodage) {  // if qui permet de régler les bugs sur le dernier octets
-                Bit b = O_obtenirIemeBit(o, i);
+                O_Bit b = O_obtenirIemeBit(o, i);
                 D_seDeplacerDansLArbre(b, &aTemp);
                 if (ADH_estUneFeuille(aTemp)) {
-                    Octet oDecode = ADH_obtenirOctet(aTemp);
+                    O_Octet oDecode = ADH_obtenirOctet(aTemp);
                     fwrite(&oDecode, sizeof(unsigned char), 1, fbDecompresse);
                     aTemp = aHuff;
                     compteurOctetsDecodes = compteurOctetsDecodes + 1;

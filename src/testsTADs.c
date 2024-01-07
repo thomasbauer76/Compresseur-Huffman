@@ -32,7 +32,7 @@ void test_statistiques_incrementees(void) {
     Statistiques s;
     S_statistiques(&s);
 
-    Octet o = O_naturelVersOctet(241);
+    O_Octet o = O_naturelVersOctet(241);
     unsigned long ancienneOccurence = S_obtenirOccurence(s, o);
 
     S_incrementerOccurence(&s, o);
@@ -45,7 +45,7 @@ void test_statistiques_fixer_occurence(void) {
     Statistiques s;
     S_statistiques(&s);
 
-    Octet o = O_naturelVersOctet(241);
+    O_Octet o = O_naturelVersOctet(241);
     unsigned long n = 1234;
     S_fixerOccurence(&s, o, n);
 
@@ -55,7 +55,7 @@ void test_statistiques_fixer_occurence(void) {
 /* Tests codeBinaire.c */
 
 void test_creation_codebinaire(void) {
-    Bit b = bitA0;
+    O_Bit b = bitA0;
     CB_CodeBinaire cb = CB_creerCodeBinaire(b);
     CU_ASSERT_EQUAL(CB_obtenirLongueur(cb), 1);
     CU_ASSERT_EQUAL(CB_obtenirIemeBit(cb, 0), b);
@@ -64,7 +64,7 @@ void test_creation_codebinaire(void) {
 void test_ajout_bit(void) {
     CB_CodeBinaire cb = CB_creerCodeBinaire(bitA0);
     unsigned short ancienneLongueur = CB_obtenirLongueur(cb);
-    Bit b = bitA1;
+    O_Bit b = bitA1;
     CB_ajouterBit(&cb, b);
     unsigned short nouvelleLongueur = CB_obtenirLongueur(cb);
     CU_ASSERT_EQUAL(nouvelleLongueur, ancienneLongueur + 1);
@@ -87,9 +87,9 @@ void test_creation_arbre_de_huffman_feuille(void) {
 }
 
 void test_fusionner_ADH(void) {
-    Octet og = O_naturelVersOctet(241);
+    O_Octet og = O_naturelVersOctet(241);
     unsigned long ng = 2;
-    Octet od = O_naturelVersOctet(121);
+    O_Octet od = O_naturelVersOctet(121);
     unsigned long nd = 3;
 
     ADH_ArbreDeHuffman ad = ADH_arbreDeHuffman(od, nd);
@@ -123,11 +123,11 @@ void test_enfiler(void) {
 }
 
 void test_obtenir_element_et_defiler(void) {
-    Octet o1 = O_naturelVersOctet('G');
+    O_Octet o1 = O_naturelVersOctet('G');
     unsigned long f1 = 3;
-    Octet o2 = O_naturelVersOctet('A');
+    O_Octet o2 = O_naturelVersOctet('A');
     unsigned long f2 = 2;
-    Octet o3 = O_naturelVersOctet('D');
+    O_Octet o3 = O_naturelVersOctet('D');
     unsigned long f3 = 3;
 
     FDPAH_FileDePriorite fdp;
@@ -213,8 +213,8 @@ void test_octetVersCodeBinaire(void) {
 /* Tests octet.c*/
 void test_creer_octet(void) {
     // Test pour 0 (Binaire : 00000000)
-    Bit b7 = 0, b6 = 0, b5 = 0, b4 = 0, b3 = 0, b2 = 0, b1 = 0, b0 = 0;
-    Octet resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
+    O_Bit b7 = 0, b6 = 0, b5 = 0, b4 = 0, b3 = 0, b2 = 0, b1 = 0, b0 = 0;
+    O_Octet resultat = O_creerOctet(b7, b6, b5, b4, b3, b2, b1, b0);
     CU_ASSERT_EQUAL(O_octetVersNaturel(resultat), 0);
 
     // Test pour 255 (Binaire : 11111111)
@@ -230,7 +230,7 @@ void test_creer_octet(void) {
 
 void test_obtenir_ieme_bit(void) {
     // Test pour 155 (Binaire : 10011011)
-    Octet octet = O_naturelVersOctet(155);
+    O_Octet octet = O_naturelVersOctet(155);
 
     CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 7), bitA1);
     CU_ASSERT_EQUAL(O_obtenirIemeBit(octet, 6), bitA0);
@@ -245,7 +245,7 @@ void test_obtenir_ieme_bit(void) {
 void test_naturel_vers_octet(void) {
     unsigned char naturel = 42;
 
-    Octet resultat = O_naturelVersOctet(naturel);
+    O_Octet resultat = O_naturelVersOctet(naturel);
     CU_ASSERT_EQUAL(O_octetVersNaturel(resultat), naturel);
 }
 

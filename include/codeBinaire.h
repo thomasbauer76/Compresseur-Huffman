@@ -23,32 +23,32 @@ typedef struct CB_CodeBinaire {
 } CB_CodeBinaire;
 
 /**
- * \fn CB_CodeBinaire CB_creerCodeBinaire(Bit b)
+ * \fn CB_CodeBinaire CB_creerCodeBinaire(O_Bit b)
  * \brief Fonction de création d'un code binaire à 1 bit
  *
  * \param b : le bit
  * \return CB_CodeBinaire
  */
-CB_CodeBinaire CB_creerCodeBinaire(Bit b);
+CB_CodeBinaire CB_creerCodeBinaire(O_Bit b);
 
 /**
- * \fn void CB_ajouterBit(CB_CodeBinaire *p_cb, Bit b)
+ * \fn void CB_ajouterBit(CB_CodeBinaire *p_cb, O_Bit b)
  * \brief Procédure permettant d'ajouter un bit à un code binaire
  *
  * \param p_cb : un pointeur sur le code binaire à modifier
  * \param b : le bit à ajouter
  */
-void CB_ajouterBit(CB_CodeBinaire *p_cb, Bit b);
+void CB_ajouterBit(CB_CodeBinaire *p_cb, O_Bit b);
 
 /**
- * \fn Bit CB_obtenirIemeBit(CB_CodeBinaire cb, unsigned short i)
+ * \fn O_Bit CB_obtenirIemeBit(CB_CodeBinaire cb, unsigned short i)
  * \brief Fonction permettant de retourner le bit à d'indice i d'un code binaire
  *
  * \param cb : le code binaire
  * \param i : l'indice du bit à retourner
  * \return CB_CodeBinaire
  */
-Bit CB_obtenirIemeBit(CB_CodeBinaire cb, unsigned short i);
+O_Bit CB_obtenirIemeBit(CB_CodeBinaire cb, unsigned short i);
 
 /**
  * \fn unsigned short CB_obtenirLongueur(CB_CodeBinaire cb)
