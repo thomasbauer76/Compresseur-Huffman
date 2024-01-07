@@ -30,7 +30,7 @@ Pour compiler le projet, utilisez la commande suivante :
 make all
 ```
 
-Cela générera un exécutable nommé "huffman" dans le répertoire "bin/".
+Cela générera un exécutable nommé "huffman" dans le répertoire "programme/bin/".
 
 ## Tests
 
@@ -40,7 +40,7 @@ Pour créer les tests, utilisez la commande suivante :
 make tests
 ```
 
-Cela générera deux exécutables de tests, "testsTADs" et "testsFonctionsMetier", dans le répertoire "tests/".
+Cela générera deux exécutables de tests, "testsTADs" et "testsFonctionsMetier", dans le répertoire "programme/tests/".
 
 ## Génération de la Documentation
 
@@ -50,7 +50,7 @@ Pour générer la documentation, utilisez la commande suivante :
 make doc
 ```
 
-La documentation générée sera disponible dans le répertoire "doc/".
+La documentation générée sera disponible dans le répertoire "programme/doc/".
 
 ## Génération du rapport
 
@@ -60,7 +60,7 @@ Pour générer le rapport du projet, utilisez la commande suivante :
 make pdf
 ```
 
-La documentation générée sera disponible dans le répertoire "doc/".
+La documentation générée sera disponible dans le répertoire "rapport/".
 
 ## Nettoyage du Projet
 
@@ -70,6 +70,6 @@ Pour nettoyer le projet, y compris les fichiers générés et les exécutables, 
 make clean
 ```
 
-Cela supprimera les répertoires "bin/", "tests/", "latex/", et "doc/", ainsi que les fichiers objets dans le répertoire "src/".
+Cela supprimera les fichiers non indispensables dans les répertoires "programme/bin/", "programme/tests/", "rapport/latex/", et "programme/doc/", ainsi que les fichiers objets dans le répertoire "programme/src/".
 
 N'hésitez pas à personnaliser le Makefile en fonction de vos besoins spécifiques.
