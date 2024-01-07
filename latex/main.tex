@@ -12,6 +12,13 @@
 \usepackage{multicol}
 \usepackage{array}
 \usepackage{graphicx}  % Package pour l'inclusion d'images
+\usepackage{libertine}
+%\usepackage[pdftex]{graphicx}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\newcommand{\hsp}{\hspace{20pt}}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 
 \graphicspath{{Ressources/}}
 
@@ -27,9 +34,10 @@
 \newcommand{\fichierbinaire}{\textbf{FichierBinaire}}
 
 \begin{document}
-
+	\input{Rapport/pajeIntro.tex}
+	
 	\tableofcontents
-
+	
 	\chapter{Introduction} 
         \input{Rapport/Introduction.tex}
     

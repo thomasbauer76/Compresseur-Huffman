@@ -1,0 +1,41 @@
+\begin{titlepage}
+
+\begin{center}
+
+\textsc{{\LARGE Institut national des sciences appliquées de Rouen} \\ \vspace{6
+    mm} {\Large INSA de Rouen}} \\
+\vspace{5mm}
+\includegraphics[width=0.4\textwidth]{./insa.eps}\\[1.0 cm]
+
+\textsc{\Large STPI 2, M8}\\[0.5cm]
+
+% Title
+\HRule \\[0.4cm]
+{ \huge \bfseries Étude de données bancaires \\[10pt] Profil de clients }\\[0.4cm]
+
+\HRule \\[1.5cm]
+
+% Author and supervisor
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Auteurs:}\\
+Taoba \textsc{Ouathrani} \\
+{\small\href{mailto:taoba.ouathrani@insa-rouen.fr}{taoba.ouathrani@insa-rouen.fr}}\\
+Mathéo \textsc{Idier} \\
+{\small\href{mailto:matheo.idier@insa-rouen.fr}{matheo.idier@insa-rouen.fr}}\\
+Lyam \textsc{Chardey} \\
+{\small\href{mailto:lyam.chardey@insa-rouen.fr}{lyam.chardey@insa-rouen.fr}}
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Enseignant:} \\
+Benoit \textsc{Gaüzere} \\
+{\small\href{mailto:benoit.gauzere@insa-rouen.fr}{benoit.gauzere@insa-rouen.fr}}
+\end{flushright}
+\end{minipage}
+
+\vfill
+{\large 19 Juin 2023}
+\end{center}
+\end{titlepage} 

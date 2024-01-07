@@ -71,4 +71,177 @@
         \hline
     \end{tabular}
     \caption{Tableau des tâches des TADs}
-\end{table}
+  \end{table}  
+ 
+ 
+ \begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|c|>{\centering\arraybackslash}p{1.5cm}|>{\centering\arraybackslash}p{1.5cm}|>{\centering\arraybackslash}p{1.5cm}|>{\centering\arraybackslash}p{1.5cm}|}
+        \cline{3-6}
+        \multicolumn{2}{c|}{} & Taoba & Thomas & Ali & Mathis \\
+        \hline
+        \multirow{8}{*}{Analyse}
+        & encoder & & & $\times$ & $\times$ \\
+        \cline{2-6}
+        & ConcatenerCodeBinaireDansFichier & & & $\times$ & $\times$ \\
+        \cline{2-6}
+        & ecrireStatistiques,Identifiant,Taille &  & & $\times$ & $\times$ \\ 
+        \cline{2-6}
+        & codeBinaireEnOctet & & & $\times$ & $\times$ \\
+        \cline{2-6}
+        & construireFileDePriorité & & & $\times$ & $\times$ \\
+        \cline{2-6}
+        & obtenirStatistiqueEtTailleFichier & & & $\times$ & $\times$ \\
+        \cline{2-6}
+        & obtenirTableDeCodage & & & $\times$ & $\times$ \\
+        \cline{2-6}
+        & compresser & & & $\times$ & $\times$ \\
+        \hline
+        \multirow{8}{*}{CP}
+        & encoder & $\times$ & & & \\
+        \cline{2-6}
+        & ConcatenerCodeBinaireDansFichier & $\times$ & & & \\
+        \cline{2-6}
+        & ecrireStatistiques,Identifiant,Taille & $\times$ & & & \\ 
+        \cline{2-6}
+        & codeBinaireEnOctet & $\times$ & & & \\
+        \cline{2-6}
+        & construireFileDePriorité & & $\times$ & &  \\
+        \cline{2-6}
+        & obtenirStatistiqueEtTailleFichier & & $\times$ & &  \\
+        \cline{2-6}
+        & obtenirTableDeCodage & & $\times$ & &  \\
+        \cline{2-6}
+        & compresser & & $\times$ & & \\
+        \hline
+        \multirow{8}{*}{CD}
+        & encoder & & $\times$ & & \\
+        \cline{2-6}
+        & ConcatenerCodeBinaireDansFichier & & $\times$ & & \\
+        \cline{2-6}
+        & ecrireStatistiques,Identifiant,Taille & & $\times$ & & \\ 
+        \cline{2-6}
+        & codeBinaireEnOctet & & $\times$ & & \\
+        \cline{2-6}
+        & construireFileDePriorité & $\times$ & & &\\
+        \cline{2-6}
+        & obtenirStatistiqueEtTailleFichier & $\times$ & & & \\
+        \cline{2-6}
+        & obtenirTableDeCodage & $\times$ & & & \\
+        \cline{2-6}
+        & compresser & $\times$ & & &\\
+        \hline
+       \multirow{8}{*}{Dev}
+        & encoder & $\times$ & & & \\
+        \cline{2-6}
+        & ConcatenerCodeBinaireDansFichier & $\times$ & & & \\
+        \cline{2-6}
+        & ecrireStatistiques,Identifiant,Taille & $\times$ & & & \\ 
+        \cline{2-6}
+        & codeBinaireEnOctet & $\times$ & & & \\
+        \cline{2-6}
+        & construireFileDePriorité & & $\times$ & & \\
+        \cline{2-6}
+        & obtenirStatistiqueEtTailleFichier & & $\times$ & & \\
+        \cline{2-6}
+        & obtenirTableDeCodage & & $\times$ & & \\
+        \cline{2-6}
+        & compresser & & $\times$ & & \\
+        \hline
+        \multirow{8}{*}{Tests Unitaires}
+        & encoder & & $\times$ & & \\
+        \cline{2-6}
+        & ConcatenerCodeBinaireDansFichier & & $\times$ & & \\
+        \cline{2-6}
+        & ecrireStatistiques,Identifiant,Taille & & $\times$ & & \\ 
+        \cline{2-6}
+        & codeBinaireEnOctet & & $\times$ & & \\
+        \cline{2-6}
+        & construireFileDePriorité & $\times$ & & & \\
+        \cline{2-6}
+        & obtenirStatistiqueEtTailleFichier & $\times$ & & & \\
+        \cline{2-6}
+        & obtenirTableDeCodage & $\times$ & & & \\
+        \cline{2-6}
+        & compresser & $\times$ & & & \\
+        \hline
+    \end{tabular}
+    \caption{Tableau des tâches de la compression}
+  \end{table}  
+ 
+ 
+ \begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|c|>{\centering\arraybackslash}p{1.5cm}|>{\centering\arraybackslash}p{1.5cm}|>{\centering\arraybackslash}p{1.5cm}|>{\centering\arraybackslash}p{1.5cm}|}
+        \cline{3-6}
+        \multicolumn{2}{c|}{} & Taoba & Thomas & Ali & Mathis \\
+        \hline
+        \multirow{6}{*}{Analyse}
+        & lireStatistiques & $\times$ & $\times$ & & \\
+        \cline{2-6}
+        & construireArbreDeHuffman & $\times$ & $\times$ & & \\
+        \cline{2-6}
+        & decompresser & $\times$ & $\times$ & & \\ 
+        \cline{2-6}
+        & decoder & $\times$ & $\times$ & & \\
+        \cline{2-6}
+        & seDeplacerDansLArbre & $\times$ & $\times$ & & \\
+        \cline{2-6}
+        & libererArbreDeHuffman & $\times$ & $\times$ & &\\
+        \hline
+         \multirow{6}{*}{CP}
+        & lireStatistiques & & & $\times$ & \\
+        \cline{2-6}
+        & construireArbreDeHuffman & & & $\times$ & \\
+        \cline{2-6}
+        & decompresser &  & & $\times$ & \\ 
+        \cline{2-6}
+        & decoder & & & & $\times$ \\
+        \cline{2-6}
+        & seDeplacerDansLArbre & & & & $\times$ \\
+        \cline{2-6}
+        & libererArbreDeHuffman & & & & $\times$ \\
+        \hline
+        \multirow{6}{*}{CD}
+        & lireStatistiques & & & $\times$ & \\
+        \cline{2-6}
+        & construireArbreDeHuffman & & & $\times$ & \\
+        \cline{2-6}
+        & decompresser & & & $\times$ & \\ 
+        \cline{2-6}
+        & decoder & & & & $\times$ \\
+        \cline{2-6}
+        & seDeplacerDansLArbre & & & & $\times$ \\
+        \cline{2-6}
+        & libererArbreDeHuffman & & & & $\times$ \\
+        \hline
+       \multirow{6}{*}{Dev}
+        & lireStatistiques & & & & $\times$ \\
+        \cline{2-6}
+        & construireArbreDeHuffman & & & & $\times$ \\
+        \cline{2-6}
+        & decompresser & & & & $\times$ \\ 
+        \cline{2-6}
+        & decoder & & & $\times$ & \\
+        \cline{2-6}
+        & seDeplacerDansLArbre & & & $\times$ & \\
+        \cline{2-6}
+        & libererArbreDeHuffman & & & $\times$ & \\
+        \hline
+         \multirow{6}{*}{Tests Unitaires}
+        & lireStatistiques & & & $\times$ & \\
+        \cline{2-6}
+        & construireArbreDeHuffman & & & $\times$ & \\
+        \cline{2-6}
+        & decompresser & & & $\times$ & \\ 
+        \cline{2-6}
+        & decoder & & & & $\times$ \\
+        \cline{2-6}
+        & seDeplacerDansLArbre & & & & $\times$ \\
+        \cline{2-6}
+        & libererArbreDeHuffman & & & & $\times$ \\
+        \hline
+    \end{tabular}
+    \caption{Tableau des tâches de la décompression}
+  \end{table}  
+ 
