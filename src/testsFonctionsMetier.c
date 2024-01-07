@@ -499,7 +499,8 @@ int main(int argc, char **argv) {
     }
 
     /* Ajout des tests à la suite compression */
-    if ((NULL == CU_add_test(pSuiteConstruireArbreDeHuffman, "Construction de la file de priorité à partir des statistiques", test_file_de_priorite)) || (NULL == CU_add_test(pSuiteConstruireArbreDeHuffman, "Construction de l'arbre de Huffman à partir des statistiques", test_arbre_de_huffman))) {
+    if ((NULL == CU_add_test(pSuiteConstruireArbreDeHuffman, "Construction de la file de priorité à partir des statistiques", test_file_de_priorite)) 
+    || (NULL == CU_add_test(pSuiteConstruireArbreDeHuffman, "Construction de l'arbre de Huffman à partir des statistiques", test_arbre_de_huffman))) {
         CU_cleanup_registry();
         return CU_get_error();
     }
@@ -512,7 +513,14 @@ int main(int argc, char **argv) {
     }
 
     /* Ajout des tests à la suite compression */
-    if ((NULL == CU_add_test(pSuiteCompression, "Obtention des statistiques d'un fichier", test_obtenir_statistiques)) || (NULL == CU_add_test(pSuiteCompression, "Obtention de la taille d'un fichier", test_obtenir_taille_fichier)) || (NULL == CU_add_test(pSuiteCompression, "Obtention de la table de codage à partir de l'arbre de huffman", test_table_de_codage)) || (NULL == CU_add_test(pSuiteCompression, "Conversion d'un code binaire de 8 bits vers un octet", test_code_binaire_8_bits_vers_octet)) || (NULL == CU_add_test(pSuiteCompression, "ecrire un identifiant dans un fichier ", test_ecrire_identifiant)) || (NULL == CU_add_test(pSuiteCompression, "ecrire la taille du fichier dans un fichier", test_ecrire_taille_fichier)) || (NULL == CU_add_test(pSuiteCompression, "ecrire les statistique du fichier dans un fichier", test_ecrire_statistiques)) || (NULL == CU_add_test(pSuiteCompression, "encodage d'un fichier et vérification que la concatenation fonctionne", test_encoder))) {
+    if ((NULL == CU_add_test(pSuiteCompression, "Obtention des statistiques d'un fichier", test_obtenir_statistiques)) 
+    || (NULL == CU_add_test(pSuiteCompression, "Obtention de la taille d'un fichier", test_obtenir_taille_fichier)) 
+    || (NULL == CU_add_test(pSuiteCompression, "Obtention de la table de codage à partir de l'arbre de huffman", test_table_de_codage)) 
+    || (NULL == CU_add_test(pSuiteCompression, "Conversion d'un code binaire de 8 bits vers un octet", test_code_binaire_8_bits_vers_octet)) 
+    || (NULL == CU_add_test(pSuiteCompression, "ecrire un identifiant dans un fichier ", test_ecrire_identifiant)) 
+    || (NULL == CU_add_test(pSuiteCompression, "ecrire la taille du fichier dans un fichier", test_ecrire_taille_fichier)) 
+    || (NULL == CU_add_test(pSuiteCompression, "ecrire les statistique du fichier dans un fichier", test_ecrire_statistiques)) 
+    || (NULL == CU_add_test(pSuiteCompression, "encodage d'un fichier et vérification que la concatenation fonctionne", test_encoder))) {
         CU_cleanup_registry();
         return CU_get_error();
     }
@@ -525,7 +533,9 @@ int main(int argc, char **argv) {
     }
 
     /* Ajout des tests à la suite decompression */
-    if ((NULL == CU_add_test(pSuiteDecompression, "Lecture des statistiques", test_lire_statistiques)) || (NULL == CU_add_test(pSuiteDecompression, "3 tests arbitraires pour D_seDeplacerDansLArbre", test_seDeplacerDansLArbre)) || (NULL == CU_add_test(pSuiteDecompression, "Decodage d'un fichier", test_decoder))) {
+    if ((NULL == CU_add_test(pSuiteDecompression, "Lecture des statistiques", test_lire_statistiques)) 
+    || (NULL == CU_add_test(pSuiteDecompression, "3 tests arbitraires pour D_seDeplacerDansLArbre", test_seDeplacerDansLArbre)) 
+    || (NULL == CU_add_test(pSuiteDecompression, "Decodage d'un fichier", test_decoder))) {
         CU_cleanup_registry();
         return CU_get_error();
     }
