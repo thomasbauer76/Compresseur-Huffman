@@ -7,7 +7,7 @@
 TDC_TableDeCodage TDC_creerTableCodage() {
     TDC_TableDeCodage tdc;
     for (unsigned short octet = 0; octet < MAX_OCTET; octet++) {
-        tdc.tableDePresence[octet] = 0;
+        tdc.tableDePresence[octet] = false;
     }
     return tdc;
 }
@@ -20,7 +20,7 @@ void TDC_ajouterCodage(TDC_TableDeCodage *tdc, O_Octet o, CB_CodeBinaire cb) {
     assert(!TDC_octetPresent(*tdc, o));
     unsigned short octet = O_octetVersNaturel(o);
     tdc->tableDeCodeBinaire[octet] = cb;
-    tdc->tableDePresence[octet] = 1;
+    tdc->tableDePresence[octet] = true;
 }
 
 CB_CodeBinaire TDC_octetVersCodeBinaire(TDC_TableDeCodage tdc, O_Octet o) {
