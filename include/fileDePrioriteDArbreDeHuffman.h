@@ -24,8 +24,8 @@ typedef struct FDPAH_Noeud *FDPAH_FileDePriorite;
  *
  */
 typedef struct FDPAH_Noeud {
-    ADH_ArbreDeHuffman arbre;
-    FDPAH_FileDePriorite fileSuivante;
+    ADH_ArbreDeHuffman arbre;          /**< l'ArbreDeHuffman contenu dans le noeud */
+    FDPAH_FileDePriorite fileSuivante; /**< le pointeur vers le noeud suivant */
 } FDPAH_Noeud;
 
 /**

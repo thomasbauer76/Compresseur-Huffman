@@ -27,11 +27,11 @@ typedef struct ADH_Noeud *ADH_ArbreDeHuffman;
  *
  */
 typedef struct ADH_Noeud {
-    O_Octet octet;
-    unsigned long frequence;
-    bool estUneFeuille;
-    ADH_ArbreDeHuffman arbreGauche;
-    ADH_ArbreDeHuffman arbreDroit;
+    O_Octet octet;                  /**< l'octet contenu dans l'arbre feuille */
+    unsigned long frequence;        /**< la fréquence de l'octet si l'arbre est une feuille, la somme des fréquences de ses fils sinon */
+    bool estUneFeuille;             /**< booléen permettant de savoir si l'arbre est une feuille */
+    ADH_ArbreDeHuffman arbreGauche; /**< le sous-arbre gauche */
+    ADH_ArbreDeHuffman arbreDroit;  /**< le sous-arbre droit */
 } ADH_Noeud;
 
 /**

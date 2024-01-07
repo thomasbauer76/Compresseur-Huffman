@@ -10,10 +10,10 @@
 
 #include <stdbool.h>
 
-#define MAX_BITS 8    /**< le nombre de bits maximum que contient un octet*/
-#define bitA0 0       /**< valeur 0 d'un bit */
-#define bitA1 1       /**< valeur 1 d'un bit*/
-#define MAX_OCTET 256 /**< valeur maximal d'un octet*/
+#define MAX_BITS    8
+#define bitA0       0      
+#define bitA1       1      
+#define MAX_OCTET   256
 
 /**
  * \brief Le type O_Bit est un booléen pouvant prendre la valeur bitA0 (0) ou bitA1 (1)
