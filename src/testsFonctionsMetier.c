@@ -273,7 +273,6 @@ void test_concatener_codes_binaires(void) {
     ADH_ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
     TDC_TableDeCodage tdc = C_obtenirTableDeCodage(a);
 
-    fclose(tempFileEntree);
     FILE *tempFileSortie = tmpfile();
 
     CB_CodeBinaire cbTemp = CB_creerCodeBinaire(bitA0);
@@ -304,6 +303,7 @@ void test_concatener_codes_binaires(void) {
     CU_ASSERT_EQUAL(octet2, otest2);  // 11111001 en binaire
 
     fclose(tempFileSortie);
+    fclose(tempFileEntree);
 }
 
 void test_encoder(void) {
@@ -313,9 +313,9 @@ void test_encoder(void) {
 
     rewind(tempFileEntree);
     FILE *tempFileSortie = tmpfile();
-
+    rewind(tempFileSortie);
     C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &taille);
-
+   
     if (taille > 0) {
         ADH_ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
         if (!ADH_estUneFeuille(a))  // Cas particulier d'un fichier contenant un seul octet (présent plusieurs fois ou non)
@@ -324,21 +324,38 @@ void test_encoder(void) {
     }
 
     rewind(tempFileSortie);
+    rewind(tempFileEntree);
 
-    unsigned char octet1, octet2;
+    unsigned char octet1, octet2, octet3, octet4, octet5;
     size_t result;
-    unsigned char otest1 = O_octetVersNaturel(O_creerOctet(bitA1, bitA0, bitA0, bitA0, bitA1, bitA0, bitA0, bitA1));
-    unsigned char otest2 = O_octetVersNaturel(O_creerOctet(bitA1, bitA1, bitA1, bitA1, bitA1, bitA0, bitA0, bitA1));
 
+    unsigned char otest1 = O_octetVersNaturel(O_creerOctet(bitA1, bitA0, bitA0, bitA1, bitA0, bitA0, bitA0, bitA1));
     result = fread(&octet1, sizeof(unsigned char), 1, tempFileSortie);
     CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(octet1, otest1);  // 10001001
-
+    
+    unsigned char otest2 = O_octetVersNaturel(O_creerOctet(bitA1, bitA0, bitA0, bitA1, bitA1, bitA1, bitA1, bitA1));
     result = fread(&octet2, sizeof(unsigned char), 1, tempFileSortie);
     CU_ASSERT_EQUAL_FATAL(result, 1);
     CU_ASSERT_EQUAL(octet2, otest2);  // 11111001
+    
+    unsigned char otest3 = O_octetVersNaturel(O_creerOctet(bitA0, bitA1, bitA1, bitA0, bitA1, bitA0, bitA0, bitA1));
+    result = fread(&octet3, sizeof(unsigned char), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
+    CU_ASSERT_EQUAL(octet3, otest3);  // 10010110
 
+    unsigned char otest4 = O_octetVersNaturel(O_creerOctet(bitA1, bitA1, bitA1, bitA0, bitA0, bitA1, bitA0, bitA1));
+    result = fread(&octet4, sizeof(unsigned char), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
+    CU_ASSERT_EQUAL(octet4, otest4);  // 10100111
+
+    unsigned char otest5 = O_octetVersNaturel(O_creerOctet(bitA0, bitA1, bitA1, bitA0, bitA0, bitA1, bitA0, bitA0));
+    result = fread(&octet5, sizeof(unsigned char), 1, tempFileSortie);
+    CU_ASSERT_EQUAL_FATAL(result, 1);
+    CU_ASSERT_EQUAL(octet5, otest5);  // 00100110
+  
     fclose(tempFileSortie);
+    fclose(tempFileEntree);
 }
 
 /* Tests decompression.c */
