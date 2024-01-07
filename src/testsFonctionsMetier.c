@@ -32,7 +32,7 @@ FILE *fichierTemporaireRempli() {
 void test_file_de_priorite(void) {
     FILE *tempFile = fichierTemporaireRempli();
 
-    Statistiques s;
+    S_Statistiques s;
     unsigned long long taille;
     C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
@@ -52,7 +52,7 @@ void test_file_de_priorite(void) {
 void test_arbre_de_huffman(void) {
     FILE *tempFile = fichierTemporaireRempli();
 
-    Statistiques s;
+    S_Statistiques s;
     unsigned long long taille;
     C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
@@ -74,7 +74,7 @@ void test_arbre_de_huffman(void) {
 void test_obtenir_statistiques(void) {
     FILE *tempFile = fichierTemporaireRempli();
 
-    Statistiques s;
+    S_Statistiques s;
     unsigned long long taille;
     C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
@@ -92,7 +92,7 @@ void test_obtenir_statistiques(void) {
 void test_obtenir_taille_fichier(void) {
     FILE *tempFile = fichierTemporaireRempli();
 
-    Statistiques s;
+    S_Statistiques s;
     unsigned long long taille;
     C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
@@ -104,7 +104,7 @@ void test_obtenir_taille_fichier(void) {
 void test_table_de_codage(void) {
     FILE *tempFile = fichierTemporaireRempli();
 
-    Statistiques s;
+    S_Statistiques s;
     unsigned long long taille;
     C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
@@ -163,7 +163,7 @@ void test_ecrire_identifiant(void) {
 void test_ecrire_taille_fichier(void) {
     FILE *tempFileEntree = fichierTemporaireRempli();
 
-    Statistiques s;
+    S_Statistiques s;
     unsigned long long taille;
 
     C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &taille);
@@ -185,7 +185,7 @@ void test_ecrire_taille_fichier(void) {
 void test_ecrire_statistiques(void) {
     FILE *tempFileEntree = fichierTemporaireRempli();
 
-    Statistiques s_entree;
+    S_Statistiques s_entree;
     unsigned long long taille;
     C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s_entree, &taille);
 
@@ -267,7 +267,7 @@ void test_concatener_codes_binaires(void) {
     FILE *tempFileEntree = fichierTemporaireRempli();
 
     unsigned short i;
-    Statistiques s;
+    S_Statistiques s;
     unsigned long long longueur;
     C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &longueur);
     ADH_ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
@@ -307,7 +307,7 @@ void test_concatener_codes_binaires(void) {
 }
 
 void test_encoder(void) {
-    Statistiques s;
+    S_Statistiques s;
     unsigned long long taille;
     FILE *tempFileEntree = fichierTemporaireRempli();
 
@@ -345,7 +345,7 @@ void test_encoder(void) {
 
 void test_seDeplacerDansLArbre(void) {
     FILE *tempFileEntree = fichierTemporaireRempli();
-    Statistiques s;
+    S_Statistiques s;
     unsigned long long taille;
     C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &taille);
     ADH_ArbreDeHuffman abh = CADH_construireArbreDeHuffman(s);
@@ -377,7 +377,7 @@ void test_seDeplacerDansLArbre(void) {
 void test_lire_statistiques(void) {
     FILE *tempFileEntree = fichierTemporaireRempli();
 
-    Statistiques s_entree;
+    S_Statistiques s_entree;
     unsigned long long taille;
     C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s_entree, &taille);
 
@@ -389,7 +389,7 @@ void test_lire_statistiques(void) {
 
     rewind(tempFileSortie);
 
-    Statistiques s_lu;
+    S_Statistiques s_lu;
     D_lireStatistiques(tempFileSortie, &s_lu);
 
     for (unsigned long int o = 0; o < 256; ++o) {
@@ -427,7 +427,7 @@ void test_lire_statistiques(void) {
 
 void test_decoder(void) {
     FILE *fichierTest = fichierTemporaireRempli();
-    Statistiques s;
+    S_Statistiques s;
     unsigned long long longueur;
     C_obtenirStatistiquesEtTailleFichier(fichierTest, &s, &longueur);
     ADH_ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);

@@ -14,21 +14,21 @@
 #include "statistiques.h"
 
 /**
- * \fn FDPAH_FileDePriorite CADH_construireFileDePriorite(Statistiques s)
+ * \fn FDPAH_FileDePriorite CADH_construireFileDePriorite(S_Statistiques s)
  * \brief Fonction permettant de construire la file de priorité contenant les feuilles d'occurences non nulles à partir de statistiques
  *
  * \param s : les statistiques
  * \return FDPAH_FileDePriorite
  */
-FDPAH_FileDePriorite CADH_construireFileDePriorite(Statistiques s);
+FDPAH_FileDePriorite CADH_construireFileDePriorite(S_Statistiques s);
 
 /**
- * \fn ADH_ArbreDeHuffman CADH_construireArbreDeHuffman(Statistiques s)
+ * \fn ADH_ArbreDeHuffman CADH_construireArbreDeHuffman(S_Statistiques s)
  * \brief Fonction permettant de construire l'arbre de Huffman à partir de statistiques
  *
  * \param s : les statistiques
  * \return ADH_ArbreDeHuffman
  */
-ADH_ArbreDeHuffman CADH_construireArbreDeHuffman(Statistiques s);
+ADH_ArbreDeHuffman CADH_construireArbreDeHuffman(S_Statistiques s);
 
 #endif

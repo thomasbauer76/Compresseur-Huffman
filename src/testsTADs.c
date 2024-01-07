@@ -20,7 +20,7 @@ int clean_suite_success(void) {
 /* Tests statistiques.c */
 
 void test_statistiques_vides(void) {
-    Statistiques s;
+    S_Statistiques s;
     S_statistiques(&s);
 
     for (unsigned short o = 0; o < MAX_OCTET; o++) {
@@ -29,7 +29,7 @@ void test_statistiques_vides(void) {
 }
 
 void test_statistiques_incrementees(void) {
-    Statistiques s;
+    S_Statistiques s;
     S_statistiques(&s);
 
     O_Octet o = O_naturelVersOctet(241);
@@ -42,7 +42,7 @@ void test_statistiques_incrementees(void) {
 }
 
 void test_statistiques_fixer_occurence(void) {
-    Statistiques s;
+    S_Statistiques s;
     S_statistiques(&s);
 
     O_Octet o = O_naturelVersOctet(241);

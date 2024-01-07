@@ -5,7 +5,7 @@
 #include "octet.h"
 #include "statistiques.h"
 
-FDPAH_FileDePriorite CADH_construireFileDePriorite(Statistiques s) {
+FDPAH_FileDePriorite CADH_construireFileDePriorite(S_Statistiques s) {
     FDPAH_FileDePriorite fdp;
     O_Octet octet;
     unsigned long occurence;
@@ -25,7 +25,7 @@ FDPAH_FileDePriorite CADH_construireFileDePriorite(Statistiques s) {
     return fdp;
 }
 
-ADH_ArbreDeHuffman CADH_construireArbreDeHuffman(Statistiques s) {
+ADH_ArbreDeHuffman CADH_construireArbreDeHuffman(S_Statistiques s) {
     FDPAH_FileDePriorite fdp;
     bool dernierElement;
     ADH_ArbreDeHuffman a1, a2, aFusion;

@@ -21,7 +21,7 @@ void D_seDeplacerDansLArbre(O_Bit b, ADH_ArbreDeHuffman *a) {
     }
 }
 
-void D_lireStatistiques(FILE *fb, Statistiques *s) {
+void D_lireStatistiques(FILE *fb, S_Statistiques *s) {
     O_Octet octet;
     unsigned long int occurence;
 
@@ -94,7 +94,7 @@ void D_decompresser(FILE *fbCompresse, char *filename) {
             exit(EXIT_FAILURE);
         }
         if (longueur > 0) {  // Cas particulier d'un fichier vide
-            Statistiques s;
+            S_Statistiques s;
             D_lireStatistiques(fbCompresse, &s);
             ADH_ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
             if (ADH_estUneFeuille(a)) {  // Cas particulier d'un fichier contenant un seul octet (présent plusieurs fois ou non)

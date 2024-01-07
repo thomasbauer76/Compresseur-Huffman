@@ -20,7 +20,7 @@ unsigned short min(unsigned short a, unsigned short b) {
         return a;
 }
 
-void C_obtenirStatistiquesEtTailleFichier(FILE *f, Statistiques *s, unsigned long long *taille) {
+void C_obtenirStatistiquesEtTailleFichier(FILE *f, S_Statistiques *s, unsigned long long *taille) {
     rewind(f);
 
     S_statistiques(s);
@@ -70,7 +70,7 @@ void C_ecrireTailleFichier(FILE *f, unsigned long long taille) {
     fwrite(&taille, sizeof(unsigned long long), 1, f);
 }
 
-void C_ecrireStatistiques(FILE *f, Statistiques s) {
+void C_ecrireStatistiques(FILE *f, S_Statistiques s) {
     O_Octet octet;
     unsigned long occurence;
 
@@ -148,7 +148,7 @@ void C_encoder(FILE *f, FILE *fbCompresse, TableDeCodage tdc) {
 }
 
 void C_compresser(FILE *f, char *filename) {
-    Statistiques s;
+    S_Statistiques s;
     unsigned long long taille;
 
     rewind(f);
