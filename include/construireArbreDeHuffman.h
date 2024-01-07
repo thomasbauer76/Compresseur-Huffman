@@ -9,28 +9,26 @@
 #ifndef __CONSTRUIRE_ARBRE_DE_HUFFMAN__
 #define __CONSTRUIRE_ARBRE_DE_HUFFMAN__
 
-
-#include "statistiques.h"
 #include "arbreDeHuffman.h"
 #include "fileDePrioriteDArbreDeHuffman.h"
+#include "statistiques.h"
 
 /**
- * \fn FileDePriorite CADH_construireFileDePriorite(Statistiques s)
+ * \fn FDPAH_FileDePriorite CADH_construireFileDePriorite(S_Statistiques s)
  * \brief Fonction permettant de construire la file de priorité contenant les feuilles d'occurences non nulles à partir de statistiques
  *
  * \param s : les statistiques
- * \return FileDePriorite
+ * \return FDPAH_FileDePriorite
  */
-FileDePriorite CADH_construireFileDePriorite(Statistiques s);
+FDPAH_FileDePriorite CADH_construireFileDePriorite(S_Statistiques s);
 
 /**
- * \fn ArbreDeHuffman CADH_construireArbreDeHuffman(Statistiques s)
+ * \fn ADH_ArbreDeHuffman CADH_construireArbreDeHuffman(S_Statistiques s)
  * \brief Fonction permettant de construire l'arbre de Huffman à partir de statistiques
  *
  * \param s : les statistiques
- * \return ArbreDeHuffman
+ * \return ADH_ArbreDeHuffman
  */
-ArbreDeHuffman CADH_construireArbreDeHuffman(Statistiques s);
-
+ADH_ArbreDeHuffman CADH_construireArbreDeHuffman(S_Statistiques s);
 
 #endif

@@ -2,12 +2,8 @@
     \procedure{compresser}{\paramEntreeSortie{f : \fichierbinaire}, \paramSortie{fCompresse : \fichierbinaire}}{}
     {s : \statistiques, taillefb : Naturel}
     {
-        \sialors{estOuvert(fbInitial)}
-        {
-            \instruction{fermer(fbInitial)}
-        }
-        \instruction{ouvrir(fbInitial, lecture)}
         \instruction{ouvrir(fbCompresse, ecriture)}
+        \instruction{positionnerAuDebut(f)}
         \\
         \instruction{obtenirStatistiquesEtTailleFichier(f, s, taillefb)}    
         \\

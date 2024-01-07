@@ -1,25 +1,26 @@
+#include "compression.h"
+
+#include <assert.h>
+#include <stddef.h>
 #include <stdio.h>
 #include <string.h>
-#include <stddef.h>
-#include <assert.h>
-#include "compression.h"
-#include "octet.h"
+
 #include "arbreDeHuffman.h"
-#include "fileDePrioriteDArbreDeHuffman.h"
-#include "arbreDeHuffman.h"
-#include "tableDeCodage.h"
-#include "statistiques.h"
 #include "codeBinaire.h"
 #include "construireArbreDeHuffman.h"
+#include "fileDePrioriteDArbreDeHuffman.h"
+#include "octet.h"
+#include "statistiques.h"
+#include "tableDeCodage.h"
 
 unsigned short min(unsigned short a, unsigned short b) {
-  if (a>b)
-    return b;
-  else
-    return a;
+    if (a > b)
+        return b;
+    else
+        return a;
 }
 
-void C_obtenirStatistiquesEtTailleFichier(FILE *f, Statistiques *s,  unsigned long long *taille) {
+void C_obtenirStatistiquesEtTailleFichier(FILE *f, S_Statistiques *s, unsigned long long *taille) {
     rewind(f);
 
     S_statistiques(s);
@@ -32,15 +33,14 @@ void C_obtenirStatistiquesEtTailleFichier(FILE *f, Statistiques *s,  unsigned lo
     }
 }
 
-void C_obtenirTableDeCodageRecursif(TableDeCodage *tdc, ArbreDeHuffman a, CodeBinaire cb) {
-    CodeBinaire cbCopie;
-    
+void C_obtenirTableDeCodageRecursif(TDC_TableDeCodage *tdc, ADH_ArbreDeHuffman a, CB_CodeBinaire cb) {
+    CB_CodeBinaire cbCopie;
+
     if (ADH_estUneFeuille(a)) {
         TDC_ajouterCodage(tdc, ADH_obtenirOctet(a), cb);
-    }
-    else {
-        memcpy(&cbCopie, &cb, sizeof(CodeBinaire));
-        
+    } else {
+        memcpy(&cbCopie, &cb, sizeof(CB_CodeBinaire));
+
         CB_ajouterBit(&cbCopie, bitA0);
         C_obtenirTableDeCodageRecursif(tdc, ADH_obtenirFilsGauche(a), cbCopie);
         CB_ajouterBit(&cb, bitA1);
@@ -48,13 +48,13 @@ void C_obtenirTableDeCodageRecursif(TableDeCodage *tdc, ArbreDeHuffman a, CodeBi
     }
 }
 
-TableDeCodage C_obtenirTableDeCodage(ArbreDeHuffman a) {
+TDC_TableDeCodage C_obtenirTableDeCodage(ADH_ArbreDeHuffman a) {
     assert(!ADH_estUneFeuille(a));
 
-    TableDeCodage tdc = TDC_creerTableCodage();
+    TDC_TableDeCodage tdc = TDC_creerTableCodage();
 
-    CodeBinaire cbGauche = CB_creerCodeBinaire(bitA0);
-    CodeBinaire cbDroit = CB_creerCodeBinaire(bitA1);
+    CB_CodeBinaire cbGauche = CB_creerCodeBinaire(bitA0);
+    CB_CodeBinaire cbDroit = CB_creerCodeBinaire(bitA1);
     C_obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsGauche(a), cbGauche);
     C_obtenirTableDeCodageRecursif(&tdc, ADH_obtenirFilsDroit(a), cbDroit);
 
@@ -70,8 +70,8 @@ void C_ecrireTailleFichier(FILE *f, unsigned long long taille) {
     fwrite(&taille, sizeof(unsigned long long), 1, f);
 }
 
-void C_ecrireStatistiques(FILE *f, Statistiques s) {
-    Octet octet;
+void C_ecrireStatistiques(FILE *f, S_Statistiques s) {
+    O_Octet octet;
     unsigned long occurence;
 
     unsigned short o;
@@ -87,7 +87,7 @@ void C_ecrireStatistiques(FILE *f, Statistiques s) {
     fwrite(&occurence, sizeof(unsigned long), 1, f);
 }
 
-Octet C_codeBinaireEnOctet(CodeBinaire cb) {
+O_Octet C_codeBinaireEnOctet(CB_CodeBinaire cb) {
     assert(CB_obtenirLongueur(cb) == MAX_BITS);
     return O_creerOctet(CB_obtenirIemeBit(cb, 7),
                         CB_obtenirIemeBit(cb, 6),
@@ -99,7 +99,7 @@ Octet C_codeBinaireEnOctet(CodeBinaire cb) {
                         CB_obtenirIemeBit(cb, 0));
 }
 
-void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBinaire cb) {
+void C_concatenerCodeBinaireDansFichier(FILE *f, CB_CodeBinaire *p_cbTemp, CB_CodeBinaire cb) {
     unsigned short i = 0;
     unsigned short tailleCb = CB_obtenirLongueur(cb);
 
@@ -121,18 +121,17 @@ void C_concatenerCodeBinaireDansFichier(FILE *f, CodeBinaire *p_cbTemp, CodeBina
     }
 }
 
-
-void C_encoder(FILE *f, FILE *fbCompresse, TableDeCodage tdc) {
+void C_encoder(FILE *f, FILE *fbCompresse, TDC_TableDeCodage tdc) {
     unsigned short i;
     rewind(f);
 
     // Création d'un code binaire temporaire initalisé à 8 bits pour rentrer dans la première condition de la fonction concatenerCodeBinaireEnOctet
-    CodeBinaire cbTemp = CB_creerCodeBinaire(bitA0);
+    CB_CodeBinaire cbTemp = CB_creerCodeBinaire(bitA0);
     for (i = 1; i < MAX_BITS; i++)
         CB_ajouterBit(&cbTemp, bitA0);
-    
+
     // Boucle d'encodage
-    CodeBinaire cb;
+    CB_CodeBinaire cb;
     short o;
     while ((o = fgetc(f)) != EOF) {
         cb = TDC_octetVersCodeBinaire(tdc, O_naturelVersOctet(o));
@@ -149,24 +148,24 @@ void C_encoder(FILE *f, FILE *fbCompresse, TableDeCodage tdc) {
 }
 
 void C_compresser(FILE *f, char *filename) {
-    Statistiques s;
+    S_Statistiques s;
     unsigned long long taille;
 
     rewind(f);
-    FILE *fbCompresse = fopen(strcat(filename,".huff"), "wb");
+    FILE *fbCompresse = fopen(strcat(filename, ".huff"), "wb");
 
     C_obtenirStatistiquesEtTailleFichier(f, &s, &taille);
 
     // Ecriture des données importantes avant d'encoder
     C_ecrireIdentifiant(fbCompresse);
     C_ecrireTailleFichier(fbCompresse, taille);
-    if(taille > 0) { // Cas particulier d'un fichier vide
+    if (taille > 0) {  // Cas particulier d'un fichier vide
         C_ecrireStatistiques(fbCompresse, s);
-        ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
-        if (!ADH_estUneFeuille(a)) // Cas particulier d'un fichier contenant un seul octet (présent plusieurs fois ou non)
+        ADH_ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
+        if (!ADH_estUneFeuille(a))  // Cas particulier d'un fichier contenant un seul octet (présent plusieurs fois ou non)
             C_encoder(f, fbCompresse, C_obtenirTableDeCodage(a));
         ADH_liberer(a);
     }
-   
+
     fclose(fbCompresse);
 }

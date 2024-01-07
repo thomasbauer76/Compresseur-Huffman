@@ -1,21 +1,19 @@
 \begin{algorithme}
-\procedure {decoder}{\paramEntree{aHuff: \arbredehuffman},\paramEntreeSortie{fb1 : \fichierbinaire},\paramSortie{fb2 : \fichierbinaire}}{}{}
+\procedure{decoder}{\paramEntree{aHuff: \arbredehuffman}, \paramEntreeSortie{fb1 : \fichierbinaire}, \paramSortie{fb2 : \fichierbinaire}}{}{}
 {
-	\instruction{ouvrir(fb2,écriture)}
 	\affecter{atemp}{aHuff}
-	\tantque{non(finFichier(fb1)}
+	\tantque{non(finFichier(fb1))}
 	{
-		\affecter{OctetCourant}{lireOctet(fb1}
+		\affecter{OctetCourant}{lireOctet(fb1)}
 		\pour{i}{0}{7}{}{
 			\affecter{bit}{ObtenirIemebit(OctetCourant,i)}
 			\instruction{seDeplacerDansArbre(atemp,bit)}
 			\sialors{estUneFeuille(atemp)}{
-				\affecter{octetDecodé}{obtenirOctet(arbreCourant}
-				\instruction{ecrireOctet(octetDecodé,fb2}
+				\affecter{octetDecodé}{obtenirOctet(arbreCourant)}
+				\instruction{ecrireOctet(octetDecodé, fb2)}
 				\affecter{aTemp}{aHuff}
 				}
 			}
 		}
-	\instruction{fermer(fb2)}
 	}
 \end{algorithme}

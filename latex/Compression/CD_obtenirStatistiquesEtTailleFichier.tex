@@ -2,13 +2,7 @@
     \procedure{obtenirStatistiquesEtTailleFichier}{\paramEntreeSortie{f : \fichierbinaire}, \paramSortie{s : \statistiques, taille : \naturel}}{}
     {s : \statistiques}
     {
-        \sialors{estOuvert(f)}
-        {
-            \instruction{fermer(f)}
-        }
-        \instruction{ouvrir(f, lecture)} 
-        \\
-        \commentaire{Les instructions ci-dessus correspondent à une réinitialisation du curseur en tête de fichier.}
+        \instruction{positionnerAuDebut(f)}
         \affecter{s}{statistiques()}
         \affecter{taille}{0}
         \tantque{non(finFichier(f))}

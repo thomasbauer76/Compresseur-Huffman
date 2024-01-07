@@ -1,29 +1,20 @@
 \begin{algorithme}
-	\fonction{decompresser}{fCompresse : \fichierbinaire}{\fichierbinaire}{}{fDecompresse : \fichierbinaire, id, longueur : \naturel, s : \statistiques, abh : \arbredehuffman}
+	\procedure{decompresser}{\paramEntreeSortie{fCompresse : \fichierbinaire}, \paramSortie{fDecompresse : \fichierbinaire}}{}{fDecompresse : \fichierbinaire, id, longueur : \naturel, s : \statistiques, abh : \arbredehuffman}
     {
-    	\sialors{estOuvert(f)}
-        {
-            \instruction{fermer(f)}
-        }
-        \instruction{ouvrir(f, lecture)}
-        \\
-        \commentaire{Les instructions ci-dessus correspondent à une réinitialisation du curseur en tête de fichier.}
+		\instruction{ouvrir(fDecompresse, ecriture)}
+    	\instruction{positionnerAuDebut(fCompresse)}
     	\\
-    	\commentaire{Lecture de l'identifiant (un \textit{unsigned short int})}
     	\instruction{lireNaturel(fCompresser, id)}
-    	\\
-    	\commentaire{On vérifie si on retrouve bien notre identifiant (ici 1000 sous sa forme de naturel), si ce n'est pas le cas, on n'a pas a décompresser le fichier et l'on retourne fCompresser en tant que fichier décompressé}
-    	\sialors{id != 1000}{
-    		\instruction{retourner fCompresser}
+		\\
+    	\commentaire{On vérifie si on retrouve bien notre identifiant (ici 1000 sous sa forme de naturel), si ce n'est pas le cas, on n'a pas a décompresser le fichier}
+    	\sialors{id = 1000}{   
+			\instruction{lireNaturel(fCompresser, longueur)}
+			\instruction{lireStatistiques(fCompresser, s)}
+			\instruction{construireArbreDeHuffman(s, abh)}
+			\instruction{decoder(abh, longueur, fCompresse, fDecompresse)}
+			\instruction{liberer(abh)}
     	}
-		\\		
-		\commentaire{Lecture de la longueur (un \textit{unsigned long long int})}    
-    	\instruction{lireNaturel(fCompresser, longueur)}
-    	\instruction{lireStatistiques(fCompresser, s)}
-    	\instruction{construireArbreDeHuffman(s, abh)}
-    	\instruction{decoder(abh, longueur, fCompresse, fDecompresse)}
-		\instruction{libererArbreDeHuffman(abh)}    	
-    	\\
-    	\commentaire{L'instruction au dessus permet de s'assurer de la libération de l'ArbreDeHuffman (conseillé par le prof)}
+		\\
+		\instruction{fermer(fDecompresse)}
     }
 \end{algorithme}
