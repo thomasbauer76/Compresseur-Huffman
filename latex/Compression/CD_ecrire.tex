@@ -17,7 +17,7 @@
 
     \procedure{ecrireStatistiques}{\paramEntreeSortie{fb : \fichierbinaire}, \paramEntree{s : \statistiques}}
     {estOuvert(fb) et (mode(fb) $=$ écriture)}
-    {o: \naturel}
+    {o, occurence: \naturel, octet : \octet}
     {
     		\pour{o}{ 0}{255}{}{
                 \affecter{octet}{naturelVersOctet(o)}

@@ -1,7 +1,7 @@
 \begin{algorithme}
     \procedure{concatenerCodeBinaireDansFichier}{\paramEntreeSortie{fbCompresse : \fichierbinaire, cbtemp : \codebinaire},\paramEntree{cb : \codebinaire}}
 	{estOuvert(fbCompresse) et (mode(fbCompresse) $=$ écriture)}
-    {i, j, tailleCb, tailleLibre : \naturel}
+    {i, tailleCb: \naturel}
     {
 		\affecter{i}{0}
 		\affecter{tailleCb}{obtenirLongueur(cb)}	
@@ -22,7 +22,7 @@
 			\\
 			\sialors{obtenirLongueur(cbTemp) = 8}
 			{											
-				\instruction{ecrireOctet(fbCompresse, codeBinaireEnOctet(cb))}
+				\instruction{ecrireOctet(fbCompresse, codeBinaireEnOctet(cbtemp))}
 			}
 		}
     }
