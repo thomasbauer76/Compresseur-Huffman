@@ -1,6 +1,6 @@
 \begin{algorithme}
  \procedure{encoder}{\paramEntreeSortie{fbInitial : \fichierbinaire, fbCompresse : \fichierbinaire}, \paramEntree{tdc : \tabledecodage}}
-    {}
+    {estOuvert(fb1) et (mode(fb1) $=$ lecture) et estOuvert(fb2) et (mode(fb2) $=$ écriture)}
     {cbTemp, cb: \codebinaire, o : \octet, i : \naturel}
     {
 		\instruction{positionnerAuDebut(f)}

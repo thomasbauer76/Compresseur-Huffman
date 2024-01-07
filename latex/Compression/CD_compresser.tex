@@ -1,5 +1,6 @@
 \begin{algorithme}
-    \procedure{compresser}{\paramEntreeSortie{f : \fichierbinaire}, \paramSortie{fCompresse : \fichierbinaire}}{}
+    \procedure{compresser}{\paramEntreeSortie{f : \fichierbinaire}, \paramSortie{fCompresse : \fichierbinaire}}
+    {estOuvert(f) et (mode(f) $=$ lecture)}
     {s : \statistiques, taillefb : Naturel}
     {
         \instruction{ouvrir(fbCompresse, ecriture)}

@@ -1,5 +1,5 @@
 \begin{algorithme}
-\procedure{decoder}{\paramEntree{aHuff: \arbredehuffman}, \paramEntreeSortie{fb1 : \fichierbinaire}, \paramSortie{fb2 : \fichierbinaire}}{}{}
+\procedure{decoder}{\paramEntree{aHuff: \arbredehuffman}, \paramEntreeSortie{fb1 : \fichierbinaire, fb2 : \fichierbinaire}}{estOuvert(fb1) et (mode(fb1) $=$ lecture) et estOuvert(fb2) et (mode(fb2) $=$ écriture)}{}
 {
 	\affecter{atemp}{aHuff}
 	\tantque{non(finFichier(fb1))}

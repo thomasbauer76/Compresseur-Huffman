@@ -1,5 +1,6 @@
 \begin{algorithme}
-    \procedure{obtenirStatistiquesEtTailleFichier}{\paramEntreeSortie{f : \fichierbinaire}, \paramSortie{s : \statistiques, taille : \naturel}}{}
+    \procedure{obtenirStatistiquesEtTailleFichier}{\paramEntreeSortie{f : \fichierbinaire}, \paramSortie{s : \statistiques, taille : \naturel}}
+    {estOuvert(f) et (mode(f) $=$ lecture)}
     {s : \statistiques}
     {
         \instruction{positionnerAuDebut(f)}

@@ -1,5 +1,6 @@
 \begin{algorithme}
-    \procedure{ecrireIdentifiant}{\paramEntreeSortie{fb : \fichierbinaire}}{}
+    \procedure{ecrireIdentifiant}{\paramEntreeSortie{fb : \fichierbinaire}}
+    {estOuvert(fb) et (mode(fb) $=$ écriture)}
     {id : Naturel}
     {
     	 \affecter{id}{1000}
@@ -7,12 +8,16 @@
         
     }
     
-    \procedure{ecrireTailleFichier}{\paramEntreeSortie{fb : \fichierbinaire},\paramEntree{taillefb : \naturel}}{}{}
+    \procedure{ecrireTailleFichier}{\paramEntreeSortie{fb : \fichierbinaire},\paramEntree{taillefb : \naturel}}
+    {estOuvert(fb) et (mode(fb) $=$ écriture)}
+    {}
     {
         \instruction{ecrireNaturel(fb, taillefb)}
     }
 
-    \procedure{ecrireStatistiques}{\paramEntreeSortie{fb : \fichierbinaire}, \paramEntree{s : \statistiques}}{}{o: \naturel}
+    \procedure{ecrireStatistiques}{\paramEntreeSortie{fb : \fichierbinaire}, \paramEntree{s : \statistiques}}
+    {estOuvert(fb) et (mode(fb) $=$ écriture)}
+    {o: \naturel}
     {
     		\pour{o}{ 0}{255}{}{
                 \affecter{octet}{naturelVersOctet(o)}

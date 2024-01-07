@@ -1,6 +1,6 @@
 \begin{algorithme}
-     \procedure{concatenerCodeBinaireDansFichier}{\paramEntreeSortie{cbTemp : \codebinaire},\paramEntree{cb : \codebinaire},\paramEntreeSortie{fbCompresse : \fichierbinaire}}
-    {}
+    \procedure{concatenerCodeBinaireDansFichier}{\paramEntreeSortie{fbCompresse : \fichierbinaire, cbtemp : \codebinaire},\paramEntree{cb : \codebinaire}}
+	{estOuvert(fbCompresse) et (mode(fbCompresse) $=$ écriture)}
     {i, j, tailleCb, tailleLibre : \naturel}
     {
 		\affecter{i}{0}

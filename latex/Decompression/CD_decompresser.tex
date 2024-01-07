@@ -1,5 +1,7 @@
 \begin{algorithme}
-	\procedure{decompresser}{\paramEntreeSortie{fCompresse : \fichierbinaire}, \paramSortie{fDecompresse : \fichierbinaire}}{}{fDecompresse : \fichierbinaire, id, longueur : \naturel, s : \statistiques, abh : \arbredehuffman}
+	\procedure{decompresser}{\paramEntreeSortie{fCompresse : \fichierbinaire}, \paramSortie{fDecompresse : \fichierbinaire}}
+	{estOuvert(fCompresse) et (mode(fCompresse) $=$ lecture)}
+	{fDecompresse : \fichierbinaire, id, longueur : \naturel, s : \statistiques, abh : \arbredehuffman}
     {
 		\instruction{ouvrir(fDecompresse, ecriture)}
     	\instruction{positionnerAuDebut(fCompresse)}

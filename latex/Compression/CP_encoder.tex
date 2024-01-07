@@ -1,4 +1,4 @@
 \begin{algorithme}
-\signatureProcedure{encoder}{\paramEntreeSortie{fbInitial : \fichierbinaire},\paramEntree{ tdc : \tabledecodage},\paramSortie{fbCompresse : \fichierbinaire}}
-    {}
+\signatureProcedure{encoder}{\paramEntreeSortie{fbInitial : \fichierbinaire, fbCompresse : \fichierbinaire}, \paramEntree{tdc : \tabledecodage}}
+    {estOuvert(fb1) et (mode(fb1) $=$ lecture) et estOuvert(fb2) et (mode(fb2) $=$ écriture)}
 \end{algorithme}
