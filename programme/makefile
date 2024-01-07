@@ -52,4 +52,4 @@ clean :
 	rm -rf ./$(BINDIR)/*
 	rm -rf ./$(SRCDIR)/*.o
 	rm -rf ./$(LATEXDIR)/*.pdf ./$(LATEXDIR)/_minted-main ./$(LATEXDIR)/*.aux ./$(LATEXDIR)/*.log ./$(LATEXDIR)/*.toc ./$(LATEXDIR)/*.out
-	rm -rf ./$(DOCDIR)
+	rm -rf ./$(DOCDIR)/latex ./$(DOCDIR)/html
