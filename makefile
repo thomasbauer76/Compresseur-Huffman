@@ -48,4 +48,4 @@ clean :
 	rm -rf ./$(BINDIR)/*
 	rm -rf ./$(SRCDIR)/*.o
 	rm -rf ./$(LATEXDIR)/*.pdf ./$(LATEXDIR)/_minted-main ./$(LATEXDIR)/*.fls ./$(LATEXDIR)/*.fdb_latexmk ./$(LATEXDIR)/*.aux ./$(LATEXDIR)/*.log ./$(LATEXDIR)/*.toc
-	rm -rf ./$(DOCDIR)/*
+	rm -rf ./$(DOCDIR)
