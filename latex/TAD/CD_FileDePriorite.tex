@@ -1,28 +1,28 @@
 \begin{algorithme}
-    \procedure{enfiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}}, \paramEntree{e : \textbf{Element}}}{}
+    \procedure{enfiler}{\paramEntreeSortie{fdp : \textbf{FileDePriorite}}, \paramEntree{e : \textbf{Element}}}{}
     {temp : \textbf{FileDePriorite}}
     {
-         \sialorssinon{estVide(file) ou e $<$ file\motclefDereferencer .element}
+         \sialorssinon{estVide(fdp) ou e $<$ fdp\motclefDereferencer .element}
          {
-            \affecter{temp}{file}
-            \instruction{\allouer{file}}
-            \affecter{file\motclefDereferencer .element}{e}
-            \affecter{file\motclefDereferencer .fileSuivante}{temp}
+            \affecter{temp}{fdp}
+            \instruction{\allouer{fdp}}
+            \affecter{fdp\motclefDereferencer .element}{e}
+            \affecter{fdp\motclefDereferencer .fileSuivante}{temp}
          }
          {
-            \instruction{\textbf{enfiler}(file\motclefDereferencer .fileSuivante, e)}{}
+            \instruction{\textbf{enfiler}(fdp\motclefDereferencer .fileSuivante, e)}{}
          }
     }
 \end{algorithme}
 
 \bigbreak
 \begin{algorithme}
-    \procedure{obtenirElementEtDefiler}{\paramEntreeSortie{file : \textbf{FileDePriorite}, \paramSortie{e : \textbf{Element}}}}{non(estVide(file))}
+    \procedure{obtenirElementEtDefiler}{\paramEntreeSortie{fdp : \textbf{FileDePriorite}, \paramSortie{e : \textbf{Element}}}}{non(estVide(fdp))}
     {temp : \textbf{FileDePriorite}}
     {
-        \affecter{e}{file\motclefDereferencer .element}
-        \affecter{temp}{file}
-        \affecter{file}{temp\motclefDereferencer .listeSuivante}
+        \affecter{e}{fdp\motclefDereferencer .element}
+        \affecter{temp}{fdp}
+        \affecter{fdp}{temp\motclefDereferencer .listeSuivante}
         \instruction{\desallouer{temp}}
     }
 \end{algorithme}
@@ -38,9 +38,9 @@
 
 \bigbreak
 \begin{algorithme}
-    \fonction{estVide}{file : \textbf{FileDePriorite}}{\booleen}{}
+    \fonction{estVide}{fdp : \textbf{FileDePriorite}}{\booleen}{}
     {}
     {
-        \retourner{file = \textbf{NIL}}
+        \retourner{fdp = \textbf{NIL}}
     }
 \end{algorithme}
