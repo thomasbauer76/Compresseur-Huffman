@@ -1,11 +1,10 @@
 \begin{algorithme}
     \procedure{seDeplacerDansLArbre}{\paramEntree{bit : \bit}, \paramEntreeSortie{arbreCourant : \arbredehuffman}}{}{}
     {
-        \sialors{bit = 0}
+        \sialorssinon{bit = bitA0}
         {
             \affecter{arbreCourant}{obtenirFilsGauche(arbreCourant)}
         }
-        \sialors{bit = 1}
         {
             \affecter{arbreCourant}{obtenirFilsDroit(arbreCourant)}
         }

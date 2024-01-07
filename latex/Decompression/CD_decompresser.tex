@@ -3,21 +3,23 @@
 	{estOuvert(fCompresse) et (mode(fCompresse) $=$ lecture)}
 	{i, id, longueur : \naturel, s : \statistiques, abh : \arbredehuffman, octetUnique : \octet}
     {
+		\instruction{positionnerAuDebut(fCompresse)}
 		\instruction{ouvrir(fDecompresse, ecriture)}
-    	\instruction{positionnerAuDebut(fCompresse)}
     	\instruction{lireNaturel(fCompresser, id)}
 		\\
     	\commentaire{On vérifie si on retrouve bien notre identifiant (ici 1000 sous sa forme de naturel), si ce n'est pas le cas, on n'a pas a décompresser le fichier}
     	\sialors{id = 1000}{   
 			\instruction{lireNaturel(fCompresser, longueur)}
+			\\\commentaire{Cas particulier d'un fichier vide}
 			\sialors{(longueur > 0)}{
 				\instruction{lireStatistiques(fCompresser, s)}
 				\instruction{construireArbreDeHuffman(s, abh)}
+				\\\commentaire{Cas particulier d'un fichier contenant un seul octet (présent plusieurs fois ou non)}
 				\sialorssinon{estUneFeuille(abh)}
 				{
 					\affecter{octetUnique}{octetVersNaturel(obtenirOctet(abh))}
 					\pour{i}{1}{longueur}{}{
-						\instruction{ecrireOctet(octetUnique, fDecompresse)}
+						\instruction{ecrireOctet(fDecompresse, octetUnique)}
 					}
 				}
 				{

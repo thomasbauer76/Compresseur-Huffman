@@ -63,7 +63,7 @@ void D_decoder(ADH_ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *
                 O_Bit b = O_obtenirIemeBit(O_naturelVersOctet(o), i);
                 D_seDeplacerDansLArbre(b, &aTemp);
                 if (ADH_estUneFeuille(aTemp)) {
-                    O_Octet oDecode = ADH_obtenirOctet(aTemp);
+                    unsigned char oDecode = O_octetVersNaturel(ADH_obtenirOctet(aTemp));
                     fwrite(&oDecode, sizeof(unsigned char), 1, fbDecompresse);
                     aTemp = aHuff;
                     compteurOctetsDecodes = compteurOctetsDecodes + 1;
