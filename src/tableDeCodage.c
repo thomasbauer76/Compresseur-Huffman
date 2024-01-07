@@ -18,7 +18,7 @@ bool TDC_octetPresent(TDC_TableDeCodage tdc, O_Octet o) {
 
 void TDC_ajouterCodage(TDC_TableDeCodage *tdc, O_Octet o, CB_CodeBinaire cb) {
     assert(!TDC_octetPresent(*tdc, o));
-    int octet = O_octetVersNaturel(o);
+    unsigned short octet = O_octetVersNaturel(o);
     tdc->tableDeCodeBinaire[octet] = cb;
     tdc->tableDePresence[octet] = 1;
 }
