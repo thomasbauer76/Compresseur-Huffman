@@ -33,7 +33,7 @@ void C_obtenirStatistiquesEtTailleFichier(FILE *f, S_Statistiques *s, unsigned l
     }
 }
 
-void C_obtenirTableDeCodageRecursif(TableDeCodage *tdc, ADH_ArbreDeHuffman a, CB_CodeBinaire cb) {
+void C_obtenirTableDeCodageRecursif(TDC_TableDeCodage *tdc, ADH_ArbreDeHuffman a, CB_CodeBinaire cb) {
     CB_CodeBinaire cbCopie;
 
     if (ADH_estUneFeuille(a)) {
@@ -48,10 +48,10 @@ void C_obtenirTableDeCodageRecursif(TableDeCodage *tdc, ADH_ArbreDeHuffman a, CB
     }
 }
 
-TableDeCodage C_obtenirTableDeCodage(ADH_ArbreDeHuffman a) {
+TDC_TableDeCodage C_obtenirTableDeCodage(ADH_ArbreDeHuffman a) {
     assert(!ADH_estUneFeuille(a));
 
-    TableDeCodage tdc = TDC_creerTableCodage();
+    TDC_TableDeCodage tdc = TDC_creerTableCodage();
 
     CB_CodeBinaire cbGauche = CB_creerCodeBinaire(bitA0);
     CB_CodeBinaire cbDroit = CB_creerCodeBinaire(bitA1);
@@ -121,7 +121,7 @@ void C_concatenerCodeBinaireDansFichier(FILE *f, CB_CodeBinaire *p_cbTemp, CB_Co
     }
 }
 
-void C_encoder(FILE *f, FILE *fbCompresse, TableDeCodage tdc) {
+void C_encoder(FILE *f, FILE *fbCompresse, TDC_TableDeCodage tdc) {
     unsigned short i;
     rewind(f);
 

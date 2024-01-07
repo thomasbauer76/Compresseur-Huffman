@@ -110,7 +110,7 @@ void test_table_de_codage(void) {
 
     ADH_ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
 
-    TableDeCodage tdc = C_obtenirTableDeCodage(a);
+    TDC_TableDeCodage tdc = C_obtenirTableDeCodage(a);
 
     CB_CodeBinaire cb;
 
@@ -271,7 +271,7 @@ void test_concatener_codes_binaires(void) {
     unsigned long long longueur;
     C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &longueur);
     ADH_ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
-    TableDeCodage tdc = C_obtenirTableDeCodage(a);
+    TDC_TableDeCodage tdc = C_obtenirTableDeCodage(a);
 
     fclose(tempFileEntree);
     FILE *tempFileSortie = tmpfile();
@@ -434,7 +434,7 @@ void test_decoder(void) {
 
     // Création du fichier encoder de l'exemple
     FILE *fichierTestEncode = tmpfile();
-    TableDeCodage tdc = C_obtenirTableDeCodage(a);
+    TDC_TableDeCodage tdc = C_obtenirTableDeCodage(a);
     rewind(fichierTest);
     C_encoder(fichierTest, fichierTestEncode, tdc);
 

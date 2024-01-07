@@ -154,7 +154,7 @@ void test_obtenir_element_et_defiler(void) {
 
 void test_creerTableCodage(void) {
     /* Utilisation d'un do while ... pour éviter le rique d'un dépassement de mémoire (256 avec un unsigned char) */
-    TableDeCodage tdc = TDC_creerTableCodage();
+    TDC_TableDeCodage tdc = TDC_creerTableCodage();
     unsigned char o = 0;
     do {
         CU_ASSERT(!(TDC_octetPresent(tdc, O_naturelVersOctet(o))));
@@ -163,7 +163,7 @@ void test_creerTableCodage(void) {
 }
 
 void test_ajouterCodage(void) {
-    TableDeCodage tdc = TDC_creerTableCodage();
+    TDC_TableDeCodage tdc = TDC_creerTableCodage();
     CB_CodeBinaire cb_42_test = CB_creerCodeBinaire(bitA1);
     TDC_ajouterCodage(&tdc, O_naturelVersOctet(42), cb_42_test);
     CB_CodeBinaire cb_43_test = CB_creerCodeBinaire(bitA1);
@@ -193,7 +193,7 @@ void test_ajouterCodage(void) {
 }
 
 void test_octetVersCodeBinaire(void) {
-    TableDeCodage tdc = TDC_creerTableCodage();
+    TDC_TableDeCodage tdc = TDC_creerTableCodage();
     CB_CodeBinaire cb_42_test = CB_creerCodeBinaire(bitA1);
     TDC_ajouterCodage(&tdc, O_naturelVersOctet(42), cb_42_test);
     unsigned char i = 0;
