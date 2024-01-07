@@ -1,4 +1,4 @@
-# Projet Huffman Compression
+# Projet Compresseur d'Huffman
 
 Ce répertoire contient un projet de compression de données implémenté en langage C, utilisant l'algorithme de compression sans perte basé sur le codage de Huffman.
 
@@ -6,7 +6,7 @@ Ce répertoire contient un projet de compression de données implémenté en lan
 
 ### Dossier rapport
 - **latex/** : Contient les fichiers LaTeX pour la documentation.
-- main.pdf : le rapport de notre projet
+- **main.pdf/** : le rapport de notre projet
 
 ### Dossier programme
 - **bin/** : Répertoire où les fichiers exécutables seront générés.
@@ -15,12 +15,7 @@ Ce répertoire contient un projet de compression de données implémenté en lan
 - **src/** : Contient les fichiers source du projet.
 - **doc/** : Répertoire où la documentation générée sera stockée. Ce dernier est crée après la commande "make doc".
 - **tests/** : Répertoire où les fichiers de tests seront générés.
-
-## Fichiers Importants
-
-- **Makefile** : Le fichier de configuration Makefile pour compiler, exécuter les tests, générer la documentation, et nettoyer le projet.
-- **main.c** : Le fichier principal du programme.
-- **doxyfile** : Le fichier de configuration pour Doxygen.
+- **makefile** : Le fichier de configuration Makefile pour compiler, exécuter les tests, générer la documentation, et nettoyer le projet.
 
 ## Compilation
 
@@ -71,5 +66,3 @@ make clean
 ```
 
 Cela supprimera les fichiers non indispensables dans les répertoires "programme/bin/", "programme/tests/", "rapport/latex/", et "programme/doc/", ainsi que les fichiers objets dans le répertoire "programme/src/".
-
-N'hésitez pas à personnaliser le Makefile en fonction de vos besoins spécifiques.
