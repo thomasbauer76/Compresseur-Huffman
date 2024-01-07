@@ -56,7 +56,7 @@ void test_arbre_de_huffman(void) {
     unsigned long long taille;
     C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
-    ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
+    ADH_ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
 
     CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsGauche(ADH_obtenirFilsGauche(a)))), 'C');
     CU_ASSERT_EQUAL(O_octetVersNaturel(ADH_obtenirOctet(ADH_obtenirFilsDroit(ADH_obtenirFilsGauche(a)))), 'A');
@@ -108,7 +108,7 @@ void test_table_de_codage(void) {
     unsigned long long taille;
     C_obtenirStatistiquesEtTailleFichier(tempFile, &s, &taille);
 
-    ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
+    ADH_ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
 
     TableDeCodage tdc = C_obtenirTableDeCodage(a);
 
@@ -270,7 +270,7 @@ void test_concatener_codes_binaires(void) {
     Statistiques s;
     unsigned long long longueur;
     C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &longueur);
-    ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
+    ADH_ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
     TableDeCodage tdc = C_obtenirTableDeCodage(a);
 
     fclose(tempFileEntree);
@@ -317,7 +317,7 @@ void test_encoder(void) {
     C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &taille);
 
     if (taille > 0) {
-        ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
+        ADH_ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
         if (!ADH_estUneFeuille(a))  // Cas particulier d'un fichier contenant un seul octet (présent plusieurs fois ou non)
             C_encoder(tempFileEntree, tempFileSortie, C_obtenirTableDeCodage(a));
         ADH_liberer(a);
@@ -348,10 +348,10 @@ void test_seDeplacerDansLArbre(void) {
     Statistiques s;
     unsigned long long taille;
     C_obtenirStatistiquesEtTailleFichier(tempFileEntree, &s, &taille);
-    ArbreDeHuffman abh = CADH_construireArbreDeHuffman(s);
+    ADH_ArbreDeHuffman abh = CADH_construireArbreDeHuffman(s);
     // On vérifie arbitrairement si on arrive à retrouver notre octet tout à gauche, celui tout à droite et un dernier entre les deux selon l'exemple du sujet
     // L'octet 'C' se situe 2 cran à gauche
-    ArbreDeHuffman abhTest = abh;
+    ADH_ArbreDeHuffman abhTest = abh;
     for (unsigned int i = 0; i < 2; i++) {
         D_seDeplacerDansLArbre(bitA0, &abhTest);
     }
@@ -430,7 +430,7 @@ void test_decoder(void) {
     Statistiques s;
     unsigned long long longueur;
     C_obtenirStatistiquesEtTailleFichier(fichierTest, &s, &longueur);
-    ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
+    ADH_ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
 
     // Création du fichier encoder de l'exemple
     FILE *fichierTestEncode = tmpfile();

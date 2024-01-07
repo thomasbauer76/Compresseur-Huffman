@@ -77,7 +77,7 @@ void test_creation_arbre_de_huffman_feuille(void) {
     unsigned char o = 65;
     unsigned long f = 2;
 
-    ArbreDeHuffman a = ADH_arbreDeHuffman(O_naturelVersOctet(o), f);
+    ADH_ArbreDeHuffman a = ADH_arbreDeHuffman(O_naturelVersOctet(o), f);
 
     CU_ASSERT(ADH_estUneFeuille(a));
     CU_ASSERT_EQUAL(ADH_obtenirFrequence(a), f);
@@ -92,9 +92,9 @@ void test_fusionner_ADH(void) {
     Octet od = O_naturelVersOctet(121);
     unsigned long nd = 3;
 
-    ArbreDeHuffman ad = ADH_arbreDeHuffman(od, nd);
-    ArbreDeHuffman ag = ADH_arbreDeHuffman(og, ng);
-    ArbreDeHuffman a = ADH_fusionner(ad, ag);
+    ADH_ArbreDeHuffman ad = ADH_arbreDeHuffman(od, nd);
+    ADH_ArbreDeHuffman ag = ADH_arbreDeHuffman(og, ng);
+    ADH_ArbreDeHuffman a = ADH_fusionner(ad, ag);
 
     CU_ASSERT_EQUAL(ADH_obtenirFrequence(a), ADH_obtenirFrequence(ag) + ADH_obtenirFrequence(ad));
     CU_ASSERT_EQUAL(ADH_obtenirFilsDroit(a), ag);
@@ -113,7 +113,7 @@ void test_creation_filedePriorite_vide(void) {
 void test_enfiler(void) {
     FileDePriorite fdp = FDPAH_fileDePriorite();
 
-    ArbreDeHuffman a1 = ADH_arbreDeHuffman(O_naturelVersOctet('A'), 10);
+    ADH_ArbreDeHuffman a1 = ADH_arbreDeHuffman(O_naturelVersOctet('A'), 10);
 
     FDPAH_enfiler(&fdp, a1);
 
@@ -132,9 +132,9 @@ void test_obtenir_element_et_defiler(void) {
 
     FileDePriorite fdp;
     fdp = FDPAH_fileDePriorite();
-    ArbreDeHuffman a1 = ADH_arbreDeHuffman(o1, f1);
-    ArbreDeHuffman a2 = ADH_arbreDeHuffman(o2, f2);
-    ArbreDeHuffman a3 = ADH_arbreDeHuffman(o3, f3);
+    ADH_ArbreDeHuffman a1 = ADH_arbreDeHuffman(o1, f1);
+    ADH_ArbreDeHuffman a2 = ADH_arbreDeHuffman(o2, f2);
+    ADH_ArbreDeHuffman a3 = ADH_arbreDeHuffman(o3, f3);
 
     FDPAH_enfiler(&fdp, a1);
     FDPAH_enfiler(&fdp, a2);

@@ -13,7 +13,7 @@
 #include "statistiques.h"
 #include "compression.h" // On inclut compression.h pour avoir la constante de l'identifiant
 
-void D_seDeplacerDansLArbre(Bit b, ArbreDeHuffman *a) {
+void D_seDeplacerDansLArbre(Bit b, ADH_ArbreDeHuffman *a) {
     if (b == bitA0) {
         *a = ADH_obtenirFilsGauche(*a);
     } else {
@@ -46,9 +46,9 @@ void D_lireStatistiques(FILE *fb, Statistiques *s) {
     } while (occurence != 0);
 }
 
-void D_decoder(ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *fbCompresse, FILE *fbDecompresse) {
+void D_decoder(ADH_ArbreDeHuffman aHuff, unsigned long long int longueur, FILE *fbCompresse, FILE *fbDecompresse) {
     rewind(fbDecompresse);
-    ArbreDeHuffman aTemp = aHuff;
+    ADH_ArbreDeHuffman aTemp = aHuff;
     unsigned long long int compteurOctetsDecodes = 0;
     bool finDecodage = false;
     while (!finDecodage) {
@@ -96,7 +96,7 @@ void D_decompresser(FILE *fbCompresse, char *filename) {
         if (longueur > 0) {  // Cas particulier d'un fichier vide
             Statistiques s;
             D_lireStatistiques(fbCompresse, &s);
-            ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
+            ADH_ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
             if (ADH_estUneFeuille(a)) {  // Cas particulier d'un fichier contenant un seul octet (présent plusieurs fois ou non)
                 unsigned char octet = O_octetVersNaturel(ADH_obtenirOctet(a));
                 ;

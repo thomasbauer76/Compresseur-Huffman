@@ -25,10 +25,10 @@ FileDePriorite CADH_construireFileDePriorite(Statistiques s) {
     return fdp;
 }
 
-ArbreDeHuffman CADH_construireArbreDeHuffman(Statistiques s) {
+ADH_ArbreDeHuffman CADH_construireArbreDeHuffman(Statistiques s) {
     FileDePriorite fdp;
     bool dernierElement;
-    ArbreDeHuffman a1, a2, aFusion;
+    ADH_ArbreDeHuffman a1, a2, aFusion;
 
     fdp = CADH_construireFileDePriorite(s);
     dernierElement = 0;

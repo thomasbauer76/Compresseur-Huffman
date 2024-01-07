@@ -33,7 +33,7 @@ void C_obtenirStatistiquesEtTailleFichier(FILE *f, Statistiques *s, unsigned lon
     }
 }
 
-void C_obtenirTableDeCodageRecursif(TableDeCodage *tdc, ArbreDeHuffman a, CodeBinaire cb) {
+void C_obtenirTableDeCodageRecursif(TableDeCodage *tdc, ADH_ArbreDeHuffman a, CodeBinaire cb) {
     CodeBinaire cbCopie;
 
     if (ADH_estUneFeuille(a)) {
@@ -48,7 +48,7 @@ void C_obtenirTableDeCodageRecursif(TableDeCodage *tdc, ArbreDeHuffman a, CodeBi
     }
 }
 
-TableDeCodage C_obtenirTableDeCodage(ArbreDeHuffman a) {
+TableDeCodage C_obtenirTableDeCodage(ADH_ArbreDeHuffman a) {
     assert(!ADH_estUneFeuille(a));
 
     TableDeCodage tdc = TDC_creerTableCodage();
@@ -161,7 +161,7 @@ void C_compresser(FILE *f, char *filename) {
     C_ecrireTailleFichier(fbCompresse, taille);
     if (taille > 0) {  // Cas particulier d'un fichier vide
         C_ecrireStatistiques(fbCompresse, s);
-        ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
+        ADH_ArbreDeHuffman a = CADH_construireArbreDeHuffman(s);
         if (!ADH_estUneFeuille(a))  // Cas particulier d'un fichier contenant un seul octet (présent plusieurs fois ou non)
             C_encoder(f, fbCompresse, C_obtenirTableDeCodage(a));
         ADH_liberer(a);

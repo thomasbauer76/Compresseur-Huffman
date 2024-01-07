@@ -24,7 +24,7 @@ typedef struct NoeudFileDePriorite *FileDePriorite;
  *
  */
 typedef struct NoeudFileDePriorite {
-    ArbreDeHuffman arbre;
+    ADH_ArbreDeHuffman arbre;
     FileDePriorite fileSuivante;
 } NoeudFileDePriorite;
 
@@ -46,21 +46,21 @@ FileDePriorite FDPAH_fileDePriorite(void);
 bool FDPAH_estVide(FileDePriorite fdp);
 
 /**
- * \fn void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a)
+ * \fn void FDPAH_enfiler(FileDePriorite *p_fdp, ADH_ArbreDeHuffman a)
  * \brief Fonction permettant d'insérer à l'endroit correct (par rapport à l'élément contenu dans la racine de l'arbre) un ArbreDeHuffman dans une FileDePriorite.
  *
  * \param p_fdp : la FileDePriorite à modifier
- * \param a : l'ArbreDeHuffman à insérer
+ * \param a : l'ADH_ArbreDeHuffman à insérer
  */
-void FDPAH_enfiler(FileDePriorite *p_fdp, ArbreDeHuffman a);
+void FDPAH_enfiler(FileDePriorite *p_fdp, ADH_ArbreDeHuffman a);
 
 /**
- * \fn ArbreDeHuffman FDPAH_obtenirElementEtDefiler(FileDePriorite *p_fdp)
+ * \fn ADH_ArbreDeHuffman FDPAH_obtenirElementEtDefiler(FileDePriorite *p_fdp)
  * \brief Fonction permettant d'extraire l'ArbreDeHuffman au bout de la FileDePriorite
  *
  * \param p_fdp : FileDePriorite dont on extrait l'ArbreDeHuffman
- * \return ArbreDeHuffman
+ * \return ADH_ArbreDeHuffman
  */
-ArbreDeHuffman FDPAH_obtenirElementEtDefiler(FileDePriorite *p_fdp);
+ADH_ArbreDeHuffman FDPAH_obtenirElementEtDefiler(FileDePriorite *p_fdp);
 
 #endif

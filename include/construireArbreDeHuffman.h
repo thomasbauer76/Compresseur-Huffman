@@ -23,12 +23,12 @@
 FileDePriorite CADH_construireFileDePriorite(Statistiques s);
 
 /**
- * \fn ArbreDeHuffman CADH_construireArbreDeHuffman(Statistiques s)
+ * \fn ADH_ArbreDeHuffman CADH_construireArbreDeHuffman(Statistiques s)
  * \brief Fonction permettant de construire l'arbre de Huffman à partir de statistiques
  *
  * \param s : les statistiques
- * \return ArbreDeHuffman
+ * \return ADH_ArbreDeHuffman
  */
-ArbreDeHuffman CADH_construireArbreDeHuffman(Statistiques s);
+ADH_ArbreDeHuffman CADH_construireArbreDeHuffman(Statistiques s);
 
 #endif
