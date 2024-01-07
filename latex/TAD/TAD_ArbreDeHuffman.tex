@@ -1,15 +1,15 @@
 \begin{tad}
-  \tadNom{ArbreDeHuffman}
-  \tadDependances{\textbf{Octet}, \naturel, \booleen}
+  \tadNom{\arbredehuffman}
+  \tadDependances{\octet, \naturel, \booleen}
   \begin{tadOperations}{obtenirFilsGauche}
   
-    \tadOperation{arbreDeHuffman}{\tadParams{\textbf{Octet},\naturel}}{ArbreDeHuffman}
-    \tadOperation{fusionner}{\tadParams{ArbreDeHuffman, ArbreDeHuffman}}{ArbreDeHuffman}
-    \tadOperation{estUneFeuille}{ArbreDeHuffman}{\booleen}
-    \tadOperationAvecPreconditions{obtenirOctet}{ArbreDeHuffman}{\textbf{Octet}}
-    \tadOperation{obtenirFrequence}{ArbreDeHuffman}{\naturel}
-    \tadOperationAvecPreconditions{obtenirFilsGauche}{ArbreDeHuffman}{ArbreDeHuffman}
-    \tadOperationAvecPreconditions{obtenirFilsDroit}{ArbreDeHuffman}{ArbreDeHuffman}
+    \tadOperation{arbreDeHuffman}{\tadParams{\octet,\naturel}}{\arbredehuffman}
+    \tadOperation{fusionner}{\tadParams{\arbredehuffman, \arbredehuffman}}{\arbredehuffman}
+    \tadOperation{estUneFeuille}{\arbredehuffman}{\booleen}
+    \tadOperationAvecPreconditions{obtenirOctet}{\arbredehuffman}{\octet}
+    \tadOperation{obtenirFrequence}{\arbredehuffman}{\naturel}
+    \tadOperationAvecPreconditions{obtenirFilsGauche}{\arbredehuffman}{\arbredehuffman}
+    \tadOperationAvecPreconditions{obtenirFilsDroit}{\arbredehuffman}{\arbredehuffman}
     
   \end{tadOperations}
 

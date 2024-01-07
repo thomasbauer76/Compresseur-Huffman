@@ -8,7 +8,7 @@
 		\champEnregistrement{filsDroit}{ArbreDeHuffman}
 	\end{enregistrement}
 	\\
-    \fonction{arbreDeHuffman}{o : \textbf{Octet}, f : \naturel}{\textbf{ArbreDeHuffman}}{}
+    \fonction{arbreDeHuffman}{o : \octet, f : \naturel}{\arbredehuffman}{}
     {a : ArbreDeHuffman}
     {
         \instruction{\allouer{a}}
@@ -20,8 +20,8 @@
         \retourner{a}
     }
 	\\
-    \fonction{fusionner}{$a_g$, $a_d$ : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{}
-    {racine : \textbf{ArbreDeHuffman}}
+    \fonction{fusionner}{$a_g$, $a_d$ : \arbredehuffman}{\arbredehuffman}{}
+    {racine : \arbredehuffman}
     {
         \instruction{\allouer{racine}}
         \affecter{racine\motclefDereferencer .filsGauche}{$a_g$}
@@ -31,31 +31,31 @@
         \retourner{racine}
     }
 	\\
-    \fonction{estUneFeuille}{a : \textbf{ArbreDeHuffman}}{\booleen}{}
+    \fonction{estUneFeuille}{a : \arbredehuffman}{\booleen}{}
     {}
     {
         \retourner{a\motclefDereferencer .estUneFeuille}
     }
 	\\
-    \fonction{obtenirOctet}{a : \textbf{ArbreDeHuffman}}{\textbf{Octet}}{estUneFeuille(a)}
+    \fonction{obtenirOctet}{a : \arbredehuffman}{\octet}{estUneFeuille(a)}
     {}
     {
         \retourner{a\motclefDereferencer .octet}
     }
 	\\
-    \fonction{obtenirFrequence}{a : \textbf{ArbreDeHuffman}}{\naturel}{}
+    \fonction{obtenirFrequence}{a : \arbredehuffman}{\naturel}{}
     {}
     {
         \retourner{a\motclefDereferencer .frequence}
     }
 	\\
-    \fonction{obtenirFilsGauche}{a : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{non(estUneFeuille(a))}
+    \fonction{obtenirFilsGauche}{a : \arbredehuffman}{\arbredehuffman}{non(estUneFeuille(a))}
     {}
     {
         \retourner{a\motclefDereferencer .filsGauche}
     }
 	\\
-    \fonction{obtenirFilsDroit}{a : \textbf{ArbreDeHuffman}}{\textbf{ArbreDeHuffman}}{non(estUneFeuille(a))}
+    \fonction{obtenirFilsDroit}{a : \arbredehuffman}{\arbredehuffman}{non(estUneFeuille(a))}
     {}
     {
         \retourner{a\motclefDereferencer .filsDroit}

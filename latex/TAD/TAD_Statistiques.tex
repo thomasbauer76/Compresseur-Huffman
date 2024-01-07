@@ -1,11 +1,11 @@
 \begin{tad}
   \tadNom{Statistiques}
-  \tadDependances{CodeBinaire, Octet}
+  \tadDependances{\octet}
   \begin{tadOperations}{obtenirElementEtDefiler}
   
-    \tadOperation{statistiques}{}{Statistiques}
-    \tadOperation{incrementerOccurrence}{\tadParams{Statistiques, Octet}}{Statistiques}
-    \tadOperation{obtenirOccurrence}{\tadParams{Statistiques, Octet}}{Naturel}
+    \tadOperation{statistiques}{}{\statistiques}
+    \tadOperation{incrementerOccurrence}{\tadParams{\statistiques, \octet}}{\statistiques}
+    \tadOperation{obtenirOccurrence}{\tadParams{\statistiques, \octet}}{\naturel}
     \tadOperation{fixerOccurrence}{\tadParams{\statistiques, \octet, \naturel}}{\statistiques}
   
     %\tadOperation{longueur}{FileDePriorite}{\naturel}
